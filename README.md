@@ -34,3 +34,37 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+/my-next-app
+├── app/                  # App Router (page.tsx, layout.tsx, routes)
+│   ├── (routes)/
+│   │   ├── page.tsx
+│   │   └── layout.tsx
+│   └── api/              # API Routes
+├── components/           # Các component tái sử dụng (Button, Modal, Header, Footer...)
+│   ├── ui/               # Components nhỏ theo atomic design
+│   └── layout/           # Components lớn (Navbar, Sidebar, MainLayout...)
+├── features/             # Chia theo tính năng/domain (Auth, Blog, User, Admin...)
+│   ├── auth/
+│   │   ├── components/
+│   │   ├── services/
+│   │   ├── hooks/
+│   │   └── types.ts
+│   ├── blog/
+│   │   ├── components/
+│   │   └── services/
+├── hooks/                # Các custom hooks dùng toàn dự án
+├── lib/                  # Hàm helper (formatDate, classNames, fetcher, validators...)
+├── providers/            # Các Context Provider (ThemeProvider, AuthProvider, ToastProvider...)
+├── services/             # Các service chung (axios instance, fetch client)
+├── stores/               # State management (zustand, redux, jotai...)
+├── styles/               # Các file CSS, SCSS hoặc Tailwind base
+├── constants/            # Các biến hằng số (routes, api endpoints, default values...)
+├── types/                # Global TypeScript types
+├── utils/                # Các utility functions khác
+├── public/               # Static assets (images, fonts...)
+├── .env.local            # Environment Variables
+├── next.config.js        # Next.js config
+├── tailwind.config.ts    # Tailwind config (nếu có)
+├── tsconfig.json         # TypeScript config
+└── package.json          # Dependencies
