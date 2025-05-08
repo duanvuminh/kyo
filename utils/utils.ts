@@ -20,3 +20,7 @@ export function getEnumValues<T extends object>(enumObj: T): T[keyof T][] {
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
+
+export function trimLineBreak(value: string) {
+  return value.trim().replaceAll(/[\r\n]+/g, "");
+}

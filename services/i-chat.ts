@@ -1,34 +1,51 @@
 import { kStreamText } from "@/lib/stream";
-import { updateWordsContent } from "@/repository/dictionary-repository";
 import { searchWord } from "@/services/dictionary";
 import { KWordType } from "@/types/models/word-type";
+import { trimLineBreak } from "@/utils/utils";
 import { CoreMessage, StreamTextResult, ToolSet } from "ai";
 
-const instructionKanji = `Giải thích kanji tiếng nhật sau`;
-const instructionGrammar = `Giải thích ngữ pháp, cách dùng tiếng nhật của từ sau`;
-const instructionWord = `Ý nghĩa của từ tiếng nhật sau`;
+const instructionKanji = `Giải thích kanji tiếng nhật theo format dưới đây
+
+$1 ($2)
+
+1. Ý nghĩa(bạn cho cả ví dụ nhé)
+2. Cách đọc(bạn cho cả ví dụ nhé)
+3. Cách viết/Nhớ
+
+Tổng quan (bạn đánh giá độ quan trọng, tần suất sử dụng)`;
+const instructionGrammar = `Giải thích ngữ pháp, cách dùng tiếng nhật, so sánh ngữ pháp tương tự của từ sau`;
+const instructionWord = `Giải thích ý nghĩa của từ tiếng nhật sau
+$1(cách phát âm)
+1. Ý nghĩa
+2. Ví dụ
+3. Phân biệt các từ có nghĩa tương tự nếu có
+`;
 
 export abstract class ChatBase {
   async handleMessages(
     messages: CoreMessage[]
   ): Promise<StreamTextResult<ToolSet, never> | string> {
-    const message = messages.at(-1)?.content as string;
-    const word = await searchWord(message.trim().replaceAll(/[\r\n]+/g, ""));
+    const message = trimLineBreak(messages.at(-1)?.content as string);
+    const word = await searchWord(message);
     let result: StreamTextResult<ToolSet, never>;
-    result = this.send(messages);
     if (word.content == null) {
       switch (word.type) {
         case KWordType.kanji:
           result = this.send(
             messages,
-            `${instructionKanji} hán tự ${word.hantu}`
+            instructionKanji
+              .replace("$1", word.words)
+              .replace("$2", word.hantu ?? "")
           );
           break;
         case KWordType.grammar:
           result = this.send(messages, instructionGrammar);
           break;
         case KWordType.word:
-          result = this.send(messages, instructionWord);
+          result = this.send(
+            messages,
+            instructionWord.replace("$1", word.words)
+          );
           break;
         default:
           result = this.send(messages);
@@ -36,7 +53,7 @@ export abstract class ChatBase {
       }
       if (word.type != KWordType.other) {
         kStreamText(result).then((full) => {
-          updateWordsContent(word.words, full);
+          // updateWordsContent(word.words, full);
         });
       }
     } else {

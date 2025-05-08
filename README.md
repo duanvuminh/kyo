@@ -68,3 +68,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ├── tailwind.config.ts    # Tailwind config (nếu có)
 ├── tsconfig.json         # TypeScript config
 └── package.json          # Dependencies
+
+input
+・Nếu có trong db
+・・yes:show
+・Không có
+・・ask ai "input" là từ khoá hay câu hỏi
+・・・Nếu là câu hỏi  thì trả lời đi
+・・・Nếu là từ khoá thì

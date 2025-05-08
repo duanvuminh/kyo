@@ -33,18 +33,6 @@ export const getWordFromInternet = async (
   return DictionaryResponseDto.fromJson(posts);
 };
 
-export const getAllGrammar = async (): Promise<WordDTO[]> => {
-  const docRef = db.collection("dictionary").where("type", "==", "grammar");
-  const snapshot = await docRef.get();
-
-  if (!snapshot.empty) return [];
-  const results: WordDTO[] = [];
-  snapshot.forEach((doc) => {
-    results.push(WordDTO.fromFirestore(doc));
-  });
-  return results;
-};
-
 export const addWords = (wordDTO: WordDTO): void => {
   const docRef = db.collection("dictionary").doc(wordDTO.words);
   docRef.set({ ...wordDTO });
@@ -54,6 +42,18 @@ export const updateWordsContent = (words: string, content: string): void => {
   const docRef = db.collection("dictionary").doc(words);
   docRef.update({ content: content });
 };
+
+// export const getAllGrammar = async (): Promise<WordDTO[]> => {
+//   const docRef = db.collection("dictionary").where("type", "==", "grammar");
+//   const snapshot = await docRef.get();
+
+//   if (snapshot.empty) return [];
+//   const results: WordDTO[] = [];
+//   snapshot.forEach((doc) => {
+//     results.push(WordDTO.fromFirestore(doc));
+//   });
+//   return results;
+// };
 
 // export const addKanjiToDatabase = (): void => {
 //   for (const key in hantuList) {

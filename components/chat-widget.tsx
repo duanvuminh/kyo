@@ -2,26 +2,14 @@
 
 import { ChartContainer } from "@/components/chard-container";
 import { ChatInput } from "@/components/chat-input";
-import { useAppDispatch } from "@/stores/hook";
-import { updateEditMessage } from "@/stores/slice-message";
+import { useSyncEditMessageFromChat } from "@/hooks/use-sync-edit-message-from-chat.ts";
 import { useChat } from "@ai-sdk/react";
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import Markdown from "react-markdown";
 
 export function ChatWidget() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    if (messages.length < 2) return;
-    console.log("useEffect", messages);
-    const words = messages
-      .at(-2)
-      ?.parts.find((item) => item.type == "text")?.text;
-    const content = messages
-      .at(-1)
-      ?.parts.find((item) => item.type == "text")?.text;
-    dispatch(updateEditMessage({ words, content }));
-  }, [messages]);
+  useSyncEditMessageFromChat(messages);
   return (
     <Fragment>
       <div className="w-full prose py-24 mx-auto">

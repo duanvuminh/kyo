@@ -8,6 +8,7 @@ import {
 } from "@/services/open-router-ai";
 import { getEnumValues, randomArrayElement } from "@/utils/utils";
 import { CoreMessage } from "ai";
+import { NextResponse } from "next/server";
 
 enum ChatType {
   googleGenerativeAI,
@@ -37,7 +38,14 @@ const chatType = randomArrayElement<ChatType>(getEnumValues(ChatType));
 const chatService = createInstance(ChatType.googleGenerativeAI);
 
 export async function POST(req: Request) {
-  const { messages } = (await req.json()) as { messages: CoreMessage[] };
+  const { messages } = (await req.json()) as {
+    messages: CoreMessage[] | undefined;
+  };
+  if (!messages) {
+    return NextResponse.json(null, {
+      status: 500,
+    });
+  }
   const result = await chatService.handleMessages(messages);
   if (typeof result === "string") {
     const stringify = JSON.stringify(result);
@@ -47,7 +55,7 @@ export async function POST(req: Request) {
         controller.close();
       },
     });
-    return new Response(stream, {
+    return new NextResponse(stream, {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
       },
