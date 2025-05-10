@@ -1,41 +1,8 @@
-import { KGoogleGenerativeAI } from "@/services/google-generative-ai";
-import { ChatBase } from "@/services/i-chat";
-import {
-  KOpenRouterMetaLlama,
-  KOpenRouterMetaLlama1,
-  KOpenRouterMetaLlama2,
-  KOpenRouterMicrosoft,
-} from "@/services/open-router-ai";
-import { getEnumValues, randomArrayElement } from "@/utils/utils";
+import { chatService } from "@/services/ai-factory";
 import { CoreMessage } from "ai";
 import { NextResponse } from "next/server";
 
-enum ChatType {
-  googleGenerativeAI,
-  kOpenRouterMetaLlama,
-  kOpenRouterMetaLlama1,
-  kOpenRouterMetaLlama2,
-  kOpenRouterMicrosoft,
-}
-
-function createInstance(type: ChatType): ChatBase {
-  switch (type) {
-    case ChatType.kOpenRouterMetaLlama:
-      return new KOpenRouterMetaLlama();
-    case ChatType.kOpenRouterMetaLlama1:
-      return new KOpenRouterMetaLlama1();
-    case ChatType.kOpenRouterMetaLlama2:
-      return new KOpenRouterMetaLlama2();
-    case ChatType.kOpenRouterMicrosoft:
-      return new KOpenRouterMicrosoft();
-    default:
-      return new KGoogleGenerativeAI();
-  }
-}
-
-const chatType = randomArrayElement<ChatType>(getEnumValues(ChatType));
-// const chatService = createInstance(chatType);
-const chatService = createInstance(ChatType.googleGenerativeAI);
+export const maxDuration = 30;
 
 export async function POST(req: Request) {
   const { messages } = (await req.json()) as {

@@ -1,8 +1,8 @@
-import { ChatBase } from "@/services/i-chat";
+import { AiBase } from "@/services/ai";
 import { google } from "@ai-sdk/google";
 import { CoreMessage, streamText, StreamTextResult, ToolSet } from "ai";
 
-export class KGoogleGenerativeAI extends ChatBase {
+export class AiGoogleGenerative extends AiBase {
   send(
     messages: CoreMessage[],
     system?: string

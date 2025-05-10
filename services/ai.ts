@@ -21,7 +21,7 @@ $1(cách phát âm)
 3. Phân biệt các từ có nghĩa tương tự nếu có
 `;
 
-export abstract class ChatBase {
+export abstract class AiBase {
   async handleMessages(
     messages: CoreMessage[]
   ): Promise<StreamTextResult<ToolSet, never> | string> {

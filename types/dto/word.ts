@@ -19,13 +19,13 @@ export class WordDTO {
     this.hantu = data.hantu;
   }
 
-  static fromFirestore(data: FirebaseFirestore.DocumentData): WordDTO {
-    return new WordDTO({
-      words: data.words,
-      type: data.type,
-      content: data.content ?? null,
-      pronunciationWithSoundUrl: data.pronunciationWithSoundUrl ?? null,
-      hantu: data.hantu ?? null,
-    });
+  static fromFirestore(doc: FirebaseFirestore.DocumentData): WordDTO {
+    return {
+      words: doc.data().words,
+      type: doc.data().type,
+      content: doc.data().content ?? null,
+      pronunciationWithSoundUrl: doc.data().pronunciationWithSoundUrl ?? null,
+      hantu: doc.data().hantu ?? null,
+    };
   }
 }

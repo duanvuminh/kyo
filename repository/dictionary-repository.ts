@@ -1,4 +1,5 @@
 import { db } from "@/lib/firebase-admin";
+import { mapDocs } from "@/lib/firebase-store";
 import { DictionaryResponseDto } from "@/types/dto/mazzi-dictionary";
 import { WordDTO } from "@/types/dto/word";
 
@@ -43,17 +44,14 @@ export const updateWordsContent = (words: string, content: string): void => {
   docRef.update({ content: content });
 };
 
-// export const getAllGrammar = async (): Promise<WordDTO[]> => {
-//   const docRef = db.collection("dictionary").where("type", "==", "grammar");
-//   const snapshot = await docRef.get();
-
-//   if (snapshot.empty) return [];
-//   const results: WordDTO[] = [];
-//   snapshot.forEach((doc) => {
-//     results.push(WordDTO.fromFirestore(doc));
-//   });
-//   return results;
-// };
+export const getAllGrammar = async (): Promise<WordDTO[]> => {
+  "use cache";
+  const query = db.collection("dictionary").where("type", "==", "grammar");
+  const snapshot = await query.get();
+  if (snapshot.empty) return [];
+  const result = mapDocs(snapshot, WordDTO.fromFirestore);
+  return result;
+};
 
 // export const addKanjiToDatabase = (): void => {
 //   for (const key in hantuList) {

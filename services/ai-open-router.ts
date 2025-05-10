@@ -1,4 +1,4 @@
-import { ChatBase } from "@/services/i-chat";
+import { AiBase } from "@/services/ai";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 import { CoreMessage, streamText, StreamTextResult, ToolSet } from "ai";
 
@@ -6,7 +6,7 @@ const openrouter = createOpenRouter({
   apiKey: process.env.OPEN_ROUTER_AI_API_KEY || "",
 });
 
-export class KOpenRouterMetaLlama extends ChatBase {
+export class AIOpenRouterMetaLlama extends AiBase {
   send(
     messages: CoreMessage[],
     system: string
@@ -24,7 +24,7 @@ export class KOpenRouterMetaLlama extends ChatBase {
   }
 }
 
-export class KOpenRouterMetaLlama1 extends ChatBase {
+export class AiOpenRouterMetaLlama1 extends AiBase {
   send(
     messages: CoreMessage[],
     system?: string
@@ -42,7 +42,7 @@ export class KOpenRouterMetaLlama1 extends ChatBase {
   }
 }
 
-export class KOpenRouterMetaLlama2 extends ChatBase {
+export class AiOpenRouterMetaLlama2 extends AiBase {
   send(
     messages: CoreMessage[],
     system?: string
@@ -60,7 +60,7 @@ export class KOpenRouterMetaLlama2 extends ChatBase {
   }
 }
 
-export class KOpenRouterMicrosoft extends ChatBase {
+export class AiOpenRouterMicrosoft extends AiBase {
   send(
     messages: CoreMessage[],
     system?: string
