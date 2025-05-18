@@ -1,4 +1,5 @@
 "use client";
+import { CenterMessage } from "@/components/center-message";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAppSelector } from "@/stores/hook";
@@ -31,7 +32,7 @@ export function EditBox() {
       toast("Cảm ơn bạn đã chỉnh sửa góp ý đã được xử lý.");
     }
   };
-  return (
+  return words ? (
     <Tabs defaultValue="account" className="prose mx-auto">
       <TabsContent value="account">
         <textarea
@@ -54,5 +55,11 @@ export function EditBox() {
         </Button>
       </TabsList>
     </Tabs>
+  ) : (
+    <CenterMessage>
+      Nội dung hiện tại không tồn tại
+      <br />
+      Bạn hãy thử lại sau
+    </CenterMessage>
   );
 }

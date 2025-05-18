@@ -1,4 +1,5 @@
-import { kStreamText } from "@/lib/stream";
+import { kStreamText } from "@/lib/chat";
+import { updateWordsContent } from "@/repository/dictionary-repository";
 import { searchWord } from "@/services/dictionary";
 import { KWordType } from "@/types/models/word-type";
 import { trimLineBreak } from "@/utils/utils";
@@ -53,7 +54,7 @@ export abstract class AiBase {
       }
       if (word.type != KWordType.other) {
         kStreamText(result).then((full) => {
-          // updateWordsContent(word.words, full);
+          updateWordsContent(word.words, full);
         });
       }
     } else {

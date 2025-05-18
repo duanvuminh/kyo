@@ -36,7 +36,7 @@ import Link from "next/link";
 const items = [
   {
     title: "Từ vựng",
-    url: "#",
+    url: "/words",
     icon: BookA,
   },
   {
@@ -51,7 +51,7 @@ const items = [
   },
   {
     title: "Anime",
-    url: "#",
+    url: "/videos/random",
     icon: FileVideo,
   },
   {

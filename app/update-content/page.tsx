@@ -1,3 +1,4 @@
+import { CenterMessage } from "@/components/center-message";
 import { EditBox } from "@/components/edit-box";
 import { Toaster } from "@/components/ui/sonner";
 import { getAuthInfor } from "@/services/auth";
@@ -11,8 +12,10 @@ export default async function Page() {
       <Toaster />
     </Fragment>
   ) : (
-    <div className="flex items-center justify-center h-screen">
-      <p className="text-center text-lg">Bạn cần đăng nhập</p>
-    </div>
+    <CenterMessage>
+      Bạn cần đăng nhập.
+      <br />
+      Menu → login
+    </CenterMessage>
   );
 }

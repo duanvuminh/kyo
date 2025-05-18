@@ -6,15 +6,8 @@ export class KWord {
   type: KWordType;
   content?: string;
   hantu?: string;
-  pronunciationWithSoundUrl?: string;
 
-  constructor(
-    words: string,
-    type: KWordType,
-    content?: string,
-    pronunciationWithSoundUrl?: string
-  ) {
-    this.pronunciationWithSoundUrl = pronunciationWithSoundUrl;
+  constructor(words: string, type: KWordType, content?: string) {
     this.words = words;
     this.type = type;
     this.content = content;
@@ -25,7 +18,6 @@ export class KWord {
       ...data,
       hantu: data.hantu ?? undefined,
       content: data.content ?? undefined,
-      pronunciationWithSoundUrl: data.pronunciationWithSoundUrl ?? undefined,
       type: KWordType[data.type as keyof typeof KWordType],
     };
   }

@@ -23,7 +23,6 @@ export async function searchWord(word: string): Promise<KWord> {
       type: "word",
       hantu: null,
       content: null,
-      pronunciationWithSoundUrl: null,
     });
     return {
       words: word,

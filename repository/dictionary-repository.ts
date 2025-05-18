@@ -52,25 +52,3 @@ export const getAllGrammar = async (): Promise<WordDTO[]> => {
   const result = mapDocs(snapshot, WordDTO.fromFirestore);
   return result;
 };
-
-// export const addKanjiToDatabase = (): void => {
-//   for (const key in hantuList) {
-//     const { hantu } = hantuList[key];
-//     const wordDTO = {
-//       words: key,
-//       type: "kanji",
-//       hantu: hantu,
-//       content: null,
-//       pronunciationWithSoundUrl: null,
-//     };
-//     const docRef = db.collection("dictionary").doc(wordDTO.words);
-//     docRef.set(wordDTO);
-//   }
-// };
-
-// export const addGrammarToDatabase = (): void => {
-//   grammarList.forEach((element) => {
-//     const docRef = db.collection("dictionary").doc(element.words);
-//     docRef.set(element);
-//   });
-// };
