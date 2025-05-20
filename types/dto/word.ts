@@ -18,10 +18,10 @@ export class WordDTO {
 
   static fromFirestore(doc: FirebaseFirestore.DocumentData): WordDTO {
     return {
-      words: doc.data().words,
-      type: doc.data().type,
-      content: doc.data().content ?? null,
-      hantu: doc.data().hantu ?? null,
+      words: doc.words,
+      type: doc.type,
+      content: doc.content ?? null,
+      hantu: doc.hantu ?? null,
     };
   }
 }

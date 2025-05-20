@@ -1,6 +1,5 @@
+import { mapDocs } from "@/lib/data-convert";
 import { db } from "@/lib/firebase-admin";
-import { mapDocs } from "@/lib/firebase-store";
-import { DictionaryResponseDto } from "@/types/dto/mazzi-dictionary";
 import { WordDTO } from "@/types/dto/word";
 
 export const getWordById = async (
@@ -10,28 +9,8 @@ export const getWordById = async (
   const snapshot = await docRef.get();
 
   if (!snapshot.exists) return undefined;
-
+  console.log(snapshot.data());
   return WordDTO.fromFirestore(snapshot.data()!);
-};
-
-export const getWordFromInternet = async (
-  word: string
-): Promise<DictionaryResponseDto> => {
-  const data = await fetch("https://mazii.net/api/search", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      dict: "javi",
-      type: "word",
-      query: word,
-      page: 0,
-      limit: 1,
-    }),
-  });
-  const posts = await data.json();
-  return DictionaryResponseDto.fromJson(posts);
 };
 
 export const addWords = (wordDTO: WordDTO): void => {

@@ -1,4 +1,4 @@
-import { updateWordsContent } from "@/repository/dictionary-repository";
+import { updateWordsContent } from "@/repository/firestore";
 import { getAuthInfor } from "@/services/auth";
 import { trimLineBreak } from "@/utils/utils";
 import { NextResponse } from "next/server";

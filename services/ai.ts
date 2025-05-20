@@ -1,5 +1,5 @@
 import { kStreamText } from "@/lib/chat";
-import { updateWordsContent } from "@/repository/dictionary-repository";
+import { updateWordsContent } from "@/repository/firestore";
 import { searchWord } from "@/services/dictionary";
 import { KWordType } from "@/types/models/word-type";
 import { trimLineBreak } from "@/utils/utils";

@@ -15,15 +15,17 @@ export default async function Layout({
   return (
     <section>
       {categories.map((itemCategory, index) => (
-        <Button asChild key={index} variant="link" size="sm">
-          <Link
-            href={`/videos/${itemCategory}`}
-            className={cn(
-              itemCategory == decodeURI(category) ? "text-red-500" : ""
-            )}
-          >
-            {itemCategory}
-          </Link>
+        <Button
+          asChild
+          key={index}
+          variant="link"
+          size="sm"
+          className={cn(
+            "hover:text-primary",
+            itemCategory == decodeURI(category) ? "" : "text-muted"
+          )}
+        >
+          <Link href={`/video/${itemCategory}`}>{itemCategory}</Link>
         </Button>
       ))}
       {children}

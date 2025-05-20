@@ -51,12 +51,12 @@ const items = [
   },
   {
     title: "Anime",
-    url: "/videos/random",
+    url: "/video/random",
     icon: FileVideo,
   },
   {
     title: "Manga",
-    url: "#",
+    url: "/manga",
     icon: BookOpen,
   },
   {

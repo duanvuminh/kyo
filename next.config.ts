@@ -16,7 +16,10 @@ const nextConfig: NextConfig = withMDX({
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    remotePatterns: [new URL("https://imgv.vm-movie.jp/image/**")],
+    remotePatterns: [
+      new URL("https://imgv.vm-movie.jp/image/**"),
+      new URL("https://cmoa.akamaized.net/data/image/**"),
+    ],
   },
 });
 

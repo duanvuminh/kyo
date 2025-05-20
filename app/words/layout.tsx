@@ -3,5 +3,5 @@ export default async function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <article className="prose p-2">{children}</article>;
+  return <article className="prose p-2 mx-auto">{children}</article>;
 }
