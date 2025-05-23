@@ -18,7 +18,7 @@ export const addWords = (wordDTO: WordDTO): void => {
   docRef.set({ ...wordDTO });
 };
 
-export const updateWordsContent = (words: string, content: string): void => {
+export const updateDocument = (words: string, content: string): void => {
   const docRef = db.collection("dictionary").doc(words);
   docRef.update({ content: content });
 };

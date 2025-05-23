@@ -1,13 +1,21 @@
 import { auth } from "@/lib/auth";
 
 export const getAuthInfor = async (): Promise<boolean> => {
-  const session = await auth();
-  const user = session?.user;
-  return user != undefined;
+  try {
+    const session = await auth();
+    const user = session?.user;
+    return user != undefined;
+  } catch {
+    return false;
+  }
 };
 
 export const getUserMail = async (): Promise<string | null | undefined> => {
-  const session = await auth();
-  const user = session?.user;
-  return user?.email;
+  try {
+    const session = await auth();
+    const user = session?.user;
+    return user?.email;
+  } catch {
+    return undefined;
+  }
 };

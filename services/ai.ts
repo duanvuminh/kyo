@@ -1,6 +1,5 @@
 import { kStreamText } from "@/lib/chat";
-import { updateWordsContent } from "@/repository/firestore";
-import { searchWord } from "@/services/dictionary";
+import { searchWord, updateWordsContent } from "@/services/dictionary";
 import { KWordType } from "@/types/models/word-type";
 import { trimLineBreak } from "@/utils/utils";
 import { CoreMessage, StreamTextResult, ToolSet } from "ai";
@@ -54,7 +53,7 @@ export abstract class AiBase {
       }
       if (word.type != KWordType.other) {
         kStreamText(result).then((full) => {
-          updateWordsContent(word.words, full);
+          updateWordsContent({ words: word.words, content: full });
         });
       }
     } else {

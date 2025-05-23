@@ -1,5 +1,5 @@
-import { updateWordsContent } from "@/repository/firestore";
 import { getAuthInfor } from "@/services/auth";
+import { updateWordsContent } from "@/services/dictionary";
 import { trimLineBreak } from "@/utils/utils";
 import { NextResponse } from "next/server";
 
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     content?: string;
   };
   if (words && content) {
-    updateWordsContent(trimLineBreak(words), content);
+    updateWordsContent({ words: trimLineBreak(words), content });
   }
   return NextResponse.json({ success: true });
 }
