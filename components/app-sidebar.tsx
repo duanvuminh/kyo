@@ -50,24 +50,24 @@ const items = [
     icon: WholeWord,
   },
   {
-    title: "Anime",
-    url: "/video/random",
-    icon: FileVideo,
-  },
-  {
-    title: "Manga",
-    url: "/manga",
-    icon: BookOpen,
-  },
-  {
-    title: "Đọc báo",
-    url: "#",
+    title: "Tin tức",
+    url: "/short/newest",
     icon: Newspaper,
   },
   {
     title: "Tiện ích",
     url: "#",
     icon: Info,
+  },
+  {
+    title: "Anime",
+    url: "/video/random",
+    icon: FileVideo,
+  },
+  {
+    title: "Manga",
+    url: "/manga/newest",
+    icon: BookOpen,
   },
 ];
 

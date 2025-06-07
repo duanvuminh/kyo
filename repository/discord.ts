@@ -1,20 +1,19 @@
-import { mapDatas } from "@/lib/data-convert";
-import { DiscordMessageDto } from "@/types/dto/discord-message";
+import { DiscordMessageDTO } from "@/types/dto/discord-message";
 
-export const getListMessage = async ({
-  channel_id,
+export const getListMessageFromDisCord = async ({
+  channelId,
   before,
-  after,
+  limit,
 }: {
-  channel_id: string;
+  channelId: string;
   before?: string;
-  after?: string;
+  limit?: number;
 }) => {
   const params = new URLSearchParams();
   if (before) params.append("before", before);
-  if (after) params.append("after", after);
+  if (limit) params.append("limit", `${limit}`);
   const res = await fetch(
-    `https://discord.com/api/v10/channels/${channel_id}/messages?${params.toString()}`,
+    `https://discord.com/api/v10/channels/${channelId}/messages?${params.toString()}`,
     {
       method: "GET",
       headers: {
@@ -24,5 +23,5 @@ export const getListMessage = async ({
   );
 
   const data = await res.json();
-  return mapDatas(data, DiscordMessageDto.fromJson);
+  return data as DiscordMessageDTO[];
 };

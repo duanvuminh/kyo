@@ -7,18 +7,13 @@ import { useChat } from "@ai-sdk/react";
 import { Fragment } from "react";
 import Markdown from "react-markdown";
 
-export function ChatWidget({
-  showOnlyLastMessage = false,
-}: {
-  showOnlyLastMessage: boolean;
-}) {
+export function ChatWidget() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
   useSyncEditMessageFromChat(messages);
-  const displayMessage = showOnlyLastMessage ? messages.slice(-2) : messages;
   return (
     <Fragment>
       <div className="w-full prose py-24 mx-auto">
-        {displayMessage.map((message) => (
+        {messages.map((message) => (
           <div key={message.id} className="p-2">
             <ChartContainer isUser={message.role === "user"}>
               {message.parts.map((part, i) => {

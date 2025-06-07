@@ -2,14 +2,14 @@ import { Video } from "@/types/models/video";
 import Image from "next/image";
 import Link from "next/link";
 
-export const KVideo = ({ video }: { video: Video }) => {
+export const KVideoInfo = ({ video }: { video: Video }) => {
   return (
     <div key={video.id} className="space-y-2">
       <div className="aspect-video relative rounded-xl overflow-hidden">
         <Link href={video.url}>
           <div className="aspect-video relative rounded-xl overflow-hidden">
             <Image
-              src={video.imgUrl}
+              src={video.image}
               alt={video.title}
               fill
               className="object-cover"

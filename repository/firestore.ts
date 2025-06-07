@@ -9,7 +9,6 @@ export const getWordById = async (
   const snapshot = await docRef.get();
 
   if (!snapshot.exists) return undefined;
-  console.log(snapshot.data());
   return WordDTO.fromFirestore(snapshot.data()!);
 };
 

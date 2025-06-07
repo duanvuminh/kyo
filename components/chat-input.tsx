@@ -75,7 +75,7 @@ function ChatTextArea({
       placeholder={placeholder}
       onChange={onChange}
       rows={0}
-      className="border p-2 w-full bg-input"
+      className="border p-2 w-full bg-primary-foreground"
     />
   );
 }

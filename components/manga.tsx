@@ -9,7 +9,7 @@ export const KManga = ({ manga }: { manga: Manga }) => {
       <h1>{manga.title}</h1>
       <Markdown>{manga.content}</Markdown>
       <Link href={manga.source}>Xem trang gốc</Link>
-      <iframe src={manga.source} className="w-full h-screen" />
+      <iframe src={manga.source} className="w-full h-96 border rounded my-2" />
     </Fragment>
   );
 };

@@ -1,9 +1,8 @@
-import { mapSingleData } from "@/lib/data-convert";
-import { DictionaryResponseDto } from "@/types/dto/mazzi-dictionary";
+import { DictionaryResponseDTO } from "@/types/dto/mazzi-dictionary";
 
 export const getWordFromExternalService = async (
   word: string
-): Promise<DictionaryResponseDto> => {
+): Promise<DictionaryResponseDTO> => {
   const data = await fetch("https://mazii.net/api/search", {
     method: "POST",
     headers: {
@@ -18,5 +17,5 @@ export const getWordFromExternalService = async (
     }),
   });
   const post = await data.json();
-  return mapSingleData(post, DictionaryResponseDto.fromJson);
+  return post as DictionaryResponseDTO;
 };

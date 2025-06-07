@@ -1,4 +1,5 @@
-import { DiscordMessageDto } from "../dto/discord-message";
+import { DiscordMessageDTO } from "@/types/dto/discord-message";
+import matter from "gray-matter";
 
 export class Manga {
   constructor(
@@ -9,13 +10,20 @@ export class Manga {
     public source: string
   ) {}
 
-  static fromDTO(data: DiscordMessageDto): Manga {
+  static fromDTO(data: DiscordMessageDTO): Manga {
+    const parsed = matter(data.content);
     return {
       id: data.id,
-      content: data.content,
-      title: data.title,
-      image: data.image,
-      source: data.source,
+      content: parsed.content,
+      title: parsed.data.title,
+      image: parsed.data.image,
+      source: parsed.data.source,
     };
   }
+}
+
+export interface MangaPage {
+  mangaList: Manga[];
+  nextPage?: string;
+  limit: number;
 }

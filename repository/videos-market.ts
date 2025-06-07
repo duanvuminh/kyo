@@ -1,5 +1,4 @@
-import { mapDatas } from "@/lib/data-convert";
-import { VideoMarketDto } from "@/types/dto/videos-market";
+import { VideoMarketDTO } from "@/types/dto/videos-market";
 
 export const getVideosMarket = async ({
   categoryTagIds,
@@ -32,5 +31,5 @@ export const getVideosMarket = async ({
   });
   const jsonData = await response.json();
   if (jsonData.data?.searchTitles == undefined) return [];
-  return mapDatas(jsonData.data?.searchTitles, VideoMarketDto.fromJson);
+  return jsonData.data?.searchTitles as VideoMarketDTO[];
 };

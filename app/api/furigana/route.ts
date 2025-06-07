@@ -5,7 +5,6 @@ export async function POST(req: NextRequest) {
   const { text } = await req.json();
 
   const word = await getWordFromExternalService(text);
-  console.log(word);
   if (text != word.data?.at(0)?.word) {
     return NextResponse.json({ result: "" });
   }

@@ -24,3 +24,23 @@ export function cn(...inputs: ClassValue[]) {
 export function trimLineBreak(value: string) {
   return value.trim().replaceAll(/[\r\n]+/g, "");
 }
+
+/**
+ * Convert a time string in the format "HH:MM:SS.MS" to seconds.
+ *
+ *  * Example:
+ *   timeStringToSeconds("00:00:04.380") => 4.38
+ *
+ * @param {string} timeStr - The time string to convert.
+ * @returns {number} - The total number of seconds.
+ */
+export function timeStringToSeconds(timeStr: string): number {
+  const [hh, mm, ssMs] = timeStr.split(":");
+  const [ss, ms] = ssMs.split(".");
+  return (
+    parseInt(hh, 10) * 3600 +
+    parseInt(mm, 10) * 60 +
+    parseInt(ss, 10) +
+    parseInt(ms, 10) / 1000
+  );
+}
