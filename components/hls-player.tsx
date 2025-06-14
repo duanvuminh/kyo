@@ -16,7 +16,7 @@ type HlsPlayerProps = {
 
 export default function HlsPlayer({
   src,
-  autoPlay = true,
+  autoPlay = false,
   controls = true,
   muted = false,
   className = "",

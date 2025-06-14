@@ -30,7 +30,7 @@ export abstract class AiBase {
     let result: StreamTextResult<ToolSet, never>;
     if (word.content == null) {
       switch (word.type) {
-        case KWordType.kanji:
+        case KWordType.KANJI:
           result = this.send(
             messages,
             instructionKanji
@@ -38,10 +38,10 @@ export abstract class AiBase {
               .replace("$2", word.hantu ?? "")
           );
           break;
-        case KWordType.grammar:
+        case KWordType.GRAMMAR:
           result = this.send(messages, instructionGrammar);
           break;
-        case KWordType.word:
+        case KWordType.WORD:
           result = this.send(
             messages,
             instructionWord.replace("$1", word.words)
@@ -51,7 +51,7 @@ export abstract class AiBase {
           result = this.send(messages);
           break;
       }
-      if (word.type != KWordType.other) {
+      if (word.type != KWordType.OTHER) {
         kStreamText(result).then((full) => {
           updateWordsContent({ words: word.words, content: full });
         });

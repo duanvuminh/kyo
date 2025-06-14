@@ -55,11 +55,6 @@ const items = [
     icon: Newspaper,
   },
   {
-    title: "Tiện ích",
-    url: "#",
-    icon: Info,
-  },
-  {
     title: "Anime",
     url: "/video/random",
     icon: FileVideo,
@@ -68,6 +63,11 @@ const items = [
     title: "Manga",
     url: "/manga/newest",
     icon: BookOpen,
+  },
+  {
+    title: "Thông tin",
+    url: "/infor/newest",
+    icon: Info,
   },
 ];
 

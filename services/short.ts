@@ -1,6 +1,6 @@
 import { mapDatas } from "@/lib/data-convert";
 import { getListMessageFromSlack } from "@/repository/slack";
-import { Short, ShortPage } from "@/types/models/short";
+import { Short, ShortPage, ShortType } from "@/types/models/short";
 
 const limit = 10;
 const defaultPage = "newest";
@@ -42,4 +42,8 @@ export function showNextPage(pageData: ShortPage | undefined): boolean {
 export function getNextPageOrDefault(pageData: ShortPage | undefined): string {
   const data = displayData(pageData);
   return data.at(-1)?.id ?? defaultPage;
+}
+
+export function isSubtitle(short: Short): boolean {
+  return short.type == ShortType.SUBTITLE;
 }

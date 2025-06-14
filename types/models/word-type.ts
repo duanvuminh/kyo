@@ -1,6 +1,6 @@
 export enum KWordType {
-  kanji,
-  grammar,
-  word,
-  other,
+  KANJI,
+  GRAMMAR,
+  WORD,
+  OTHER,
 }

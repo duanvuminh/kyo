@@ -18,8 +18,8 @@ export default function LazyHlsPlayer({
   className,
 }: Props) {
   const { ref, inView } = useInView({
-    triggerOnce: true, // chỉ trigger một lần
-    threshold: 0.2, // 20% xuất hiện trong viewport
+    triggerOnce: true,
+    threshold: 0.2,
   });
 
   return (

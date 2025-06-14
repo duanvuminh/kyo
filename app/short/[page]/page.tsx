@@ -4,7 +4,13 @@ import { ChatWidget } from "@/components/chat-widget";
 import LazyHlsPlayer from "@/components/lazy-hls-player";
 import { KShort } from "@/components/short";
 import { ShortFileViewer } from "@/components/short-file";
-import { displayData, getShort, hasData, showNextPage } from "@/services/short";
+import {
+  displayData,
+  getShort,
+  hasData,
+  isSubtitle,
+  showNextPage,
+} from "@/services/short";
 import { ShortPage } from "@/types/models/short";
 import Link from "next/link";
 import { Fragment } from "react";
@@ -22,7 +28,7 @@ export default async function Page({
         <Fragment key={short.id}>
           <KShort short={short} />
           {short.files?.map((file, index) => {
-            return short.useSub ? (
+            return isSubtitle(short) ? (
               <LazyHlsPlayer
                 key={index}
                 src={file.url}

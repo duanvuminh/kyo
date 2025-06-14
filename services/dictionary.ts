@@ -28,17 +28,17 @@ export async function searchWord(word: string): Promise<KWord> {
       });
       return {
         words: word,
-        type: KWordType.word,
+        type: KWordType.WORD,
       } as KWord;
     }
     return {
       words: word,
-      type: KWordType.other,
+      type: KWordType.OTHER,
     };
   } catch {
     return {
       words: word,
-      type: KWordType.other,
+      type: KWordType.OTHER,
     };
   }
 }

@@ -1,6 +1,11 @@
 import { SlackMessageDTO } from "@/types/dto/slack-message";
 import matter from "gray-matter";
 
+export enum ShortType {
+  SUBTITLE = "subtitle",
+  OTHER = "other",
+}
+
 export interface KFile {
   name: string;
   url: string;
@@ -12,16 +17,24 @@ export class Short {
     public id: string,
     public content: string,
     public title?: string,
-    public useSub?: boolean,
+    public type?: ShortType,
     public files?: KFile[]
   ) {}
+
+  static stringToShortType(value: string): ShortType {
+    if (Object.values(ShortType).includes(value as ShortType)) {
+      return value as ShortType;
+    }
+    return ShortType.OTHER;
+  }
+
   static fromDTO(data: SlackMessageDTO): Short {
     const parsed = matter(data.text);
     return {
       id: data.ts,
       title: parsed.data.title,
       content: parsed.content.replaceAll("--&gt;", "-->"),
-      useSub: parsed.data.useSub,
+      type: Short.stringToShortType(parsed.data.type),
       files: data.files?.map((item) => {
         return {
           name: item.name,
