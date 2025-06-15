@@ -12,24 +12,22 @@ export function ChatWidget() {
   useSyncEditMessageFromChat(messages);
   return (
     <Fragment>
-      <div className="w-full prose py-24 mx-auto">
-        {messages.map((message) => (
-          <div key={message.id} className="p-2">
-            <ChartContainer isUser={message.role === "user"}>
-              {message.parts.map((part, i) => {
-                switch (part.type) {
-                  case "text":
-                    return (
-                      <div key={`${message.id}-${i}`}>
-                        <Markdown>{part.text}</Markdown>
-                      </div>
-                    );
-                }
-              })}
-            </ChartContainer>
-          </div>
-        ))}
-      </div>
+      {messages.map((message) => (
+        <div key={message.id} className="p-2">
+          <ChartContainer isUser={message.role === "user"}>
+            {message.parts.map((part, i) => {
+              switch (part.type) {
+                case "text":
+                  return (
+                    <div key={`${message.id}-${i}`}>
+                      <Markdown>{part.text}</Markdown>
+                    </div>
+                  );
+              }
+            })}
+          </ChartContainer>
+        </div>
+      ))}
       <ChatInput
         input={input}
         messages={messages}

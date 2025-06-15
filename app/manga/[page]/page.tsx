@@ -2,6 +2,7 @@ import { CenterMessage } from "@/components/center-message";
 import { KSheet } from "@/components/chat-sheet";
 import { ChatWidget } from "@/components/chat-widget";
 import { KManga } from "@/components/manga";
+import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
 import {
   displayData,
   getManga,
@@ -30,7 +31,9 @@ export default async function Page({
         </Link>
       )}
       <KSheet>
-        <ChatWidget />
+        <MdxWrapperStyle>
+          <ChatWidget />
+        </MdxWrapperStyle>
       </KSheet>
     </div>
   ) : (

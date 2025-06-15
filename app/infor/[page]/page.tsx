@@ -2,6 +2,7 @@ import { CenterMessage } from "@/components/center-message";
 import { KSheet } from "@/components/chat-sheet";
 import { ChatWidget } from "@/components/chat-widget";
 import { KInfor } from "@/components/infor";
+import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
 import {
   displayData,
   getInfor,
@@ -20,7 +21,7 @@ export default async function Page({
   const { page } = await params;
   const pageData: InforPage | undefined = await getInfor({ page });
   return hasData(pageData) ? (
-    <div className="p-2 prose mx-auto">
+    <MdxWrapperStyle>
       {displayData(pageData).map((infor) => (
         <KInfor key={infor.id} infor={infor} />
       ))}
@@ -30,9 +31,11 @@ export default async function Page({
         </Link>
       )}
       <KSheet>
-        <ChatWidget />
+        <MdxWrapperStyle>
+          <ChatWidget />
+        </MdxWrapperStyle>
       </KSheet>
-    </div>
+    </MdxWrapperStyle>
   ) : (
     <CenterMessage>
       Không tìm thấy bài viết cũ hơn.
