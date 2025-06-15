@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { Speech } from "lucide-react";
+import { Fragment, useRef, useState } from "react";
 import { Button } from "./ui/button";
 
 export const AudioPlayer = ({ text }: { text: string }) => {
@@ -28,15 +29,20 @@ export const AudioPlayer = ({ text }: { text: string }) => {
   };
 
   return (
-    <div className="flex justify-end">
-      <Button variant="ghost" onClick={handlePlayAudio}>
-        Nghe
+    <Fragment>
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={handlePlayAudio}
+        className="text-muted"
+      >
+        <Speech />
       </Button>
       {playUrl && (
         <audio ref={audioRef} controls className="hidden" src={playUrl}>
           Your browser does not support the audio element.
         </audio>
       )}
-    </div>
+    </Fragment>
   );
 };

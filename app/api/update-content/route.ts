@@ -15,5 +15,5 @@ export async function POST(request: Request) {
   if (words && content) {
     updateWordsContent({ words: trimLineBreak(words), content });
   }
-  return NextResponse.json({ success: true });
+  return NextResponse.json({});
 }

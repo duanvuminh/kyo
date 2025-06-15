@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Fragment, useEffect, useState } from "react";
 
 export const Yomi = ({ text }: { text: string }) => {
-  const [yomi, setYomi] = useState("");
+  const [yomi, setYomi] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     fetch("/api/furigana", {
@@ -12,9 +13,14 @@ export const Yomi = ({ text }: { text: string }) => {
       headers: { "Content-Type": "application/json" },
     }).then(async (res) => {
       const data = await res.json();
-      setYomi(data.result);
+      setYomi(data.result ?? text);
     });
   }, [text]);
 
-  return <div className="flex justify-end">{yomi}</div>;
+  return (
+    <Fragment>
+      {!yomi && <Skeleton className="h-20 w-full rounded-xl" />}
+      {yomi && <div>{yomi}</div>}
+    </Fragment>
+  );
 };

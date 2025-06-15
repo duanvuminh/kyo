@@ -17,7 +17,7 @@ export function EditBox() {
     setValue(e.target.value);
   };
   const handleSubmit = async () => {
-    const res = await fetch("/api/update-content", {
+    await fetch("/api/update-content", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,12 +25,7 @@ export function EditBox() {
       body: JSON.stringify({ words, content: value }),
     });
 
-    const result = (await res.json()) as {
-      success: boolean;
-    };
-    if (result.success) {
-      toast("Cảm ơn bạn đã chỉnh sửa góp ý đã được xử lý.");
-    }
+    toast("Cảm ơn bạn đã chỉnh sửa góp ý đã được xử lý.");
   };
   return words ? (
     <Fragment>

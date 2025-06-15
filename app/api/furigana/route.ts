@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
 
   const word = await getWordFromExternalService(text);
   if (text != word.data?.at(0)?.word) {
-    return NextResponse.json({ result: "" });
+    return NextResponse.json({ result: undefined });
   }
   return NextResponse.json({ result: word.data?.at(0)?.phonetic });
 }

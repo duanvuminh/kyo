@@ -1,49 +1,36 @@
 "use client";
 
-import { AudioPlayer } from "@/components/audio-player";
-import { SvgFromUrl } from "@/components/svg-from-url";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { svgFromWord } from "@/lib/dictionary";
+import { KSheet } from "@/components/chat-sheet";
+import { ChatWidget } from "@/components/chat-widget";
+import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
 import { useEffect, useState } from "react";
-import { Yomi } from "./yomi";
 
 export function SelectedTextViewer() {
-  const [selectedText, setSelectedText] = useState("");
+  const [selectedText, setSelectedText] = useState<string | undefined>(
+    undefined
+  );
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const handleMouseUp = async () => {
+      if (open) return;
       const selection = window.getSelection();
       if (selection) {
         const text = selection.toString().trim();
         setSelectedText(text);
+        navigator.clipboard.writeText(text);
+        setOpen(text != "");
       }
     };
 
     document.addEventListener("mouseup", handleMouseUp);
     return () => document.removeEventListener("mouseup", handleMouseUp);
-  }, []);
+  }, [open, selectedText]);
 
   return (
-    <Dialog open={selectedText != ""}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle>Cách viết</DialogTitle>
-        </DialogHeader>
-        <div className="flex flex-wrap justify-items-center">
-          {selectedText.split("").map((item, index) => (
-            <SvgFromUrl key={index} url={svgFromWord(item)} />
-          ))}
-        </div>
-        <Yomi text={selectedText} />
-        <DialogFooter>
-          <AudioPlayer text={selectedText} />
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <KSheet open={open} onOpenChange={setOpen} title={selectedText ?? "Kyo"}>
+      <MdxWrapperStyle>
+        <ChatWidget assistantText={selectedText} />
+      </MdxWrapperStyle>
+    </KSheet>
   );
 }
