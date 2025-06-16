@@ -1,8 +1,7 @@
 import { CenterMessage } from "@/components/center-message";
-import { KSheet } from "@/components/chat-sheet";
-import { ChatWidget } from "@/components/chat-widget";
 import { KInfor } from "@/components/infor";
 import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
+import { SelectedTextViewer } from "@/components/selected-text-viewer";
 import {
   displayData,
   getInfor,
@@ -30,11 +29,7 @@ export default async function Page({
           Bài viết cũ hơn
         </Link>
       )}
-      <KSheet>
-        <MdxWrapperStyle>
-          <ChatWidget />
-        </MdxWrapperStyle>
-      </KSheet>
+      <SelectedTextViewer />
     </MdxWrapperStyle>
   ) : (
     <CenterMessage>

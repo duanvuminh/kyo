@@ -1,8 +1,6 @@
 import { CenterMessage } from "@/components/center-message";
-import { KSheet } from "@/components/chat-sheet";
-import { ChatWidget } from "@/components/chat-widget";
 import LazyHlsPlayer from "@/components/lazy-hls-player";
-import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
+import { SelectedTextViewer } from "@/components/selected-text-viewer";
 import { KShort } from "@/components/short";
 import { ShortFileViewer } from "@/components/short-file";
 import {
@@ -46,11 +44,7 @@ export default async function Page({
       {showNextPage(pagaData) && (
         <Link href={`/short/${pagaData!.nextPage}`}>Bài viết cũ hơn</Link>
       )}
-      <KSheet>
-        <MdxWrapperStyle>
-          <ChatWidget />
-        </MdxWrapperStyle>
-      </KSheet>
+      <SelectedTextViewer />
     </div>
   ) : (
     <CenterMessage>
