@@ -2,8 +2,6 @@ import { KVideoInfo } from "@/components/video-info";
 import { getVideos } from "@/services/video";
 import { Video } from "@/types/models/video";
 
-export const preferredRegion = "hnd1";
-
 export default async function Page({
   params,
 }: {
