@@ -47,11 +47,18 @@ export abstract class AiBase {
             instructionWord.replace("$1", word.words)
           );
           break;
+        case KWordType.OTHER_WORD:
+          result = this.send(
+            messages,
+            instructionWord.replace("$1", word.words)
+          );
+          break;
         default:
+          console.log(message);
           result = this.send(messages);
           break;
       }
-      if (word.type != KWordType.OTHER) {
+      if (word.type != KWordType.OTHER && word.type != KWordType.OTHER_WORD) {
         kStreamText(result).then((full) => {
           updateWordsContent({ words: word.words, content: full });
         });

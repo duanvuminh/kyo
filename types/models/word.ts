@@ -14,11 +14,13 @@ export class KWord {
   }
 
   static fromDTO(data: WordDTO): KWord {
+    const keyKWordType = data.type.toUpperCase();
     return {
       ...data,
       hantu: data.hantu ?? undefined,
       content: data.content ?? undefined,
-      type: KWordType[data.type as keyof typeof KWordType],
+      type:
+        KWordType[keyKWordType as keyof typeof KWordType] ?? KWordType.OTHER,
     };
   }
 }

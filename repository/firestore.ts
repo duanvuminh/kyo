@@ -19,7 +19,13 @@ export const addWords = (wordDTO: WordDTO): void => {
 
 export const updateDocument = (words: string, content: string): void => {
   const docRef = db.collection("dictionary").doc(words);
-  docRef.update({ content: content });
+  docRef.get().then((docSnapshot) => {
+    if (docSnapshot.exists) {
+      docRef.update({ content: content });
+    } else {
+      docRef.set({ content, words, type: "word", hantu: null });
+    }
+  });
 };
 
 export const getAllGrammar = async (): Promise<WordDTO[]> => {

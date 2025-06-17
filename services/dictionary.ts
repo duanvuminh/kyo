@@ -31,6 +31,12 @@ export async function searchWord(word: string): Promise<KWord> {
         type: KWordType.WORD,
       } as KWord;
     }
+    if (wordFromInternet?.data && wordFromInternet?.data.length > 0) {
+      return {
+        words: word,
+        type: KWordType.OTHER_WORD,
+      };
+    }
     return {
       words: word,
       type: KWordType.OTHER,

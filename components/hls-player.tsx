@@ -1,9 +1,9 @@
 "use client";
 
-import { useHlsPlayer } from "@/hooks/useHlsPlayer";
-import { useSubtitleDisplay } from "@/hooks/useSubtitleDisplay";
-import { useSubtitleScroll } from "@/hooks/useSubtitleScroll";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
+import { useHlsPlayer } from "@/hooks/use-hls-player";
+import { useSubtitleDisplay } from "@/hooks/use-subtitle-display";
+import { useSubtitleScroll } from "@/hooks/use-subtitle-scroll";
 
 type HlsPlayerProps = {
   src: string;
