@@ -14,6 +14,7 @@ export function SelectedTextViewer() {
     const handleMouseUp = async () => {
       if (open) return;
       const selection = window.getSelection();
+      console.log("slection", selection?.toString());
       if (selection) {
         const text = selection.toString().trim();
         setSelectedText(text);
@@ -27,7 +28,11 @@ export function SelectedTextViewer() {
   }, [open, selectedText]);
 
   return (
-    <KSheet open={open} onOpenChange={setOpen} title={selectedText ?? "Kyo"}>
+    <KSheet
+      open={open}
+      onOpenChange={setOpen}
+      title={selectedText ? selectedText : "Kyo"}
+    >
       <MdxWrapperStyle>
         <ChatWidget assistantText={selectedText} />
       </MdxWrapperStyle>

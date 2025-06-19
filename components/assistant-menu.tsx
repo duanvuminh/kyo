@@ -7,7 +7,7 @@ import { Yomi } from "@/components/yomi";
 import { svgFromWord } from "@/lib/dictionary";
 import { cn } from "@/utils/utils";
 import { ChatRequestOptions, CreateMessage, Message } from "ai";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 
 enum AssistantMenuType {
   SEARCH = "Tra cứu",
@@ -66,12 +66,12 @@ export const AssistantMenu = ({
 
 const Write = ({ text }: { text: string }) => {
   return (
-    <Fragment>
+    <>
       <div className="flex flex-wrap justify-items-center">
         {text.split("").map((item, index) => (
           <SvgFromUrl key={index} url={svgFromWord(item)} />
         ))}
       </div>
-    </Fragment>
+    </>
   );
 };

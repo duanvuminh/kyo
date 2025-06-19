@@ -1,7 +1,7 @@
 "use client";
 
 import { Speech } from "lucide-react";
-import { Fragment, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "./ui/button";
 
 export const AudioPlayer = ({ text }: { text: string }) => {
@@ -29,7 +29,7 @@ export const AudioPlayer = ({ text }: { text: string }) => {
   };
 
   return (
-    <Fragment>
+    <>
       <Button
         variant="ghost"
         size="sm"
@@ -43,6 +43,6 @@ export const AudioPlayer = ({ text }: { text: string }) => {
           Your browser does not support the audio element.
         </audio>
       )}
-    </Fragment>
+    </>
   );
 };

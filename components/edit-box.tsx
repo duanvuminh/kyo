@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAppSelector } from "@/stores/hook";
 import { selectContent, selectWord } from "@/stores/slice-message";
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import Markdown from "react-markdown";
 import { toast } from "sonner";
 
@@ -28,7 +28,7 @@ export function EditBox() {
     toast("Cảm ơn bạn đã chỉnh sửa góp ý đã được xử lý.");
   };
   return words ? (
-    <Fragment>
+    <>
       <h1>{words}</h1>
       <Tabs defaultValue="account" className="prose mx-auto">
         <TabsContent value="account">
@@ -52,7 +52,7 @@ export function EditBox() {
           </Button>
         </TabsList>
       </Tabs>
-    </Fragment>
+    </>
   ) : (
     <CenterMessage>
       Nội dung hiện tại không tồn tại

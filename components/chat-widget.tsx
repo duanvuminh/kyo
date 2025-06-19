@@ -1,11 +1,10 @@
 "use client";
 
 import { AssistantMenu } from "@/components/assistant-menu";
-import { ChartContainer } from "@/components/chard-container";
+import { ChatContainer } from "@/components/chat-container";
 import { ChatInput } from "@/components/chat-input";
 import { useSyncEditMessageFromChat } from "@/hooks/use-sync-edit-message-from-chat.ts";
 import { useChat } from "@ai-sdk/react";
-import { Fragment } from "react";
 import Markdown from "react-markdown";
 
 export function ChatWidget({ assistantText }: { assistantText?: string }) {
@@ -13,13 +12,13 @@ export function ChatWidget({ assistantText }: { assistantText?: string }) {
     useChat();
   useSyncEditMessageFromChat(messages);
   return (
-    <Fragment>
+    <>
       {assistantText && (
         <AssistantMenu command={assistantText} append={append} />
       )}
       {messages.map((message) => (
         <div key={message.id} className="p-2">
-          <ChartContainer isUser={message.role === "user"}>
+          <ChatContainer isUser={message.role === "user"}>
             {message.parts.map((part, i) => {
               switch (part.type) {
                 case "text":
@@ -30,7 +29,7 @@ export function ChatWidget({ assistantText }: { assistantText?: string }) {
                   );
               }
             })}
-          </ChartContainer>
+          </ChatContainer>
         </div>
       ))}
       <ChatInput
@@ -39,6 +38,6 @@ export function ChatWidget({ assistantText }: { assistantText?: string }) {
         handleSubmit={handleSubmit}
         handleInputChange={handleInputChange}
       />
-    </Fragment>
+    </>
   );
 }
