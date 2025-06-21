@@ -19,23 +19,25 @@ export async function searchWord(word: string): Promise<KWord> {
       return KWord.fromDTO(grammars[0]);
     }
     const wordFromInternet = await getWordFromExternalService(word);
-    if (wordFromInternet?.data && wordFromInternet.data[0]?.word === word) {
-      addWords({
-        words: word,
-        type: "word",
-        hantu: null,
-        content: null,
-      });
-      return {
-        words: word,
-        type: KWordType.WORD,
-      } as KWord;
-    }
     if (wordFromInternet?.data && wordFromInternet?.data.length > 0) {
-      return {
-        words: word,
-        type: KWordType.OTHER_WORD,
-      };
+      const searchWord = wordFromInternet.data[0]?.word;
+      if (searchWord) {
+        if (word != searchWord) {
+          const newWordDto = await getWordById(word);
+          if (newWordDto) return KWord.fromDTO(newWordDto);
+        } else {
+          addWords({
+            words: searchWord,
+            type: "word",
+            hantu: null,
+            content: null,
+          });
+        }
+        return {
+          words: word == searchWord ? word : "",
+          type: KWordType.WORD,
+        } as KWord;
+      }
     }
     return {
       words: word,

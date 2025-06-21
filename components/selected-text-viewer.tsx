@@ -14,7 +14,6 @@ export function SelectedTextViewer() {
     const handleMouseUp = async () => {
       if (open) return;
       const selection = window.getSelection();
-      console.log("slection", selection?.toString());
       if (selection) {
         const text = selection.toString().trim();
         setSelectedText(text);

@@ -42,23 +42,13 @@ export abstract class AiBase {
           result = this.send(messages, instructionGrammar);
           break;
         case KWordType.WORD:
-          result = this.send(
-            messages,
-            instructionWord.replace("$1", word.words)
-          );
-          break;
-        case KWordType.OTHER_WORD:
-          result = this.send(
-            messages,
-            instructionWord.replace("$1", word.words)
-          );
+          result = this.send(messages, instructionWord.replace("$1", message));
           break;
         default:
-          console.log(message);
           result = this.send(messages);
           break;
       }
-      if (word.type != KWordType.OTHER && word.type != KWordType.OTHER_WORD) {
+      if (word.type != KWordType.OTHER && word.words != "") {
         kStreamText(result).then((full) => {
           updateWordsContent({ words: word.words, content: full });
         });

@@ -27,3 +27,28 @@ export const getListMessageFromSlack = async ({
   const data = await res.json();
   return data as SlackHistoryResponseDTO;
 };
+
+export const getListReplyFromSlack = async ({
+  channelId,
+  ts,
+}: {
+  channelId: string;
+  ts: string;
+}) => {
+  const params = new URLSearchParams({
+    channel: channelId,
+  });
+  params.append("ts", `${ts}`);
+
+  const res = await fetch(
+    `https://slack.com/api/conversations.replies?${params.toString()}`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.SLACK_API_KEY}`,
+      },
+    }
+  );
+
+  const data = await res.json();
+  return data as SlackHistoryResponseDTO;
+};

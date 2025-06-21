@@ -50,7 +50,7 @@ const items = [
     icon: WholeWord,
   },
   {
-    title: "Tin tức",
+    title: "Short",
     url: "/short/newest",
     icon: Newspaper,
   },

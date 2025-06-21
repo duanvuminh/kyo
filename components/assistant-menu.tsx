@@ -4,7 +4,7 @@ import { AudioPlayer } from "@/components/audio-player";
 import { SvgFromUrl } from "@/components/svg-from-url";
 import { Button } from "@/components/ui/button";
 import { Yomi } from "@/components/yomi";
-import { svgFromWord } from "@/lib/dictionary";
+import { svgURLFromWord } from "@/lib/dictionary";
 import { cn } from "@/utils/utils";
 import { ChatRequestOptions, CreateMessage, Message } from "ai";
 import { useState } from "react";
@@ -69,7 +69,7 @@ const Write = ({ text }: { text: string }) => {
     <>
       <div className="flex flex-wrap justify-items-center">
         {text.split("").map((item, index) => (
-          <SvgFromUrl key={index} url={svgFromWord(item)} />
+          <SvgFromUrl key={index} url={svgURLFromWord(item)} />
         ))}
       </div>
     </>
