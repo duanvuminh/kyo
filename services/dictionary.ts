@@ -12,8 +12,8 @@ import Fuse from "fuse.js";
 
 export async function searchWord(word: string): Promise<KWord> {
   try {
-    const wordDto = await getWordById(word);
-    if (wordDto) return KWord.fromDTO(wordDto);
+    const wordFromDictionary = await getWordById(word);
+    if (wordFromDictionary) return KWord.fromDTO(wordFromDictionary);
     const grammars = await searchGrammar(word);
     if (grammars.length > 0) {
       return KWord.fromDTO(grammars[0]);
@@ -31,6 +31,7 @@ export async function searchWord(word: string): Promise<KWord> {
             type: "word",
             hantu: null,
             content: null,
+            practiceId: null,
           });
         }
         return {
@@ -72,5 +73,5 @@ export const updateWordsContent = ({
   words: string;
   content: string;
 }) => {
-  updateDocument(words, content);
+  updateDocument(words, { content });
 };

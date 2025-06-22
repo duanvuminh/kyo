@@ -17,11 +17,17 @@ export const addWords = (wordDTO: WordDTO): void => {
   docRef.set({ ...wordDTO });
 };
 
-export const updateDocument = (words: string, content: string): void => {
+export const updateDocument = (
+  words: string,
+  { content, practiceId }: { content?: string; practiceId?: string }
+): void => {
   const docRef = db.collection("dictionary").doc(words);
   docRef.get().then((docSnapshot) => {
     if (docSnapshot.exists) {
-      docRef.update({ content: content });
+      docRef.update({
+        content: content ?? docSnapshot.data()?.content,
+        practiceId: practiceId ?? docSnapshot.data()?.practiceId,
+      });
     } else {
       docRef.set({ content, words, type: "word", hantu: null });
     }

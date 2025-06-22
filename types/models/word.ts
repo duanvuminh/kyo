@@ -6,11 +6,18 @@ export class KWord {
   type: KWordType;
   content?: string;
   hantu?: string;
+  practiceId?: string;
 
-  constructor(words: string, type: KWordType, content?: string) {
+  constructor(
+    words: string,
+    type: KWordType,
+    content?: string,
+    practiceId?: string
+  ) {
     this.words = words;
     this.type = type;
     this.content = content;
+    this.practiceId = practiceId;
   }
 
   static fromDTO(data: WordDTO): KWord {
@@ -21,6 +28,7 @@ export class KWord {
       content: data.content ?? undefined,
       type:
         KWordType[keyKWordType as keyof typeof KWordType] ?? KWordType.OTHER,
+      practiceId: data.practiceId ?? undefined,
     };
   }
 }

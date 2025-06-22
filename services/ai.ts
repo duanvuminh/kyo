@@ -1,5 +1,6 @@
 import { kStreamText } from "@/lib/chat";
 import { searchWord, updateWordsContent } from "@/services/dictionary";
+import { KWord } from "@/types/models/word";
 import { KWordType } from "@/types/models/word-type";
 import { trimLineBreak } from "@/utils/utils";
 import { CoreMessage, StreamTextResult, ToolSet } from "ai";
@@ -20,6 +21,8 @@ $1(cách phát âm)
 2. Ví dụ
 3. Phân biệt các từ có nghĩa tương tự nếu có
 `;
+const instructionPracticeGrammar = `Giải thích ngắn gọn cách phát âm, ngữ pháp $1 trong 2 dòng`;
+const instructionPracticeWord = `Giải thích ngắn gọn cách phát âm, ý nghĩa $1 trong 2 dòng`;
 
 export abstract class AiBase {
   async handleMessages(
@@ -58,8 +61,30 @@ export abstract class AiBase {
     }
     return result;
   }
+  handleMessagesPractice(word: KWord) {
+    let result: StreamTextResult<ToolSet, never>;
+    switch (word.type) {
+      case KWordType.GRAMMAR:
+        result = this.sendPrompt(
+          word.words,
+          instructionPracticeGrammar.replace("$1", word.words)
+        );
+        break;
+      default:
+        result = this.sendPrompt(
+          word.words,
+          instructionPracticeWord.replace("$1", word.words)
+        );
+        break;
+    }
+    return kStreamText(result);
+  }
   abstract send(
     messages: CoreMessage[],
+    system?: string
+  ): StreamTextResult<ToolSet, never>;
+  abstract sendPrompt(
+    prompt: string,
     system?: string
   ): StreamTextResult<ToolSet, never>;
 }

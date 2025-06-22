@@ -21,8 +21,9 @@ interface Props {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   const word = decodeURI(id);
+  // const practice = await getPractice(word);
   return (
-    <div className="px-2">
+    <div className="prose px-2 mx-auto">
       <Card>
         <CardContent className="flex justify-center items-center h-64">
           <SvgFromUrl url={svgURLFromWord(word)} />

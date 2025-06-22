@@ -7,6 +7,18 @@ const openrouter = createOpenRouter({
 });
 
 export class AIOpenRouterMetaLlama extends AiBase {
+  private model = openrouter.chat("meta-llama/llama-3.1-405b-instruct");
+  sendPrompt(
+    prompt: string,
+    system?: string
+  ): StreamTextResult<ToolSet, never> {
+    const result = streamText({
+      model: this.model,
+      prompt,
+      system,
+    });
+    return result;
+  }
   send(
     messages: CoreMessage[],
     system: string
@@ -16,7 +28,7 @@ export class AIOpenRouterMetaLlama extends AiBase {
     }
     const message = messages[messages.length - 1].content;
     const result = streamText({
-      model: openrouter.chat("meta-llama/llama-3.1-405b-instruct"),
+      model: this.model,
       prompt: message.toString(),
       system,
     });
@@ -25,6 +37,18 @@ export class AIOpenRouterMetaLlama extends AiBase {
 }
 
 export class AiOpenRouterMetaLlama1 extends AiBase {
+  private model = openrouter.chat("meta-llama/llama-4-maverick:free");
+  sendPrompt(
+    prompt: string,
+    system?: string
+  ): StreamTextResult<ToolSet, never> {
+    const result = streamText({
+      model: this.model,
+      prompt,
+      system,
+    });
+    return result;
+  }
   send(
     messages: CoreMessage[],
     system?: string
@@ -34,7 +58,7 @@ export class AiOpenRouterMetaLlama1 extends AiBase {
     }
     const message = messages[messages.length - 1].content;
     const result = streamText({
-      model: openrouter.chat("meta-llama/llama-4-maverick:free"),
+      model: this.model,
       prompt: message.toString(),
       system,
     });
@@ -43,6 +67,18 @@ export class AiOpenRouterMetaLlama1 extends AiBase {
 }
 
 export class AiOpenRouterMetaLlama2 extends AiBase {
+  private model = openrouter.chat("meta-llama/llama-4-scout:free");
+  sendPrompt(
+    prompt: string,
+    system?: string
+  ): StreamTextResult<ToolSet, never> {
+    const result = streamText({
+      model: this.model,
+      prompt,
+      system,
+    });
+    return result;
+  }
   send(
     messages: CoreMessage[],
     system?: string
@@ -52,7 +88,7 @@ export class AiOpenRouterMetaLlama2 extends AiBase {
     }
     const message = messages[messages.length - 1].content;
     const result = streamText({
-      model: openrouter.chat("meta-llama/llama-4-scout:free"),
+      model: this.model,
       prompt: message.toString(),
       system,
     });
@@ -61,6 +97,18 @@ export class AiOpenRouterMetaLlama2 extends AiBase {
 }
 
 export class AiOpenRouterMicrosoft extends AiBase {
+  private model = openrouter.chat("microsoft/mai-ds-r1:free");
+  sendPrompt(
+    prompt: string,
+    system?: string
+  ): StreamTextResult<ToolSet, never> {
+    const result = streamText({
+      model: this.model,
+      prompt,
+      system,
+    });
+    return result;
+  }
   send(
     messages: CoreMessage[],
     system?: string
@@ -70,7 +118,7 @@ export class AiOpenRouterMicrosoft extends AiBase {
     }
     const message = messages[messages.length - 1].content;
     const result = streamText({
-      model: openrouter.chat("microsoft/mai-ds-r1:free"),
+      model: this.model,
       prompt: message.toString(),
       system,
     });

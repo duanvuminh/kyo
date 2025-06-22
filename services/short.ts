@@ -41,8 +41,7 @@ export const getShort = async ({
       nextPage: data.response_metadata?.next_cursor,
       limit,
     };
-  } catch (e) {
-    console.log(e);
+  } catch {
     return undefined;
   }
 };
