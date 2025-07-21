@@ -1,6 +1,6 @@
-import { KVideoInfo } from "@/components/video-info";
-import { getVideos } from "@/services/video";
-import { Video } from "@/types/models/video";
+import { KVideo } from "@/feature/video/component/video";
+import { Video } from "@/feature/video/model/video";
+import { getVideos } from "@/feature/video/service/video";
 
 export default async function Page({
   params,
@@ -12,7 +12,7 @@ export default async function Page({
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 p-4">
       {videos.map((video) => (
-        <KVideoInfo key={video.id} video={video} />
+        <KVideo key={video.id} video={video} />
       ))}
     </div>
   );

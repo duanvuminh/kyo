@@ -36,7 +36,7 @@ export const getMessageFromDisCord = async ({
   messageId: string;
 }) => {
   const res = await fetch(
-    `${discordBaseUrl}/channels/${channelId}/messages?${messageId}`,
+    `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
     {
       method: "GET",
       headers: {
@@ -69,4 +69,33 @@ export const sendDiscordMessage = async ({
 
   const data = await res.json();
   return data as DiscordMessageDTO;
+};
+
+export const getThreadMessages = async ({
+  threadId,
+  limit = 100,
+  before,
+}: {
+  threadId: string;
+  limit?: number;
+  before?: string;
+}) => {
+  const params = new URLSearchParams();
+  if (limit) params.append("limit", `${limit}`);
+  if (before) params.append("before", before);
+
+  const res = await fetch(
+    `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+      },
+    }
+  );
+  const data = await res.json();
+  if (!Array.isArray(data)) {
+    return [];
+  }
+  return data as DiscordMessageDTO[];
 };

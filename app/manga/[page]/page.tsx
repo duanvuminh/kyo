@@ -1,14 +1,14 @@
-import { CenterMessage } from "@/components/center-message";
-import { KManga } from "@/components/manga";
-import { SelectedTextViewer } from "@/components/selected-text-viewer";
+import { CenterMessage } from "@/component/center-message";
+import { SelectedTextViewer } from "@/component/selected-text-viewer";
+import { KManga } from "@/feature/manga/component/manga";
+import { MangaPage } from "@/feature/manga/model/manga";
 import {
   displayData,
   getManga,
   getNextPageOrDefault,
   hasData,
   showNextPage,
-} from "@/services/manga";
-import { MangaPage } from "@/types/models/manga";
+} from "@/feature/manga/service/manga";
 import Link from "next/link";
 
 export default async function Page({

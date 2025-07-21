@@ -1,4 +1,4 @@
-import { chatService } from "@/services/ai-factory";
+import { chatService } from "@/service/ai-factory";
 import { CoreMessage } from "ai";
 import { NextResponse } from "next/server";
 

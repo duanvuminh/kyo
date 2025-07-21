@@ -1,5 +1,5 @@
-import { getAuthInfor } from "@/services/auth";
-import { updateWordsContent } from "@/services/dictionary";
+import { getAuthInfor } from "@/service/auth";
+import { updateWordsContent } from "@/service/dictionary";
 import { trimLineBreak } from "@/utils/utils";
 import { NextResponse } from "next/server";
 

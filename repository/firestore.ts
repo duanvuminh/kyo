@@ -25,7 +25,7 @@ export const updateDocument = (
   docRef.get().then((docSnapshot) => {
     if (docSnapshot.exists) {
       docRef.update({
-        content: content ?? docSnapshot.data()?.content,
+        content: content ?? docSnapshot.data()?.content ?? null,
         practiceId: practiceId ?? docSnapshot.data()?.practiceId,
       });
     } else {

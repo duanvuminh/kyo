@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { getCategorys } from "@/services/video";
+import { Button } from "@/component/ui/button";
+import { getCategorys } from "@/feature/video/service/video";
 import { cn } from "@/utils/utils";
 import Link from "next/link";
 

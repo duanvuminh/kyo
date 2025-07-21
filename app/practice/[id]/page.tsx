@@ -1,16 +1,8 @@
-import { AudioPlayer } from "@/components/audio-player";
-import { SvgFromUrl } from "@/components/svg-from-url";
-import { Button } from "@/components/ui/button";
-import { Card, CardAction, CardContent } from "@/components/ui/card";
-import { svgURLFromWord } from "@/lib/dictionary";
+import { KPracticeCard } from "@/feature/practice/component/practice-card/practice-card";
 import {
-  ArrowBigRight,
-  Eye,
-  Pencil,
-  Play,
-  RefreshCcw,
-  Trash,
-} from "lucide-react";
+  getMainPractice,
+  getSubPractice,
+} from "@/feature/practice/service/practice";
 
 interface Props {
   params: Promise<{
@@ -21,35 +13,17 @@ interface Props {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   const word = decodeURI(id);
-  // const practice = await getPractice(word);
+  const practice = await getMainPractice(word);
+  const subPractice = practice ? await getSubPractice(practice) : [];
   return (
-    <div className="prose px-2 mx-auto">
-      <Card>
-        <CardContent className="flex justify-center items-center h-64">
-          <SvgFromUrl url={svgURLFromWord(word)} />
-        </CardContent>
-        <CardAction className="flex justify-end px-2">
-          <Button variant="ghost" className="text-muted">
-            <ArrowBigRight />
-          </Button>
-          <Button variant="ghost" className="text-muted">
-            <Play />
-          </Button>
-          <Button variant="ghost" className="text-muted">
-            <Eye />
-          </Button>
-          <Button variant="ghost" className="text-muted">
-            <Pencil />
-          </Button>
-          <AudioPlayer text={word} />
-          <Button variant="ghost" className="text-muted">
-            <RefreshCcw />
-          </Button>
-          <Button variant="ghost" className="text-muted">
-            <Trash />
-          </Button>
-        </CardAction>
-      </Card>
+    <div className="max-w-2xl px-2 mx-auto">
+      {practice && (
+        <KPracticeCard
+          word={word}
+          practice={practice}
+          subPractice={subPractice}
+        />
+      )}
     </div>
   );
 }

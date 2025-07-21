@@ -1,7 +1,8 @@
 import "@/app/globals.css";
-import { AppSidebar } from "@/components/app-sidebar";
-import { BreadcrumbWithCustomSeparator } from "@/components/breadcrumb";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/component/app-sidebar";
+import { BreadcrumbWithCustomSeparator } from "@/component/breadcrumb";
+import { SidebarProvider, SidebarTrigger } from "@/component/ui/sidebar";
+import { Toaster } from "@/component/ui/sonner";
 import { StoreProvider } from "@/providers/store-provider";
 import type { Metadata } from "next";
 
@@ -29,6 +30,7 @@ export default async function RootLayout({
               {children}
             </main>
           </SidebarProvider>
+          <Toaster />
         </body>
       </html>
     </StoreProvider>

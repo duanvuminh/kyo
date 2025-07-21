@@ -1,5 +1,5 @@
-import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
-import { SelectedTextViewer } from "@/components/selected-text-viewer";
+import { MdxWrapperStyle } from "@/component/mdx-wrapper-style";
+import { SelectedTextViewer } from "@/component/selected-text-viewer";
 
 export default async function Layout({
   children,

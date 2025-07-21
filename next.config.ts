@@ -17,8 +17,21 @@ const nextConfig: NextConfig = withMDX({
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     remotePatterns: [
-      new URL("https://imgv.vm-movie.jp/image/**"),
-      new URL("https://cmoa.akamaized.net/data/image/**"),
+      {
+        protocol: "https",
+        hostname: "imgv.vm-movie.jp",
+        pathname: "/image/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cmoa.akamaized.net",
+        pathname: "/data/image/**",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.discordapp.com",
+        pathname: "/attachments/**",
+      },
     ],
   },
 });

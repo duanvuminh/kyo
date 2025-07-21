@@ -1,15 +1,15 @@
-import { CenterMessage } from "@/components/center-message";
-import { KInfor } from "@/components/infor";
-import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
-import { SelectedTextViewer } from "@/components/selected-text-viewer";
+import { CenterMessage } from "@/component/center-message";
+import { MdxWrapperStyle } from "@/component/mdx-wrapper-style";
+import { SelectedTextViewer } from "@/component/selected-text-viewer";
+import { KInfor } from "@/feature/infor/component/infor";
+import { InforPage } from "@/feature/infor/model/infor";
 import {
   displayData,
   getInfor,
   getNextPageOrDefault,
   hasData,
   showNextPage,
-} from "@/services/infor";
-import { InforPage } from "@/types/models/Infor";
+} from "@/feature/infor/service/infor";
 import Link from "next/link";
 
 export default async function Page({

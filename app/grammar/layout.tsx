@@ -1,4 +1,4 @@
-import { MdxWrapperStyle } from "@/components/mdx-wrapper-style";
+import { MdxWrapperStyle } from "@/component/mdx-wrapper-style";
 
 export default async function Layout({
   children,

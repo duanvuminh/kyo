@@ -1,4 +1,4 @@
-import { VideoMarketDTO } from "@/types/dto/videos-market";
+import { VideoMarketDTO } from "@/feature/video/dto/videos-market";
 
 export const getVideosMarket = async ({
   categoryTagIds,
