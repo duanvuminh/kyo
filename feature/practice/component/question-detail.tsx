@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import Markdown from "react-markdown";
 
-export const QuestionView = ({
+export const QuestionDetail = ({
   question,
   onNextQuestion,
 }: {

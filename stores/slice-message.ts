@@ -1,29 +1,27 @@
+import { BaseItem } from "@/types/models/word";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export interface MessageState {
-  words?: string;
-  content?: string;
-}
-
-const initialState: MessageState = {};
+const initialState: BaseItem = {};
 
 export const messageSlice = createSlice({
   name: "message",
   initialState,
   reducers: (create) => ({
     updateEditMessage: create.reducer(
-      (state, action: PayloadAction<MessageState>) => {
+      (state, action: PayloadAction<BaseItem>) => {
         state.words = action.payload.words;
         state.content = action.payload.content;
+        state.source = action.payload.source;
+        state.collection = action.payload.collection;
+        state.documentId = action.payload.documentId;
       }
     ),
   }),
   selectors: {
-    selectWord: (message) => message.words,
-    selectContent: (message) => message.content,
+    selectMessage: (message) => message,
   },
 });
 
 export const { updateEditMessage } = messageSlice.actions;
 
-export const { selectWord, selectContent } = messageSlice.selectors;
+export const { selectMessage } = messageSlice.selectors;

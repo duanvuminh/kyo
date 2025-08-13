@@ -1,4 +1,5 @@
 import { PracticeStorageItemDto } from "@/types/dto/practice-storage-item";
+import { ErrorCode } from "@/types/models/error";
 
 export class PracticeStorageRepository {
   private static readonly STORAGE_KEY = "kyo_keywords";
@@ -16,26 +17,22 @@ export class PracticeStorageRepository {
     keyword: string,
     metadata?: Record<string, string>
   ): PracticeStorageItemDto {
-    try {
-      const items = this.getAll();
-      const newItem: PracticeStorageItemDto = {
-        id: Date.now().toString(),
-        keyword,
-        timestamp: Date.now(),
-        metadata,
-      };
+    const items = this.getAll();
+    const newItem: PracticeStorageItemDto = {
+      id: Date.now().toString(),
+      keyword,
+      timestamp: Date.now(),
+      metadata,
+    };
 
-      const exists = items.find((item) => item.keyword === keyword);
-      if (exists) {
-        throw new Error("Keyword already exists");
-      }
-
-      items.unshift(newItem);
-      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
-      return newItem;
-    } catch (error) {
-      throw error;
+    const exists = items.find((item) => item.keyword === keyword);
+    if (exists) {
+      throw new Error(ErrorCode.DUPLICATE_KEYWORD);
     }
+
+    items.unshift(newItem);
+    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
+    return newItem;
   }
 
   static update(

@@ -99,3 +99,29 @@ export const getThreadMessages = async ({
   }
   return data as DiscordMessageDTO[];
 };
+
+export const updateDiscordMessage = async ({
+  channelId,
+  messageId,
+  content,
+}: {
+  channelId: string;
+  messageId: string;
+  content?: string;
+}): Promise<DiscordMessageDTO> => {
+  const res = await fetch(
+    `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content }),
+    }
+  );
+
+  const data = await res.json();
+
+  return data as DiscordMessageDTO;
+};

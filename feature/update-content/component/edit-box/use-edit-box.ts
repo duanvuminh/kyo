@@ -1,12 +1,11 @@
 import { useAppSelector } from "@/stores/hook";
-import { selectContent, selectWord } from "@/stores/slice-message";
+import { selectMessage } from "@/stores/slice-message";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export function useEditBox() {
-  const words = useAppSelector(selectWord);
-  const content = useAppSelector(selectContent);
-  const [value, setValue] = useState(content);
+  const item = useAppSelector(selectMessage);
+  const [value, setValue] = useState(item.content);
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
@@ -18,15 +17,14 @@ export function useEditBox() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ words, content: value }),
+      body: JSON.stringify({ ...item, content: value }),
     });
 
     toast("Cảm ơn bạn đã chỉnh sửa góp ý đã được xử lý.");
   };
 
   return {
-    words,
-    content,
+    item,
     value,
     handleChange,
     handleSubmit,

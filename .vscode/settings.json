@@ -7,13 +7,4 @@
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.suggest.autoImports": true,
   "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
-  "@typescript-eslint/naming-convention": [
-    "error",
-    {
-      "selector": "enumMember",
-      "format": [
-        "UPPER_CASE"
-      ]
-    }
-  ]
 }

@@ -1,8 +1,21 @@
 import { WordDTO } from "@/types/dto/word";
 import { KWordType } from "@/types/models/word-type";
 
-export class KWord {
+export enum Source {
+  FIREBASE = "firebase",
+  DISCORD = "discord",
+  SLACK = "slack",
+}
+export interface BaseItem {
+  source?: Source;
+  collection?: string;
+  documentId: string;
   words: string;
+  content?: string;
+}
+export class KWord implements BaseItem {
+  words: string;
+  documentId: string;
   type: KWordType;
   content?: string;
   hantu?: string;
@@ -10,11 +23,13 @@ export class KWord {
 
   constructor(
     words: string,
+    documentId: string,
     type: KWordType,
     content?: string,
     practiceId?: string
   ) {
     this.words = words;
+    this.documentId = documentId;
     this.type = type;
     this.content = content;
     this.practiceId = practiceId;
@@ -24,6 +39,7 @@ export class KWord {
     const keyKWordType = data.type.toUpperCase();
     return {
       ...data,
+      documentId: data.words,
       hantu: data.hantu ?? undefined,
       content: data.content ?? undefined,
       type:

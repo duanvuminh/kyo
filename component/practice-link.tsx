@@ -6,7 +6,13 @@ import { SwatchBook } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export const PracticeLink = () => {
+export const PracticeLink = ({
+  title,
+  icon,
+}: {
+  title?: string;
+  icon?: React.ReactNode;
+}) => {
   const router = useRouter();
 
   const onClick = () => {
@@ -19,7 +25,7 @@ export const PracticeLink = () => {
   };
   return (
     <Button variant="link" onClick={onClick} className="!p-2">
-      <SwatchBook /> Luyện tập
+      {icon ?? <SwatchBook />} {title ?? "Luyện tập"}
     </Button>
   );
 };

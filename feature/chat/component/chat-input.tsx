@@ -1,8 +1,11 @@
+import { PracticeAdd } from "@/component/practice-add";
 import { Button } from "@/component/ui/button";
 import { Textarea } from "@/component/ui/textarea";
+import { UpdateContentLink } from "@/component/update-content-link";
+import { useAppSelector } from "@/stores/hook";
+import { selectMessage } from "@/stores/slice-message";
 import { ChatRequestOptions, UIMessage } from "ai";
 import { Send } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 
 interface ChatInputProps {
@@ -26,6 +29,7 @@ export function ChatInput({
   handleInputChange,
   handleSubmit,
 }: ChatInputProps) {
+  const words = useAppSelector(selectMessage).words;
   return (
     <form
       onSubmit={handleSubmit}
@@ -48,12 +52,12 @@ export function ChatInput({
           </Button>
         </div>
       </div>
-      <Link
-        href="/update-content"
-        className="text-xs mx-auto text-muted-foreground"
-      >
-        Đóng góp
-      </Link>
+      {words && (
+        <div className="flex p-2 items-center gap-2">
+          <PracticeAdd />
+          <UpdateContentLink />
+        </div>
+      )}
     </form>
   );
 }

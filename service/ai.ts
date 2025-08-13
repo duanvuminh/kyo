@@ -53,7 +53,11 @@ export abstract class AiBase {
       }
       if (word.type != KWordType.OTHER && word.words != "") {
         kStreamText(result).then((full) => {
-          updateWordsContent({ words: word.words, content: full });
+          updateWordsContent({
+            words: word.words,
+            documentId: word.words,
+            content: full,
+          });
         });
       }
     } else {

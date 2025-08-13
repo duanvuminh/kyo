@@ -1,3 +1,4 @@
+import { updateDiscordMessage } from "@/repository/discord";
 import {
   addWords,
   getAllGrammar,
@@ -6,7 +7,7 @@ import {
 } from "@/repository/firestore";
 import { getWordFromExternalService } from "@/repository/mazzi";
 import { WordDTO } from "@/types/dto/word";
-import { KWord } from "@/types/models/word";
+import { BaseItem, KWord, Source } from "@/types/models/word";
 import { KWordType } from "@/types/models/word-type";
 import Fuse from "fuse.js";
 
@@ -36,17 +37,20 @@ export async function searchWord(word: string): Promise<KWord> {
         }
         return {
           words: word == searchWord ? word : "",
+          documentId: word == searchWord ? word : "",
           type: KWordType.WORD,
-        } as KWord;
+        };
       }
     }
     return {
       words: word,
+      documentId: word,
       type: KWordType.OTHER,
     };
   } catch {
     return {
       words: word,
+      documentId: word,
       type: KWordType.OTHER,
     };
   }
@@ -66,12 +70,21 @@ export async function searchGrammar(value: string): Promise<WordDTO[]> {
   }
 }
 
-export const updateWordsContent = ({
-  words,
-  content,
-}: {
-  words: string;
-  content: string;
-}) => {
-  updateDocument(words, { content });
+export const updateWordsContent = (item: BaseItem) => {
+  if (!item.words) return;
+  switch (item.source) {
+    case Source.FIREBASE:
+      updateDocument(item.words, { content: item.content });
+      break;
+    case Source.DISCORD:
+      if (!item.documentId) return;
+      updateDiscordMessage({
+        channelId: "1386090536753958952",
+        messageId: item.documentId,
+        content: item.content,
+      });
+      break;
+    default:
+      break;
+  }
 };

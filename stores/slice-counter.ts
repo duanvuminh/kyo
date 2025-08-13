@@ -29,7 +29,7 @@ export const counterSlice = createAppSlice({
     ),
     incrementAsync: create.asyncThunk(
       async (amount: number) => {
-        const response = await Promise.resolve({ data: 100 });
+        const response = await Promise.resolve({ data: amount });
         return response.data;
       },
       {

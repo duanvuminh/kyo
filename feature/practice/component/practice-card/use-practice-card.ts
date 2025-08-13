@@ -1,18 +1,18 @@
 import { Practice } from "@/feature/practice/model/practice";
 import { Question } from "@/feature/practice/model/question";
+import { PracticeCardMode } from "@/feature/practice/model/type";
 import { PracticeStorage } from "@/service/storage";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-export enum PracticeCardMode {
-  default,
-  flashcard,
-  practice,
-  write,
-  read,
-}
-
 export function usePracticeCard(word: string, subPractice: Practice[]) {
-  const [mode, setMode] = useState<PracticeCardMode>(PracticeCardMode.default);
+  const searchParams = useSearchParams();
+  const modeString = searchParams.get("mode");
+  let modeFromUrl = PracticeCardMode.DEFAULT;
+  if (modeString === "practice") {
+    modeFromUrl = PracticeCardMode.PRACTICE;
+  }
+  const [mode, setMode] = useState<PracticeCardMode>(modeFromUrl);
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [nextWord, setNextWord] = useState<string | undefined>(undefined);
 
@@ -21,7 +21,7 @@ export function usePracticeCard(word: string, subPractice: Practice[]) {
   }, [word]);
   const handleModeChange = (newMode: PracticeCardMode) => {
     if (mode === newMode) {
-      setMode(PracticeCardMode.default);
+      setMode(PracticeCardMode.DEFAULT);
       return;
     }
     setPracticeIndex(0);
@@ -40,10 +40,6 @@ export function usePracticeCard(word: string, subPractice: Practice[]) {
     subPractice[practiceIndex]
   );
 
-  const addWordsToPractice = (word: string) => {
-    PracticeStorage.addToPracticeList(word);
-  };
-
   const removeWordsToPractice = (word: string) => {
     PracticeStorage.removeFromPracticeList(word);
   };
@@ -56,8 +52,6 @@ export function usePracticeCard(word: string, subPractice: Practice[]) {
     handleNextQuestion,
     nextWord,
     save,
-    PracticeCardMode,
-    addWordsToPractice,
     removeWordsToPractice,
   };
 }

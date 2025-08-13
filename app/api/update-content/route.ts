@@ -1,6 +1,6 @@
 import { getAuthInfor } from "@/service/auth";
 import { updateWordsContent } from "@/service/dictionary";
-import { trimLineBreak } from "@/utils/utils";
+import { BaseItem } from "@/types/models/word";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
@@ -8,12 +8,9 @@ export async function POST(request: Request) {
   if (!isAuth) {
     return NextResponse.json({ success: true });
   }
-  const { words, content } = (await request.json()) as {
-    words?: string;
-    content?: string;
-  };
-  if (words && content) {
-    updateWordsContent({ words: trimLineBreak(words), content });
+  const item = (await request.json()) as BaseItem;
+  if (item) {
+    updateWordsContent(item);
   }
   return NextResponse.json({});
 }

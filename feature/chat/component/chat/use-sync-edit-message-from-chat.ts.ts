@@ -1,5 +1,6 @@
 import { useAppDispatch } from "@/stores/hook";
 import { updateEditMessage } from "@/stores/slice-message";
+import { Source } from "@/types/models/word";
 import { UIMessage } from "ai";
 import { useEffect } from "react";
 
@@ -16,6 +17,6 @@ export function useSyncEditMessageFromChat(messages: UIMessage[]) {
       .at(-1)
       ?.parts.find((item) => item.type === "text")?.text;
 
-    dispatch(updateEditMessage({ words, content }));
+    dispatch(updateEditMessage({ words, content, source: Source.FIREBASE }));
   }, [messages, dispatch]);
 }
