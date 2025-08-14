@@ -1,7 +1,10 @@
 import { BaseItem } from "@/types/models/word";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: BaseItem = {};
+const initialState: BaseItem = {
+  documentId: "",
+  words: "",
+};
 
 export const messageSlice = createSlice({
   name: "message",

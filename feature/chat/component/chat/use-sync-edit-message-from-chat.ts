@@ -16,7 +16,14 @@ export function useSyncEditMessageFromChat(messages: UIMessage[]) {
     const content = messages
       .at(-1)
       ?.parts.find((item) => item.type === "text")?.text;
-
-    dispatch(updateEditMessage({ words, content, source: Source.FIREBASE }));
+    if (!words) return;
+    dispatch(
+      updateEditMessage({
+        words,
+        documentId: words,
+        content,
+        source: Source.FIREBASE,
+      })
+    );
   }, [messages, dispatch]);
 }
