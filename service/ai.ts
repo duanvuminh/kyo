@@ -1,9 +1,16 @@
-import { kStreamText } from "@/lib/chat";
+import { getTextFromModelMessage } from "@/lib/chat";
 import { searchWord, updateWordsContent } from "@/service/dictionary";
 import { KWord } from "@/types/models/word";
 import { KWordType } from "@/types/models/word-type";
 import { trimLineBreak } from "@/utils/utils";
-import { CoreMessage, StreamTextResult, ToolSet } from "ai";
+import {
+  LanguageModel,
+  ModelMessage,
+  streamText,
+  StreamTextOnFinishCallback,
+  StreamTextResult,
+  ToolSet,
+} from "ai";
 
 const instructionKanji = `Giải thích kanji tiếng nhật theo format dưới đây
 
@@ -26,69 +33,108 @@ const instructionPracticeWord = `Giải thích ngắn gọn cách phát âm, ý 
 
 export abstract class AiBase {
   async handleMessages(
-    messages: CoreMessage[]
+    messages: ModelMessage[]
   ): Promise<StreamTextResult<ToolSet, never> | string> {
-    const message = trimLineBreak(messages.at(-1)?.content as string);
+    const message = trimLineBreak(
+      getTextFromModelMessage(messages.at(-1)) ?? ""
+    );
     const word = await searchWord(message);
+    console.log("word", word);
     let result: StreamTextResult<ToolSet, never>;
     if (word.content == null) {
-      switch (word.type) {
-        case KWordType.KANJI:
-          result = this.send(
-            messages,
-            instructionKanji
-              .replace("$1", word.words)
-              .replace("$2", word.hantu ?? "")
-          );
-          break;
-        case KWordType.GRAMMAR:
-          result = this.send(messages, instructionGrammar);
-          break;
-        case KWordType.WORD:
-          result = this.send(messages, instructionWord.replace("$1", message));
-          break;
-        default:
-          result = this.send(messages);
-          break;
-      }
-      if (word.type != KWordType.OTHER && word.words != "") {
-        kStreamText(result).then((full) => {
+      const onFinish = ({ text }: { text: string }) => {
+        if (word.type !== KWordType.OTHER && word.words !== "") {
           updateWordsContent({
             words: word.words,
+            source: word.source,
             documentId: word.words,
-            content: full,
+            content: text,
           });
-        });
+        }
+      };
+      switch (word.type) {
+        case KWordType.KANJI:
+          result = this._send({
+            messages,
+            system: instructionKanji
+              .replace("$1", word.words)
+              .replace("$2", word.hantu ?? ""),
+            onFinish,
+          });
+          break;
+        case KWordType.GRAMMAR:
+          result = this._send({
+            messages,
+            system: instructionGrammar,
+            onFinish,
+          });
+          break;
+        case KWordType.WORD:
+          result = this._send({
+            messages,
+            system: instructionWord.replace("$1", message),
+            onFinish,
+          });
+          break;
+        case KWordType.OTHER:
+          result = this._send({ messages });
+          break;
       }
     } else {
       return word.content;
     }
     return result;
   }
-  handleMessagesPractice(word: KWord) {
-    let result: StreamTextResult<ToolSet, never>;
-    switch (word.type) {
-      case KWordType.GRAMMAR:
-        result = this.sendPrompt(
-          word.words,
-          instructionPracticeGrammar.replace("$1", word.words)
-        );
-        break;
-      default:
-        result = this.sendPrompt(
-          word.words,
-          instructionPracticeWord.replace("$1", word.words)
-        );
-        break;
-    }
-    return kStreamText(result);
+  async handleMessagesPractice(word: KWord): Promise<string> {
+    const opts =
+      word.type === KWordType.GRAMMAR
+        ? {
+            prompt: word.words,
+            system: instructionPracticeGrammar.replace("$1", word.words),
+          }
+        : {
+            prompt: word.words,
+            system: instructionPracticeWord.replace("$1", word.words),
+          };
+
+    return new Promise<string>((resolve) => {
+      this._sendPrompt({
+        ...opts,
+        onFinish: ({ text }) => resolve(text),
+      });
+    });
   }
-  abstract send(
-    messages: CoreMessage[],
-    system?: string
-  ): StreamTextResult<ToolSet, never>;
-  abstract sendPrompt(
-    prompt: string,
-    system?: string
-  ): StreamTextResult<ToolSet, never>;
+  abstract model: LanguageModel;
+  private _send({
+    messages,
+    system,
+    onFinish,
+  }: {
+    messages: ModelMessage[];
+    system?: string;
+    onFinish?: StreamTextOnFinishCallback<ToolSet> | undefined;
+  }): StreamTextResult<ToolSet, never> {
+    return streamText({
+      model: this.model,
+      system,
+      messages,
+      onFinish,
+    });
+  }
+  private _sendPrompt({
+    prompt,
+    system,
+    onFinish,
+  }: {
+    prompt: string;
+    system?: string;
+    onFinish?: StreamTextOnFinishCallback<ToolSet> | undefined;
+  }): StreamTextResult<ToolSet, never> {
+    return streamText({
+      model: this.model,
+      prompt,
+      system,
+      onFinish,
+    });
+  }
 }

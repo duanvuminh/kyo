@@ -4,42 +4,32 @@ import { Textarea } from "@/component/ui/textarea";
 import { UpdateContentLink } from "@/component/update-content-link";
 import { useAppSelector } from "@/stores/hook";
 import { selectMessage } from "@/stores/slice-message";
-import { ChatRequestOptions, UIMessage } from "ai";
+import { UIMessage } from "ai";
 import { Send } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 
 interface ChatInputProps {
-  input: string;
   messages: UIMessage[];
-  handleSubmit: (
-    event?: {
-      preventDefault?: () => void;
-    },
-    chatRequestOptions?: ChatRequestOptions
-  ) => void;
-  handleInputChange: (
-    e:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) => void;
+  sendMessage: ({ text }: { text: string }) => void;
 }
 
-export function ChatInput({
-  input,
-  handleInputChange,
-  handleSubmit,
-}: ChatInputProps) {
+export function ChatInput({ sendMessage }: ChatInputProps) {
   const words = useAppSelector(selectMessage).words;
+  const [input, setInput] = useState("");
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        sendMessage({ text: input,  });
+        setInput("");
+      }}
       className="sticky bottom-8 w-full prose p-2 mx-auto"
     >
       <div className="relative">
         <ChatTextArea
           value={input}
           placeholder="Hỏi bất kì điều gì"
-          onChange={handleInputChange}
+          onChange={(e) => setInput(e.currentTarget.value)}
         />
         <div>
           <Button

@@ -1,10 +1,11 @@
-import { StreamTextResult, ToolSet } from "ai";
+import { ModelMessage } from "ai";
 
-export const kStreamText = async (stream: StreamTextResult<ToolSet, never>) => {
-  let full = "";
-
-  for await (const chunk of stream.textStream) {
-    full += chunk;
+export const getTextFromModelMessage = (
+  msg?: ModelMessage
+): string | undefined => {
+  if (!msg) return undefined;
+  if (Array.isArray(msg.content)) {
+    const t = msg.content.find((p) => p?.type === "text")?.text;
+    return typeof t === "string" ? t : undefined;
   }
-  return full;
 };

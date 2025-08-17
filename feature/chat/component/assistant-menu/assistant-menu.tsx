@@ -4,10 +4,12 @@ import { AudioPlayer } from "@/component/audio-player/audio-player";
 import { SvgFromUrl } from "@/component/svg-from-url";
 import { Button } from "@/component/ui/button";
 import { Yomi } from "@/component/yomi";
-import { useAssistantMenu } from "@/feature/chat/component/assistant-menu/use-assistant-menu";
+import {
+  AppendFn,
+  useAssistantMenu,
+} from "@/feature/chat/component/assistant-menu/use-assistant-menu";
 import { svgURLFromWord } from "@/lib/dictionary";
 import { cn } from "@/utils/utils";
-import { ChatRequestOptions, CreateMessage, Message } from "ai";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 
@@ -16,10 +18,7 @@ export const AssistantMenu = ({
   append,
 }: {
   command: string;
-  append: (
-    message: Message | CreateMessage,
-    chatRequestOptions?: ChatRequestOptions
-  ) => Promise<string | null | undefined>;
+  append: AppendFn;
 }) => {
   const { option, menuOptions, handleClick, AssistantMenuType, add } =
     useAssistantMenu({

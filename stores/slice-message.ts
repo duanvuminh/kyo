@@ -1,9 +1,10 @@
-import { BaseItem } from "@/types/models/word";
+import { BaseItem, Source } from "@/types/models/word";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: BaseItem = {
   documentId: "",
   words: "",
+  source: Source.FIREBASE,
 };
 
 export const messageSlice = createSlice({

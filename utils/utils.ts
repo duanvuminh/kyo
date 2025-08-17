@@ -44,3 +44,11 @@ export function timeStringToSeconds(timeStr: string): number {
     parseInt(ms, 10) / 1000
   );
 }
+
+export function stripUndefined<T extends Record<string, unknown>>(
+  obj: T
+): Partial<{ [K in keyof T]: Exclude<T[K], undefined> }> {
+  return Object.fromEntries(
+    Object.entries(obj).filter(([, v]) => v !== undefined)
+  ) as Partial<{ [K in keyof T]: Exclude<T[K], undefined> }>;
+}

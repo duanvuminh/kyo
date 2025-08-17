@@ -1,5 +1,5 @@
 import { PracticeStorage } from "@/service/storage";
-import { ChatRequestOptions, CreateMessage, Message } from "ai";
+import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
 
 enum AssistantMenuType {
@@ -9,15 +9,14 @@ enum AssistantMenuType {
   SPEECH = "Phát âm",
 }
 
+export type AppendFn = ReturnType<typeof useChat>["sendMessage"];
+
 export function useAssistantMenu({
   command,
   append,
 }: {
   command: string;
-  append: (
-    message: Message | CreateMessage,
-    chatRequestOptions?: ChatRequestOptions
-  ) => Promise<string | null | undefined>;
+  append: AppendFn;
 }) {
   const [option, setOption] = useState<AssistantMenuType>(
     AssistantMenuType.WRITE
@@ -26,8 +25,7 @@ export function useAssistantMenu({
   const handleClick = (action: AssistantMenuType) => {
     if (action === AssistantMenuType.SEARCH) {
       append({
-        role: "user",
-        content: command,
+        text: command,
       });
     }
     setOption(action);

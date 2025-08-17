@@ -1,6 +1,7 @@
 import { mapDocs } from "@/lib/data-convert";
 import { db } from "@/lib/firebase-admin";
 import { WordDTO } from "@/types/dto/word";
+import { stripUndefined } from "@/utils/utils";
 
 export const getWordById = async (
   word: string
@@ -24,10 +25,7 @@ export const updateDocument = (
   const docRef = db.collection("dictionary").doc(words);
   docRef.get().then((docSnapshot) => {
     if (docSnapshot.exists) {
-      docRef.update({
-        content: content ?? docSnapshot.data()?.content ?? null,
-        practiceId: practiceId ?? docSnapshot.data()?.practiceId,
-      });
+      docRef.update(stripUndefined({ content, practiceId }));
     } else {
       docRef.set({ content, words, type: "word", hantu: null });
     }

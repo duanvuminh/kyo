@@ -38,12 +38,14 @@ export async function searchWord(word: string): Promise<KWord> {
         return {
           words: word == searchWord ? word : "",
           documentId: word == searchWord ? word : "",
+          source: Source.FIREBASE,
           type: KWordType.WORD,
         };
       }
     }
     return {
       words: word,
+      source: Source.FIREBASE,
       documentId: word,
       type: KWordType.OTHER,
     };
@@ -51,6 +53,7 @@ export async function searchWord(word: string): Promise<KWord> {
     return {
       words: word,
       documentId: word,
+      source: Source.FIREBASE,
       type: KWordType.OTHER,
     };
   }

@@ -7,12 +7,24 @@ export enum Source {
   SLACK = "slack",
 }
 export interface BaseItem {
-  source?: Source;
+  source: Source;
   collection?: string;
   documentId: string;
   words: string;
   content?: string;
 }
+
+const stringToKWordType: Record<string, KWordType> = {
+  kanji: KWordType.KANJI,
+  grammar: KWordType.GRAMMAR,
+  word: KWordType.WORD,
+  other: KWordType.OTHER,
+};
+
+function mapStringToKWordType(str: string): KWordType {
+  return stringToKWordType[str] ?? KWordType.OTHER;
+}
+
 export class KWord implements BaseItem {
   words: string;
   documentId: string;
@@ -24,26 +36,30 @@ export class KWord implements BaseItem {
   constructor(
     words: string,
     documentId: string,
+    source: Source,
     type: KWordType,
     content?: string,
     practiceId?: string
   ) {
+    this.source = source;
     this.words = words;
     this.documentId = documentId;
     this.type = type;
     this.content = content;
     this.practiceId = practiceId;
   }
+  source: Source;
+  collection?: string | undefined;
 
   static fromDTO(data: WordDTO): KWord {
-    const keyKWordType = data.type.toUpperCase();
+    const type = mapStringToKWordType(data.type);
     return {
       ...data,
+      source: Source.FIREBASE,
       documentId: data.words,
       hantu: data.hantu ?? undefined,
       content: data.content ?? undefined,
-      type:
-        KWordType[keyKWordType as keyof typeof KWordType] ?? KWordType.OTHER,
+      type,
       practiceId: data.practiceId ?? undefined,
     };
   }
