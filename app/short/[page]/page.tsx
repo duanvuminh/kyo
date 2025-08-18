@@ -1,6 +1,3 @@
-import { CenterMessage } from "@/component/center-message";
-import LazyHlsPlayer from "@/component/lazy-hls-player";
-import { SelectedTextViewer } from "@/component/selected-text-viewer";
 import { KShort } from "@/feature/short/component/short";
 import { ShortFileViewer } from "@/feature/short/component/short-file";
 import { ShortPage } from "@/feature/short/model/short";
@@ -11,6 +8,9 @@ import {
   isSubtitle,
   showNextPage,
 } from "@/feature/short/service/short";
+import { CenterMessage } from "@/shared/component/center-message";
+import LazyHlsPlayer from "@/shared/component/lazy-hls-player";
+import { SelectedTextViewer } from "@/shared/component/selected-text-viewer";
 import Link from "next/link";
 import { Fragment } from "react";
 

@@ -1,9 +1,9 @@
-import { PracticeAdd } from "@/component/practice-add";
-import { Button } from "@/component/ui/button";
-import { Textarea } from "@/component/ui/textarea";
-import { UpdateContentLink } from "@/component/update-content-link";
-import { useAppSelector } from "@/stores/hook";
-import { selectMessage } from "@/stores/slice-message";
+import { PracticeAdd } from "@/shared/component/practice-add";
+import { Button } from "@/shared/component/ui/button";
+import { Textarea } from "@/shared/component/ui/textarea";
+import { UpdateContentLink } from "@/shared/component/update-content-link";
+import { useAppSelector } from "@/shared/stores/hook";
+import { selectMessage } from "@/shared/stores/slice-message";
 import { UIMessage } from "ai";
 import { Send } from "lucide-react";
 import React, { useState } from "react";
@@ -20,10 +20,10 @@ export function ChatInput({ sendMessage }: ChatInputProps) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        sendMessage({ text: input,  });
+        sendMessage({ text: input });
         setInput("");
       }}
-      className="sticky bottom-8 w-full prose p-2 mx-auto"
+      className="sticky bottom-8 w-full prose p-2 mx-auto pt-20"
     >
       <div className="relative">
         <ChatTextArea

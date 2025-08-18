@@ -1,4 +1,4 @@
-import { getWordFromExternalService } from "@/repository/mazzi";
+import { getWordFromExternalService } from "@/shared/repository/mazzi";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {

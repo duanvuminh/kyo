@@ -1,6 +1,6 @@
 import { Infor, InforPage } from "@/feature/infor/model/infor";
-import { mapDatas } from "@/lib/data-convert";
-import { getListMessageFromDisCord } from "@/repository/discord";
+import { mapDatas } from "@/shared/lib/data-convert";
+import { getListMessageFromDisCord } from "@/shared/repository/discord";
 
 const limit = 5;
 const defaultPage = "newest";

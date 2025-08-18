@@ -1,4 +1,4 @@
-import { CenterMessage } from "@/component/center-message";
+import { CenterMessage } from "@/shared/component/center-message";
 
 export const Empty = () => (
   <CenterMessage>

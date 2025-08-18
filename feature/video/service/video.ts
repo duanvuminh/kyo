@@ -1,5 +1,5 @@
 import { Video } from "@/feature/video/model/video";
-import { getVideosMarket } from "@/repository/videos-market";
+import { getVideosMarket } from "@/shared/repository/videos-market";
 
 export const getVideos = async (
   page: number,

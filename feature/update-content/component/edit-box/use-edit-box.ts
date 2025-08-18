@@ -1,5 +1,5 @@
-import { useAppSelector } from "@/stores/hook";
-import { selectMessage } from "@/stores/slice-message";
+import { useAppSelector } from "@/shared/stores/hook";
+import { selectMessage } from "@/shared/stores/slice-message";
 import { useState } from "react";
 import { toast } from "sonner";
 

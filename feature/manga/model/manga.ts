@@ -1,4 +1,4 @@
-import { DiscordMessageDTO } from "@/types/dto/discord-message";
+import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
 import matter from "gray-matter";
 
 export class Manga {

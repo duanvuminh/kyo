@@ -1,5 +1,5 @@
 import { VideoMarketDTO } from "@/feature/video/dto/videos-market";
-import { videoMarketUrl } from "@/lib/videos";
+import { videoMarketUrl } from "@/shared/lib/videos";
 
 export class Video {
   id: string;

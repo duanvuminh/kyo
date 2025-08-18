@@ -1,7 +1,7 @@
-import { PracticeLink } from "@/component/practice-link";
-import { Button } from "@/component/ui/button";
-import { cn } from "@/utils/utils";
-import { ArrowBigRight, Repeat } from "lucide-react";
+import { PracticeLink } from "@/shared/component/practice-link";
+import { Button } from "@/shared/component/ui/button";
+import { cn } from "@/shared/utils/utils";
+import { ArrowBigRight } from "lucide-react";
 import Link from "next/link";
 
 interface NextWordButtonProps {
@@ -10,7 +10,7 @@ interface NextWordButtonProps {
 }
 
 export const NextWordButton = ({ nextWord, active }: NextWordButtonProps) => {
-  if (!nextWord) return <PracticeLink icon={<Repeat />} title="Làm lại" />;
+  if (!nextWord) return <PracticeLink title="Làm lại" />;
   return (
     <Button
       asChild

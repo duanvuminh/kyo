@@ -1,7 +1,7 @@
 import { Practice } from "@/feature/practice/model/practice";
 import { Question } from "@/feature/practice/model/question";
 import { PracticeCardMode } from "@/feature/practice/model/type";
-import { PracticeStorage } from "@/service/storage";
+import { PracticeStorage } from "@/shared/service/storage";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 

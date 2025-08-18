@@ -1,6 +1,6 @@
-import { Button } from "@/component/ui/button";
 import { getCategorys } from "@/feature/video/service/video";
-import { cn } from "@/utils/utils";
+import { Button } from "@/shared/component/ui/button";
+import { cn } from "@/shared/utils/utils";
 import Link from "next/link";
 
 export default async function Layout({

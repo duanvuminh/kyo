@@ -1,9 +1,9 @@
 import { Short, ShortPage, ShortType } from "@/feature/short/model/short";
-import { mapDatas } from "@/lib/data-convert";
+import { mapDatas } from "@/shared/lib/data-convert";
 import {
   getListMessageFromSlack,
   getListReplyFromSlack,
-} from "@/repository/slack";
+} from "@/shared/repository/slack";
 
 const limit = 10;
 const defaultPage = "newest";

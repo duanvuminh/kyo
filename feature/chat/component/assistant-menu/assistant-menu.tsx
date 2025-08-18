@@ -1,15 +1,15 @@
 "use client";
 
-import { AudioPlayer } from "@/component/audio-player/audio-player";
-import { SvgFromUrl } from "@/component/svg-from-url";
-import { Button } from "@/component/ui/button";
-import { Yomi } from "@/component/yomi";
 import {
   AppendFn,
   useAssistantMenu,
 } from "@/feature/chat/component/assistant-menu/use-assistant-menu";
-import { svgURLFromWord } from "@/lib/dictionary";
-import { cn } from "@/utils/utils";
+import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
+import { SvgFromUrl } from "@/shared/component/svg-from-url";
+import { Button } from "@/shared/component/ui/button";
+import { Yomi } from "@/shared/component/yomi";
+import { svgURLFromWord } from "@/shared/lib/dictionary";
+import { cn } from "@/shared/utils/utils";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 

@@ -1,4 +1,4 @@
-import { Card } from "@/component/ui/card";
+import { Card } from "@/shared/component/ui/card";
 import { ReactNode } from "react";
 
 interface ChatContainerProps {

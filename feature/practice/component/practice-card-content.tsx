@@ -1,13 +1,13 @@
-import { SvgFromUrl } from "@/component/svg-from-url";
-import { CardContent } from "@/component/ui/card";
 import { FlashContent } from "@/feature/practice/component/flash-content";
 import { QuestionContent } from "@/feature/practice/component/question-content";
 import { Practice } from "@/feature/practice/model/practice";
 import { Question } from "@/feature/practice/model/question";
 import { PracticeCardMode } from "@/feature/practice/model/type";
-import { svgURLFromWord } from "@/lib/dictionary";
-import { Source } from "@/types/models/word";
-import { cn } from "@/utils/utils";
+import { SvgFromUrl } from "@/shared/component/svg-from-url";
+import { CardContent } from "@/shared/component/ui/card";
+import { svgURLFromWord } from "@/shared/lib/dictionary";
+import { Source } from "@/shared/types/models/word";
+import { cn } from "@/shared/utils/utils";
 
 interface ContentProps {
   mode: PracticeCardMode;

@@ -1,4 +1,4 @@
-import { PracticeStorage } from "@/service/storage";
+import { PracticeStorage } from "@/shared/service/storage";
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
 

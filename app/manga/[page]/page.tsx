@@ -1,5 +1,3 @@
-import { CenterMessage } from "@/component/center-message";
-import { SelectedTextViewer } from "@/component/selected-text-viewer";
 import { KManga } from "@/feature/manga/component/manga";
 import { MangaPage } from "@/feature/manga/model/manga";
 import {
@@ -9,6 +7,8 @@ import {
   hasData,
   showNextPage,
 } from "@/feature/manga/service/manga";
+import { CenterMessage } from "@/shared/component/center-message";
+import { SelectedTextViewer } from "@/shared/component/selected-text-viewer";
 import Link from "next/link";
 
 export default async function Page({

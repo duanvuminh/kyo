@@ -1,5 +1,5 @@
-import HlsPlayer from "@/component/hls-player/hls-player";
 import { KFile } from "@/feature/short/model/short";
+import HlsPlayer from "@/shared/component/hls-player/hls-player";
 import Image from "next/image";
 
 export function ShortFileViewer({ file }: { file: KFile }) {

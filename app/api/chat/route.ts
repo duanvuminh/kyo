@@ -1,4 +1,4 @@
-import { chatService } from "@/service/ai-factory";
+import { chatService } from "@/shared/service/ai-factory";
 import { convertToModelMessages, UIMessage } from "ai";
 import { NextResponse } from "next/server";
 

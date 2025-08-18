@@ -1,7 +1,7 @@
-import { UpdateContentLink } from "@/component/update-content-link";
-import { useAppDispatch } from "@/stores/hook";
-import { updateEditMessage } from "@/stores/slice-message";
-import { BaseItem } from "@/types/models/word";
+import { UpdateContentLink } from "@/shared/component/update-content-link";
+import { useAppDispatch } from "@/shared/stores/hook";
+import { updateEditMessage } from "@/shared/stores/slice-message";
+import { BaseItem } from "@/shared/types/models/word";
 import { useEffect } from "react";
 import Markdown from "react-markdown";
 

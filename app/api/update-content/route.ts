@@ -1,6 +1,6 @@
-import { getAuthInfor } from "@/service/auth";
-import { updateWordsContent } from "@/service/dictionary";
-import { BaseItem } from "@/types/models/word";
+import { getAuthInfor } from "@/shared/service/auth";
+import { updateWordsContent } from "@/shared/service/dictionary";
+import { BaseItem } from "@/shared/types/models/word";
 import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {

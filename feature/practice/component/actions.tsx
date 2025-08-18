@@ -1,8 +1,8 @@
-import { AudioPlayer } from "@/component/audio-player/audio-player";
-import { PracticeAdd } from "@/component/practice-add";
-import { Button } from "@/component/ui/button";
 import { ModeButton } from "@/feature/practice/component/mode-button";
 import { PracticeCardMode } from "@/feature/practice/model/type";
+import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
+import { PracticeAdd } from "@/shared/component/practice-add";
+import { Button } from "@/shared/component/ui/button";
 import { Eye, Pencil, Play, Trash } from "lucide-react";
 
 interface ActionsProps {

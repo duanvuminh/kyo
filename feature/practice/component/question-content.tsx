@@ -1,6 +1,6 @@
-import { Button } from "@/component/ui/button";
 import { QuestionDetail } from "@/feature/practice/component/question-detail";
 import { Question } from "@/feature/practice/model/question";
+import { Button } from "@/shared/component/ui/button";
 import Link from "next/link";
 
 const DISCORD_THREAD_PATH =

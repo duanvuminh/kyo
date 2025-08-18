@@ -1,6 +1,6 @@
-import { CenterMessage } from "@/component/center-message";
 import { EditBox } from "@/feature/update-content/component/edit-box/edit-box";
-import { getAuthInfor } from "@/service/auth";
+import { CenterMessage } from "@/shared/component/center-message";
+import { getAuthInfor } from "@/shared/service/auth";
 
 export default async function Page() {
   const isAuth = await getAuthInfor();

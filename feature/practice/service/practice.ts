@@ -1,14 +1,14 @@
 import { Practice } from "@/feature/practice/model/practice";
-import { mapDatas } from "@/lib/data-convert";
+import { mapDatas } from "@/shared/lib/data-convert";
 import {
   getMessageFromDisCord,
   getThreadMessages,
   sendDiscordMessage,
-} from "@/repository/discord";
-import { getWordById, updateDocument } from "@/repository/firestore";
-import { chatService } from "@/service/ai-factory";
-import { DiscordMessageDTO } from "@/types/dto/discord-message";
-import { KWord } from "@/types/models/word";
+} from "@/shared/repository/discord";
+import { getWordById, updateDocument } from "@/shared/repository/firestore";
+import { chatService } from "@/shared/service/ai-factory";
+import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
+import { KWord } from "@/shared/types/models/word";
 
 const channelId = "1386090536753958952";
 

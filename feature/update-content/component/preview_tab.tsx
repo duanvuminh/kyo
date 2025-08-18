@@ -1,5 +1,5 @@
-import { TabsContent } from "@/component/ui/tabs";
 import { TAB_VALUES } from "@/feature/update-content/const";
+import { TabsContent } from "@/shared/component/ui/tabs";
 import Markdown from "react-markdown";
 
 interface PreviewTabProps {

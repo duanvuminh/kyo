@@ -1,5 +1,5 @@
-import { mapDatas } from "@/lib/data-convert";
-import { DiscordMessageDTO } from "@/types/dto/discord-message";
+import { mapDatas } from "@/shared/lib/data-convert";
+import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
 
 export class Practice {
   constructor(

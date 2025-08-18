@@ -1,11 +1,11 @@
 "use client";
-import { Card, CardAction } from "@/component/ui/card";
 import { Actions } from "@/feature/practice/component/actions";
 import { PracticeActions } from "@/feature/practice/component/practice-actions";
 import { PracticeCardContent } from "@/feature/practice/component/practice-card-content";
 import { usePracticeCard } from "@/feature/practice/component/practice-card/use-practice-card";
 import { Practice } from "@/feature/practice/model/practice";
 import { PracticeCardMode } from "@/feature/practice/model/type";
+import { Card, CardAction } from "@/shared/component/ui/card";
 import { toast } from "sonner";
 
 interface PracticeCardProps {
