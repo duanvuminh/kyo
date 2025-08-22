@@ -1,4 +1,5 @@
 import { PracticeStorage } from "@/shared/service/storage";
+import { ApiResponse } from "@/shared/types/dto/api-responses";
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
 
@@ -35,8 +36,15 @@ export function useAssistantMenu({
     (label) => label !== AssistantMenuType.SPEECH
   );
 
-  const add = (word: string) => {
-    PracticeStorage.addToPracticeList(word);
+  const add = async (words: string) => {
+    const res = await fetch(`/api/check?words=${words}`, {
+      method: "GET",
+    });
+    const data = (await res.json()) as ApiResponse;
+    if (data.success) {
+      PracticeStorage.addToPracticeList(words);
+    }
+    return data.success;
   };
 
   return {

@@ -1,5 +1,5 @@
 import { MdxWrapperStyle } from "@/shared/component/mdx-wrapper-style";
-import { SelectedTextViewer } from "@/shared/component/selected-text-viewer";
+import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 
 export default async function Layout({
   children,
@@ -9,7 +9,7 @@ export default async function Layout({
   return (
     <>
       <MdxWrapperStyle>{children}</MdxWrapperStyle>
-      <SelectedTextViewer />
+      <QuickSearchBySelectText />
     </>
   );
 }

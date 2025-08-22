@@ -1,6 +1,7 @@
 "use client";
 
 import { Skeleton } from "@/shared/component/ui/skeleton";
+import { ApiResponse } from "@/shared/types/dto/api-responses";
 import { useEffect, useState } from "react";
 
 export const Yomi = ({ text }: { text: string }) => {
@@ -12,8 +13,8 @@ export const Yomi = ({ text }: { text: string }) => {
       body: JSON.stringify({ text }),
       headers: { "Content-Type": "application/json" },
     }).then(async (res) => {
-      const data = await res.json();
-      setYomi(data.result ?? text);
+      const result = (await res.json()) as ApiResponse<string>;
+      setYomi(result.data);
     });
   }, [text]);
 

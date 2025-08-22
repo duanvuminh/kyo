@@ -10,7 +10,7 @@ import {
 } from "@/feature/short/service/short";
 import { CenterMessage } from "@/shared/component/center-message";
 import LazyHlsPlayer from "@/shared/component/lazy-hls-player";
-import { SelectedTextViewer } from "@/shared/component/selected-text-viewer";
+import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 import Link from "next/link";
 import { Fragment } from "react";
 
@@ -44,7 +44,7 @@ export default async function Page({
       {showNextPage(pagaData) && (
         <Link href={`/short/${pagaData!.nextPage}`}>Bài viết cũ hơn</Link>
       )}
-      <SelectedTextViewer />
+      <QuickSearchBySelectText />
     </div>
   ) : (
     <CenterMessage>

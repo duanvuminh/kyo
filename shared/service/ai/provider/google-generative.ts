@@ -1,4 +1,4 @@
-import { AiBase } from "@/shared/service/ai";
+import { AiBase } from "@/shared/service/ai/ai";
 import { google } from "@ai-sdk/google";
 
 export class AiGoogleGenerative extends AiBase {

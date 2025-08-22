@@ -1,8 +1,15 @@
+import { trimLineBreak } from "@/core/utils/utils";
 import { getTextFromModelMessage } from "@/shared/lib/chat";
+import {
+  instructionGrammar,
+  instructionKanji,
+  instructionPracticeGrammar,
+  instructionPracticeWord,
+  instructionWord,
+} from "@/shared/service/ai/instructions";
 import { searchWord, updateWordsContent } from "@/shared/service/dictionary";
 import { KWord } from "@/shared/types/models/word";
 import { KWordType } from "@/shared/types/models/word-type";
-import { trimLineBreak } from "@/shared/utils/utils";
 import {
   LanguageModel,
   ModelMessage,
@@ -11,25 +18,6 @@ import {
   StreamTextResult,
   ToolSet,
 } from "ai";
-
-const instructionKanji = `Giải thích kanji tiếng nhật theo format dưới đây
-
-$1 ($2)
-
-1. Ý nghĩa(bạn cho cả ví dụ nhé)
-2. Cách đọc(bạn cho cả ví dụ nhé)
-3. Cách viết/Nhớ
-
-Tổng quan (bạn đánh giá độ quan trọng, tần suất sử dụng)`;
-const instructionGrammar = `Giải thích ngữ pháp, cách dùng tiếng nhật, so sánh ngữ pháp tương tự của từ sau`;
-const instructionWord = `Giải thích ý nghĩa của từ tiếng nhật sau
-$1(cách phát âm)
-1. Ý nghĩa
-2. Ví dụ
-3. Phân biệt các từ có nghĩa tương tự nếu có
-`;
-const instructionPracticeGrammar = `Giải thích ngắn gọn cách phát âm, ngữ pháp $1 trong 2 dòng`;
-const instructionPracticeWord = `Giải thích ngắn gọn cách phát âm, ý nghĩa $1 trong 2 dòng`;
 
 export abstract class AiBase {
   async handleMessages(
@@ -84,7 +72,7 @@ export abstract class AiBase {
     }
     return result;
   }
-  async handleMessagesPractice(word: KWord): Promise<string> {
+  async summaryWord(word: KWord): Promise<string> {
     const opts =
       word.type === KWordType.GRAMMAR
         ? {
@@ -103,6 +91,17 @@ export abstract class AiBase {
       });
     });
   }
+
+  async verifyArticle(): Promise<boolean> {
+    return new Promise<boolean>((resolve) => {
+      this._sendPrompt({
+        prompt:
+          "So sánh hai bài viết sau và nếu bài viết sau tốt hơn bài viết trước thì trả về 'correct', ngược lại trả về 'incorrect'.",
+        onFinish: ({ text }) => resolve(text === "correct"),
+      });
+    });
+  }
+
   abstract model: LanguageModel;
   private _send({
     messages,

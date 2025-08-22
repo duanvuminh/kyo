@@ -1,10 +1,10 @@
 "use client";
 
+import { cn } from "@/core/utils/utils";
 import { AssistantMenu } from "@/feature/chat/component/assistant-menu/assistant-menu";
 import { ChatContainer } from "@/feature/chat/component/chat-container";
 import { ChatInput } from "@/feature/chat/component/chat-input";
 import { useSyncEditMessageFromChat } from "@/feature/chat/component/chat/use-sync-edit-message-from-chat";
-import { cn } from "@/shared/utils/utils";
 import { useChat } from "@ai-sdk/react";
 import Markdown from "react-markdown";
 

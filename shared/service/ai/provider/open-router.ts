@@ -1,4 +1,4 @@
-import { AiBase } from "@/shared/service/ai";
+import { AiBase } from "@/shared/service/ai/ai";
 import { createOpenRouter } from "@openrouter/ai-sdk-provider";
 
 const openrouter = createOpenRouter({

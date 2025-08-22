@@ -1,12 +1,12 @@
+import { AiBase } from "@/shared/service/ai/ai";
+import { AiGoogleGenerative } from "@/shared/service/ai/provider/google-generative";
+import { AiGpt } from "@/shared/service/ai/provider/gpt";
 import {
   AIOpenRouterMetaLlama,
   AiOpenRouterMetaLlama1,
   AiOpenRouterMetaLlama2,
   AiOpenRouterMicrosoft,
-} from "@/shared/service/ai-open-router";
-import { AiBase } from "./ai";
-import { AiGoogleGenerative } from "./ai-google-generative";
-import { AiGpt } from "./ai-gpt";
+} from "@/shared/service/ai/provider/open-router";
 
 enum ChatType {
   AI_GOOGLE_GENERATIVE,

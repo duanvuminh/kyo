@@ -1,7 +1,7 @@
+import { cn } from "@/core/utils/utils";
 import { Question } from "@/feature/practice/model/question";
 import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
 import { Button } from "@/shared/component/ui/button";
-import { cn } from "@/shared/utils/utils";
 import Image from "next/image";
 import { useState } from "react";
 import Markdown from "react-markdown";

@@ -1,5 +1,5 @@
+import { timeStringToSeconds } from "@/core/utils/utils";
 import { Sub } from "@/shared/types/models/sub";
-import { timeStringToSeconds } from "@/shared/utils/utils";
 import { RefObject, useEffect, useState } from "react";
 
 export function useSubtitleDisplay(

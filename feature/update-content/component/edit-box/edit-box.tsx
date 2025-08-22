@@ -15,13 +15,13 @@ export function EditBox() {
   }
 
   return (
-    <>
+    <div className="px-2">
       <h1 className="text-2xl font-bold mb-4">{item.words}</h1>
       <Tabs defaultValue={TAB_VALUES.EDIT} className="prose mx-auto">
         <EditTab value={value} onChange={handleChange} />
         <PreviewTab content={value} />
         <TabControls onSubmit={handleSubmit} />
       </Tabs>
-    </>
+    </div>
   );
 }

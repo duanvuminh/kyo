@@ -1,6 +1,6 @@
 "use client";
 
-import { strokeColorList } from "@/shared/lib/dictionary";
+import { strokeColorList } from "@/shared/lib/svg";
 import { useEffect, useRef } from "react";
 
 export function SvgFromUrl({ url }: { url: string }) {

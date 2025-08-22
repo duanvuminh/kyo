@@ -13,12 +13,15 @@ import Fuse from "fuse.js";
 
 export async function searchWord(word: string): Promise<KWord> {
   try {
+    // Search by id
     const wordFromDictionary = await getWordById(word);
     if (wordFromDictionary) return KWord.fromDTO(wordFromDictionary);
+    // Fuse search
     const grammars = await searchGrammar(word);
     if (grammars.length > 0) {
       return KWord.fromDTO(grammars[0]);
     }
+    // Search by external service
     const wordFromInternet = await getWordFromExternalService(word);
     if (wordFromInternet?.data && wordFromInternet?.data.length > 0) {
       const searchWord = wordFromInternet.data[0]?.word;

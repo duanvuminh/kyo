@@ -1,8 +1,8 @@
 "use client";
 
+import { cn } from "@/core/utils/utils";
 import { useAudioPlayer } from "@/shared/component/audio-player/use-audio-player";
 import { Button } from "@/shared/component/ui/button";
-import { cn } from "@/shared/utils/utils";
 import { Loader2, Speech } from "lucide-react";
 import { useEffect } from "react";
 

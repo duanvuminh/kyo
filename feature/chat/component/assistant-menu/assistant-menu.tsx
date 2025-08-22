@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/core/utils/utils";
 import {
   AppendFn,
   useAssistantMenu,
@@ -8,8 +9,7 @@ import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
 import { SvgFromUrl } from "@/shared/component/svg-from-url";
 import { Button } from "@/shared/component/ui/button";
 import { Yomi } from "@/shared/component/yomi";
-import { svgURLFromWord } from "@/shared/lib/dictionary";
-import { cn } from "@/shared/utils/utils";
+import { svgURLFromWord } from "@/shared/lib/svg";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 
@@ -45,8 +45,11 @@ export const AssistantMenu = ({
           variant="ghost"
           size="sm"
           onClick={() => {
-            toast("Menu > practice để luyện tập");
-            add(command);
+            add(command).then((value) => {
+              if (value) {
+                toast("Menu > practice để luyện tập");
+              }
+            });
           }}
           className="text-muted"
         >

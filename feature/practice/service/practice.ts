@@ -6,7 +6,7 @@ import {
   sendDiscordMessage,
 } from "@/shared/repository/discord";
 import { getWordById, updateDocument } from "@/shared/repository/firestore";
-import { chatService } from "@/shared/service/ai-factory";
+import { chatService } from "@/shared/service/ai/factory";
 import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
 import { KWord } from "@/shared/types/models/word";
 
@@ -24,7 +24,7 @@ export const getMainPractice = async (
       });
       return Practice.fromDTO(discordMessage);
     } else {
-      const result = await chatService.handleMessagesPractice(
+      const result = await chatService.summaryWord(
         KWord.fromDTO(wordFromDictionary)
       );
       const discordMessage = await sendDiscordMessage({

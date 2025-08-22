@@ -1,6 +1,6 @@
+import { cn } from "@/core/utils/utils";
 import { PracticeLink } from "@/shared/component/practice-link";
 import { Button } from "@/shared/component/ui/button";
-import { cn } from "@/shared/utils/utils";
 import { ArrowBigRight } from "lucide-react";
 import Link from "next/link";
 

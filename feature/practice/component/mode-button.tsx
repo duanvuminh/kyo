@@ -1,6 +1,6 @@
+import { cn } from "@/core/utils/utils";
 import { PracticeCardMode } from "@/feature/practice/model/type";
 import { Button } from "@/shared/component/ui/button";
-import { cn } from "@/shared/utils/utils";
 
 interface ModeButtonProps {
   mode: PracticeCardMode;
