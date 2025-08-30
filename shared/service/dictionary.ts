@@ -26,10 +26,7 @@ export async function searchWord(word: string): Promise<KWord> {
     if (wordFromInternet?.data && wordFromInternet?.data.length > 0) {
       const searchWord = wordFromInternet.data[0]?.word;
       if (searchWord) {
-        if (word != searchWord) {
-          const newWordDto = await getWordById(word);
-          if (newWordDto) return KWord.fromDTO(newWordDto);
-        } else {
+        if (word === searchWord) {
           addWords({
             words: searchWord,
             type: "word",
@@ -39,8 +36,8 @@ export async function searchWord(word: string): Promise<KWord> {
           });
         }
         return {
-          words: word == searchWord ? word : "",
-          documentId: word == searchWord ? word : "",
+          words: word === searchWord ? word : searchWord,
+          documentId: word === searchWord ? word : searchWord,
           source: Source.FIREBASE,
           type: KWordType.WORD,
         };

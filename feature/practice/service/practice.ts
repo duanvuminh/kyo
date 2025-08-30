@@ -12,7 +12,7 @@ import { KWord } from "@/shared/types/models/word";
 
 const channelId = "1386090536753958952";
 
-export const getMainPractice = async (
+export const getFlashCard = async (
   word: string
 ): Promise<Practice | undefined> => {
   const wordFromDictionary = await getWordById(word);
@@ -27,6 +27,7 @@ export const getMainPractice = async (
       const result = await chatService.summaryWord(
         KWord.fromDTO(wordFromDictionary)
       );
+      console.log("result", result);
       const discordMessage = await sendDiscordMessage({
         channelId,
         message: result,
@@ -38,9 +39,7 @@ export const getMainPractice = async (
   return undefined;
 };
 
-export const getSubPractice = async (
-  practice: Practice
-): Promise<Practice[]> => {
+export const getPractice = async (practice: Practice): Promise<Practice[]> => {
   const discordMessage = await getThreadMessages({
     threadId: practice.id,
   });

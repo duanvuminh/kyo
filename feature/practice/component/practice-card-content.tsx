@@ -1,4 +1,3 @@
-import { cn } from "@/core/utils/utils";
 import { FlashContent } from "@/feature/practice/component/flash-content";
 import { QuestionContent } from "@/feature/practice/component/question-content";
 import { Practice } from "@/feature/practice/model/practice";
@@ -11,7 +10,7 @@ import { Source } from "@/shared/types/models/word";
 
 interface ContentProps {
   mode: PracticeCardMode;
-  practice: Practice;
+  flashCard: Practice;
   word: string;
   question: Question | undefined;
   onNextQuestion: () => void;
@@ -19,22 +18,13 @@ interface ContentProps {
 
 export const PracticeCardContent = ({
   mode,
-  practice,
+  flashCard,
   word,
   question,
   onNextQuestion,
 }: ContentProps) => {
   return (
-    <CardContent
-      className={cn("flex-1 flex justify-center overflow-auto", {
-        "items-start":
-          mode === PracticeCardMode.PRACTICE ||
-          mode === PracticeCardMode.FLASH_CARD,
-        "items-center":
-          mode !== PracticeCardMode.PRACTICE &&
-          mode !== PracticeCardMode.FLASH_CARD,
-      })}
-    >
+    <CardContent className="flex-1 overflow-auto">
       {(() => {
         switch (mode) {
           case PracticeCardMode.FLASH_CARD:
@@ -42,8 +32,8 @@ export const PracticeCardContent = ({
               <FlashContent
                 item={{
                   source: Source.DISCORD,
-                  content: practice.content,
-                  documentId: practice.id,
+                  content: flashCard.content,
+                  documentId: flashCard.id,
                   words: word,
                 }}
               />
@@ -55,7 +45,7 @@ export const PracticeCardContent = ({
               <QuestionContent
                 question={question}
                 onNextQuestion={onNextQuestion}
-                practiceId={practice.id}
+                practiceId={flashCard.id}
               />
             );
           default:

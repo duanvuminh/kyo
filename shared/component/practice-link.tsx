@@ -1,14 +1,20 @@
 "use client";
 
-import { Button } from "@/shared/component/ui/button";
+import { SidebarMenuButton } from "@/shared/component/ui/sidebar";
 import { PracticeStorage } from "@/shared/service/storage";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-export const PracticeLink = ({ title }: { title?: string }) => {
+interface PracticeLinkProps {
+  title?: string;
+}
+
+export function PracticeLink({ title }: PracticeLinkProps) {
   const router = useRouter();
 
-  const onClick = () => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
     const practice = PracticeStorage.getFirstWord();
     if (!practice) {
       toast("Không có bài tập nào");
@@ -16,9 +22,10 @@ export const PracticeLink = ({ title }: { title?: string }) => {
     }
     router.push(`/practice/${practice}`);
   };
+
   return (
-    <Button variant="link" onClick={onClick} className="!p-2">
-      {title || "Luyện tập"}
-    </Button>
+    <SidebarMenuButton onClick={handleClick} className="cursor-pointer">
+      <span>{title || "Luyện tập"}</span>
+    </SidebarMenuButton>
   );
-};
+}

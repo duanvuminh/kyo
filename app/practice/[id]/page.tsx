@@ -1,8 +1,5 @@
 import { KPracticeCard } from "@/feature/practice/component/practice-card/practice-card";
-import {
-  getMainPractice,
-  getSubPractice,
-} from "@/feature/practice/service/practice";
+import { getFlashCard, getPractice } from "@/feature/practice/service/practice";
 
 interface Props {
   params: Promise<{
@@ -13,16 +10,12 @@ interface Props {
 export default async function Page({ params }: Props) {
   const { id } = await params;
   const word = decodeURI(id);
-  const practice = await getMainPractice(word);
-  const subPractice = practice ? await getSubPractice(practice) : [];
+  const flashCard = await getFlashCard(word);
+  const practice = flashCard ? await getPractice(flashCard) : [];
   return (
     <div className="max-w-2xl px-2 mx-auto">
-      {practice && (
-        <KPracticeCard
-          word={word}
-          practice={practice}
-          subPractice={subPractice}
-        />
+      {flashCard && (
+        <KPracticeCard word={word} flashCard={flashCard} practice={practice} />
       )}
     </div>
   );

@@ -8,6 +8,6 @@ export async function GET(req: NextRequest) {
   if (!words) return NextResponse.json<ApiResponse>({ success: false });
   const result = await searchWord(words);
   return NextResponse.json<ApiResponse>({
-    success: result.type !== KWordType.OTHER,
+    success: result.words === words && result.type !== KWordType.OTHER,
   });
 }

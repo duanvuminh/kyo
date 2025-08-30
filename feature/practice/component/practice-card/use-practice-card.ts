@@ -1,6 +1,6 @@
 import { Practice } from "@/feature/practice/model/practice";
 import { Question } from "@/feature/practice/model/question";
-import { PracticeCardMode } from "@/feature/practice/model/type";
+import { MODE_MAP, PracticeCardMode } from "@/feature/practice/model/type";
 import { PracticeStorage } from "@/shared/service/storage";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -8,10 +8,9 @@ import { useEffect, useState } from "react";
 export function usePracticeCard(word: string, subPractice: Practice[]) {
   const searchParams = useSearchParams();
   const modeString = searchParams.get("mode");
-  let modeFromUrl = PracticeCardMode.DEFAULT;
-  if (modeString === "practice") {
-    modeFromUrl = PracticeCardMode.PRACTICE;
-  }
+  const modeFromUrl =
+    MODE_MAP[modeString as keyof typeof MODE_MAP] ?? PracticeCardMode.DEFAULT;
+
   const [mode, setMode] = useState<PracticeCardMode>(modeFromUrl);
   const [practiceIndex, setPracticeIndex] = useState(0);
   const [nextWord, setNextWord] = useState<string | undefined>(undefined);

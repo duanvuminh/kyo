@@ -1,24 +1,23 @@
-import { cn } from "@/core/utils/utils";
-import { PracticeLink } from "@/shared/component/practice-link";
+import { PracticeCardMode } from "@/feature/practice/model/type";
 import { Button } from "@/shared/component/ui/button";
 import { ArrowBigRight } from "lucide-react";
 import Link from "next/link";
 
 interface NextWordButtonProps {
   nextWord?: string;
-  active: boolean;
+  mode: PracticeCardMode;
 }
 
-export const NextWordButton = ({ nextWord, active }: NextWordButtonProps) => {
-  if (!nextWord) return <PracticeLink title="Làm lại" />;
+export const NextWordButton = ({ nextWord, mode }: NextWordButtonProps) => {
+  if (!nextWord) return <></>;
   return (
     <Button
       asChild
       variant="ghost"
-      className={cn("text-muted", { "text-primary": active })}
+      className="text-muted"
       aria-label="Next word"
     >
-      <Link href={`/practice/${nextWord}?mode=practice`}>
+      <Link href={`/practice/${nextWord}?mode=${mode}`}>
         <ArrowBigRight />
       </Link>
     </Button>

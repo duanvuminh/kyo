@@ -40,7 +40,7 @@ export const QuestionDetail = ({
 
   return (
     <div className="question-view">
-      <h2>Question</h2>
+      <h2 className="text-lg font-semibold">Question</h2>
       {question.imageUrl && question.imageUrl.length > 0 && (
         <div className="relative h-20">
           {question.imageUrl.map((url, index) => (

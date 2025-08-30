@@ -83,23 +83,19 @@ export abstract class AiBase {
             prompt: word.words,
             system: instructionPracticeWord.replace("$1", word.words),
           };
-
-    return new Promise<string>((resolve) => {
-      this._sendPrompt({
-        ...opts,
-        onFinish: ({ text }) => resolve(text),
-      });
-    });
+    console.log("opts", opts);
+    return this._sendPrompt({
+      ...opts,
+    }).text;
   }
 
   async verifyArticle(): Promise<boolean> {
-    return new Promise<boolean>((resolve) => {
-      this._sendPrompt({
+    return (
+      (await this._sendPrompt({
         prompt:
           "So sánh hai bài viết sau và nếu bài viết sau tốt hơn bài viết trước thì trả về 'correct', ngược lại trả về 'incorrect'.",
-        onFinish: ({ text }) => resolve(text === "correct"),
-      });
-    });
+      }).text) === "correct"
+    );
   }
 
   abstract model: LanguageModel;
