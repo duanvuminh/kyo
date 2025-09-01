@@ -83,7 +83,6 @@ export abstract class AiBase {
             prompt: word.words,
             system: instructionPracticeWord.replace("$1", word.words),
           };
-    console.log("opts", opts);
     return this._sendPrompt({
       ...opts,
     }).text;

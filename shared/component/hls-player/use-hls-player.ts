@@ -1,21 +1,26 @@
 import Hls from "hls.js";
 import { useEffect, useRef, useState } from "react";
 
-export function useHlsPlayer(src: string, sub?: string) {
+export function useHlsPlayer(src: string, subVi?: string, subJa?: string) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [subtitleUrl, setSubtitleUrl] = useState<string | null>(null);
+  const [subtitleViUrl, setSubtitleViUrl] = useState<string | null>(null);
+  const [subtitleJaUrl, setSubtitleJaUrl] = useState<string | null>(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (sub) {
-      const blob = new Blob([sub], { type: "text/vtt" });
-      const url = URL.createObjectURL(blob);
-      setSubtitleUrl(url);
+    if (subVi || subJa) {
+      const blobVi = new Blob([subVi ?? ""], { type: "text/vtt" });
+      const urlVi = URL.createObjectURL(blobVi);
+      const blobJa = new Blob([subJa ?? ""], { type: "text/vtt" });
+      const urlJa = URL.createObjectURL(blobJa);
+      setSubtitleViUrl(urlVi);
+      setSubtitleJaUrl(urlJa);
       video.src = src;
       return () => {
-        URL.revokeObjectURL(url);
+        URL.revokeObjectURL(urlVi);
+        URL.revokeObjectURL(urlJa);
       };
     }
 
@@ -34,7 +39,7 @@ export function useHlsPlayer(src: string, sub?: string) {
     } else {
       video.src = src;
     }
-  }, [src, sub]);
+  }, [src, subJa, subVi]);
 
-  return { videoRef, subtitleUrl };
-} 
+  return { videoRef, subtitleViUrl, subtitleJaUrl };
+}

@@ -2,18 +2,23 @@
 
 import { Skeleton } from "@/shared/component//ui/skeleton";
 import HlsPlayer from "@/shared/component/hls-player/hls-player";
+import { Sub } from "@/shared/types/models/sub";
 import { useInView } from "react-intersection-observer";
 
 type Props = {
   src: string;
-  sub?: string;
+  subs?: Sub[];
+  subVi?: string;
+  subJa?: string;
   controls?: boolean;
   className?: string;
 };
 
 export default function LazyHlsPlayer({
   src,
-  sub,
+  subs,
+  subVi,
+  subJa,
   controls,
   className,
 }: Props) {
@@ -27,12 +32,14 @@ export default function LazyHlsPlayer({
       {inView ? (
         <HlsPlayer
           src={src}
-          sub={sub}
+          subVi={subVi}
+          subJa={subJa}
+          subs={subs}
           controls={controls}
           className={className}
         />
       ) : (
-        <Skeleton className="h-96 w-full rounded-xl" />
+        <Skeleton className="w-full aspect-video rounded-xl" />
       )}
     </div>
   );

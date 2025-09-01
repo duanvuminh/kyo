@@ -27,7 +27,6 @@ export const getFlashCard = async (
       const result = await chatService.summaryWord(
         KWord.fromDTO(wordFromDictionary)
       );
-      console.log("result", result);
       const discordMessage = await sendDiscordMessage({
         channelId,
         message: result,

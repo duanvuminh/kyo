@@ -31,7 +31,9 @@ export default async function Page({
               <LazyHlsPlayer
                 key={index}
                 src={file.url}
-                sub={short.content}
+                subs={short.subs}
+                subVi={short.subVi}
+                subJa={short.subJa}
                 controls
                 className="max-w-full rounded my-2"
               />
