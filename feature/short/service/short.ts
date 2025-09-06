@@ -41,7 +41,8 @@ export const getShort = async ({
       nextPage: data.response_metadata?.next_cursor,
       limit,
     };
-  } catch {
+  } catch (error) {
+    console.error("Error fetching short data:", error);
     return undefined;
   }
 };

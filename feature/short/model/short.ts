@@ -22,6 +22,7 @@ export class Short {
     public title?: string,
     public type?: ShortType,
     public files?: KFile[],
+    public poster?: string,
     public subVi?: string,
     public subJa?: string,
     public subs?: Sub[]
@@ -42,7 +43,6 @@ export class Short {
     let content = parsed.content.replaceAll("--&gt;", "-->");
     if (type === ShortType.SUBTITLE) {
       subs = parseVTT(content);
-      console.log(subs);
       subInfo = splitVTT(content);
       content = "";
     }
@@ -69,6 +69,7 @@ export class Short {
       subVi: subInfo.vi,
       subJa: subInfo.ja,
       subs,
+      poster: parsed.data.poster,
     };
   }
 }

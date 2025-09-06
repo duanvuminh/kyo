@@ -2,7 +2,13 @@ import { KFile } from "@/feature/short/model/short";
 import HlsPlayer from "@/shared/component/hls-player/hls-player";
 import Image from "next/image";
 
-export function ShortFileViewer({ file }: { file: KFile }) {
+export function ShortFileViewer({
+  file,
+  poster,
+}: {
+  file: KFile;
+  poster?: string;
+}) {
   if (file.mimetype.startsWith("image/")) {
     return (
       <div className="relative h-50">
@@ -26,6 +32,7 @@ export function ShortFileViewer({ file }: { file: KFile }) {
       <HlsPlayer
         controls
         className="max-w-full max-h-96 rounded my-2"
+        poster={poster}
         src={file.url}
       />
     );

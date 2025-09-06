@@ -34,11 +34,12 @@ export default async function Page({
                 subs={short.subs}
                 subVi={short.subVi}
                 subJa={short.subJa}
+                poster={short.poster}
                 controls
                 className="max-w-full rounded my-2"
               />
             ) : (
-              <ShortFileViewer key={index} file={file} />
+              <ShortFileViewer key={index} file={file} poster={short.poster} />
             );
           })}
         </Fragment>

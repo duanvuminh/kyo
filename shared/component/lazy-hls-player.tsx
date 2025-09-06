@@ -12,6 +12,7 @@ type Props = {
   subJa?: string;
   controls?: boolean;
   className?: string;
+  poster?: string;
 };
 
 export default function LazyHlsPlayer({
@@ -21,6 +22,7 @@ export default function LazyHlsPlayer({
   subJa,
   controls,
   className,
+  poster,
 }: Props) {
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -37,6 +39,7 @@ export default function LazyHlsPlayer({
           subs={subs}
           controls={controls}
           className={className}
+          poster={poster}
         />
       ) : (
         <Skeleton className="w-full aspect-video rounded-xl" />
