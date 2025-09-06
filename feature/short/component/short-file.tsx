@@ -1,4 +1,5 @@
 import { KFile } from "@/feature/short/model/short";
+import FacebookVideoEmbed from "@/shared/component/facebook-video";
 import HlsPlayer from "@/shared/component/hls-player/hls-player";
 import Image from "next/image";
 
@@ -26,6 +27,10 @@ export function ShortFileViewer({
       />
     );
   }
+  console.log(file.url);
+  if (file.url.startsWith("https://www.facebook.com/")) {
+    return <FacebookVideoEmbed videoUrl={file.url} />;
+  }
 
   if (file.mimetype.startsWith("video/")) {
     return (
@@ -37,6 +42,7 @@ export function ShortFileViewer({
       />
     );
   }
+
   return (
     <a
       href={file.url}

@@ -12,7 +12,6 @@ import { CenterMessage } from "@/shared/component/center-message";
 import LazyHlsPlayer from "@/shared/component/lazy-hls-player";
 import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 import Link from "next/link";
-import { Fragment } from "react";
 
 export default async function Page({
   params,
@@ -22,9 +21,9 @@ export default async function Page({
   const { page } = await params;
   const pagaData: ShortPage | undefined = await getShort({ page });
   return hasData(pagaData) ? (
-    <div className="p-2 prose mx-auto relative">
+    <div className="p-2 prose mx-auto relative flex flex-col gap-12">
       {displayData(pagaData).map((short) => (
-        <Fragment key={short.id}>
+        <div key={short.id}>
           <KShort short={short} />
           {short.files?.map((file, index) => {
             return isSubtitle(short) ? (
@@ -42,7 +41,7 @@ export default async function Page({
               <ShortFileViewer key={index} file={file} poster={short.poster} />
             );
           })}
-        </Fragment>
+        </div>
       ))}
       {showNextPage(pagaData) && (
         <Link href={`/short/${pagaData!.nextPage}`}>Bài viết cũ hơn</Link>
