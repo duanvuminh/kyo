@@ -5,6 +5,7 @@ export enum Source {
   FIREBASE = "firebase",
   DISCORD = "discord",
   SLACK = "slack",
+  ALGOLIA = "algolia",
 }
 export interface BaseItem {
   source: Source;

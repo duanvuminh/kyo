@@ -1,3 +1,4 @@
+import { algoliaAdd, algoliaUpdate } from "@/shared/repository/algolia";
 import { updateDiscordMessage } from "@/shared/repository/discord";
 import {
   addWords,
@@ -74,18 +75,23 @@ export async function searchGrammar(value: string): Promise<WordDTO[]> {
 }
 
 export const updateWordsContent = (item: BaseItem) => {
-  if (!item.words) return;
   switch (item.source) {
     case Source.FIREBASE:
+      if (!item.words) return;
       updateDocument(item.words, { content: item.content });
       break;
     case Source.DISCORD:
+      if (!item.words) return;
       if (!item.documentId) return;
       updateDiscordMessage({
         channelId: "1386090536753958952",
         messageId: item.documentId,
         content: item.content,
       });
+      break;
+    case Source.ALGOLIA:
+      if (!item.documentId) algoliaAdd([item]);
+      else algoliaUpdate([item]);
       break;
     default:
       break;

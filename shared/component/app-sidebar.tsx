@@ -57,7 +57,7 @@ const items = [
   },
   {
     title: "Thông tin",
-    url: "/infor/newest",
+    url: "/infor",
   },
 ];
 

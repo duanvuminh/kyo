@@ -6,11 +6,12 @@ import { PreviewTab } from "@/feature/update-content/component/preview_tab";
 import { TabControls } from "@/feature/update-content/component/tab-controls";
 import { TAB_VALUES } from "@/feature/update-content/const";
 import { Tabs } from "@/shared/component/ui/tabs";
+import { Source } from "@/shared/types/models/word";
 
 export function EditBox() {
   const { item, value, handleChange, handleSubmit } = useEditBox();
 
-  if (!item?.words) {
+  if (!item?.words && item.source !== Source.ALGOLIA) {
     return <Empty />;
   }
 
