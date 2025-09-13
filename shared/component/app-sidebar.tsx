@@ -56,7 +56,7 @@ const items = [
     url: "/manga/newest",
   },
   {
-    title: "Thông tin",
+    title: "Thủ tục",
     url: "/infor",
   },
 ];

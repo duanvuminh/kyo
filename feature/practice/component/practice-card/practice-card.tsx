@@ -4,7 +4,12 @@ import { NextWordButton } from "@/feature/practice/component/next-word-button";
 import { PracticeCardContent } from "@/feature/practice/component/practice-card-content";
 import { usePracticeCard } from "@/feature/practice/component/practice-card/use-practice-card";
 import { Practice } from "@/feature/practice/model/practice";
-import { Card, CardAction } from "@/shared/component/ui/card";
+import {
+  Card,
+  CardAction,
+  CardHeader,
+  CardTitle,
+} from "@/shared/component/ui/card";
 import { toast } from "sonner";
 
 interface PracticeCardProps {
@@ -34,6 +39,9 @@ export const KPracticeCard = ({
 
   return (
     <Card className="p-1 border-none bg-background">
+      <CardHeader className="text-2xl">
+        <CardTitle>{word}</CardTitle>
+      </CardHeader>
       <CardAction>
         <Actions
           mode={mode}

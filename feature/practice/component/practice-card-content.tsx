@@ -3,9 +3,8 @@ import { QuestionContent } from "@/feature/practice/component/question-content";
 import { Practice } from "@/feature/practice/model/practice";
 import { Question } from "@/feature/practice/model/question";
 import { PracticeCardMode } from "@/feature/practice/model/type";
-import { SvgFromUrl } from "@/shared/component/svg-from-url";
 import { CardContent } from "@/shared/component/ui/card";
-import { svgURLFromWord } from "@/shared/lib/svg";
+import { Write } from "@/shared/component/write";
 import { Source } from "@/shared/types/models/word";
 
 interface ContentProps {
@@ -39,7 +38,7 @@ export const PracticeCardContent = ({
               />
             );
           case PracticeCardMode.WRITE:
-            return <SvgFromUrl url={svgURLFromWord(word)} />;
+            return <Write text={word} />;
           case PracticeCardMode.PRACTICE:
             return (
               <QuestionContent
@@ -49,7 +48,7 @@ export const PracticeCardContent = ({
               />
             );
           default:
-            return <h1 className="text-5xl font-bold">{word}</h1>;
+            return <Write text={word} />;
         }
       })()}
     </CardContent>

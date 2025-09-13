@@ -12,7 +12,6 @@ export const FlashContent = ({ item }: { item: BaseItem }) => {
   }, [item, dispatch]);
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-bold">{item.words}</h1>
       <Markdown>{item.content}</Markdown>
       <UpdateContentLink />
     </div>

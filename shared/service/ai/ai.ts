@@ -88,15 +88,6 @@ export abstract class AiBase {
     }).text;
   }
 
-  async verifyArticle(): Promise<boolean> {
-    return (
-      (await this._sendPrompt({
-        prompt:
-          "So sánh hai bài viết sau và nếu bài viết sau tốt hơn bài viết trước thì trả về 'correct', ngược lại trả về 'incorrect'.",
-      }).text) === "correct"
-    );
-  }
-
   abstract model: LanguageModel;
   private _send({
     messages,

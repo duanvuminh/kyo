@@ -6,10 +6,9 @@ import {
   useAssistantMenu,
 } from "@/feature/chat/component/assistant-menu/use-assistant-menu";
 import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
-import { SvgFromUrl } from "@/shared/component/svg-from-url";
 import { Button } from "@/shared/component/ui/button";
+import { Write } from "@/shared/component/write";
 import { Yomi } from "@/shared/component/yomi";
-import { svgURLFromWord } from "@/shared/lib/svg";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 
@@ -60,16 +59,6 @@ export const AssistantMenu = ({
         {option === AssistantMenuType.WRITE && <Write text={command} />}
         {option === AssistantMenuType.YOMI && <Yomi text={command} />}
       </article>
-    </div>
-  );
-};
-
-const Write = ({ text }: { text: string }) => {
-  return (
-    <div className="flex flex-wrap justify-items-center">
-      {text.split("").map((item, index) => (
-        <SvgFromUrl key={index} url={svgURLFromWord(item)} />
-      ))}
     </div>
   );
 };
