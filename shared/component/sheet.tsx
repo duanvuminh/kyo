@@ -28,7 +28,7 @@ export function KSheet({
           <Text />
         </Button>
       </SheetTrigger>
-      <SheetContent side="bottom" className="h-screen overflow-auto">
+      <SheetContent side="bottom" className="h-[100dvh] overflow-auto">
         <SheetHeader>
           <SheetTitle>{title}</SheetTitle>
         </SheetHeader>

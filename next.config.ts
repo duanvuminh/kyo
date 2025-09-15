@@ -4,8 +4,6 @@ import type { NextConfig } from "next";
 const withMDX = createMDX({
   options: {
     // TODO: https://github.com/vercel/next.js/discussions/77266
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     remarkPlugins: [["remark-gfm", { strict: true, throwOnError: true }]],
     rehypePlugins: [],
   },
