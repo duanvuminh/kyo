@@ -3,59 +3,66 @@
 import { Chat } from "@/feature/chat/component/chat/chat";
 import { MdxWrapperStyle } from "@/shared/component/mdx-wrapper-style";
 import { KSheet } from "@/shared/component/sheet";
-import { useCallback, useEffect, useState } from "react";
+import { Search } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function QuickSearchBySelectText() {
-  const [selectedText, setSelectedText] = useState<string>("");
+  const [selectedText, setSelectedText] = useState("");
+  const [menuPos, setMenuPos] = useState<{ x: number; y: number } | null>(null);
   const [open, setOpen] = useState(false);
 
-  const handleMouseUp = useCallback(async () => {
-    if (open) return;
-
-    const selection = window.getSelection();
-    if (!selection || selection.rangeCount === 0) return;
-
-    const text = selection.toString().trim();
-
-    if (text && text !== selectedText) {
-      setSelectedText(text);
-      setOpen(true);
-
-      try {
-        if (navigator.clipboard) {
-          await navigator.clipboard.writeText(text);
-        }
-      } catch (error) {
-        console.warn("Failed to copy to clipboard:", error);
-      }
-    }
-  }, [open, selectedText]);
-
   useEffect(() => {
+    const handleMouseUp = () => {
+      if (open) return;
+      const selection = window.getSelection();
+      const text = selection?.toString().trim();
+      if (text && selection) {
+        const rect = selection.getRangeAt(0).getBoundingClientRect();
+        setSelectedText(text);
+        setMenuPos({
+          x: rect.left + window.scrollX,
+          y: rect.bottom + window.scrollY,
+        });
+      } else {
+        setMenuPos(null);
+      }
+    };
     document.addEventListener("mouseup", handleMouseUp);
     return () => document.removeEventListener("mouseup", handleMouseUp);
-  }, [handleMouseUp]);
+  }, [open]);
 
-  const handleOpenChange = useCallback((newOpen: boolean) => {
-    setOpen(newOpen);
-    if (!newOpen) {
-      const selection = window.getSelection();
-      if (selection) {
-        selection.removeAllRanges();
-      }
-      setSelectedText("");
-    }
-  }, []);
+  const handleMenuClick = () => {
+    setOpen(true);
+    setMenuPos(null);
+  };
+
+  const handleSheetClose = () => {
+    setOpen(false);
+    setSelectedText("");
+  };
 
   return (
-    <KSheet
-      open={open}
-      onOpenChange={handleOpenChange}
-      title={selectedText || "Kyo"}
-    >
-      <MdxWrapperStyle>
-        <Chat assistantText={selectedText} />
-      </MdxWrapperStyle>
-    </KSheet>
+    <>
+      {menuPos && (
+        <div
+          className="fixed z-[9999]"
+          style={{ left: menuPos.x, top: menuPos.y + 8 }}
+          onMouseDown={(e) => e.preventDefault()}
+          onClick={handleMenuClick}
+        >
+          <Search />
+        </div>
+      )}
+
+      <KSheet
+        open={open}
+        onOpenChange={handleSheetClose}
+        title={selectedText || "Kyo"}
+      >
+        <MdxWrapperStyle>
+          <Chat assistantText={selectedText} />
+        </MdxWrapperStyle>
+      </KSheet>
+    </>
   );
 }

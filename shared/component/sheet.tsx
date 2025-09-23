@@ -4,6 +4,7 @@ import { Button } from "@/shared/component/ui/button";
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -29,6 +30,7 @@ export function KSheet({
         </Button>
       </SheetTrigger>
       <SheetContent side="bottom" className="h-[100dvh] overflow-auto">
+        <SheetDescription />
         <SheetHeader>
           <SheetTitle>{title}</SheetTitle>
         </SheetHeader>
