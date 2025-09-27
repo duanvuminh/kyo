@@ -30,6 +30,7 @@ export const PracticeAdd = ({ word }: { word?: string }) => {
   };
   return (
     <Button
+      type="button"
       variant="ghost"
       className="text-muted"
       onClick={add}

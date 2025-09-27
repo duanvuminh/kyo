@@ -42,7 +42,7 @@ export function ChatInput({ sendMessage }: ChatInputProps) {
           </Button>
         </div>
       </div>
-      {words && (
+      {words != "" && (
         <div className="flex p-2 items-center gap-2">
           <PracticeAdd />
           <UpdateContentLink />
