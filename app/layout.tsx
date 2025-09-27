@@ -1,10 +1,10 @@
-import "@/app/globals.css";
 import { AppSidebar } from "@/shared/component/app-sidebar";
 import { KBreadCrumb } from "@/shared/component/bread-crumb/bread-crumb";
 import { SidebarProvider, SidebarTrigger } from "@/shared/component/ui/sidebar";
 import { Toaster } from "@/shared/component/ui/sonner";
 import { StoreProvider } from "@/shared/providers/store-provider";
 import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Kyo",

@@ -27,7 +27,6 @@ export function ShortFileViewer({
       />
     );
   }
-  console.log(file.url);
   if (file.url.startsWith("https://www.facebook.com/")) {
     return <FacebookVideoEmbed videoUrl={file.url} />;
   }

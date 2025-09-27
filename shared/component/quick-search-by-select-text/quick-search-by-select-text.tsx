@@ -2,44 +2,13 @@
 
 import { Chat } from "@/feature/chat/component/chat/chat";
 import { MdxWrapperStyle } from "@/shared/component/mdx-wrapper-style";
+import { useTextSelection } from "@/shared/component/quick-search-by-select-text/use-text-selection";
 import { KSheet } from "@/shared/component/sheet";
 import { Search } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export function QuickSearchBySelectText() {
-  const [selectedText, setSelectedText] = useState("");
-  const [menuPos, setMenuPos] = useState<{ x: number; y: number } | null>(null);
-  const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const handleMouseUp = () => {
-      if (open) return;
-      const selection = window.getSelection();
-      const text = selection?.toString().trim();
-      if (text && selection) {
-        const rect = selection.getRangeAt(0).getBoundingClientRect();
-        setSelectedText(text);
-        setMenuPos({
-          x: rect.left + window.scrollX,
-          y: rect.bottom + window.scrollY,
-        });
-      } else {
-        setMenuPos(null);
-      }
-    };
-    document.addEventListener("mouseup", handleMouseUp);
-    return () => document.removeEventListener("mouseup", handleMouseUp);
-  }, [open]);
-
-  const handleMenuClick = () => {
-    setOpen(true);
-    setMenuPos(null);
-  };
-
-  const handleSheetClose = () => {
-    setOpen(false);
-    setSelectedText("");
-  };
+  const { selectedText, menuPos, open, handleMenuClick, onOpenChange } =
+    useTextSelection();
 
   return (
     <>
@@ -56,7 +25,7 @@ export function QuickSearchBySelectText() {
 
       <KSheet
         open={open}
-        onOpenChange={handleSheetClose}
+        onOpenChange={onOpenChange}
         title={selectedText || "Kyo"}
       >
         <MdxWrapperStyle>
