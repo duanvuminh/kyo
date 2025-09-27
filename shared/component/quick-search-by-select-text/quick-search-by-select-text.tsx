@@ -14,7 +14,7 @@ export function QuickSearchBySelectText() {
     <>
       {menuPos && (
         <div
-          className="fixed z-[9999]"
+          className="fixed"
           style={{ left: menuPos.x, top: menuPos.y + 8 }}
           onMouseDown={(e) => e.preventDefault()}
           onClick={handleMenuClick}
