@@ -18,11 +18,14 @@ function Hit({ hit }: { hit: Infor }) {
 
 export const InforContainer = () => {
   return (
-    <InstantSearch searchClient={searchClient} indexName="japan">
-      <InforSearch />
-      <Add />
-      <Hits hitComponent={Hit} />
-      <InforPagination />
-    </InstantSearch>
+    <>
+      <h1>Tra cứu thủ tục cần thiết ở Nhật Bản</h1>
+      <InstantSearch searchClient={searchClient} indexName="japan">
+        <InforSearch />
+        <Add />
+        <Hits hitComponent={Hit} />
+        <InforPagination />
+      </InstantSearch>
+    </>
   );
 };
