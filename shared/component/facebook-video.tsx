@@ -15,7 +15,7 @@ export default function FacebookVideoEmbed({
       src={`https://www.facebook.com/plugins/video.php?href=${encodedUrl}&show_text=false`}
       style={{ border: "none", overflow: "hidden" }}
       allowFullScreen={true}
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share; fullscreen"
     />
   );
 }

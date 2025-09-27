@@ -30,7 +30,6 @@ export default function HlsPlayer({
   subJa,
   poster,
 }: HlsPlayerProps) {
-  console.log(poster);
   const { videoRef, subtitleViUrl, subtitleJaUrl } = useHlsPlayer(
     src,
     subVi,
@@ -48,20 +47,24 @@ export default function HlsPlayer({
         className={className + " w-full spect-video rounded-lg"}
         poster={poster}
       >
-        <track
-          label="vi"
-          kind="subtitles"
-          srcLang="vi"
-          src={subtitleViUrl ?? undefined}
-          default
-        />
-        <track
-          label="ja"
-          kind="subtitles"
-          srcLang="ja"
-          src={subtitleJaUrl ?? undefined}
-          default
-        />
+        {subtitleViUrl && (
+          <track
+            label="vi"
+            kind="subtitles"
+            srcLang="vi"
+            src={subtitleViUrl}
+            default
+          />
+        )}
+        {subtitleJaUrl && (
+          <track
+            label="ja"
+            kind="subtitles"
+            srcLang="ja"
+            src={subtitleJaUrl}
+            default
+          />
+        )}
       </video>
       {subs && (
         <div
