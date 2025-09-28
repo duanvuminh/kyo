@@ -1,10 +1,10 @@
 import { FlashContent } from "@/feature/practice/component/flash-content";
 import { QuestionContent } from "@/feature/practice/component/question-content";
 import { Practice } from "@/feature/practice/model/practice";
-import { Question } from "@/feature/practice/model/question";
 import { PracticeCardMode } from "@/feature/practice/model/type";
 import { CardContent } from "@/shared/component/ui/card";
 import { Write } from "@/shared/component/write";
+import { Question } from "@/shared/types/models/question";
 import { Source } from "@/shared/types/models/word";
 
 interface ContentProps {

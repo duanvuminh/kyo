@@ -1,9 +1,10 @@
+"use client";
 import { cn } from "@/core/utils/utils";
-import { Question } from "@/feature/practice/model/question";
 import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
+import { useQuestionDetail } from "@/shared/component/question-detail/use-question-detail";
 import { Button } from "@/shared/component/ui/button";
+import { Question } from "@/shared/types/models/question";
 import Image from "next/image";
-import { useState } from "react";
 import Markdown from "react-markdown";
 
 export const QuestionDetail = ({
@@ -11,51 +12,49 @@ export const QuestionDetail = ({
   onNextQuestion,
 }: {
   question: Question;
-  onNextQuestion: () => void;
+  onNextQuestion?: () => void;
 }) => {
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
-  const [showResult, setShowResult] = useState(false);
-
-  const handleAnswerClick = (index: number) => {
-    if (showResult) return;
-    setSelectedAnswer(index);
-  };
-
-  const handleSubmit = () => {
-    if (selectedAnswer !== null) {
-      setShowResult(true);
-    }
-  };
-
-  const handleReset = () => {
-    setSelectedAnswer(null);
-    setShowResult(false);
-  };
-
-  const onNextQuestionCustom = () => {
-    setSelectedAnswer(null);
-    setShowResult(false);
-    onNextQuestion();
-  };
+  const {
+    selectedAnswer,
+    showResult,
+    handleAnswerClick,
+    handleSubmit,
+    handleReset,
+    onNextQuestionCustom,
+  } = useQuestionDetail(onNextQuestion);
 
   return (
     <div className="question-view">
       <h2 className="text-lg font-semibold">Question</h2>
-      {question.imageUrl && question.imageUrl.length > 0 && (
-        <div className="relative h-20">
-          {question.imageUrl.map((url, index) => (
-            <Image
-              key={index}
-              src={url}
-              alt={`Question image ${index + 1}`}
-              fill
-              className="object-contain"
-            />
-          ))}
+      {question.attachments && question.attachments.length > 0 && (
+        <div className="mb-2">
+          {question.attachments.map((url, index) => {
+            const isAudio = url.match(/\.(mp3|wav|ogg)(\?|#|$)/i);
+            if (isAudio) {
+              return (
+                <audio key={index} controls className="w-full">
+                  <source src={url} />
+                  Trình duyệt của bạn không hỗ trợ audio.
+                </audio>
+              );
+            }
+            return (
+              <div key={index} className="relative w-full aspect-video">
+                <Image
+                  src={url}
+                  alt={`Question attachment ${index + 1}`}
+                  fill
+                  className="object-contain w-full"
+                />
+              </div>
+            );
+          })}
         </div>
       )}
       <Markdown>{question.content}</Markdown>
-      {question.yomi && <AudioPlayer text={question.yomi} active />}
+      {question.yomi && (
+        <AudioPlayer key={question.yomi} text={question.yomi} active />
+      )}
       <ul className="answers-list space-y-2">
         {question.answers.map((answer, index) => (
           <li
@@ -102,9 +101,11 @@ export const QuestionDetail = ({
             <Button onClick={handleReset} variant="outline">
               Thử lại
             </Button>
-            <Button onClick={onNextQuestionCustom} variant="default">
-              Tiếp
-            </Button>
+            {onNextQuestion && (
+              <Button onClick={onNextQuestionCustom} variant="default">
+                Tiếp
+              </Button>
+            )}
           </div>
         )}
       </div>

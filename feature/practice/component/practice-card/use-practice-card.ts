@@ -1,7 +1,7 @@
 import { Practice } from "@/feature/practice/model/practice";
-import { Question } from "@/feature/practice/model/question";
 import { MODE_MAP, PracticeCardMode } from "@/feature/practice/model/type";
 import { PracticeStorage } from "@/shared/service/storage";
+import { Question } from "@/shared/types/models/question";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -35,7 +35,7 @@ export function usePracticeCard(word: string, subPractice: Practice[]) {
     PracticeStorage.addToPracticeList(word);
   };
 
-  const question: Question | undefined = Question.fromDTO(
+  const question: Question | undefined = Question.fromPractice(
     subPractice[practiceIndex]
   );
 
