@@ -9,6 +9,9 @@ const withMDX = createMDX({
   },
 });
 const nextConfig: NextConfig = withMDX({
+  experimental: {
+    useCache: true,
+  },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
     remotePatterns: [
