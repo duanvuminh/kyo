@@ -27,7 +27,7 @@ export const QuestionDetail = ({
     <div className="question-view">
       <h2 className="text-lg font-semibold">Question</h2>
       {question.attachments && question.attachments.length > 0 && (
-        <div className="mb-2">
+        <div className="not-prose mb-2 space-y-2">
           {question.attachments.map((url, index) => {
             const isAudio = url.match(/\.(mp3|wav|ogg)(\?|#|$)/i);
             if (isAudio) {

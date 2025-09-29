@@ -20,12 +20,9 @@ export default async function Page({
   const pageData: ListeningPage | undefined = await getListening({ page });
   return hasData(pageData) ? (
     <div className="p-2 prose mx-auto">
-      {displayData(pageData).map(
-        (listening) => (
-          console.log(listening),
-          (<QuestionDetail key={listening.id} question={listening} />)
-        )
-      )}
+      {displayData(pageData).map((listening) => (
+        <QuestionDetail key={listening.id} question={listening} />
+      ))}
       {showNextPage(pageData) && (
         <Link href={`/listening/n5/${getNextPageOrDefault(pageData)}`}>
           Bài viết cũ hơn
