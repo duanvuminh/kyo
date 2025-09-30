@@ -46,6 +46,7 @@ export default function HlsPlayer({
         muted={muted}
         className={className + " w-full spect-video rounded-lg"}
         poster={poster}
+        playsInline
       >
         {subtitleViUrl && (
           <track

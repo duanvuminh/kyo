@@ -160,14 +160,21 @@ export function splitVTT(vtt: string) {
     // Content lines
     let jaLine = "";
     let viLine = "";
+    let processingVi = false;
     while (i < lines.length && lines[i]) {
       if (lines[i].startsWith("vn:")) {
-        viLine = lines[i].replace(/^vn:/, "").trim();
+        processingVi = true;
+        viLine += lines[i].replace(/^vn:/, "").trim();
       } else if (lines[i].startsWith("vi:")) {
-        viLine = lines[i].replace(/^vi:/, "").trim();
+        processingVi = true;
+        viLine += lines[i].replace(/^vi:/, "").trim();
+      } else if (processingVi) {
+        viLine += "\n" + lines[i];
+        if (lines[i] === "\n") {
+          processingVi = false;
+        }
       } else {
-        // Nếu không có prefix, coi là tiếng Nhật
-        jaLine = lines[i];
+        if (!processingVi) jaLine += lines[i];
       }
       i++;
     }
