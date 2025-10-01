@@ -23,14 +23,10 @@ export function useSubtitleScroll(subtitles: Sub[], currentTime: number) {
       return;
     }
 
-    const containerHeight = container.clientHeight;
     const targetOffsetTop = target.offsetTop;
-    const targetHeight = target.offsetHeight;
-
-    const scrollTop = targetOffsetTop - containerHeight / 2 + targetHeight / 2;
 
     container.scrollTo({
-      top: scrollTop,
+      top: targetOffsetTop,
       behavior: "smooth",
     });
   }, [currentTime, subtitles]);

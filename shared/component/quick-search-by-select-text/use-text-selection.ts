@@ -12,18 +12,15 @@ export function useTextSelection() {
       const text = selection?.toString().trim();
       if (text && selection && selection.rangeCount > 0) {
         const rect = selection.getRangeAt(0).getBoundingClientRect();
-        if (
-          (rect.width === 0 || rect.height === 0) &&
-          window.innerWidth < 768
-        ) {
+        if (rect.width === 0 || rect.height === 0) {
           setMenuPos({
             x: window.innerWidth / 2 - 24,
             y: window.innerHeight / 2,
           });
         } else {
           setMenuPos({
-            x: rect.left + window.scrollX,
-            y: rect.bottom + window.scrollY,
+            x: rect.left,
+            y: rect.bottom,
           });
         }
         setSelectedText(text);
