@@ -52,3 +52,8 @@ export function stripUndefined<T extends Record<string, unknown>>(
     Object.entries(obj).filter(([, v]) => v !== undefined)
   ) as Partial<{ [K in keyof T]: Exclude<T[K], undefined> }>;
 }
+
+export function hasYouTubeLink(str?: string): boolean {
+  if (!str) return false;
+  return /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\//.test(str);
+}

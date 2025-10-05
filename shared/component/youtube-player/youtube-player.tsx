@@ -1,74 +1,49 @@
 "use client";
 
-import { cn } from "@/core/utils/utils";
-import { useHlsPlayer } from "@/shared/component/hls-player/use-hls-player";
-import { useSubtitleDisplay } from "@/shared/component/hls-player/use-subtitle-display";
 import { Button } from "@/shared/component/ui/button";
+import { useYouTubeSubtitleDisplay } from "@/shared/component/youtube-player/use-subtitle-display";
+import { useYouTubePlayer } from "@/shared/component/youtube-player/use-youtube-player";
 import { useSubtitleScroll } from "@/shared/hooks/use-subtitle-scroll";
 import { Sub } from "@/shared/types/models/sub";
-import { Fragment } from "react";
+import { Fragment, useMemo } from "react";
 
-type HlsPlayerProps = {
-  src: string;
+type YouTubePlayerProps = {
+  videoId: string;
   autoPlay?: boolean;
   controls?: boolean;
   muted?: boolean;
-  className?: string;
   subs?: Sub[];
-  subVi?: string;
-  subJa?: string;
-  poster?: string;
 };
 
-export default function HlsPlayer({
-  src,
+export default function YouTubePlayer({
+  videoId,
   autoPlay = false,
   controls = true,
   muted = false,
-  className = "",
   subs,
-  subVi,
-  subJa,
-  poster,
-}: HlsPlayerProps) {
-  const { videoRef, subtitleViUrl, subtitleJaUrl } = useHlsPlayer(
-    src,
-    subVi,
-    subJa
+}: YouTubePlayerProps) {
+  const options = useMemo(
+    () => ({
+      autoplay: autoPlay ? 1 : 0,
+      controls: controls ? 1 : 0,
+      mute: muted ? 1 : 0,
+    }),
+    [autoPlay, controls, muted]
   );
-  const { currentTime, handleSubtitleClick } = useSubtitleDisplay(videoRef);
+
+  const { playerRef, isReady, getPlayer } = useYouTubePlayer(videoId, options);
+  const { currentTime, handleSubtitleClick } = useYouTubeSubtitleDisplay(
+    getPlayer,
+    isReady
+  );
+  console.log("currentTime", currentTime);
   const { containerRef, itemRefs } = useSubtitleScroll(subs ?? [], currentTime);
+
   return (
     <div className="flex flex-col gap-4">
-      <video
-        ref={videoRef}
-        controls={controls}
-        autoPlay={autoPlay}
-        muted={muted}
-        className={cn(className, "w-full aspect-video rounded-lg")}
-        poster={poster}
-        playsInline
-      >
-        {subtitleViUrl && (
-          <track
-            label="vi"
-            kind="subtitles"
-            srcLang="vi"
-            src={subtitleViUrl}
-            default
-          />
-        )}
-        {subtitleJaUrl && (
-          <track
-            label="ja"
-            kind="subtitles"
-            srcLang="ja"
-            src={subtitleJaUrl}
-            default
-          />
-        )}
-      </video>
-      {subs && (
+      <div ref={playerRef} className="relative w-full aspect-video" />
+
+      {subs && isReady && (
         <div
           ref={containerRef}
           className="p-4 max-h-[400px] overflow-y-auto space-y-2 relative"
@@ -90,12 +65,12 @@ export default function HlsPlayer({
               >
                 <Button
                   size="sm"
-                  onClick={() => handleSubtitleClick(sub, videoRef.current!)}
                   variant="ghost"
                   className="rounded-full transition hover:scale-110"
+                  onClick={() => handleSubtitleClick(sub)}
                 >
                   ▶
-                </Button>{" "}
+                </Button>
                 <div>
                   {sub.content.split("\n").map((line, i) => (
                     <Fragment key={i}>

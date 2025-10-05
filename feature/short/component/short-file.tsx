@@ -1,14 +1,18 @@
 import { KFile } from "@/feature/short/model/short";
 import FacebookVideoEmbed from "@/shared/component/facebook-video";
 import HlsPlayer from "@/shared/component/hls-player/hls-player";
+import YouTubePlayer from "@/shared/component/youtube-player/youtube-player";
+import { Sub } from "@/shared/types/models/sub";
 import Image from "next/image";
 
 export function ShortFileViewer({
   file,
   poster,
+  subs,
 }: {
   file: KFile;
   poster?: string;
+  subs?: Sub[];
 }) {
   if (file.mimetype.startsWith("image/")) {
     return (
@@ -29,6 +33,10 @@ export function ShortFileViewer({
   }
   if (file.url.startsWith("https://www.facebook.com/")) {
     return <FacebookVideoEmbed videoUrl={file.url} />;
+  }
+
+  if (file.url.startsWith("https://www.youtube.com/")) {
+    return <YouTubePlayer videoId={file.url.split("v=")[1]} subs={subs} />;
   }
 
   if (file.mimetype.startsWith("video/")) {

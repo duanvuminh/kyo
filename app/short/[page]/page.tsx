@@ -1,3 +1,4 @@
+import { hasYouTubeLink } from "@/core/utils/utils";
 import { KShort } from "@/feature/short/component/short";
 import { ShortFileViewer } from "@/feature/short/component/short-file";
 import { ShortPage } from "@/feature/short/model/short";
@@ -26,19 +27,33 @@ export default async function Page({
         <div key={short.id}>
           <KShort short={short} />
           {short.files?.map((file, index) => {
+            const url = file.url.replace(/[<>]/g, "");
             return isSubtitle(short) ? (
-              <LazyHlsPlayer
-                key={index}
-                src={file.url}
-                subs={short.subs}
-                subVi={short.subVi}
-                subJa={short.subJa}
-                poster={short.poster}
-                controls
-                className="max-w-full rounded my-2"
-              />
+              !hasYouTubeLink(url) ? (
+                <LazyHlsPlayer
+                  key={index}
+                  src={url}
+                  subs={short.subs}
+                  subVi={short.subVi}
+                  subJa={short.subJa}
+                  poster={short.poster}
+                  controls
+                  className="max-w-full rounded my-2"
+                />
+              ) : (
+                <ShortFileViewer
+                  key={index}
+                  file={{ ...file, url: url }}
+                  poster={short.poster}
+                  subs={short.subs}
+                />
+              )
             ) : (
-              <ShortFileViewer key={index} file={file} poster={short.poster} />
+              <ShortFileViewer
+                key={index}
+                file={{ ...file, url: url }}
+                poster={short.poster}
+              />
             );
           })}
         </div>
