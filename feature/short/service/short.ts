@@ -13,38 +13,33 @@ export const getShort = async ({
   page,
 }: {
   page: string;
-}): Promise<ShortPage | undefined> => {
-  try {
-    const data = await getListMessageFromSlack({
-      channelId,
-      cursor: page == defaultPage ? undefined : page,
-      limit,
-    });
-    const newData = await Promise.all(
-      data.messages.map(async (item) => {
-        if (item.thread_ts) {
-          const content = await _getReplyContent({
-            channelId,
-            ts: item.thread_ts,
-          });
-          return {
-            ...item,
-            text: content,
-          };
-        }
-        return item;
-      })
-    );
-    const shorts = mapDatas(newData, Short.fromDTO);
-    return {
-      shorts,
-      nextPage: data.response_metadata?.next_cursor,
-      limit,
-    };
-  } catch (error) {
-    console.error("Error fetching short data:", error);
-    return undefined;
-  }
+}): Promise<ShortPage> => {
+  const data = await getListMessageFromSlack({
+    channelId,
+    cursor: page == defaultPage ? undefined : page,
+    limit,
+  });
+  const newData = await Promise.all(
+    data.messages.map(async (item) => {
+      if (item.thread_ts) {
+        const content = await _getReplyContent({
+          channelId,
+          ts: item.thread_ts,
+        });
+        return {
+          ...item,
+          text: content,
+        };
+      }
+      return item;
+    })
+  );
+  const shorts = mapDatas(newData, Short.fromDTO);
+  return {
+    shorts,
+    nextPage: data.response_metadata?.next_cursor,
+    limit,
+  };
 };
 
 export function hasData(pageData: ShortPage | undefined): boolean {

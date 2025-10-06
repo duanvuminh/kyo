@@ -1,5 +1,5 @@
 import { PracticeStorageItemDto } from "@/shared/types/dto/practice-storage-item";
-import { ErrorCode } from "@/shared/types/models/error";
+import { AppError, ErrorCode } from "@/shared/types/models/error";
 
 export class PracticeStorageRepository {
   private static readonly STORAGE_KEY = "kyo_keywords";
@@ -8,8 +8,8 @@ export class PracticeStorageRepository {
     try {
       const data = localStorage.getItem(this.STORAGE_KEY);
       return data ? JSON.parse(data) : [];
-    } catch {
-      return [];
+    } catch (e) {
+      throw new AppError(ErrorCode.STORAGE, (e as Error).message);
     }
   }
 
@@ -17,24 +17,33 @@ export class PracticeStorageRepository {
     keyword: string,
     metadata?: Record<string, string>
   ): PracticeStorageItemDto {
-    const items = this.getAll();
-    const newItem: PracticeStorageItemDto = {
-      id: Date.now().toString(),
-      keyword,
-      timestamp: Date.now(),
-      metadata,
-    };
+    try {
+      const items = this.getAll();
+      const newItem: PracticeStorageItemDto = {
+        id: Date.now().toString(),
+        keyword,
+        timestamp: Date.now(),
+        metadata,
+      };
 
-    const exists = items.find((item) => item.keyword === keyword);
-    if (exists) {
-      throw new Error(ErrorCode.DUPLICATE_KEYWORD);
+      const exists = items.find((item) => item.keyword === keyword);
+      if (exists) {
+        throw new AppError(
+          ErrorCode.DUPLICATE_KEYWORD,
+          "Keyword already exists"
+        );
+      }
+
+      items.unshift(newItem);
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
+      return newItem;
+    } catch (error) {
+      if (error instanceof AppError) {
+        throw error;
+      }
+      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
     }
-
-    items.unshift(newItem);
-    localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
-    return newItem;
   }
-
   static update(
     id: string,
     updates: Partial<Pick<PracticeStorageItemDto, "keyword" | "metadata">>
@@ -56,7 +65,7 @@ export class PracticeStorageRepository {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
       return items[index];
     } catch (error) {
-      throw error;
+      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
     }
   }
 
@@ -66,30 +75,26 @@ export class PracticeStorageRepository {
       const filteredItems = items.filter((item) => item.id !== id);
 
       if (filteredItems.length === items.length) {
-        throw new Error("Keyword not found");
+        return true;
       }
 
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(filteredItems));
       return true;
     } catch (error) {
-      throw error;
+      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
     }
   }
 
   static findByKeyword(keyword: string): PracticeStorageItemDto | null {
-    try {
-      const items = this.getAll();
-      return items.find((item) => item.keyword === keyword) || null;
-    } catch {
-      return null;
-    }
+    const items = this.getAll();
+    return items.find((item) => item.keyword === keyword) || null;
   }
 
   static clear(): void {
     try {
       localStorage.removeItem(this.STORAGE_KEY);
     } catch (error) {
-      throw error;
+      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
     }
   }
 

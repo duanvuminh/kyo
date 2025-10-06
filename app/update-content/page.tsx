@@ -1,9 +1,9 @@
 import { EditBox } from "@/feature/update-content/component/edit-box/edit-box";
 import { CenterMessage } from "@/shared/component/center-message";
-import { getAuthInfor } from "@/shared/service/auth";
+import { checkAuthenticated } from "@/shared/service/auth";
 
 export default async function Page() {
-  const isAuth = await getAuthInfor();
+  const isAuth = await checkAuthenticated();
   return isAuth ? (
     <>
       <EditBox />

@@ -1,4 +1,5 @@
 import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
+import { AppError, ErrorCode } from "@/shared/types/models/error";
 
 const discordBaseUrl = "https://discord.com/api/v10";
 
@@ -10,22 +11,28 @@ export const getListMessageFromDisCord = async ({
   channelId: string;
   before?: string;
   limit?: number;
-}) => {
-  const params = new URLSearchParams();
-  if (before) params.append("before", before);
-  if (limit) params.append("limit", `${limit}`);
-  const res = await fetch(
-    `${discordBaseUrl}/channels/${channelId}/messages?${params.toString()}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
-      },
+}): Promise<DiscordMessageDTO[]> => {
+  try {
+    const params = new URLSearchParams();
+    if (before) params.append("before", before);
+    if (limit) params.append("limit", `${limit}`);
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages?${params.toString()}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+        },
+      }
+    );
+    if (!res.ok) {
+      throw new Error(`Discord API error: ${res.status} ${res.statusText}`);
     }
-  );
-
-  const data = await res.json();
-  return data as DiscordMessageDTO[];
+    const data = await res.json();
+    return data as DiscordMessageDTO[];
+  } catch (e) {
+    throw new AppError(ErrorCode.DISCORD, (e as Error).message);
+  }
 };
 
 export const getMessageFromDisCord = async ({
@@ -34,19 +41,26 @@ export const getMessageFromDisCord = async ({
 }: {
   channelId: string;
   messageId: string;
-}) => {
-  const res = await fetch(
-    `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
-      },
-    }
-  );
+}): Promise<DiscordMessageDTO | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+        },
+      }
+    );
 
-  const data = await res.json();
-  return data;
+    const data = (await res.json()) as DiscordMessageDTO;
+    return data;
+  } catch (e) {
+    throw new AppError(
+      ErrorCode.DISCORD,
+      e instanceof Error ? e.message : String(e)
+    );
+  }
 };
 
 export const sendDiscordMessage = async ({
@@ -55,20 +69,27 @@ export const sendDiscordMessage = async ({
 }: {
   channelId: string;
   message: string;
-}) => {
-  const res = await fetch(`${discordBaseUrl}/channels/${channelId}/messages`, {
-    method: "POST",
-    headers: {
-      Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      content: message,
-    }),
-  });
+}): Promise<DiscordMessageDTO | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: message,
+        }),
+      }
+    );
 
-  const data = await res.json();
-  return data as DiscordMessageDTO;
+    const data = await res.json();
+    return data as DiscordMessageDTO;
+  } catch {
+    return null;
+  }
 };
 
 export const getThreadMessages = async ({
@@ -80,24 +101,28 @@ export const getThreadMessages = async ({
   limit?: number;
   before?: string;
 }) => {
-  const params = new URLSearchParams();
-  if (limit) params.append("limit", `${limit}`);
-  if (before) params.append("before", before);
+  try {
+    const params = new URLSearchParams();
+    if (limit) params.append("limit", `${limit}`);
+    if (before) params.append("before", before);
 
-  const res = await fetch(
-    `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
-      },
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+        },
+      }
+    );
+    const data = await res.json();
+    if (!Array.isArray(data)) {
+      return [];
     }
-  );
-  const data = await res.json();
-  if (!Array.isArray(data)) {
+    return data as DiscordMessageDTO[];
+  } catch {
     return [];
   }
-  return data as DiscordMessageDTO[];
 };
 
 export const updateDiscordMessage = async ({
@@ -108,20 +133,24 @@ export const updateDiscordMessage = async ({
   channelId: string;
   messageId: string;
   content?: string;
-}): Promise<DiscordMessageDTO> => {
-  const res = await fetch(
-    `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
-    {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content }),
-    }
-  );
+}): Promise<DiscordMessageDTO | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content }),
+      }
+    );
 
-  const data = await res.json();
+    const data = await res.json();
 
-  return data as DiscordMessageDTO;
+    return data as DiscordMessageDTO;
+  } catch {
+    return null;
+  }
 };

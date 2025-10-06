@@ -9,21 +9,17 @@ export const getManga = async ({
   page,
 }: {
   page: string;
-}): Promise<MangaPage | undefined> => {
-  try {
-    const data = await getListMessageFromDisCord({
-      channelId: "1225629428420186122",
-      before: page == defaultPage ? undefined : page,
-      limit,
-    });
-    return {
-      mangaList: mapDatas(data, Manga.fromDTO),
-      limit,
-      nextPage: data.length == 10 ? data.at(-1)?.id : undefined,
-    };
-  } catch {
-    return undefined;
-  }
+}): Promise<MangaPage> => {
+  const data = await getListMessageFromDisCord({
+    channelId: "1225629428420186122",
+    before: page == defaultPage ? undefined : page,
+    limit,
+  });
+  return {
+    mangaList: mapDatas(data, Manga.fromDTO),
+    limit,
+    nextPage: data.length == 10 ? data.at(-1)?.id : undefined,
+  };
 };
 
 export function hasData(pageData: MangaPage | undefined): boolean {

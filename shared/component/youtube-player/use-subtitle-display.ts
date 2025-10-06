@@ -13,22 +13,14 @@ export function useYouTubeSubtitleDisplay(
     const player = getPlayer();
     if (!player) return;
 
-    try {
-      player.seekTo(sub.start, true);
-      player.playVideo();
+    player.seekTo(sub.start, true);
+    player.playVideo();
 
-      if (autoPause) {
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
-        timeoutRef.current = setTimeout(() => {
-          try {
-            player.pauseVideo();
-          } catch (error) {
-            console.warn("Failed to pause video:", error);
-          }
-        }, (sub.end - sub.start) * 1000);
-      }
-    } catch (error) {
-      console.error("Failed to handle subtitle click:", error);
+    if (autoPause) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        player.pauseVideo();
+      }, (sub.end - sub.start) * 1000);
     }
   };
 

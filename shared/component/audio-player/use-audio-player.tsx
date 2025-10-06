@@ -18,9 +18,7 @@ export function useAudioPlayer(text: string) {
         headers: { "Content-Type": "application/json" },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to generate audio");
-      }
+      if (!response.ok) return;
 
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
@@ -34,7 +32,6 @@ export function useAudioPlayer(text: string) {
     }
   };
 
-  // Cleanup function to revoke URL
   const cleanup = () => {
     if (playUrl) {
       URL.revokeObjectURL(playUrl);
