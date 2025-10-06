@@ -40,7 +40,6 @@ export function useYouTubePlayer(
         },
         events: {
           onReady: () => {
-            // Đợi một chút để iframe thực sự attach
             setTimeout(() => {
               if (isMounted) setIsReady(true);
             }, 300);

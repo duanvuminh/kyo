@@ -24,6 +24,7 @@ export interface SlackMessageDTO {
     mimetype: string;
     url_private: string;
   }[];
+  relatedMessages?: SlackMessageDTO[];
 }
 export interface SlackHistoryResponseDTO {
   ok: boolean;

@@ -25,7 +25,8 @@ export class Short {
     public poster?: string,
     public subVi?: string,
     public subJa?: string,
-    public subs?: Sub[]
+    public subs?: Sub[],
+    public relateShort?: Short[]
   ) {}
 
   static stringToShortType(value: string): ShortType {
@@ -70,6 +71,7 @@ export class Short {
       subJa: subInfo.ja,
       subs,
       poster: parsed.data.poster,
+      relateShort: data.relatedMessages?.map((item) => Short.fromDTO(item)),
     };
   }
 }
