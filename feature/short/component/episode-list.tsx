@@ -26,7 +26,7 @@ export function EpisodeList({
           onClick={() => onSelect(item, idx)}
           size="sm"
         >
-          Tập {idx + 1}
+          {idx + 1}
         </Button>
       ))}
     </div>

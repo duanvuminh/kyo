@@ -17,7 +17,7 @@ export default async function Page({
   params: Promise<{ page: string }>;
 }) {
   const { page } = await params;
-  const pageData: ListeningPage | undefined = await getListening({ page });
+  const pageData: ListeningPage = await getListening({ page });
   return hasData(pageData) ? (
     <div className="p-2 prose mx-auto">
       {displayData(pageData).map((listening) => (
