@@ -59,6 +59,10 @@ const items = [
     title: "Thủ tục",
     url: "/infor",
   },
+  {
+    title: "Check list",
+    url: "/checklist",
+  },
 ];
 
 export async function AppSidebar() {
