@@ -115,3 +115,24 @@ export class PracticeStorageRepository {
     );
   }
 }
+
+export class MemoStorageRepository {
+  private static readonly STORAGE_KEY = "kyo_memo";
+
+  static getMemo(): string | null {
+    try {
+      const data = localStorage.getItem(this.STORAGE_KEY);
+      return data;
+    } catch (e) {
+      throw new AppError(ErrorCode.STORAGE, (e as Error).message);
+    }
+  }
+
+  static saveMemo(content: string): void {
+    try {
+      localStorage.setItem(this.STORAGE_KEY, content);
+    } catch (e) {
+      throw new AppError(ErrorCode.STORAGE, (e as Error).message);
+    }
+  }
+}

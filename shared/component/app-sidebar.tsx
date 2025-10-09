@@ -60,8 +60,8 @@ const items = [
     url: "/infor",
   },
   {
-    title: "Check list",
-    url: "/checklist",
+    title: "Memo",
+    url: "/memo",
   },
 ];
 
