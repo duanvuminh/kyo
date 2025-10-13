@@ -1,5 +1,6 @@
 import { trimLineBreak } from "@/core/utils/utils";
 import { getTextFromModelMessage } from "@/shared/lib/chat";
+import { askAi } from "@/shared/repository/ai";
 import {
   instructionGrammar,
   instructionKanji,
@@ -7,118 +8,81 @@ import {
   instructionPracticeWord,
   instructionWord,
 } from "@/shared/service/ai/instructions";
-import { searchWord, updateWordsContent } from "@/shared/service/dictionary";
-import { KWord } from "@/shared/types/models/word";
+import { searchWord } from "@/shared/service/dictionary";
+import { BaseItem, KWord } from "@/shared/types/models/word";
 import { KWordType } from "@/shared/types/models/word-type";
-import {
-  LanguageModel,
-  ModelMessage,
-  streamText,
-  StreamTextOnFinishCallback,
-  StreamTextResult,
-  ToolSet,
-} from "ai";
+import { LanguageModel, ModelMessage, StreamTextResult, ToolSet } from "ai";
 
 export abstract class AiBase {
+  abstract model: LanguageModel;
+  abstract saveAiReply: (item: BaseItem) => void;
   async handleMessages(
     messages: ModelMessage[]
-  ): Promise<StreamTextResult<ToolSet, never> | string> {
+  ): Promise<StreamTextResult<ToolSet, never> | string | undefined> {
+    try {
+      return await this._handleMessages(messages);
+    } catch (error) {
+      console.error("AI model error:", error);
+      return undefined;
+    }
+  }
+  async _handleMessages(
+    messages: ModelMessage[]
+  ): Promise<StreamTextResult<ToolSet, never> | string | undefined> {
     const message = trimLineBreak(
       getTextFromModelMessage(messages.at(-1)) ?? ""
     );
     const word = await searchWord(message);
-    let result: StreamTextResult<ToolSet, never>;
-    if (word.content == null) {
-      const onFinish = ({ text }: { text: string }) => {
-        if (word.type !== KWordType.OTHER && word.words !== "") {
-          updateWordsContent({
-            words: word.words,
-            source: word.source,
-            documentId: word.words,
-            content: text,
-          });
-        }
-      };
-      switch (word.type) {
-        case KWordType.KANJI:
-          result = this._send({
-            messages,
-            system: instructionKanji
-              .replace("$1", word.words)
-              .replace("$2", word.hantu ?? ""),
-            onFinish,
-          });
-          break;
-        case KWordType.GRAMMAR:
-          result = this._send({
-            messages,
-            system: instructionGrammar,
-            onFinish,
-          });
-          break;
-        case KWordType.WORD:
-          result = this._send({
-            messages,
-            system: instructionWord.replace("$1", message),
-            onFinish,
-          });
-          break;
-        case KWordType.OTHER:
-          result = this._send({ messages });
-          break;
+
+    if (word.content != null) return word.content;
+
+    const onFinish = ({ text }: { text: string }) => {
+      if (word.type !== KWordType.OTHER && word.words !== "") {
+        this.saveAiReply({
+          words: word.words,
+          source: word.source,
+          documentId: word.words,
+          content: text,
+        });
       }
-    } else {
-      return word.content;
+    };
+
+    const opts = { model: this.model, messages, onFinish, system: "" };
+
+    switch (word.type) {
+      case KWordType.KANJI:
+        opts.system = instructionKanji
+          .replace("$1", word.words)
+          .replace("$2", word.hantu ?? "");
+        break;
+      case KWordType.GRAMMAR:
+        opts.system = instructionGrammar;
+        break;
+      case KWordType.WORD:
+        opts.system = instructionWord.replace("$1", message);
+        break;
+      case KWordType.OTHER:
+        break;
     }
-    return result;
+
+    return await askAi(opts);
   }
-  async summaryWord(word: KWord): Promise<string> {
+  async summaryWord(word: KWord): Promise<string | undefined> {
     const opts =
       word.type === KWordType.GRAMMAR
         ? {
+            model: this.model,
             prompt: word.words,
             system: instructionPracticeGrammar.replace("$1", word.words),
           }
         : {
+            model: this.model,
             prompt: word.words,
             system: instructionPracticeWord.replace("$1", word.words),
           };
-    return this._sendPrompt({
+    const result = askAi({
       ...opts,
-    }).text;
-  }
-
-  abstract model: LanguageModel;
-  private _send({
-    messages,
-    system,
-    onFinish,
-  }: {
-    messages: ModelMessage[];
-    system?: string;
-    onFinish?: StreamTextOnFinishCallback<ToolSet> | undefined;
-  }): StreamTextResult<ToolSet, never> {
-    return streamText({
-      model: this.model,
-      system,
-      messages,
-      onFinish,
     });
-  }
-  private _sendPrompt({
-    prompt,
-    system,
-    onFinish,
-  }: {
-    prompt: string;
-    system?: string;
-    onFinish?: StreamTextOnFinishCallback<ToolSet> | undefined;
-  }): StreamTextResult<ToolSet, never> {
-    return streamText({
-      model: this.model,
-      prompt,
-      system,
-      onFinish,
-    });
+    return result?.text;
   }
 }

@@ -1,3 +1,4 @@
+import { getEnumValues, randomArrayElement } from "@/core/utils/utils";
 import { AiBase } from "@/shared/service/ai/ai";
 import { AiGoogleGenerative } from "@/shared/service/ai/provider/google-generative";
 import { AiGpt } from "@/shared/service/ai/provider/gpt";
@@ -17,6 +18,7 @@ enum ChatType {
   AI_GPT,
 }
 function createInstance(type: ChatType): AiBase {
+  console.log("AI provider type:", type);
   switch (type) {
     case ChatType.AI_OPENROUTER_META_LLAMA:
       return new AIOpenRouterMetaLlama();
@@ -33,7 +35,5 @@ function createInstance(type: ChatType): AiBase {
   }
 }
 
-// const chatType = randomArrayElement<ChatType>(getEnumValues(ChatType));
-// const chatService = createInstance(chatType);
-
-export const chatService = createInstance(ChatType.AI_GOOGLE_GENERATIVE);
+const chatType = randomArrayElement<ChatType>(getEnumValues(ChatType));
+export const chatService = createInstance(chatType);
