@@ -26,6 +26,7 @@ export const getFlashCard = async (word: string): Promise<Practice | null> => {
       const result = await chatService.summaryWord(
         KWord.fromDTO(wordFromDictionary)
       );
+      if (!result) return null;
       const discordMessage = await sendDiscordMessage({
         channelId,
         message: result,

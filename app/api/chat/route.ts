@@ -38,5 +38,5 @@ export async function POST(req: Request) {
       },
     });
   }
-  return result.toUIMessageStreamResponse();
+  return result?.toUIMessageStreamResponse();
 }
