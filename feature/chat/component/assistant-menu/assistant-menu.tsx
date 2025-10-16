@@ -8,7 +8,7 @@ import {
 import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
 import { Button } from "@/shared/component/ui/button";
 import { Write } from "@/shared/component/write";
-import { Yomi } from "@/shared/component/yomi";
+import { Yomi } from "@/shared/component/yomi/yomi";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 

@@ -1,10 +1,7 @@
-"use client";
-
-import { Skeleton } from "@/shared/component/ui/skeleton";
 import { ApiResponse } from "@/shared/types/dto/api-responses";
 import { useEffect, useState } from "react";
 
-export const Yomi = ({ text }: { text: string }) => {
+export function useYomi(text: string) {
   const [yomi, setYomi] = useState<string | undefined>(undefined);
 
   useEffect(() => {
@@ -18,10 +15,5 @@ export const Yomi = ({ text }: { text: string }) => {
     });
   }, [text]);
 
-  return (
-    <>
-      {!yomi && <Skeleton className="h-20 w-full rounded-xl" />}
-      {yomi && <div>{yomi}</div>}
-    </>
-  );
-};
+  return yomi;
+}
