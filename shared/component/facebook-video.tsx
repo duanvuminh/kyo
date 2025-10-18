@@ -1,5 +1,3 @@
-"use client";
-
 interface FacebookVideoEmbedProps {
   videoUrl: string;
 }
@@ -11,7 +9,7 @@ export default function FacebookVideoEmbed({
 
   return (
     <iframe
-      className="w-full aspect-video flex justify-center"
+      className="w-full aspect-square flex justify-center"
       src={`https://www.facebook.com/plugins/video.php?href=${encodedUrl}&show_text=false`}
       style={{ border: "none", overflow: "hidden" }}
       allowFullScreen={true}
