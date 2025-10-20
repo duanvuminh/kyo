@@ -3,6 +3,7 @@ export enum ErrorCode {
   DISCORD,
   VIDEOS_MARKET,
   STORAGE,
+  AI_MODEL_ERROR,
 }
 
 export class AppError extends Error {

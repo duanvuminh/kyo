@@ -48,7 +48,6 @@ export abstract class AiBase {
     };
 
     const opts = { model: this.model, messages, onFinish, system: "" };
-
     switch (word.type) {
       case KWordType.KANJI:
         opts.system = instructionKanji

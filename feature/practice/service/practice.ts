@@ -6,7 +6,7 @@ import {
   sendDiscordMessage,
 } from "@/shared/repository/discord";
 import { getWordById, updateDocument } from "@/shared/repository/firestore";
-import { chatService } from "@/shared/service/ai/factory";
+import { aiService } from "@/shared/service/ai/factory";
 import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
 import { KWord } from "@/shared/types/models/word";
 
@@ -23,7 +23,7 @@ export const getFlashCard = async (word: string): Promise<Practice | null> => {
       if (!discordMessage) return null;
       return Practice.fromDTO(discordMessage);
     } else {
-      const result = await chatService.summaryWord(
+      const result = await aiService.summaryWord(
         KWord.fromDTO(wordFromDictionary)
       );
       if (!result) return null;

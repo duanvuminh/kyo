@@ -1,4 +1,4 @@
-import { chatService } from "@/shared/service/ai/factory";
+import { aiService } from "@/shared/service/ai/factory";
 import { convertToModelMessages, UIMessage } from "ai";
 import { NextResponse } from "next/server";
 
@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     });
   }
 
-  const result = await chatService.handleMessages(
+  const result = await aiService.handleMessages(
     convertToModelMessages(messages)
   );
   if (typeof result === "string") {

@@ -1,3 +1,4 @@
+import { AppError, ErrorCode } from "@/shared/types/models/error";
 import {
   LanguageModel,
   ModelMessage,
@@ -28,6 +29,6 @@ export const askAi = ({
       ...(prompt ? { prompt } : { messages: messages ?? [] }),
     });
   } catch (error) {
-    console.error("Error in askAi:", error);
+    throw new AppError(ErrorCode.AI_MODEL_ERROR, (error as Error).message);
   }
 };

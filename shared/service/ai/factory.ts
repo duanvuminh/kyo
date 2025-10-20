@@ -9,7 +9,7 @@ import {
   AiOpenRouterMicrosoft,
 } from "@/shared/service/ai/provider/open-router";
 
-enum ChatType {
+enum AIProvider {
   AI_GOOGLE_GENERATIVE,
   AI_OPENROUTER_META_LLAMA,
   AI_OPENROUTER_META_LLAMA1,
@@ -17,23 +17,25 @@ enum ChatType {
   AI_OPENROUTER_MICROSOFT,
   AI_GPT,
 }
-function createInstance(type: ChatType): AiBase {
-  console.log("AI provider type:", type);
+function createInstance(type: AIProvider): AiBase {
   switch (type) {
-    case ChatType.AI_OPENROUTER_META_LLAMA:
+    case AIProvider.AI_OPENROUTER_META_LLAMA:
       return new AIOpenRouterMetaLlama();
-    case ChatType.AI_OPENROUTER_META_LLAMA1:
+    case AIProvider.AI_OPENROUTER_META_LLAMA1:
       return new AiOpenRouterMetaLlama1();
-    case ChatType.AI_OPENROUTER_META_LLAMA2:
+    case AIProvider.AI_OPENROUTER_META_LLAMA2:
       return new AiOpenRouterMetaLlama2();
-    case ChatType.AI_OPENROUTER_MICROSOFT:
+    case AIProvider.AI_OPENROUTER_MICROSOFT:
       return new AiOpenRouterMicrosoft();
-    case ChatType.AI_GPT:
+    case AIProvider.AI_GPT:
       return new AiGpt();
     default:
       return new AiGoogleGenerative();
   }
 }
-
-const chatType = randomArrayElement<ChatType>(getEnumValues(ChatType));
-export const chatService = createInstance(chatType);
+const blacklist: Set<AIProvider> = new Set([]);
+const availableProviders = getEnumValues(AIProvider).filter(
+  (provider) => !blacklist.has(provider)
+);
+const aiProvider = randomArrayElement<AIProvider>(availableProviders);
+export const aiService = createInstance(aiProvider);
