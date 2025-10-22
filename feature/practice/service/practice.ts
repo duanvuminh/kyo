@@ -23,7 +23,7 @@ export const getFlashCard = async (word: string): Promise<Practice | null> => {
       if (!discordMessage) return null;
       return Practice.fromDTO(discordMessage);
     } else {
-      const result = await aiService.summaryWord(
+      const result = await aiService().summaryWord(
         KWord.fromDTO(wordFromDictionary)
       );
       if (!result) return null;
