@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     });
   }
 
-  const result = await aiService.handleMessages(
+  const result = await aiService().handleMessages(
     convertToModelMessages(messages)
   );
   if (typeof result === "string") {

@@ -24,3 +24,8 @@ export class AiOpenRouterMicrosoft extends AiBase {
   saveAiReply = () => {};
   model = openrouter.chat("microsoft/mai-ds-r1:free");
 }
+
+export class AiOpenRouterDeepseekR1 extends AiBase {
+  saveAiReply = () => {};
+  model = openrouter.chat("tngtech/deepseek-r1t2-chimera:free");
+}
