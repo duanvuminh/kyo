@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 export const KanjiN1Paging = ({ totalPages }: { totalPages: number }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const isFlashCard = pathname.includes("flash-card");
 
   const match = pathname.match(/page(\d+)/);
   const initPage = match ? Number(match[1]) - 1 : 0;
@@ -14,6 +15,8 @@ export const KanjiN1Paging = ({ totalPages }: { totalPages: number }) => {
   };
 
   return (
-    <KPaging totalPages={totalPages} refine={refine} initPage={initPage} />
+    !isFlashCard && (
+      <KPaging totalPages={totalPages} refine={refine} initPage={initPage} />
+    )
   );
 };

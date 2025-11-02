@@ -11,6 +11,7 @@ export interface FlashCardItem {
 
 export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
   const {
+    currentCards,
     currentCard,
     index,
     page,
@@ -58,8 +59,7 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
       </div>
 
       <div className="text-sm text-gray-500">
-        Thẻ {startIndex + index + 1}/{cards.length} (Trang {page + 1}/
-        {totalPages})
+        Thẻ {index + 1}/{currentCards.length}
       </div>
       <div className="text-xs text-gray-400">Nhấn vào thẻ để lật mặt sau</div>
     </div>
