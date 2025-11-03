@@ -28,7 +28,7 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
 
   return (
     <div className="flex flex-col items-center gap-4 max-w-sm mx-auto mt-8">
-      <Card className="w-full h-48 p-4" onClick={toggleShowBack}>
+      <Card className="w-full min-h-48 p-4" onClick={toggleShowBack}>
         <CardContent>
           {showBack
             ? currentCard.back.map((line, i) => <div key={i}>{line}</div>)
