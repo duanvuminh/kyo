@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/shared/component/ui/card";
 export interface FlashCardItem {
   front: string;
   back: string[];
+  more?: string[];
 }
 
 export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
@@ -27,18 +28,35 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
 
   return (
     <div className="flex flex-col items-center gap-4 max-w-sm mx-auto mt-8">
-      <Card className="w-full min-h-48" onClick={toggleShowBack}>
+      <Card className="w-full min-h-48 p-2" onClick={toggleShowBack}>
         <CardContent>
-          {showBack
-            ? currentCard.back.map((line, i) => <div key={i}>{line}</div>)
-            : currentCard.front}
-          {showBack && (
+          {showBack ? (
             <div onClick={(e) => e.stopPropagation()}>
-              <AudioPlayer text={currentCard.front} />
+              {currentCard.back.map((line, i) => (
+                <div key={i}>{line}</div>
+              ))}
+              <div className="mt-2">
+                <AudioPlayer text={currentCard.front} />
+              </div>
+              {currentCard.more && currentCard.more.length > 0 && (
+                <details className="mt-3">
+                  <summary className="cursor-pointer text-sm text-gray-600">
+                    Xem thêm
+                  </summary>
+                  <div className="mt-2 flex flex-col gap-1">
+                    {currentCard.more.map((line, i) => (
+                      <div key={i}>{line}</div>
+                    ))}
+                  </div>
+                </details>
+              )}
             </div>
+          ) : (
+            currentCard.front
           )}
         </CardContent>
       </Card>
+
       <div className="flex gap-2">
         <Button onClick={prevCard}>Trước</Button>
         <Button onClick={nextCard}>Tiếp</Button>
