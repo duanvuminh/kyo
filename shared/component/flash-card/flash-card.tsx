@@ -1,13 +1,16 @@
 "use client";
 import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
 import { useFlashCard } from "@/shared/component/flash-card/use-flash-card";
+import { QuestionDetail } from "@/shared/component/question-detail/question-detail";
 import { Button } from "@/shared/component/ui/button";
 import { Card, CardContent } from "@/shared/component/ui/card";
+import { Question } from "@/shared/types/models/question";
 
 export interface FlashCardItem {
   front: string;
   back: string[];
   more?: string[];
+  question?: Question;
 }
 
 export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
@@ -47,6 +50,9 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
                     {currentCard.more.map((line, i) => (
                       <div key={i}>{line}</div>
                     ))}
+                    {currentCard.question && (
+                      <QuestionDetail question={currentCard.question} />
+                    )}
                   </div>
                 </details>
               )}

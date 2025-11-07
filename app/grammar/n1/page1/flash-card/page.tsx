@@ -17,8 +17,18 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 散歩がてらコンビニに寄った。",
       "- Ví dụ 2: 写真を撮りがてら山を登った。",
-      "- Nguồn: trợ từ cổ mang nghĩa kiêm nhiệm hành động",
+      "💡 Mẹo nhớ:",
+      "  ・が (nhấn hành động chính) + てら (cùng lúc)",
+      "  ・Hình ảnh: Đi MỘT đường làm HAI việc 🚶‍♂️➕🛒",
+      "❌ Sai: 勉強がてら図書館にいる (không có động từ di chuyển)",
+      "✅ Đúng: 図書館へ行きがてら本を返す",
     ],
+    question: {
+      id: "1",
+      content: "Điền: 昼ごはんを食べ___郵便局に寄った。",
+      correctAnswer: 1,
+      answers: ["ながら", "がてら", "ついでに", "うちに"],
+    },
   },
   {
     front: "～なり",
@@ -33,8 +43,18 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 席に着くなり寝てしまった。",
       "- Ví dụ 2: ドアを開けるなり子どもが飛び出した。",
-      "- Nguồn: ‘なり’ dạng kết nối cổ chỉ trạng thái vừa xảy ra",
+      "💡 Mẹo nhớ:",
+      "  ・Domino: A đổ xong → B lập tức",
+      "  ・Không có khoảng đệm thời gian",
+      "❌ Sai: 席に着くなり、しばらく休んでから勉強した (có khoảng nghỉ)",
+      "✅ Đúng: 席に着くなり勉強を始めた",
     ],
+    question: {
+      id: "2",
+      content: "Điền: 先生が教室に入る___学生は静かになった。",
+      correctAnswer: 2,
+      answers: ["末に", "ところで", "なり", "一方で"],
+    },
   },
   {
     front: "～手前",
@@ -49,8 +69,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 約束した手前、行かないわけにいかない。",
       "- Ví dụ 2: 人前で言った手前、後に引けない。",
-      "- Nguồn: 手前 = ‘trước mặt (người khác)’ → ý thức thể diện",
+      "💡 Mẹo nhớ:",
+      "  ・'Trước mặt người khác' → phải giữ lời",
+      "❌ Sai: 家で一人で決めた手前、やめられない (không có công khai)",
+      "✅ Đúng: 人前で宣言した手前、途中でやめられない",
     ],
+    question: {
+      id: "3",
+      content: "Điền: 公の場で宣言した___、途中でやめられない。",
+      correctAnswer: 0,
+      answers: ["手前", "わけで", "まで", "次第"],
+    },
   },
   {
     front: "～を限りに／～限りで",
@@ -65,8 +94,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 今日を限りに甘い物をやめる。",
       "- Ví dụ 2: 今月限りでサービス終了。",
-      "- Nguồn: 限り = giới hạn cuối",
+      "💡 Mẹo nhớ:",
+      "  ・限り = vạch giới hạn cuối",
+      "❌ Sai: 車を限りに使うのをやめる (danh từ không phải mốc thời gian)",
+      "✅ Đúng: 今日を限りに間食をやめる",
     ],
+    question: {
+      id: "4",
+      content: "Điền: 今回___この部署を離れます。",
+      correctAnswer: 3,
+      answers: ["までに", "ばかりで", "ところで", "限りで"],
+    },
   },
   {
     front: "～限りだ",
@@ -81,8 +119,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: うれしい限りだ。",
       "- Ví dụ 2: 残念な限りだ。",
-      "- Nguồn: 限り = mức giới hạn cao nhất",
+      "💡 Mẹo nhớ:",
+      "  ・'Chạm trần' cảm xúc",
+      "❌ Sai: 行く限りだ (dùng động từ không phải tính từ cảm xúc)",
+      "✅ Đúng: 光栄な限りだ",
     ],
+    question: {
+      id: "5",
+      content: "Điền: 皆に助けられてありがたい___。",
+      correctAnswer: 1,
+      answers: ["わけだ", "限りだ", "ものだ", "ところだ"],
+    },
   },
   {
     front: "～あっての",
@@ -92,13 +139,22 @@ const cards: FlashCardItem[] = [
       "・Quan hệ công việc nhờ sự tin cậy",
       "- Key point: N1 không có thì N2 không tồn tại",
       "- Cấu trúc: N1あってのN2",
-      "- So sánh: ～なしでは nhấn thiếu; mẫu này nhấn ‘nhờ có’",
+      "- So sánh: ～なしでは nhấn thiếu; mẫu này nhấn 'nhờ có'",
     ],
     more: [
       "- Ví dụ 1: 家族あっての私だ。",
       "- Ví dụ 2: 信頼あっての仕事関係。",
-      "- Nguồn: あって (tồn tại) + の (liên kết)",
+      "💡 Mẹo nhớ:",
+      "  ・N1 = nền móng, N2 = tòa nhà",
+      "❌ Sai: 成功あっての努力 (đảo ngược quan hệ nhân quả)",
+      "✅ Đúng: 努力あっての成功",
     ],
+    question: {
+      id: "6",
+      content: "Điền: 健康___成功だと思う。",
+      correctAnswer: 2,
+      answers: ["限りで", "わけで", "あっての", "ばかりに"],
+    },
   },
   {
     front: "～だの～だの",
@@ -113,8 +169,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 暑いだの寒いだのとうるさい。",
       "- Ví dụ 2: 忙しいだの給料が安いだの文句ばかりだ。",
-      "- Nguồn: だの = liệt kê phi chính thức",
+      "💡 Mẹo nhớ:",
+      "  ・Cặp than phiền nối tiếp",
+      "❌ Sai: 忙しいだの (thiếu liệt kê thứ hai)",
+      "✅ Đúng: 忙しいだの眠いだの文句ばかり言う",
     ],
+    question: {
+      id: "7",
+      content: "Điền: 忙しい___眠い___って文句ばかり言う。",
+      correctAnswer: 0,
+      answers: ["だの", "やら", "とか", "し"],
+    },
   },
   {
     front: "～であれ～であれ",
@@ -129,8 +194,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 男であれ女であれ参加できる。",
       "- Ví dụ 2: 賛成であれ反対であれ意見を述べて。",
-      "- Nguồn: であれ = dạng giả định cổ của である",
+      "💡 Mẹo nhớ:",
+      "  ・Hai cực → cùng chung kết luận",
+      "❌ Sai: 男である女であれ (hình thức lẫn lộn)",
+      "✅ Đúng: 男であれ女であれ平等だ",
     ],
+    question: {
+      id: "8",
+      content: "Điền: 成功___失敗___挑戦する価値がある。",
+      correctAnswer: 3,
+      answers: ["ながら", "かどうか", "にせよ", "であれ"],
+    },
   },
   {
     front: "～どうにも…ない",
@@ -145,8 +219,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: それはどうにもならない。",
       "- Ví dụ 2: 機械が壊れてどうにも直せない。",
-      "- Nguồn: どうにも = bằng mọi cách cũng không",
+      "💡 Mẹo nhớ:",
+      "  ・'Cách nào cũng không'",
+      "❌ Sai: どうにも直した (khẳng định)",
+      "✅ Đúng: どうにも直せない",
     ],
+    question: {
+      id: "9",
+      content: "Điền: この問題は___ならないと思う。",
+      correctAnswer: 1,
+      answers: ["なかなか", "どうにも", "めったに", "まったく"],
+    },
   },
   {
     front: "～はする",
@@ -154,15 +237,24 @@ const cards: FlashCardItem[] = [
       "- Ý nghĩa: Tuy có làm ... nhưng (kết quả không tương xứng)",
       "・Có học mà điểm không tăng",
       "・Có giúp nhưng chẳng hữu ích",
-      "- Key point: Nhấn sự ‘có làm’ nhưng không đủ",
+      "- Key point: Nhấn sự 'có làm' nhưng không đủ",
       "- Cấu trúc: Nはする（が／けど）",
       "- So sánh: ～には～が trung tính hơn",
     ],
     more: [
       "- Ví dụ 1: 勉強はするが成績が上がらない。",
       "- Ví dụ 2: 手伝いはしたが役に立たなかった。",
-      "- Nguồn: Nhấn phần hành động tách biệt",
+      "💡 Mẹo nhớ:",
+      "  ・'Có làm' + kết quả không như kỳ vọng",
+      "❌ Sai: 勉強するが成績が上がらない (thiếu は nhấn)",
+      "✅ Đúng: 勉強はするが成績が上がらない",
     ],
+    question: {
+      id: "10",
+      content: "Điền: 運動___するが全然痩せない。",
+      correctAnswer: 0,
+      answers: ["は", "も", "で", "しか"],
+    },
   },
   {
     front: "～ているばあいではない",
@@ -177,8 +269,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 寝ている場合ではない。",
       "- Ví dụ 2: 遊んでいる場合ではない。",
-      "- Nguồn: 場合 = tình huống thích hợp",
+      "💡 Mẹo nhớ:",
+      "  ・'Tình huống khẩn' loại bỏ hành động đang làm",
+      "❌ Sai: 寝る場合ではない (mất sắc thái 'đang')",
+      "✅ Đúng: 寝ている場合ではない",
     ],
+    question: {
+      id: "11",
+      content: "Điền: こんなことで泣いて___場合ではない。",
+      correctAnswer: 2,
+      answers: ["みる", "いる", "いる", "しまう"],
+    },
   },
   {
     front: "～なら…なり",
@@ -193,8 +294,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 休むなら休むなりの計画がいる。",
       "- Ví dụ 2: 安く済ませるなら済ませるなりの工夫。",
-      "- Nguồn: ‘なり’ = dạng phù hợp tương ứng",
+      "💡 Mẹo nhớ:",
+      "  ・Lựa chọn → theo chuẩn của lựa chọn đó",
+      "❌ Sai: 休むなら勉強なり計画する (không song hành cùng cấu trúc)",
+      "✅ Đúng: 休むなら休むなりの準備をしろ",
     ],
+    question: {
+      id: "12",
+      content: "Điền: 行くなら行く___の準備をしてくれ。",
+      correctAnswer: 3,
+      answers: ["べき", "よう", "だけ", "なり"],
+    },
   },
   {
     front: "～わ…わ（で）",
@@ -209,8 +319,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 忙しいわ眠いわで大変だ。",
       "- Ví dụ 2: 雨だわ寒いわで出たくない。",
-      "- Nguồn: わ = trợ từ cảm thán (nữ tính cổ)",
+      "💡 Mẹo nhớ:",
+      "  ・'Tràn ngập' cảm giác",
+      "❌ Sai: 忙しいわで困る (thiếu liệt kê thứ hai)",
+      "✅ Đúng: 忙しいわ眠いわで困る",
     ],
+    question: {
+      id: "13",
+      content: "Điền: 今日は仕事___電話___で休む暇がない。",
+      correctAnswer: 2,
+      answers: ["し", "とか", "わ", "など"],
+    },
   },
   {
     front: "～をいいことに",
@@ -225,8 +344,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 先生がいないのをいいことに騒いだ。",
       "- Ví dụ 2: 彼の優しさをいいことに頼み続ける。",
-      "- Nguồn: いいこと = điều có lợi (bị lạm dụng)",
+      "💡 Mẹo nhớ:",
+      "  ・Biến lợi thế thành cớ làm xấu",
+      "❌ Sai: 先生がいるのをいいことに静かに勉強した (không mang nghĩa lợi dụng xấu)",
+      "✅ Đúng: 親が留守なのをいいことにゲーム三昧だ",
     ],
+    question: {
+      id: "14",
+      content: "Điền: 親がいないの___夜更かしした。",
+      correctAnswer: 1,
+      answers: ["わけで", "をいいことに", "ばかりで", "からには"],
+    },
   },
   {
     front: "～いざ～となると",
@@ -241,8 +369,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: いざ本番となると緊張する。",
       "- Ví dụ 2: いざ出発となれば不安になる。",
-      "- Nguồn: いざ = ‘nào, đến lúc’ (cổ)",
+      "💡 Mẹo nhớ:",
+      "  ・'Đến lúc thật' phản ứng đổi",
+      "❌ Sai: いざ試験を勉強すると緊張する (cấu trúc sai)",
+      "✅ Đúng: いざ試験となると緊張する",
     ],
+    question: {
+      id: "15",
+      content: "Điền: 練習は平気でも、___発表となると緊張する。",
+      correctAnswer: 0,
+      answers: ["いざ", "ただ", "まさに", "もしくは"],
+    },
   },
   {
     front: "～との",
@@ -257,8 +394,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 彼が来ないとの連絡。",
       "- Ví dụ 2: 明日休業との通知。",
-      "- Nguồn: と (trích dẫn) + の (danh hoá)",
+      "💡 Mẹo nhớ:",
+      "  ・と + の: nội dung trích dẫn danh hóa",
+      "❌ Sai: 彼が来ないとの言った (kết hợp sai)",
+      "✅ Đúng: 彼が来ないとの連絡が入った",
     ],
+    question: {
+      id: "16",
+      content: "Điền: 事故で遅れる___連絡があった。",
+      correctAnswer: 1,
+      answers: ["という", "との", "だの", "わけの"],
+    },
   },
   {
     front: "～てもしかたがない",
@@ -273,8 +419,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 失敗してもしかたがない。",
       "- Ví dụ 2: 怒ってもしかたがない。",
-      "- Nguồn: 仕方がない = không có cách",
+      "💡 Mẹo nhớ:",
+      "  ・'Không có cách xử lý'",
+      "❌ Sai: 怒るしかたがない (thiếu ても)",
+      "✅ Đúng: 怒ってもしかたがない",
     ],
+    question: {
+      id: "17",
+      content: "Điền: 遅れたことを今さら謝って___しかたがない。",
+      correctAnswer: 2,
+      answers: ["も", "に", "も", "では"],
+    },
   },
   {
     front: "～ずにはおかない",
@@ -289,8 +444,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 彼の演技は人を感動させずにはおかない。",
       "- Ví dụ 2: その問題は議論を呼ばずにはおかない。",
-      "- Nguồn: ず (phủ định cổ) + おかない (không thể bỏ qua)",
+      "💡 Mẹo nhớ:",
+      "  ・'Không thể không gây ra'",
+      "❌ Sai: 感動させないではおかない (mẫu sai)",
+      "✅ Đúng: 人を驚かせずにはおかない出来事",
     ],
+    question: {
+      id: "18",
+      content: "Điền: その事件は社会を驚かせ___おかないだろう。",
+      correctAnswer: 3,
+      answers: ["に違いない", "わけではない", "ようでは", "ずには"],
+    },
   },
   {
     front: "～たらどんなに…か",
@@ -305,8 +469,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 休めたらどんなに楽か。",
       "- Ví dụ 2: 会えたらどんなにうれしいか。",
-      "- Nguồn: どんなに～か = nhấn cường độ giả định",
+      "💡 Mẹo nhớ:",
+      "  ・Kết thúc bằng か (câu hỏi tu từ)",
+      "❌ Sai: 会えたらどんなにうれしい (thiếu か)",
+      "✅ Đúng: 会えたらどんなにうれしいか",
     ],
+    question: {
+      id: "19",
+      content: "Điền: もっと早く知っていた___どんなによかったか。",
+      correctAnswer: 1,
+      answers: ["わけだ", "ら", "まで", "として"],
+    },
   },
   {
     front: "～ぬ間に",
@@ -321,8 +494,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 日が暮れぬ間に帰る。",
       "- Ví dụ 2: 雨が降りぬ間に終える。",
-      "- Nguồn: ぬ = phủ định cổ của ない",
+      "💡 Mẹo nhớ:",
+      "  ・ぬ = ない (cổ) → trang trọng",
+      "❌ Sai: 日が暮れない間に帰る (dùng sai sắc thái cổ)",
+      "✅ Đúng: 日が暮れぬ間に帰る",
     ],
+    question: {
+      id: "20",
+      content: "Điền: 雨が降り___間に作業を終えよう。",
+      correctAnswer: 0,
+      answers: ["ぬ", "ない", "ず", "まい"],
+    },
   },
   {
     front: "～からとおもって",
@@ -337,8 +519,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 安いからと思って大量に買った。",
       "- Ví dụ 2: 大丈夫だと思って連絡しなかった。",
-      "- Nguồn: と思って = ‘nghĩ là’ + nguyên nhân",
+      "💡 Mẹo nhớ:",
+      "  ・'Vì cho rằng...' → hành động",
+      "❌ Sai: 安いから思って買った (thiếu と)",
+      "✅ Đúng: 安いからと思って買いすぎた",
     ],
+    question: {
+      id: "21",
+      content: "Điền: 安い___思って品質を確認しなかった。",
+      correctAnswer: 1,
+      answers: ["ので", "からと", "わけで", "にして"],
+    },
   },
   {
     front: "～かとおもえば...も",
@@ -353,8 +544,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 難しい問題かと思えば簡単なのもある。",
       "- Ví dụ 2: 晴れかと思えば雨も降る。",
-      "- Nguồn: かと思えば = nếu tưởng là thì lại...",
+      "💡 Mẹo nhớ:",
+      "  ・'Tưởng A thì lại có B'",
+      "❌ Sai: 忙しいと思えば暇な日もある (thiếu か)",
+      "✅ Đúng: 忙しいかと思えば暇な日もある",
     ],
+    question: {
+      id: "22",
+      content: "Điền: 忙しい___思えば暇な日もある。",
+      correctAnswer: 0,
+      answers: ["かと", "からと", "わけで", "ようで"],
+    },
   },
   {
     front: "～といっても間違いない",
@@ -369,8 +569,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 彼は天才と言っても間違いない。",
       "- Ví dụ 2: これは成功と言っても間違いない。",
-      "- Nguồn: 間違いない = không sai chút nào",
+      "💡 Mẹo nhớ:",
+      "  ・'Không sai chút nào' = xác nhận mạnh",
+      "❌ Sai: 天才と言って間違いない (thiếu も)",
+      "✅ Đúng: 天才と言っても間違いない人物だ",
     ],
+    question: {
+      id: "23",
+      content: "Điền: これは革命___言っても間違いない成果だ。",
+      correctAnswer: 2,
+      answers: ["かと", "わけで", "と", "までで"],
+    },
   },
   {
     front: "～にいわせれば",
@@ -385,8 +594,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 彼に言わせれば簡単だ。",
       "- Ví dụ 2: 専門家に言わせれば危険だ。",
-      "- Nguồn: 言わせれば = ‘nếu để (ai) nói’",
+      "💡 Mẹo nhớ:",
+      "  ・Trao 'quyền phát biểu' cho N",
+      "❌ Sai: 医者を言わせれば危険だ (を sai trợ từ)",
+      "✅ Đúng: 医者に言わせれば危険だ",
     ],
+    question: {
+      id: "24",
+      content: "Điền: 医者___言わせれば睡眠不足が原因だ。",
+      correctAnswer: 1,
+      answers: ["からと", "に", "を", "まで"],
+    },
   },
   {
     front: "～でなくてなんだろう",
@@ -401,8 +619,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: これが愛でなくてなんだろう。",
       "- Ví dụ 2: 彼の行動は勇気でなくてなんだろう。",
-      "- Nguồn: なんだろう = tự hỏi nhấn chắc chắn",
+      "💡 Mẹo nhớ:",
+      "  ・Phủ định giả → khẳng định mạnh",
+      "❌ Sai: 才能でなくて (thiếu なんだろう)",
+      "✅ Đúng: これが才能でなくてなんだろう",
     ],
+    question: {
+      id: "25",
+      content: "Điền: これが才能___なんだろう。",
+      correctAnswer: 3,
+      answers: ["かと", "わけで", "にして", "でなくて"],
+    },
   },
   {
     front: "～にあっては",
@@ -417,8 +644,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 非常時にあっては冷静さが重要だ。",
       "- Ví dụ 2: 変化期にあっては柔軟性が求められる。",
-      "- Nguồn: あって = tồn tại trong điều kiện đó",
+      "💡 Mẹo nhớ:",
+      "  ・'Trong hoàn cảnh đặc thù'",
+      "❌ Sai: 公園にあっては人が多い (ngữ cảnh thường, dùng không tự nhiên)",
+      "✅ Đúng: 緊急時にあっては迅速さが求められる",
     ],
+    question: {
+      id: "26",
+      content: "Điền: 緊急事態___あっては迅速な判断が必要だ。",
+      correctAnswer: 2,
+      answers: ["にしては", "において", "に", "で"],
+    },
   },
   {
     front: "～というわけだ",
@@ -433,8 +669,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 彼は来られないというわけだ。",
       "- Ví dụ 2: 時間がないというわけだ。",
-      "- Nguồn: わけ = lý do / logic",
+      "💡 Mẹo nhớ:",
+      "  ・Kết luận logic cuối",
+      "❌ Sai: 行くというわけ (thiếu だ)",
+      "✅ Đúng: 行けないというわけだ",
     ],
+    question: {
+      id: "27",
+      content: "Điền: なるほど、だから参加できない___。",
+      correctAnswer: 1,
+      answers: ["わけではない", "というわけだ", "わけがない", "ところだ"],
+    },
   },
   {
     front: "～ようで（は）",
@@ -449,8 +694,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: そんな態度を取るようでは成功しない。",
       "- Ví dụ 2: 練習しないようでは上達しない。",
-      "- Nguồn: よう = dáng vẻ / tình trạng",
+      "💡 Mẹo nhớ:",
+      "  ・'Như thế này thì...' cảnh báo",
+      "❌ Sai: 練習しないようで上達しない (thiếu は, mờ sắc thái điều kiện)",
+      "✅ Đúng: 練習しないようでは上達しない",
     ],
+    question: {
+      id: "28",
+      content: "Điền: その努力の仕方___成果は出ないだろう。",
+      correctAnswer: 2,
+      answers: ["わけでは", "ばかりで", "ようでは", "にあっては"],
+    },
   },
   {
     front: "～あえて",
@@ -465,8 +719,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: あえて危険な道を選んだ。",
       "- Ví dụ 2: あえて反対意見を述べる。",
-      "- Nguồn: あえて = cố tình dù biết rủi ro",
+      "💡 Mẹo nhớ:",
+      "  ・'Cố tình chọn khó'",
+      "❌ Sai: あえて水を飲んだ (hành động bình thường không cần 'dám')",
+      "✅ Đúng: あえて誰も言わない欠点を指摘した",
     ],
+    question: {
+      id: "29",
+      content: "Điền: 皆が賛成する中___反対を述べた。",
+      correctAnswer: 1,
+      answers: ["つい", "あえて", "わざわざ", "どうにも"],
+    },
   },
   {
     front: "～が早いか",
@@ -481,8 +744,17 @@ const cards: FlashCardItem[] = [
     more: [
       "- Ví dụ 1: 先生を見るが早いか静かになった。",
       "- Ví dụ 2: ベルが鳴るが早いか生徒が出た。",
-      "- Nguồn: 早いか = mức nhanh nối tiếp",
+      "💡 Mẹo nhớ:",
+      "  ・A xong tức thì B bật",
+      "❌ Sai: ドアを開けてが早いか (dùng て)",
+      "✅ Đúng: ドアを開けるが早いか猫が飛び出した",
     ],
+    question: {
+      id: "30",
+      content: "Điền: ドアを開ける___猫が飛び出した。",
+      correctAnswer: 0,
+      answers: ["が早いか", "ところで", "末に", "うちに"],
+    },
   },
 ];
 
