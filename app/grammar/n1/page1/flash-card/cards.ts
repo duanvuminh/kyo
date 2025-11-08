@@ -5,7 +5,7 @@ export const cards: FlashCardItem[] = [
     front: "～がてら",
     back: [
       "- Ý nghĩa: Nhân tiện (làm A nhân tiện làm B)",
-      "・Đi dạo nhân tiện ghé cửa hàng tiện lợi.",
+      "・Ví dụ: Đi dạo nhân tiện ghé cửa hàng tiện lợi.",
       "- Key point: Hành động chính kèm hành động phụ, thường có yếu tố **di chuyển**.",
       "- Cấu trúc: N / Vます + がてら",
       "- So sánh: ～ついでに (không nhấn yếu tố di chuyển), ～ながら (đồng thời)",
@@ -19,15 +19,15 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "1-1",
-        content: "昼ごはんを食べ___、郵便局に寄った。",
-        answers: ["ながら", "うち", "ついでに", "がてら"],
-        correctAnswer: 3,
+        content: "散歩___、コンビニに寄った。",
+        answers: ["ながら", "につれて", "がてら", "ついでに"],
+        correctAnswer: 2,
       },
       {
         id: "1-2",
-        content: "買い物の___、本屋にも寄った。",
-        answers: ["がてら", "のついでに", "をしつつ", "のところに"],
-        correctAnswer: 1,
+        content: "買い物___、本屋にも寄った。",
+        answers: ["がてら", "のせいで", "をめぐって", "のところに"],
+        correctAnswer: 0,
       },
       {
         id: "1-3",
@@ -41,7 +41,7 @@ export const cards: FlashCardItem[] = [
     front: "～なり",
     back: [
       "- Ý nghĩa: Ngay sau khi (vừa A thì ngay lập tức B xảy ra)",
-      "・Anh ấy vừa nhận điện thoại xong thì lập tức đứng dậy và ra khỏi phòng.",
+      "・Ví dụ: Anh ấy vừa nhận điện thoại xong thì lập tức đứng dậy và ra khỏi phòng.",
       "- Key point: Hành động B là bất ngờ, ngoài ý muốn và xảy ra **ngay sau** A. Chỉ dùng cho **ngôi thứ ba**.",
       "- Cấu trúc: Vる + なり",
       "- So sánh: ～やいなや / ～が早いか (dùng cho hành động mang tính khách quan hơn)",
@@ -56,20 +56,20 @@ export const cards: FlashCardItem[] = [
       {
         id: "2-1",
         content: "彼は電話を受ける___席を立って部屋を出ていった。",
-        answers: ["なり", "が早いか", "とたん", "やいなや"],
-        correctAnswer: 0,
+        answers: ["とたんに", "わけではない", "なり", "かぎり"],
+        correctAnswer: 2,
       },
       {
         id: "2-2",
         content: "終業のベルを聞く___、学生たちは教室から飛び出していった。",
-        answers: ["とたんに", "なり", "が早いか", "やいなや"],
-        correctAnswer: 2,
+        answers: ["が早いか", "なり", "わけにはいかない", "において"],
+        correctAnswer: 0,
       },
       {
         id: "2-3",
         content: "子供は母親の顔を見る___、わっと泣き出した。",
-        answers: ["と", "にして", "なり", "をものともせず"],
-        correctAnswer: 2,
+        answers: ["をものともせず", "なり", "やいなや", "が早いか"],
+        correctAnswer: 1,
       },
     ],
   },
@@ -77,7 +77,7 @@ export const cards: FlashCardItem[] = [
     front: "～手前（てまえ）",
     back: [
       "- Ý nghĩa: Vì đứng trước/vì đã hứa/vì thể diện (nên phải làm gì)",
-      "・Vì đã hứa với con trai, nên dù bận tôi cũng phải đi.",
+      "・Ví dụ: Vì đã hứa với con trai, nên dù bận tôi cũng phải đi.",
       "- Key point: Hành động tiếp theo là **bắt buộc phải làm** vì giữ thể diện hoặc lời đã hứa.",
       "- Cấu trúc: Vる / Nの + 手前",
       "- So sánh: ～以上は (cũng là 'một khi đã', nhưng 手前 nhấn mạnh yếu tố **thể diện**)",
@@ -92,20 +92,20 @@ export const cards: FlashCardItem[] = [
       {
         id: "3-1",
         content: "合格すると宣言した___、勉強しないわけにはいかない。",
-        answers: ["かぎり", "限りで", "手前", "かぎりだ"],
-        correctAnswer: 2,
+        answers: ["以上は", "限りで", "手前", "かぎりだ"],
+        correctAnswer: 0, // 以上は (Một khi đã tuyên bố)
       },
       {
         id: "3-2",
         content: "息子と約束した___、忙しくても行かないわけにはいかない。",
         answers: ["にもかかわらず", "手前", "につけ", "というのに"],
-        correctAnswer: 1,
+        correctAnswer: 1, // 手前 (Giữ thể diện/lời hứa)
       },
       {
         id: "3-3",
         content: "周りの人たちの前で言った___、実行するしかない。",
-        answers: ["にあたって", "をいいことに", "の限り", "手前"],
-        correctAnswer: 3,
+        answers: ["にあたって", "をいいことに", "の限り", "上は"],
+        correctAnswer: 3, // 上は (Một khi đã nói)
       },
     ],
   },
@@ -113,7 +113,7 @@ export const cards: FlashCardItem[] = [
     front: "～を限りに／限りで",
     back: [
       "- Ý nghĩa: Hết/Cho đến hết (dùng để tuyên bố chấm dứt một điều gì đó)",
-      "・Với ngày hôm nay là hết, tôi sẽ nghỉ việc.",
+      "・Ví dụ: Với ngày hôm nay là hết, tôi sẽ nghỉ việc.",
       "- Key point: Luôn đi kèm với danh từ chỉ **thời gian** và hành động sau là chấm dứt hoàn toàn.",
       "- Cấu trúc: N + を限りに / 限りで",
       "- So sánh: ～をもって (cũng là 'kết thúc', nhưng をもって trang trọng hơn, dùng cho sự kiện công cộng)",
@@ -129,19 +129,19 @@ export const cards: FlashCardItem[] = [
         id: "4-1",
         content: "今日___、会社を辞めさせていただきます。",
         answers: ["を限りに", "をもって", "かぎりだ", "限り"],
-        correctAnswer: 0,
+        correctAnswer: 0, // を限りに (Tuyên bố chấm dứt cá nhân)
       },
       {
         id: "4-2",
         content: "本年度___、この制度を廃止いたします。",
-        answers: ["に限って", "を限りに", "に限らず", "にかぎりでは"],
-        correctAnswer: 1,
+        answers: ["に限って", "をもって", "に限らず", "にかぎりでは"],
+        correctAnswer: 1, // をもって (Chấm dứt công khai, chính thức)
       },
       {
         id: "4-3",
         content: "この度の講義を___、もう参加しません。",
         answers: ["を限りに", "をもって", "限りで", "限りだ"],
-        correctAnswer: 2,
+        correctAnswer: 2, // 限りで (Giới hạn phạm vi nhỏ)
       },
     ],
   },
@@ -149,7 +149,7 @@ export const cards: FlashCardItem[] = [
     front: "～限りだ",
     back: [
       "- Ý nghĩa: Cực kỳ/Vô cùng (thể hiện cảm xúc mạnh mẽ của người nói)",
-      "・Thấy anh ấy thành công, tôi vô cùng vui mừng.",
+      "・Ví dụ: Thấy anh ấy thành công, tôi vô cùng vui mừng.",
       "- Key point: Luôn đi kèm với **tính từ chỉ cảm xúc** (vui, buồn, hối hận...) và là cách nói trang trọng.",
       "- Cấu trúc: Vる / Aい / Naである + 限りだ",
       "- So sánh: ～というものだ (thật là.../mang tính khách quan hơn)",
@@ -185,7 +185,7 @@ export const cards: FlashCardItem[] = [
     front: "～あっての",
     back: [
       "- Ý nghĩa: Chính vì/Nhờ có (Nhấn mạnh A là điều kiện tiên quyết để có B)",
-      "・Thành công ngày hôm nay chính là nhờ có sự hỗ trợ của mọi người.",
+      "・Ví dụ: Thành công ngày hôm nay chính là nhờ có sự hỗ trợ của mọi người.",
       "- Key point: A là điều kiện quan trọng nhất, **không có A thì không có B**. Thường là các danh từ trừu tượng.",
       "- Cấu trúc: N + あっての + N",
       "- So sánh: ～のおかげで (cũng là 'nhờ có', nhưng あっての nhấn mạnh mối quan hệ phụ thuộc mạnh mẽ hơn)",
@@ -221,7 +221,7 @@ export const cards: FlashCardItem[] = [
     front: "～だの～だの",
     back: [
       "- Ý nghĩa: Nào là... nào là... (Liệt kê các ví dụ tiêu cực, thể hiện sự chán nản/bất mãn)",
-      "・Anh ấy lúc nào cũng than phiền nào là tiền không đủ, nào là công việc vất vả.",
+      "・Ví dụ: Anh ấy lúc nào cũng than phiền nào là tiền không đủ, nào là công việc vất vả.",
       "- Key point: Liệt kê các ví dụ **tiêu cực** hoặc không quan trọng, bày tỏ sự khó chịu, chán ghét của người nói.",
       "- Cấu trúc: N / Vる / Aい / Na + だの + ...",
       "- So sánh: ～やら～やら (cũng là liệt kê, nhưng không mang ý nghĩa tiêu cực mạnh mẽ như だのだの)",
@@ -237,12 +237,7 @@ export const cards: FlashCardItem[] = [
         id: "7-1",
         content:
           "彼はいつも給料が安い___、仕事がつらい___と愚痴ばかり言っている。",
-        answers: [
-          "やら/やら",
-          "だの/だの",
-          "にしても/にしても",
-          "といい/といい",
-        ],
+        answers: ["やら/やら", "だの/だの", "につけ/につけ", "なら/なり"],
         correctAnswer: 1,
       },
       {
@@ -254,7 +249,7 @@ export const cards: FlashCardItem[] = [
       {
         id: "7-3",
         content: "うるさい___、遅い___と、文句ばかり言われた。",
-        answers: ["わ/わ", "なり/なり", "だの/だの", "といい/といい"],
+        answers: ["わ/わ", "にかぎり", "だの/だの", "をいいことに"],
         correctAnswer: 2,
       },
     ],
@@ -263,7 +258,7 @@ export const cards: FlashCardItem[] = [
     front: "～であれ～であれ",
     back: [
       "- Ý nghĩa: Dù là A hay là B (thì kết quả vẫn không thay đổi, mang tính bao hàm)",
-      "・Dù là đàn ông hay phụ nữ thì lao động chân chính đều phải được tôn trọng.",
+      "・Ví dụ: Dù là đàn ông hay phụ nữ thì lao động chân chính đều phải được tôn trọng.",
       "- Key point: Liệt kê hai trường hợp **tương phản** hoặc đối lập, kết quả sau đó là luôn luôn đúng với cả hai trường hợp.",
       "- Cấu trúc: N / Vる / Aい / Na + であれ + ...",
       "- So sánh: ～にしろ～にしろ (cũng là 'dù là/hay là', nhưng であれであれ **trang trọng** và bao quát hơn)",
@@ -279,23 +274,18 @@ export const cards: FlashCardItem[] = [
         id: "8-1",
         content: "男___女___、正当な労働は尊重されるべきだ。",
         answers: [
-          "にしろ/にしろ",
+          "にしても/にしても",
           "であれ/であれ",
           "といい/といい",
-          "なり/なり",
+          "ばかりか/も",
         ],
         correctAnswer: 1,
       },
       {
         id: "8-2",
         content: "勝つ___負ける___、初めの気持ちを忘れてはいけない。",
-        answers: [
-          "なり/なり",
-          "であれ/であれ",
-          "といい/といい",
-          "にしろ/にしろ",
-        ],
-        correctAnswer: 1,
+        answers: ["であれ/であれ", "において/は", "はする/が", "につけ/につけ"],
+        correctAnswer: 0,
       },
       {
         id: "8-3",
@@ -303,7 +293,7 @@ export const cards: FlashCardItem[] = [
         answers: [
           "にしても/にしても",
           "なり/なり",
-          "といい/といい",
+          "を問わず",
           "であれ/であれ",
         ],
         correctAnswer: 3,
@@ -314,7 +304,7 @@ export const cards: FlashCardItem[] = [
     front: "～どうにも…ない",
     back: [
       "- Ý nghĩa: Hoàn toàn không thể (dù cố gắng thế nào cũng không thể, thường đi với V thể khả năng)",
-      "・Tôi hoàn toàn không thể tìm thấy chìa khóa đã đánh mất.",
+      "・Ví dụ: Tôi hoàn toàn không thể tìm thấy chìa khóa đã đánh mất.",
       "- Key point: Đi kèm với động từ **thể khả năng** và phủ định để nhấn mạnh sự **hoàn toàn bất lực**.",
       "- Cấu trúc: どうにも + V (thể khả năng) ない",
       "- So sánh: どうしても...ない (nhấn mạnh sự bất lực mạnh mẽ hơn)",
@@ -355,7 +345,7 @@ export const cards: FlashCardItem[] = [
           "どうしても/ない",
           "いくら/ない",
           "どうにも/ない",
-          "どんなに/ない",
+          "いかに/ない",
         ],
         correctAnswer: 2,
       },
@@ -365,7 +355,7 @@ export const cards: FlashCardItem[] = [
     front: "～はする",
     back: [
       "- Ý nghĩa: Có làm/Có xảy ra (Nhấn mạnh hành động hoặc sự thật, thường ngụ ý 'nhưng mà', mang tính nhượng bộ)",
-      "・Món ăn này có ngon, nhưng mà giá hơi đắt.",
+      "・Ví dụ: Món ăn này có ngon, nhưng mà giá hơi đắt.",
       "- Key point: Đặt **は** giữa **Vます** và **する** để nhấn mạnh sự thật của hành động, nhưng luôn đi kèm với vế sau mang tính **đối lập/nhượng bộ**.",
       "- Cấu trúc: Vます + は + する",
       "- So sánh: VるにはVる (cũng là 'có... thì có...', nhưng はする nhấn mạnh yếu tố đối lập/hối tiếc sau đó hơn)",
@@ -401,7 +391,7 @@ export const cards: FlashCardItem[] = [
     front: "～ているばあいではない",
     back: [
       "- Ý nghĩa: Không phải lúc để.../Không thể... được (Nhấn mạnh tình huống khẩn cấp, không cho phép làm điều đó)",
-      "・Đây không phải là lúc để nghỉ ngơi.",
+      "・Ví dụ: Đây không phải là lúc để nghỉ ngơi.",
       "- Key point: Nhấn mạnh sự **không phù hợp** của một hành động trong một tình huống nghiêm trọng, cần phải làm việc khác ngay lập lập tức.",
       "- Cấu trúc: Vて いる / N + の + ばあいではない",
       "- So sánh: ～どころではない (cũng là 'không phải lúc', nhưng ばあいではない nhấn mạnh sự cần thiết phải hành động)",
@@ -447,7 +437,7 @@ export const cards: FlashCardItem[] = [
     front: "～なら…なり",
     back: [
       "- Ý nghĩa: Nếu là A thì hãy làm tương ứng với A/Trong phạm vi có thể (thể hiện sự chấp nhận điều kiện hiện tại và hành động trong phạm vi đó)",
-      "・Nếu không có tiền thì hãy làm theo cách không có tiền。",
+      "・Ví dụ: Nếu không có tiền thì hãy làm theo cách không có tiền。",
       "- Key point: Hành động B phải là hành động **tương xứng** hoặc hợp lý với điều kiện A (dù A có thể là tiêu cực/kém lý tưởng).",
       "- Cấu trúc: N / Vる / Aい + なら + N / Vる / Aい + なりに/なり",
       "- So sánh: VるなりVるなり (là 'hoặc là làm V1 hoặc là làm V2', chỉ sự lựa chọn)",
@@ -483,7 +473,7 @@ export const cards: FlashCardItem[] = [
     front: "～わ...わ（で）",
     back: [
       "- Ý nghĩa: Nào là... nào là... (Liệt kê nhiều sự việc, thường là tiêu cực, dẫn đến kết quả tệ hại/khó khăn)",
-      "・Nào là bị cảm, nào là bị mất ví, tôi đã có một ngày thật tồi tệ.",
+      "・Ví dụ: Nào là bị cảm, nào là bị mất ví, tôi đã có một ngày thật tồi tệ.",
       "- Key point: Liệt kê tối thiểu hai sự kiện **tiêu cực/khó khăn** xảy ra liên tiếp, vế sau là kết quả tất yếu.",
       "- Cấu trúc: Vる / Aい / N / Na + わ + ...",
       "- So sánh: ～だの～だの (cũng là tiêu cực, nhưng わ…わ nhấn mạnh sự **chồng chất** của nhiều vấn đề)",
@@ -498,7 +488,7 @@ export const cards: FlashCardItem[] = [
       {
         id: "13-1",
         content: "風邪をひく___、財布をなくす___（で）、ひどい一日だった。",
-        answers: ["わ/わ", "だの/だの", "やら/やら", "にしろ/にしろ"],
+        answers: ["わ/わ", "だの/だの", "にしたところで", "にしろ/にしろ"],
         correctAnswer: 0,
       },
       {
@@ -520,7 +510,7 @@ export const cards: FlashCardItem[] = [
     front: "～をいいことに",
     back: [
       "- Ý nghĩa: Lợi dụng... (Lợi dụng một điều kiện/sự vắng mặt để làm điều không tốt)",
-      "・Cô ấy lợi dụng việc thầy giáo không có ở đây để lười biếng.",
+      "・Ví dụ: Cô ấy lợi dụng việc thầy giáo không có ở đây để lười biếng。",
       "- Key point: **Lợi dụng** một trạng thái thuận lợi (thường là tiêu cực hoặc sự vắng mặt) để thực hiện một hành vi **tiêu cực/ích kỷ**.",
       "- Cấu trúc: Vる / Vた / Aい / Na / N + の/こと + をいいことに",
       "- So sánh: ～につけこんで (ám chỉ việc lợi dụng điểm yếu/sơ hở)",
@@ -556,7 +546,7 @@ export const cards: FlashCardItem[] = [
     front: "～いざ～となると／～となれば／～となったら",
     back: [
       "- Ý nghĩa: Cứ hễ đến lúc/Khi cần thiết (sẽ có sự thay đổi đột ngột về thái độ, hành động, hoặc sự thật được làm rõ)",
-      "・Mặc dù nói là biết, nhưng cứ hễ đến lúc làm thì lại hoàn toàn không thể。",
+      "・Ví dụ: Mặc dù nói là biết, nhưng cứ hễ đến lúc làm thì lại hoàn toàn không thể。",
       "- Key point: Diễn tả sự **thay đổi đột ngột** hoặc tiết lộ sự thật khi điều kiện đặc biệt/thời điểm quyết định đến.",
       "- Cấu trúc: **いざ** + N / Vる + となると/となれば/となったら",
       "- So sánh: となると (trang trọng hơn), となれば (nhấn mạnh điều kiện), となったら (thông thường hơn)",
@@ -607,7 +597,7 @@ export const cards: FlashCardItem[] = [
     front: "～との",
     back: [
       "- Ý nghĩa: Rằng/Nghe nói là (Chỉ nguồn tin, thông báo; dùng trong văn viết, phát thanh, báo chí)",
-      "・Có thông báo rằng cuộc họp đã bị hoãn lại。",
+      "・Ví dụ: Có thông báo rằng cuộc họp đã bị hoãn lại。",
       "- Key point: Chỉ dùng để trích dẫn hoặc thông báo nguồn tin **chính thức/công cộng** và mang tính **trang trọng**.",
       "- Cấu trúc: V / Aい / Na / N + との + N (danh từ chỉ thông tin: 連絡, ニュース...)",
       "- So sánh: ～という (cũng là 'rằng', nhưng との **trang trọng hơn** và bắt buộc phải đi kèm với một danh từ chỉ thông tin)。",
@@ -643,7 +633,7 @@ export const cards: FlashCardItem[] = [
     front: "～てもしかたがない",
     back: [
       "- Ý nghĩa: Có làm... cũng vô ích/Không thể tránh khỏi (Thể hiện sự chấp nhận điều không mong muốn)",
-      "・Dù có hối hận về những gì đã xảy ra thì cũng vô ích。",
+      "・Ví dụ: Dù có hối hận về những gì đã xảy ra thì cũng vô ích。",
       "- Key point: Diễn tả sự **vô ích** của một hành động, thường là hành động mang tính cảm xúc đối với một sự thật không thể thay đổi。",
       "- Cấu trúc: Vて + もしかたがない/しょうがない/どうしようもない",
       "- So sánh: ～てもはじまらない (cũng là 'vô ích', trang trọng hơn)",
@@ -694,7 +684,7 @@ export const cards: FlashCardItem[] = [
     front: "～Vずにはおかない",
     back: [
       "- Ý nghĩa: Nhất định sẽ.../Không thể không... (Diễn tả ý chí mạnh mẽ của người nói rằng hành động B nhất định sẽ xảy ra/ảnh hưởng đến người khác)",
-      "・Tác phẩm này nhất định sẽ gây ấn tượng mạnh mẽ cho người xem。",
+      "・Ví dụ: Tác phẩm này nhất định sẽ gây ấn tượng mạnh mẽ cho người xem。",
       "- Key point: Thể hiện sự **chắc chắn** rằng hành động sẽ gây ra một ảnh hưởng mạnh mẽ lên người/vật khác. Chỉ dùng cho **ngôi thứ ba**.",
       "- Cấu trúc: Vない + ずにはおかない (bỏ ない)",
       "- So sánh: ～ずにはいられない (là 'không thể không/không kìm được', dùng cho cảm xúc của chính người nói)。",
@@ -745,7 +735,7 @@ export const cards: FlashCardItem[] = [
     front: "～たらどんなに…か",
     back: [
       "- Ý nghĩa: Nếu... thì sẽ... biết bao/Ước gì (Thể hiện cảm xúc mạnh mẽ, mong muốn điều gì xảy ra, thường là điều khó xảy ra)",
-      "・Nếu tôi có thể hiểu được cảm xúc của người đó thì tốt biết mấy。",
+      "・Ví dụ: Nếu tôi có thể hiểu được cảm xúc của người đó thì tốt biết mấy。",
       "- Key point: Diễn tả cảm xúc **tột độ** đối với một **giả định** không có thực hoặc khó xảy ra。",
       "- Cấu trúc: Vたら / Nなら + どんなに + Vる/Aい + か/だろうか",
       "- So sánh: ～ばいいのに (chỉ là ước muốn nhẹ nhàng hơn)",
@@ -786,8 +776,8 @@ export const cards: FlashCardItem[] = [
     front: "～ぬまに",
     back: [
       "- Ý nghĩa: Trong khi.../Trong lúc... (Trong lúc chưa xảy ra/chưa nhận thấy A thì làm nhanh B)",
-      "・Trong lúc mẹ không để ý, thằng bé đã ăn vụng chiếc bánh ngọt。",
-      "- Key point: Thể hiện hành động B được thực hiện ngay lập lập tức hoặc thầm lặng trong trạng thái **không rõ ràng/chưa nhận thấy** của A.",
+      "・Ví dụ: Trong lúc mẹ không để ý, thằng bé đã ăn vụng chiếc bánh ngọt。",
+      "- Key point: Thể hiện hành động B được thực hiện ngay lập tức hoặc thầm lặng trong trạng thái **không rõ ràng/chưa nhận thấy** của A.",
       "- Cấu trúc: Vない + ぬまに (chỉ dùng với một số động từ cố định)",
       "- So sánh: ～ないうちに (cũng là 'trong khi chưa...', nhưng ぬまに **trang trọng hơn** và nhấn mạnh yếu tố bí mật/không nhận thấy)。",
       "- Ngữ cảnh: **Văn viết**, **trang trọng**.",
@@ -823,7 +813,7 @@ export const cards: FlashCardItem[] = [
     front: "～からとおもって",
     back: [
       "- Ý nghĩa: Vì nghĩ rằng... (Là lý do cho một hành động nào đó, thường là tiêu cực hoặc có kết quả không tốt)",
-      "・Vì nghĩ rằng còn nhiều thời gian, nên tôi đã lơ là việc chuẩn bị。",
+      "・Ví dụ: Vì nghĩ rằng còn nhiều thời gian, nên tôi đã lơ là việc chuẩn bị。",
       "- Key point: Biểu thị lý do mang tính **suy đoán chủ quan** của người nói, dẫn đến hành động thiếu cẩn trọng và thường có kết quả **không mong muốn/tiêu cực**.",
       "- Cấu trúc: V / Aい / Na / N + だ + からとおもって",
       "- So sánh: ～ので (chỉ lý do khách quan, còn からとおもって nhấn mạnh suy nghĩ chủ quan dẫn đến sai lầm)。",
@@ -859,7 +849,7 @@ export const cards: FlashCardItem[] = [
     front: "～かとおもえば...も",
     back: [
       "- Ý nghĩa: Vừa mới... đã lại.../Vừa A xong thì ngay lập tức B (Thể hiện sự thay đổi liên tục, nhanh chóng, thường là sự đối lập)",
-      "・Đứa bé vừa mới khóc xong thì đã lập tức cười。",
+      "・Ví dụ: Đứa bé vừa mới khóc xong thì đã lập tức cười。",
       "- Key point: Diễn tả sự **thay đổi trạng thái** hoặc hành động **nhanh chóng, bất ngờ**, thường là sự đối lập hoặc luân phiên.",
       "- Cấu trúc: Vた + かと思えば / かと思ったら",
       "- So sánh: ～とたんに (chỉ sự thay đổi tức thì, nhưng かと思えば nhấn mạnh sự đối lập và luân phiên)",
@@ -895,7 +885,7 @@ export const cards: FlashCardItem[] = [
     front: "～といっても間違いない",
     back: [
       "- Ý nghĩa: Nói là... thì không sai (Nhấn mạnh sự thật/mức độ gần như tuyệt đối, mang tính khẳng định)",
-      "・Cô ấy là người thành công nhất trong công ty, nói là 'thiên tài' thì không sai。",
+      "・Ví dụ: Cô ấy là người thành công nhất trong công ty, nói là 'thiên tài' thì không sai。",
       "- Key point: Khẳng định một sự thật/đặc điểm là **hoàn toàn chính xác**, không cần phải nghi ngờ. Dùng để phóng đại sự thật。",
       "- Cấu trúc: V / Aい / Na / N + といっても間違いない",
       "- So sánh: ～といっても過言ではない (cũng là 'nói là... không quá lời', mạnh tương đương)。",
@@ -916,29 +906,29 @@ export const cards: FlashCardItem[] = [
           "にすぎない",
           "であれ",
         ],
-        correctAnswer: 1,
+        correctAnswer: 1, // といっても間違いない
       },
       {
         id: "23-2",
         content: "この車は最後の限定モデルであり、傑作___。",
         answers: [
-          "といっても間違いない",
+          "といっても過言ではない",
           "ということだ",
           "にしては",
           "にかぎりだ",
         ],
-        correctAnswer: 0,
+        correctAnswer: 0, // といっても過言ではない (Mạnh hơn といっても間違いない)
       },
       {
         id: "23-3",
         content: "彼の努力は想像を絶するもので、努力の化身___。",
         answers: [
           "にすぎない",
-          "というわけだ",
+          "にほかならない",
           "といっても間違いない",
           "といっても過言ではない",
         ],
-        correctAnswer: 2,
+        correctAnswer: 1, // にほかならない (Khẳng định tuyệt đối)
       },
     ],
   },
@@ -946,7 +936,7 @@ export const cards: FlashCardItem[] = [
     front: "～にいわせれば",
     back: [
       "- Ý nghĩa: Theo ý kiến của.../Nếu để... nói (Trích dẫn quan điểm của một người/nhóm người nào đó)",
-      "・Theo ý kiến của các chuyên gia thì biện pháp này là chưa đủ。",
+      "・Ví dụ: Theo ý kiến của các chuyên gia thì biện pháp này là chưa đủ。",
       "- Key point: Trích dẫn **ý kiến** mang tính chủ quan hoặc đánh giá của một người/nhóm người. Thường dùng cho các chủ thể có thẩm quyền.",
       "- Cấu trúc: N + にいわせれば",
       "- So sánh: ～によると (chỉ nguồn thông tin khách quan, còn にいわせれば nhấn mạnh ý kiến/quan điểm cá nhân)。",
@@ -982,7 +972,7 @@ export const cards: FlashCardItem[] = [
     front: "～でなくてなんだろう",
     back: [
       "- Ý nghĩa: Không phải... thì là gì/Chính là... (Cách nói nhấn mạnh, khẳng định chắc chắn điều gì đó, thường là những danh từ trừu tượng)",
-      "・Sự cống hiến quên mình vì gia đình đó, không phải là tình yêu thì là gì?",
+      "・Ví dụ: Sự cống hiến quên mình vì gia đình đó, không phải là tình yêu thì là gì?",
       "- Key point: Dùng để khẳng định một cách mạnh mẽ rằng sự vật/sự việc là **N**, không còn cách giải thích nào khác.",
       "- Cấu trúc: N + でなくてなんだろう",
       "- So sánh: ～にほかならない (cũng là 'chính là', nhưng でなくてなんだろう mang tính **cảm thán**, nhấn mạnh ý kiến cảm xúc của người nói hơn).",
@@ -999,22 +989,22 @@ export const cards: FlashCardItem[] = [
         content: "家族のために尽くすその姿は、愛___。",
         answers: [
           "にほかならない",
-          "にすぎない",
           "でなくてなんだろう",
+          "にすぎない",
           "というわけだ",
         ],
-        correctAnswer: 2,
+        correctAnswer: 1, // でなくてなんだろう (Cảm thán, hùng biện)
       },
       {
         id: "25-2",
         content: "偶然の出来事が重なった。これは運命___。",
         answers: [
           "にほかならない",
+          "でなくてなんだろう",
           "にすぎない",
           "というわけだ",
-          "でなくてなんだろう",
         ],
-        correctAnswer: 3,
+        correctAnswer: 0, // にほかならない (Khẳng định tuyệt đối, tuyên bố)
       },
       {
         id: "25-3",
@@ -1025,7 +1015,7 @@ export const cards: FlashCardItem[] = [
           "というわけだ",
           "でなくてなんだろう",
         ],
-        correctAnswer: 3,
+        correctAnswer: 0, // にほかならない (Khẳng định tuyệt đối, tuyên bố)
       },
     ],
   },
@@ -1033,7 +1023,7 @@ export const cards: FlashCardItem[] = [
     front: "～にあっては",
     back: [
       "- Ý nghĩa: Trong tình huống/hoàn cảnh... (Thường dùng cho hoàn cảnh đặc biệt, khó khăn hoặc đòi hỏi nghiêm ngặt, mang tính trang trọng)",
-      "・Trong hoàn cảnh thiên tai như thế này, sự hợp tác của mọi người là không thể thiếu。",
+      "・Ví dụ: Trong hoàn cảnh thiên tai như thế này, sự hợp tác của mọi người là không thể thiếu。",
       "- Key point: Dùng cho hoàn cảnh **đặc biệt, khó khăn** (thường là N) để rút ra một nhận định/yêu cầu mang tính **trang trọng/nghiêm khắc**.",
       "- Cấu trúc: N + にあっては",
       "- So sánh: ～においては (chỉ trong phạm vi/lĩnh vực nào đó, còn にあっては nhấn mạnh tính **đặc thù/nghiêm trọng** của hoàn cảnh)。",
@@ -1069,7 +1059,7 @@ export const cards: FlashCardItem[] = [
     front: "～といったところだ",
     back: [
       "- Ý nghĩa: Đại khái là/Chừng đó là cùng (Thể hiện mức độ tối đa, nhưng ở mức thấp hoặc trung bình, mang tính khiêm tốn)",
-      "・Tiền lương một tháng đại khái là 20 man là cùng。",
+      "・Ví dụ: Tiền lương một tháng đại khái là 20 man là cùng。",
       "- Key point: Đưa ra con số, mức độ hoặc phạm vi **tối đa** nhưng lại mang ý nghĩa không lớn/không đáng kể/chỉ đến thế mà thôi.",
       "- Cấu trúc: N / Vる + といったところだ",
       "- So sánh: ～ぐらい/ほどだ (chỉ mức độ thông thường, といったところだ nhấn mạnh mức độ tối đa nhưng không cao)。",
@@ -1120,7 +1110,7 @@ export const cards: FlashCardItem[] = [
     front: "～とあって",
     back: [
       "- Ý nghĩa: Vì/Do (Là lý do đặc biệt nên kết quả là một trạng thái đặc biệt)",
-      "・Vì là Giáng sinh nên khắp phố đều tấp nập。",
+      "・Ví dụ: Vì là Giáng sinh nên khắp phố đều tấp nập。",
       "- Key point: Đưa ra một lý do **đặc biệt** (N, Na) và kết quả là một tình trạng **đặc trưng** hoặc **khác thường**.",
       "- Cấu trúc: N / Na + とあって",
       "- So sánh: ～だけあって (cũng là 'vì', nhưng だけあって nhấn mạnh sự xứng đáng, còn とあって nhấn mạnh sự đặc trưng của hoàn cảnh)。",
@@ -1156,7 +1146,7 @@ export const cards: FlashCardItem[] = [
     front: "～をものともせずに",
     back: [
       "- Ý nghĩa: Bất chấp/Mặc kệ (Làm điều gì đó một cách can đảm, bất chấp trở ngại)",
-      "・Anh ấy bất chấp bệnh tật mà tiếp tục nghiên cứu。",
+      "・Ví dụ: Anh ấy bất chấp bệnh tật mà tiếp tục nghiên cứu。",
       "- Key point: Đi kèm với **trở ngại, khó khăn** (thường là N) và diễn tả hành động **can đảm, kiên cường**, kết quả thường là tích cực.",
       "- Cấu trúc: N + をものともせずに",
       "- So sánh: ～にもかかわらず (cũng là 'mặc dù', nhưng をものともせずに nhấn mạnh sự **kiên cường, bất chấp** mạnh mẽ hơn)。",
@@ -1184,7 +1174,7 @@ export const cards: FlashCardItem[] = [
         id: "29-3",
         content: "強い反対___、そのプロジェクトは開始された。",
         answers: ["にしろ", "にもかかわらず", "をものともせずに", "にせよ"],
-        correctAnswer: 2,
+        correctAnswer: 1, // にもかかわらず (Mặc dù, thông thường)
       },
     ],
   },
@@ -1192,7 +1182,7 @@ export const cards: FlashCardItem[] = [
     front: "～が早いか / ～やいなや / ～なり / ～とたんに",
     back: [
       "- Ý nghĩa: Ngay sau khi (Diễn tả hành động B xảy ra tức thì sau khi hành động A vừa kết thúc)",
-      "・Vừa nghe chuông kết thúc, học sinh đã chạy ra khỏi lớp.",
+      "・Ví dụ: Vừa nghe chuông kết thúc, học sinh đã chạy ra khỏi lớp.",
       "- Key point: Nhấn mạnh tính **tức thì**, không có khoảng cách thời gian.",
       "- So sánh:",
       " * **が早いか**: Nhấn mạnh hành động bản năng, lặp lại. (Vる/Vた)",
@@ -1212,19 +1202,19 @@ export const cards: FlashCardItem[] = [
       {
         id: "30-1",
         content: "終業のベルを聞く___、学生たちは教室から飛び出していった。",
-        answers: ["とたんに", "なり", "が早いか", "やいなや"],
-        correctAnswer: 2,
+        answers: ["とたんに", "が早いか", "につれて", "ところだ"],
+        correctAnswer: 1,
       },
       {
         id: "30-2",
         content: "私の顔を見る___、彼はすぐに結果を聞いてきた。",
-        answers: ["やいなや", "とたんに", "なり", "が早いか"],
+        answers: ["やいなや", "つつ", "なり", "はする"],
         correctAnswer: 0,
       },
       {
         id: "30-3",
-        content: "玄関のドアを開ける___、犬が飛び出してきた。",
-        answers: ["とたんに", "なり", "が早いか", "やいなや"],
+        content: "窓を開けた___、冷たい風が入ってきた。",
+        answers: ["が早いか", "なり", "ところだ", "とたんに"],
         correctAnswer: 3,
       },
     ],
