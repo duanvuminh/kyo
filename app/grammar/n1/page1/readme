@@ -1,0 +1,61 @@
+Mình có danh sách 30+ ngữ pháp tiếng Nhật với nghĩa tiếng Việt. Hãy tạo **flashcard JSON** theo **template card 1**, nhưng với các yêu cầu nâng cao:  
+
+Template ví dụ:
+
+{
+  front: "～がてら",
+  back: [
+    "- Ý nghĩa: Nhân tiện (làm A nhân tiện làm B)",
+    "・Đi dạo nhân tiện ghé cửa hàng",
+    "・Leo núi nhân tiện chụp ảnh",
+    "- Key point: Hành động chính kèm hành động phụ, thường có yếu tố di chuyển",
+    "- Cấu trúc: N / Vます + がてら",
+    "- So sánh: ～ついでに (không nhấn di chuyển)"
+  ],
+  more: [
+    "- Ví dụ",
+    "・散歩がてらコンビニに寄った。  // Đi dạo nhân tiện ghé cửa hàng",
+    "・写真を撮りがてら山を登った。  // Leo núi nhân tiện chụp ảnh",
+    "❌ Sai: 勉強がてら図書館にいる → Thiếu hành động di chuyển.",
+    "✅ Đúng: 図書館へ行きがてら本を返す → Có di chuyển và hành động phụ."
+  ],
+  questions: [
+    {
+      id: "1-1",
+      content: "昼ごはんを食べ___郵便局に寄った。",
+      answers: ["ながら", "がてら", "ついでに", "うちに"],
+      correctAnswer: 1
+    },
+    {
+      id: "1-2",
+      content: "散歩___コンビニに寄った。",
+      answers: ["がてら", "ついでに", "ながら", "うちに"],
+      correctAnswer: 0
+    },
+    {
+      id: "1-3",
+      content: "写真を撮り___山を登った。",
+      answers: ["がてら", "ながら", "ついでに", "うちに"],
+      correctAnswer: 0
+    }
+  ]
+}
+
+Yêu cầu:
+
+1. Tạo toàn bộ **30+ flashcard** cho danh sách ngữ pháp đã cho.  
+2. Mỗi flashcard **phải có**:  
+   - `front`: ngữ pháp  
+   - `back`:  
+     - Ý nghĩa  
+     - 2 ví dụ tiếng Việt **bản dịch 1:1** của câu tiếng Nhật trong `more`  
+   - `more`:  
+     - Biến từ ví dụ tiếng Việt thành câu Nhật sử dụng cấu trúc ngữ pháp  
+     - Có ví dụ **sai/đúng** thể hiện được điểm quan trọng của ngữ pháp (nếu có)
+   - `questions`: **3 câu mỗi card**, các đáp án khác nhau, liên quan trực tiếp đến ví dụ, giúp học viên **so sánh sự khác nhau**  
+     - `id` liên tiếp (1-1, 1-2, 1-3, 2-1, 2-2 …)  
+3. Giữ nguyên style **template card 1**.  
+4. Phần ví dụ tiếng Việt ở `back` **phải giống nghĩa 1:1** với câu Nhật ở `more`.  
+
+Danh sách ngữ pháp:  
+～がてら, ～なり, ～手前（てまえ）, ～を限りに／限りで, ～限りだ, ～あっての, ～だの～だの, ～であれ～であれ, ～どうにも…ない, ～はする, ～ているばあいではない, ～なら…なり, ～わ...わ（で）, ～をいいことに, ～いざ～となると／～となれば／～となったら, ～との, ～てもしかたがない, ～Vずにはおかない, ～たらどんなに…か, ～ぬまに, ～からとおもって, ～かとおもえば...も, ～といっても間違いない, ～にいわせれば, ～でなくてなんだろう, ～にあっては, ～というわけだ, ～ようで（は）, ～あえて, ～が早いか（がはやいか）  
