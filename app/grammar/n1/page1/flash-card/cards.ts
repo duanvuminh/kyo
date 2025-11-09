@@ -19,13 +19,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "1-1",
-        content: "気分転換___、近くの公園まで歩いて行った",
+        content: "ドライブ___、新しい喫茶店に行ってみた",
         answers: ["ながら", "につれて", "がてら", "ついでに"],
         correctAnswer: 2,
       },
       {
         id: "1-2",
-        content: "友人の見舞い___、美術館にも立ち寄った",
+        content: "買い物___、本屋にも寄った",
         answers: ["がてら", "のせいで", "をめぐって", "のところに"],
         correctAnswer: 0,
       },
@@ -55,7 +55,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "2-1",
-        content: "彼は電話を受ける___席を立って部屋を出ていった",
+        content: "家に帰る___、すぐさまベッドに倒れ込んだ",
         answers: ["とたんに", "わけではない", "なり", "かぎり"],
         correctAnswer: 2,
       },
@@ -67,7 +67,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "2-3",
-        content: "子供は母親の顔を見る___、わっと泣き出した",
+        content: "彼は社長の顔を見る___、緊張のあまり言葉を失った",
         answers: ["をものともせず", "なり", "やいなや", "が早いか"],
         correctAnswer: 1,
       },
@@ -91,13 +91,14 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "3-1",
-        content: "合格すると宣言した___、勉強しないわけにはいかない",
+        content:
+          "上司に終わらせる___、何が何でも今日の内にやり遂げなければならない",
         answers: ["以上は", "限りで", "手前", "かぎりだ"],
-        correctAnswer: 0,
+        correctAnswer: 2,
       },
       {
         id: "3-2",
-        content: "引き受けると引き受けた___、途中であきらめるわけにはいかない",
+        content: "自分が引き受けると宣言した___、途中でやめるわけにはいかない",
         answers: ["にもかかわらず", "手前", "につけ", "というのに"],
         correctAnswer: 1,
       },
@@ -127,7 +128,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "4-1",
-        content: "今シーズン___、このチームは解散することが決定した",
+        content: "本日___、当店は閉店させていただきます",
         answers: ["を限りに", "をもって", "かぎりだ", "限り"],
         correctAnswer: 0,
       },
@@ -139,7 +140,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "4-3",
-        content: "私自身の知識の___、この件についてお答えできません",
+        content: "このイベントを___、部長は引退する予定だ",
         answers: ["を限りに", "をもって", "限りで", "限りだ"],
         correctAnswer: 2,
       },
@@ -169,7 +170,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "5-2",
-        content: "あの時の自分の行動を思い出すと、情けない___",
+        content: "自分の不注意で事故を起こし、恥ずかしい___",
         answers: ["限りだ", "限りで", "かぎり", "を限りに"],
         correctAnswer: 0,
       },
@@ -199,13 +200,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "6-1",
-        content: "どんなビジネスも、顧客の信頼___成功がある",
+        content: "このプロジェクトの成功は、チームワーク___成果だ",
         answers: ["あっての", "おかげで", "ならではの", "ならでは"],
         correctAnswer: 0,
       },
       {
         id: "6-2",
-        content: "日々の努力___、今日の素晴らしい結果がある",
+        content: "お客様の支持___ビジネスだ。常に謙虚でなければならない",
         answers: ["にとっての", "のおかげ", "あっての", "をめぐっての"],
         correctAnswer: 2,
       },
@@ -235,13 +236,14 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "7-1",
-        content: "新しい上司は、あれをしろ___、これをしろ___と命令ばかりだ",
+        content:
+          "このレストランは、料理が遅い___、サービスが悪い___と評判が悪い",
         answers: ["やら/やら", "だの/だの", "につけ/につけ", "なら/なり"],
         correctAnswer: 1,
       },
       {
         id: "7-2",
-        content: "彼は、店員の態度が悪い___、料理がまずい___と、文句ばかり言う",
+        content: "彼女は、忙しい___疲れた___と、いつも言い訳ばかりする",
         answers: ["といい/といい", "にしろ/にしろ", "なり/なり", "だの/だの"],
         correctAnswer: 3,
       },
@@ -271,7 +273,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "8-1",
-        content: "男___女___、正当な労働は尊重されるべきだ",
+        content: "正社員___アルバイト___、仕事に対する責任は同じだ",
         answers: [
           "にしても/にしても",
           "であれ/であれ",
@@ -282,7 +284,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "8-2",
-        content: "勝つ___負ける___、初めの気持ちを忘れてはいけない",
+        content: "どんなに小さなミス___大きなミス___、すぐに報告するべきだ",
         answers: ["であれ/であれ", "において/は", "はする/が", "につけ/につけ"],
         correctAnswer: 0,
       },
@@ -317,7 +319,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "9-1",
-        content: "どんなに考えても、あの時の失敗の理由は___理解でき___",
+        content: "この問題は難しすぎて、私一人の力では___理解で___",
         answers: [
           "どうしても/ない",
           "どんなに/ない",
@@ -328,7 +330,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "9-2",
-        content: "相手が強すぎて、私たちはもう___抵抗でき___",
+        content: "このパソコンは古すぎて、新しいソフトは___使え___",
         answers: [
           "なんとか/ない",
           "とにかく/ない",
@@ -368,13 +370,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "10-1",
-        content: "このシステムは便利___が、操作が複雑だ",
+        content: "彼の説明はわかりやすい___が、具体例が少ない",
         answers: ["ではある", "はする", "にしても", "こそする"],
         correctAnswer: 1,
       },
       {
         id: "10-2",
-        content: "謝罪___が、彼の言葉には誠意が感じられなかった",
+        content: "一応謝罪___が、心から反省しているようには見えなかった",
         answers: ["とはいえ", "にしても", "といい", "はするが"],
         correctAnswer: 3,
       },
@@ -391,7 +393,7 @@ export const cards: FlashCardItem[] = [
     back: [
       "- Ý nghĩa: Không phải lúc để.../Không thể... được (Nhấn mạnh tình huống khẩn cấp, không cho phép làm điều đó)",
       "・Ví dụ: Đây không phải là lúc để nghỉ ngơi.",
-      "- Key point: Nhấn mạnh sự không phù hợp của một hành động trong một tình huống nghiêm trọng, cần phải làm việc khác ngay lập Fowler.",
+      "- Key point: Nhấn mạnh sự không phù hợp của một hành động trong một tình huống nghiêm trọng, cần phải làm việc khác ngay lập tức.",
       "- Cấu trúc: Vて いる / N + の + ばあいではない",
       "- So sánh: ～どころではない (cũng là 'không phải lúc', nhưng ばあいではない nhấn mạnh sự cần thiết phải hành động)",
       "- Ngữ cảnh: Văn nói và viết, dùng để nhấn mạnh tình huống khẩn cấp, cần hành động.",
@@ -404,7 +406,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "11-1",
-        content: "試験前夜に、友達とゲーム___。徹夜で勉強しなきゃいけない",
+        content: "もう締め切りまで時間がない。のんびりし___",
         answers: [
           "ところではない",
           "わけではない",
@@ -426,7 +428,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "11-3",
-        content: "会社が倒産の危機だ。新しい企画について議論して___",
+        content: "災害が発生した。一刻も早く避難しなければ、様子を見___",
         answers: ["どころか", "というわけだ", "ばあいではない", "によって"],
         correctAnswer: 2,
       },
@@ -450,8 +452,8 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "12-1",
-        content: "完璧な道具がない___、持っている道具___工夫して使いなさい",
-        answers: ["ならば/なりに", "なら/ならば", "なら/なり", "なら/ならば"],
+        content: "まだ子供___、子供___にできることをやるべきだ",
+        answers: ["ならば/なり", "なら/ならば", "なら/なりに", "なり/なりに"],
         correctAnswer: 2,
       },
       {
@@ -462,9 +464,9 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "12-3",
-        content: "できない___、できない___に努力すればいい",
+        content: "困ったときは、先生___友達___に相談するといい",
         answers: ["ならば/なりに", "なり/なり", "にしろ/にしろ", "なら/なり"],
-        correctAnswer: 3,
+        correctAnswer: 1,
       },
     ],
   },
@@ -486,13 +488,14 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "13-1",
-        content: "荷物は重い___、道は混んでいる___（で）、旅行は大変だった",
+        content:
+          "仕事は終わらない___、締め切りは迫る___（で）、ストレスがたまった",
         answers: ["わ/わ", "だの/だの", "にしたところで", "にしろ/にしろ"],
         correctAnswer: 0,
       },
       {
         id: "13-2",
-        content: "仕事の失敗はする___、彼女に振られる___（で）、人生最悪の年だ",
+        content: "電車は遅れる___、雨は降る___（で）、散々な目にあった",
         answers: ["にしても/にしても", "だの/だの", "わ/わ", "なり/なり"],
         correctAnswer: 2,
       },
@@ -522,13 +525,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "14-1",
-        content: "上司が出張で留守な___、彼は仕事中にゲームをしていた",
+        content: "テストが中止になった___、彼は一切勉強しなくなった",
         answers: ["につれて", "のをいいことに", "をめぐって", "の限り"],
         correctAnswer: 1,
       },
       {
         id: "14-2",
-        content: "母親が何も言わないのを___、子供はやりたい放題だ",
+        content: "部長が長期出張中___、部下たちは好き勝手なことをしている",
         answers: ["につけ", "にしても", "のをいいことに", "にあっては"],
         correctAnswer: 2,
       },
@@ -558,8 +561,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "15-1",
-        content:
-          "いつでも逃げられると思っていたが、___逃げる___と、足が動かなかった",
+        content: "いつも口では偉そうだが、___実行___、彼は何もできない",
         answers: [
           "いざ/になったら",
           "まさか/となると",
@@ -570,8 +572,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "15-2",
-        content:
-          "平和な時はそう思わないが、___戦争___、食料や水の大切さがわかる",
+        content: "旅行に行く___、準備に時間と手間がかかる",
         answers: [
           "まさか/となると",
           "いざ/になれば",
@@ -611,13 +612,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "16-1",
-        content: "政府から、消費税が増税される___発表があった",
+        content: "来月新製品が発売される___公式発表があった",
         answers: ["と", "という", "というわけだ", "との"],
         correctAnswer: 3,
       },
       {
         id: "16-2",
-        content: "近隣住民から、工事の騒音がうるさい___苦情が入った",
+        content: "明日は台風が接近する___予報だ",
         answers: ["としての", "という", "との", "とのこと"],
         correctAnswer: 2,
       },
@@ -647,7 +648,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "17-1",
-        content: "過ぎ去った時間を悔やん___、前向きに考えるべきだ",
+        content: "今さら、あの時の判断を悔やん___",
         answers: [
           "てもいい",
           "てもしかたがない",
@@ -658,7 +659,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "17-2",
-        content: "地震は自然災害だ。怒っ___、どうしようもない",
+        content: "過ぎ去った時間を嘆い___、未来は変わらない",
         answers: [
           "てもいい",
           "てもいいはずだ",
@@ -698,7 +699,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "18-1",
-        content: "彼の真剣な態度は、周りの人々の心を動かさ___",
+        content: "彼のカリスマ性は、聴衆の心をつかま___だろう",
         answers: [
           "ずにはおかない",
           "ずにはいられない",
@@ -709,7 +710,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "18-2",
-        content: "この事態は、国中に大きな影響を与え___",
+        content: "その衝撃的なニュースは、世論を騒がせ___だろう",
         answers: [
           "ずにはいられない",
           "ざるをえない",
@@ -749,13 +750,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "19-1",
-        content: "彼が無事だと知っ___安心したことか",
+        content: "もう一度、学生時代に戻れ___楽しいか",
         answers: ["たとしても", "たらどんなに", "たらいいのに", "たところで"],
         correctAnswer: 1,
       },
       {
         id: "19-2",
-        content: "もし、あの時、別の道を選んでい___人生が変わっていただろうか",
+        content: "もし、時間旅行ができ___素晴らしいか",
         answers: [
           "たところで",
           "たとしても",
@@ -777,7 +778,7 @@ export const cards: FlashCardItem[] = [
     back: [
       "- Ý nghĩa: Trong khi.../Trong lúc... (Trong lúc chưa xảy ra/chưa nhận thấy A thì làm nhanh B)",
       "・Ví dụ: Trong lúc mẹ không để ý, thằng bé đã ăn vụng chiếc bánh ngọt",
-      "- Key point: Thể hiện hành động B được thực hiện ngay lập lập tức hoặc thầm lặng trong trạng thái không rõ ràng/chưa nhận thấy của A.",
+      "- Key point: Thể hiện hành động B được thực hiện ngay lập tức hoặc thầm lặng trong trạng thái không rõ ràng/chưa nhận thấy của A.",
       "- Cấu trúc: Vない + ぬまに (chỉ dùng với một số động từ cố định)",
       "- So sánh: ～ないうちに (cũng là 'trong khi chưa...', nhưng ぬまに trang trọng hơn và nhấn mạnh yếu tố bí mật/không nhận thấy)",
       "- Ngữ cảnh: Văn viết, trang trọng.",
@@ -790,13 +791,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "20-1",
-        content: "気がつか___、電車は終点に到着していた",
+        content: "知らない___、季節はすっかり春になっていた",
         answers: ["うちに", "ところだ", "あいだに", "ぬまに"],
         correctAnswer: 3,
       },
       {
         id: "20-2",
-        content: "チャンスを逃さ___、積極的に行動するべきだ",
+        content: "周りの人が気づか___、彼はこっそり席を立った",
         answers: ["うちに", "あいだに", "うちに/ぬまに", "ぬまに"],
         correctAnswer: 3,
       },
@@ -827,13 +828,13 @@ export const cards: FlashCardItem[] = [
       {
         id: "21-1",
         content:
-          "ちょっとぐらい遅れても大丈夫だ___、約束の時間に間に合わなかった",
+          "少しぐらい遅れても大丈夫だ___、急がなかったら、電車に乗り遅れた",
         answers: ["からこそ", "からとおもって", "のおかげで", "によって"],
         correctAnswer: 1,
       },
       {
         id: "21-2",
-        content: "誰も見ていない___、彼はごみを道に捨てた",
+        content: "自分には関係ない___、黙っていたら、事態は悪化した",
         answers: ["からこそ", "とばかりに", "からといって", "からとおもって"],
         correctAnswer: 3,
       },
@@ -863,19 +864,19 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "22-1",
-        content: "彼は大声で笑った___、急に真面目な顔になった",
+        content: "部長は怒鳴った___、次の瞬間には穏やかに話していた",
         answers: ["とたんに", "かとおもえば", "が早いか", "やいなや"],
         correctAnswer: 1,
       },
       {
         id: "22-2",
-        content: "静かになった___、また騒がしくなる。子供は本当に元気だ",
+        content: "昨日まで暖かかった___、今日は急に寒くなった",
         answers: ["やいなや", "とたんに", "なり", "かとおもえば"],
         correctAnswer: 3,
       },
       {
         id: "22-3",
-        content: "前の車が急ブレーキを踏んだ___、私も慌ててブレーキを踏んだ",
+        content: "先生が教室に入ってきた___、すぐにまた出て行った",
         answers: ["やいなや", "とたんに", "なり", "かとおもえば"],
         correctAnswer: 3,
       },
@@ -899,7 +900,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "23-1",
-        content: "彼は日本文化の生き字引だ。専門家___",
+        content: "彼はチームの心臓だ。リーダー___",
         answers: [
           "というわけだ",
           "といっても間違いない",
@@ -910,7 +911,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "23-2",
-        content: "彼女の才能は、努力ではなく、天賦の才能___",
+        content: "この技術は、世界を変える発明___",
         answers: [
           "といっても過言ではない",
           "ということだ",
@@ -950,13 +951,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "24-1",
-        content: "専門家___、この対策はまだ十分ではないそうだ",
+        content: "ベテランの職人___、この作品にはまだ改善の余地があるそうだ",
         answers: ["によれば", "によると", "にいわせれば", "にとっては"],
         correctAnswer: 2,
       },
       {
         id: "24-2",
-        content: "彼___、できないことは何もないらしい",
+        content: "私___、その方法は非効率的だ",
         answers: ["にとって", "にしてみれば", "によれば", "にいわせれば"],
         correctAnswer: 3,
       },
@@ -986,7 +987,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "25-1",
-        content: "困難に立ち向かうその勇気、正義___",
+        content: "命がけで他人を助けたその行為は、勇気___",
         answers: [
           "にほかならない",
           "でなくてなんだろう",
@@ -997,7 +998,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "25-2",
-        content: "偶然の出来事が重なった。これは運命___",
+        content: "誰も到達できない高み。これこそが、才能___",
         answers: [
           "にほかならない",
           "でなくてなんだろう",
@@ -1037,7 +1038,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "26-1",
-        content: "このような天災___、皆の協力が不可欠だ",
+        content: "未曾有の危機___、冷静な判断が求められる",
         answers: ["について", "において", "にあたって", "にあっては"],
         correctAnswer: 3,
       },
@@ -1049,7 +1050,8 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "26-3",
-        content: "この緊急事態___、一刻一秒が惜しい",
+        content:
+          "極度のプレッシャー___、最高のパフォーマンスを発揮するのは難しい",
         answers: ["において", "にあって", "にあっては", "について"],
         correctAnswer: 2,
       },
@@ -1073,7 +1075,7 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "27-1",
-        content: "私が協力できるのは、せいぜいこの書類の作成まで___",
+        content: "今年のボーナスは、去年の半分___",
         answers: [
           "にすぎない",
           "にほかならない",
@@ -1084,7 +1086,7 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "27-2",
-        content: "彼女が知っているのは、噂話の範囲___",
+        content: "彼女の日本語能力は、日常会話レベル___",
         answers: [
           "にほかならない",
           "にすぎない",
@@ -1124,19 +1126,19 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "28-1",
-        content: "有名な俳優が来る___、会場は多くのファンで溢れていた",
+        content: "連休の初日___、高速道路は渋滞している",
         answers: ["ならではの", "ならでは", "とあって", "のおかげで"],
         correctAnswer: 2,
       },
       {
         id: "28-2",
-        content: "経験者___、彼女の仕事ぶりは見事だ",
+        content: "一流ホテルで働くスタッフ___、接客マナーは完璧だ",
         answers: ["だけあって", "とあって", "ならでは", "というものだ"],
         correctAnswer: 0,
       },
       {
         id: "28-3",
-        content: "部長の誕生日___、社員全員で盛大にお祝いした",
+        content: "夏休みで長期休暇___、多くの人が海外旅行に出かけた",
         answers: ["とあって", "ならでは", "だけあって", "というものだ"],
         correctAnswer: 0,
       },
@@ -1160,13 +1162,13 @@ export const cards: FlashCardItem[] = [
     questions: [
       {
         id: "29-1",
-        content: "彼女は、周囲の冷たい視線___、自分の信念を貫いた",
+        content: "彼は周囲の冷たい視線___、自分の信念を貫いた",
         answers: ["をものともせずに", "にもかかわらず", "につけ", "にしろ"],
         correctAnswer: 0,
       },
       {
         id: "29-2",
-        content: "彼は、厳しい環境___、登山を続けた",
+        content: "強い向かい風___、選手たちはゴールを目指して走り続けた",
         answers: ["にもかかわらず", "をものともせずに", "にかぎり", "にしろ"],
         correctAnswer: 1,
       },
@@ -1191,29 +1193,23 @@ export const cards: FlashCardItem[] = [
       " * とたんに: Thay đổi đột ngột (thường dùng cho hiện tượng tự nhiên). (Vる/Vた)",
       "- Ngữ cảnh: Cả văn nói và viết (trừ とたんに phổ biến hơn trong văn nói).",
     ],
-    more: [
-      "- Ví dụ",
-      "・終業のベルを聞くが早いか、学生たちは教室から飛び出していった",
-      "・私の顔を見るやいなや、彼はすぐに結果を聞いてきた",
-      "・彼は電話を受けるなり、席を立って部屋を出ていった",
-      "・窓を開けたとたんに、冷たい風が入ってきた",
-    ],
     questions: [
       {
         id: "30-1",
-        content: "終業のベルを聞く___、学生たちは教室から飛び出していった",
+        content:
+          "夫は出張から帰ってき___、スーツケースを放り出すと寝室へ向かった",
         answers: ["とたんに", "が早いか", "につれて", "ところだ"],
         correctAnswer: 1,
       },
       {
         id: "30-2",
-        content: "私の顔を見る___、彼はすぐに結果を聞いてきた",
+        content: "総理大臣が演説を終える___、会場は大きな拍手に包まれた",
         answers: ["やいなや", "つつ", "なり", "はする"],
         correctAnswer: 0,
       },
       {
         id: "30-3",
-        content: "窓を開けた___、冷たい風が入ってきた",
+        content: "父が「行くぞ」と言った___、母は車の鍵を手に取った",
         answers: ["が早いか", "なり", "ところだ", "とたんに"],
         correctAnswer: 3,
       },
