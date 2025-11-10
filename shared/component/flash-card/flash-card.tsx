@@ -36,25 +36,36 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
         <CardContent>
           {showBack ? (
             <div onClick={(e) => e.stopPropagation()}>
-              {currentCard.back.map((line, i) => (
-                <div key={i}>{line}</div>
-              ))}
-              <div className="mt-2">
-                <AudioPlayer text={currentCard.front} />
-              </div>
+              <details open>
+                <summary>Ý nghĩa</summary>
+                {currentCard.back.map((line, i) => (
+                  <div key={i}>{line}</div>
+                ))}
+              </details>
               {currentCard.more && currentCard.more.length > 0 && (
                 <details className="mt-3">
                   <summary className="cursor-pointer text-sm text-gray-600">
-                    Xem thêm
+                    Cách dùng và ví dụ
                   </summary>
                   <div className="mt-2 flex flex-col gap-1">
                     {currentCard.more.map((line, i) => (
                       <div key={i}>{line}</div>
                     ))}
-                    {currentCard.questions &&
-                      shuffle(currentCard.questions).map((q, i) => (
-                        <QuestionDetail key={i} question={q} />
-                      ))}
+                  </div>
+                  <div className="mt-2">
+                    <AudioPlayer text={currentCard.front} />
+                  </div>
+                </details>
+              )}
+              {currentCard.questions && (
+                <details className="mt-3">
+                  <summary className="cursor-pointer text-sm text-gray-600">
+                    Câu hỏi trắc nghiệm
+                  </summary>
+                  <div className="mt-2 flex flex-col gap-1">
+                    {shuffle(currentCard.questions).map((q, i) => (
+                      <QuestionDetail key={i} question={q} />
+                    ))}
                   </div>
                 </details>
               )}

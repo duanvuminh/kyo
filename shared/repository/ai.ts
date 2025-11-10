@@ -1,4 +1,3 @@
-import { AppError, ErrorCode } from "@/shared/types/models/error";
 import {
   LanguageModel,
   ModelMessage,
@@ -21,14 +20,13 @@ export const askAi = ({
   prompt?: string;
   onFinish?: StreamTextOnFinishCallback<ToolSet>;
 }): StreamTextResult<ToolSet, never> | undefined => {
-  try {
-    return streamText({
-      model,
-      system,
-      onFinish,
-      ...(prompt ? { prompt } : { messages: messages ?? [] }),
-    });
-  } catch (error) {
-    throw new AppError(ErrorCode.AI_MODEL_ERROR, (error as Error).message);
-  }
+  return streamText({
+    model,
+    system,
+    onFinish,
+    ...(prompt ? { prompt } : { messages: messages ?? [] }),
+    onError: (error: unknown) => {
+      console.error("AI stream error (get it next time):", error);
+    },
+  });
 };
