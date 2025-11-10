@@ -65,6 +65,7 @@ export const QuestionDetail = ({
                 ? "border-primary bg-primary/10 text-primary"
                 : "border-border text-foreground",
               showResult &&
+                selectedAnswer === index &&
                 index === question.correctAnswer &&
                 "bg-green-500/10 border-green-500 text-green-700 dark:text-green-400",
               showResult &&
@@ -79,13 +80,22 @@ export const QuestionDetail = ({
               {String.fromCharCode(65 + index)}.{" "}
             </span>
             {answer}
-            {showResult && index === question.correctAnswer && (
-              <span className="ml-2 text-green-600">✓</span>
-            )}
+            {showResult &&
+              index === question.correctAnswer &&
+              selectedAnswer === index && (
+                <span className="ml-2 text-green-600">✓</span>
+              )}
             {showResult &&
               selectedAnswer === index &&
               index !== question.correctAnswer && (
                 <span className="ml-2 text-red-600">✗</span>
+              )}
+            {showResult &&
+              selectedAnswer === index &&
+              question.memo?.[index] && (
+                <div className="mt-2 text-sm">
+                  <Markdown>{question.memo[index]}</Markdown>
+                </div>
               )}
           </li>
         ))}

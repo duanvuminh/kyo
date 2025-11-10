@@ -9,7 +9,8 @@ export class Question {
     public answers: [string, string, string, string],
     public correctAnswer: 0 | 1 | 2 | 3,
     public attachments?: string[],
-    public yomi?: string
+    public yomi?: string,
+    public memo?: string[]
   ) {}
 
   static fromPractice(dto: Practice | undefined): Question | undefined {
