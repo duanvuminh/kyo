@@ -6,12 +6,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Nhân tiện (làm A nhân tiện làm B)",
       "・Ví dụ: Đi dạo nhân tiện ghé cửa hàng tiện lợi.",
-      "📌Hành động chính kèm hành động phụ, thường có yếu tố di chuyển.",
+      "📌 Hành động chính kèm hành động phụ, thường có yếu tố di chuyển.",
     ],
     more: [
       "🧩 N / Vます + がてら",
       "⚖️ ～ついでに (không nhấn yếu tố di chuyển), ～ながら (đồng thời)",
-      "💬Thường dùng trong văn nói, mang tính cá nhân.",
+      "💬 Thường dùng trong văn nói, mang tính cá nhân.",
       "📝 ví dụ",
       "・散歩がてらコンビニに寄った",
       "・写真を撮りがてら山を登った",
@@ -60,12 +60,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Ngay sau khi (vừa A thì ngay lập tức B xảy ra)",
       "・Ví dụ: Anh ấy vừa nhận điện thoại xong thì lập tức đứng dậy và ra khỏi phòng.",
-      "📌Hành động B là bất ngờ, ngoài ý muốn và xảy ra ngay sau A. Chỉ dùng cho ngôi thứ ba.",
+      "📌 Hành động B là bất ngờ, ngoài ý muốn và xảy ra ngay sau A. Chỉ dùng cho ngôi thứ ba.",
     ],
     more: [
       "🧩 Vる + なり",
       "⚖️ ～やいなや / ～が早いか (dùng cho hành động mang tính khách quan hơn)",
-      "💬Văn viết hoặc nói trang trọng, mang tính kịch tính.",
+      "💬 Văn viết hoặc nói trang trọng, mang tính kịch tính.",
       "📝 ví dụ",
       "・彼は電話を受けるなり、席を立って部屋を出ていった",
       "・子供は母親の顔を見るなり、わっと泣き出した",
@@ -114,12 +114,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Vì đứng trước/vì đã hứa/vì thể diện (nên phải làm gì)",
       "・Ví dụ: Vì đã hứa với con trai, nên dù bận tôi cũng phải đi.",
-      "📌Hành động tiếp theo là bắt buộc phải làm vì giữ thể diện hoặc lời đã hứa.",
+      "📌 Hành động tiếp theo là bắt buộc phải làm vì giữ thể diện hoặc lời đã hứa.",
     ],
     more: [
       "🧩 Vる / Nの + 手前",
       "⚖️ ～以上は (cũng là 'một khi đã', nhưng 手前 nhấn mạnh yếu tố thể diện)",
-      "💬Văn nói và viết, trang trọng, dùng để biện minh hoặc giải thích.",
+      "💬 Văn nói và viết, trang trọng, dùng để biện minh hoặc giải thích.",
       "📝 ví dụ",
       "・息子と遊園地へ行く約束をした手前、忙しくても行かないわけにはいかない",
       "・合格すると宣言した手前、勉強しないわけにはいかない",
@@ -169,12 +169,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Hết/Cho đến hết (dùng để tuyên bố chấm dứt một điều gì đó)",
       "・Ví dụ: Với ngày hôm nay là hết, tôi sẽ nghỉ việc.",
-      "📌Luôn đi kèm với danh từ chỉ thời gian và hành động sau là chấm dứt hoàn toàn.",
+      "📌 Luôn đi kèm với danh từ chỉ thời gian và hành động sau là chấm dứt hoàn toàn.",
     ],
     more: [
       "🧩 N + を限りに / 限りで",
       "⚖️ ～をもって (cũng là 'kết thúc', nhưng をもって trang trọng hơn, dùng cho sự kiện công cộng)",
-      "💬Trang trọng, dùng trong thông báo chính thức.",
+      "💬 Trang trọng, dùng trong thông báo chính thức.",
       "📝 ví dụ",
       "・今日を限りに、会社を辞めさせていただきます",
       "・この度の講義を限りで、もう参加しません",
@@ -223,12 +223,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Cực kỳ/Vô cùng (thể hiện cảm xúc mạnh mẽ của người nói)",
       "・Ví dụ: Thấy anh ấy thành công, tôi vô cùng vui mừng.",
-      "📌Luôn đi kèm với tính từ chỉ cảm xúc (vui, buồn, hối hận...) và là cách nói trang trọng.",
+      "📌 Luôn đi kèm với tính từ chỉ cảm xúc (vui, buồn, hối hận...) và là cách nói trang trọng.",
     ],
     more: [
       "🧩 Vる / Aい / Naである + 限りだ",
       "⚖️ ～というものだ (thật là.../mang tính khách quan hơn)",
-      "💬Văn viết, trang trọng.",
+      "💬 Văn viết, trang trọng.",
       "📝 ví dụ",
       "・彼の成功を見て、喜ばしい限りだ",
       "・自分の軽率な行動を反省し、悔しい限りだ",
@@ -277,12 +277,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Chính vì/Nhờ có (Nhấn mạnh A là điều kiện tiên quyết để có B)",
       "・Ví dụ: Thành công ngày hôm nay chính là nhờ có sự hỗ trợ của mọi người.",
-      "📌A là điều kiện quan trọng nhất, không có A thì không có B. Thường là các danh từ trừu tượng.",
+      "📌 A là điều kiện quan trọng nhất, không có A thì không có B. Thường là các danh từ trừu tượng.",
     ],
     more: [
       "🧩 N + あっての + N",
       "⚖️ ～のおかげで (cũng là 'nhờ có', nhưng あっての nhấn mạnh mối quan hệ phụ thuộc mạnh mẽ hơn)",
-      "💬Văn viết trang trọng hoặc văn nói nhấn mạnh.",
+      "💬 Văn viết trang trọng hoặc văn nói nhấn mạnh.",
       "📝 ví dụ",
       "・今日の成功は、皆さんの協力あってのものです",
       "・健康あっての仕事だ。無理をして体を壊してはいけない",
@@ -331,12 +331,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Nào là... nào là... (Liệt kê các ví dụ tiêu cực, thể hiện sự chán nản/bất mãn)",
       "・Ví dụ: Anh ấy lúc nào cũng than phiền nào là tiền không đủ, nào là công việc vất vả.",
-      "📌Liệt kê các ví dụ tiêu cực hoặc không quan trọng, bày tỏ sự khó chịu, chán ghét của người nói.",
+      "📌 Liệt kê các ví dụ tiêu cực hoặc không quan trọng, bày tỏ sự khó chịu, chán ghét của người nói.",
     ],
     more: [
       "🧩 N / Vる / Aい / Na + だの + ...",
       "⚖️ ～やら～やら (cũng là liệt kê, nhưng không mang ý nghĩa tiêu cực mạnh mẽ như だのだの)",
-      "💬Văn nói suồng sã, mang tính phàn nàn, tiêu cực.",
+      "💬 Văn nói suồng sã, mang tính phàn nàn, tiêu cực.",
       "📝 ví dụ",
       "・彼はいつも給料が安いだの、仕事がつらいだのと愚痴ばかり言っている",
       "・彼女の暑いだの寒いだのという文句はもう聞き飽きた",
@@ -386,12 +386,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Dù là A hay là B (thì kết quả vẫn không thay đổi, mang tính bao hàm)",
       "・Ví dụ: Dù là đàn ông hay phụ nữ thì lao động chân chính đều phải được tôn trọng.",
-      "📌Liệt kê hai trường hợp tương phản hoặc đối lập, kết quả sau đó là luôn luôn đúng với cả hai trường hợp.",
+      "📌 Liệt kê hai trường hợp tương phản hoặc đối lập, kết quả sau đó là luôn luôn đúng với cả hai trường hợp.",
     ],
     more: [
       "🧩 N / Vる / Aい / Na + であれ + ...",
       "⚖️ ～にしろ～にしろ (cũng là 'dù là/hay là', nhưng であれであれ trang trọng và bao quát hơn)",
-      "💬Văn viết trang trọng.",
+      "💬 Văn viết trang trọng.",
       "📝 ví dụ",
       "・男であれ女であれ、正当な労働は尊重されるべきだ",
       "・勝つであれ負けるであれ、初めの気持ちを忘れてはいけない",
@@ -450,12 +450,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Hoàn toàn không thể (dù cố gắng thế nào cũng không thể, thường đi với V thể khả năng)",
       "・Ví dụ: Tôi hoàn toàn không thể tìm thấy chìa khóa đã đánh mất.",
-      "📌Đi kèm với động từ thể khả năng và phủ định để nhấn mạnh sự hoàn toàn bất lực.",
+      "📌 Đi kèm với động từ thể khả năng và phủ định để nhấn mạnh sự hoàn toàn bất lực.",
     ],
     more: [
       "🧩 どうにも + V (thể khả năng) ない",
       "⚖️ どうしても...ない (nhấn mạnh sự bất lực mạnh mẽ hơn)",
-      "💬Văn nói suồng sã, diễn tả sự bất lực cá nhân.",
+      "💬 Văn nói suồng sã, diễn tả sự bất lực cá nhân.",
       "📝 ví dụ",
       "・いくら探しても、なくした鍵はどうにも見つからない",
       "・こんなに病気が重くては、どうにも動けない",
@@ -519,12 +519,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Có làm/Có xảy ra (Nhấn mạnh hành động hoặc sự thật, thường ngụ ý 'nhưng mà', mang tính nhượng bộ)",
       "・Ví dụ: Món ăn này có ngon, nhưng mà giá hơi đắt.",
-      "📌Đặt は giữa Vます và する để nhấn mạnh sự thật của hành động, nhưng luôn đi kèm với vế sau mang tính đối lập/nhượng bộ.",
+      "📌 Đặt は giữa Vます và する để nhấn mạnh sự thật của hành động, nhưng luôn đi kèm với vế sau mang tính đối lập/nhượng bộ.",
     ],
     more: [
       "🧩 Vます + は + する",
       "⚖️ VるにはVる (cũng là 'có... thì có...', nhưng はする nhấn mạnh yếu tố đối lập/hối tiếc sau đó hơn)",
-      "💬Văn nói, dùng để nhượng bộ và đối lập (Có A nhưng B).",
+      "💬 Văn nói, dùng để nhượng bộ và đối lập (Có A nhưng B).",
       "📝 ví dụ",
       "・この料理は美味しいはするが、値段が少し高い",
       "・来るとは言ったはするが、まだ確実ではないようだ",
@@ -573,12 +573,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Không phải lúc để.../Không thể... được (Nhấn mạnh tình huống khẩn cấp, không cho phép làm điều đó)",
       "・Ví dụ: Đây không phải là lúc để nghỉ ngơi.",
-      "📌Nhấn mạnh sự không phù hợp của một hành động trong một tình huống nghiêm trọng, cần phải làm việc khác ngay lập tức.",
+      "📌 Nhấn mạnh sự không phù hợp của một hành động trong một tình huống nghiêm trọng, cần phải làm việc khác ngay lập tức.",
     ],
     more: [
       "🧩 Vて いる / N + の + ばあいではない",
       "⚖️ ～どころではない (cũng là 'không phải lúc', nhưng ばあいではない nhấn mạnh sự cần thiết phải hành động)",
-      "💬Văn nói và viết, dùng để nhấn mạnh tình huống khẩn cấp, cần hành động.",
+      "💬 Văn nói và viết, dùng để nhấn mạnh tình huống khẩn cấp, cần hành động.",
       "📝 ví dụ",
       "・休んでいるばあいではない。すぐに出発しなければならない",
       "・こんなに危険な状況で、心配しているばあいではない、早く行動しろ",
@@ -637,12 +637,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Nếu là A thì hãy làm tương ứng với A/Trong phạm vi có thể (thể hiện sự chấp nhận điều kiện hiện tại và hành động trong phạm vi đó)",
       "・Ví dụ: Nếu không có tiền thì hãy làm theo cách không có tiền",
-      "📌Hành động B phải là hành động tương xứng hoặc hợp lý với điều kiện A (dù A có thể là tiêu cực/kém lý tưởng).",
+      "📌 Hành động B phải là hành động tương xứng hoặc hợp lý với điều kiện A (dù A có thể là tiêu cực/kém lý tưởng).",
     ],
     more: [
       "🧩 N / Vる / Aい + なら + N / Vる / Aい + なりに/なり",
       "⚖️ VるなりVるなり (là 'hoặc là làm V1 hoặc là làm V2', chỉ sự lựa chọn)",
-      "💬Văn nói, dùng để thể hiện sự chấp nhận điều kiện và hành động tương xứng.",
+      "💬 Văn nói, dùng để thể hiện sự chấp nhận điều kiện và hành động tương xứng.",
       "📝 ví dụ",
       "・金がないなら、金がないなりのやり方があるはずだ",
       "・気に入らないなら、気に入らないなりにそう言ってくれ",
@@ -691,12 +691,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Nào là... nào là... (Liệt kê nhiều sự việc, thường là tiêu cực, dẫn đến kết quả tệ hại/khó khăn)",
       "・Ví dụ: Nào là bị cảm, nào là bị mất ví, tôi đã có một ngày thật tồi tệ.",
-      "📌Liệt kê tối thiểu hai sự kiện tiêu cực/khó khăn xảy ra liên tiếp, vế sau là kết quả tất yếu.",
+      "📌 Liệt kê tối thiểu hai sự kiện tiêu cực/khó khăn xảy ra liên tiếp, vế sau là kết quả tất yếu.",
     ],
     more: [
       "🧩 Vる / Aい / N / Na + わ + ...",
       "⚖️ ～だの～だの (cũng là tiêu cực, nhưng わ…わ nhấn mạnh sự chồng chất của nhiều vấn đề)",
-      "💬Văn nói và viết, diễn tả sự chồng chất của nhiều vấn đề, mang tính tiêu cực.",
+      "💬 Văn nói và viết, diễn tả sự chồng chất của nhiều vấn đề, mang tính tiêu cực.",
       "📝 ví dụ",
       "・風邪をひくわ、財布をなくすわ（で）、ひどい一日だった",
       "・義母は病気になるわ、子供は学費を要求するわ（で）、私は大変だ",
@@ -746,12 +746,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Lợi dụng... (Lợi dụng một điều kiện/sự vắng mặt để làm điều không tốt)",
       "・Ví dụ: Cô ấy lợi dụng việc thầy giáo không có ở đây để lười biếng",
-      "📌Lợi dụng một trạng thái thuận lợi (thường là tiêu cực hoặc sự vắng mặt) để thực hiện một hành vi tiêu cực/ích kỷ.",
+      "📌 Lợi dụng một trạng thái thuận lợi (thường là tiêu cực hoặc sự vắng mặt) để thực hiện một hành vi tiêu cực/ích kỷ.",
     ],
     more: [
       "🧩 Vる / Vた / Aい / Na / N + の/こと + をいいことに",
       "⚖️ ～につけこんで (ám chỉ việc lợi dụng điểm yếu/sơ hở)",
-      "💬Văn nói, mang tính tiêu cực, dùng để chỉ trích hành vi lợi dụng.",
+      "💬 Văn nói, mang tính tiêu cực, dùng để chỉ trích hành vi lợi dụng.",
       "📝 ví dụ",
       "・先生がいないのをいいことに、彼女は怠けている",
       "・皆が親切にしてくれるのをいいことに、彼はわがままなことをする",
@@ -800,12 +800,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Cứ hễ đến lúc/Khi cần thiết (sẽ có sự thay đổi đột ngột về thái độ, hành động, hoặc sự thật được làm rõ)",
       "・Ví dụ: Mặc dù nói là biết, nhưng cứ hễ đến lúc làm thì lại hoàn toàn không thể",
-      "📌Diễn tả sự thay đổi đột ngột hoặc tiết lộ sự thật khi điều kiện đặc biệt/thời điểm quyết định đến.",
+      "📌 Diễn tả sự thay đổi đột ngột hoặc tiết lộ sự thật khi điều kiện đặc biệt/thời điểm quyết định đến.",
     ],
     more: [
       "🧩 いざ + N / Vる + となると/となれば/となったら",
       "⚖️ となると (trang trọng hơn), となれば (nhấn mạnh điều kiện), となったら (thông thường hơn)",
-      "💬Văn nói và viết, dùng để nhấn mạnh sự thay đổi khi đến thời điểm quyết định.",
+      "💬 Văn nói và viết, dùng để nhấn mạnh sự thay đổi khi đến thời điểm quyết định.",
       "📝 ví dụ",
       "・知っていると言ったが、いざやるとなると、全然できない",
       "・いざお金がとなれば、彼は態度を変えて優しくなる",
@@ -869,12 +869,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Rằng/Nghe nói là (Chỉ nguồn tin, thông báo; dùng trong văn viết, phát thanh, báo chí)",
       "・Ví dụ: Có thông báo rằng cuộc họp đã bị hoãn lại",
-      "📌Chỉ dùng để trích dẫn hoặc thông báo nguồn tin chính thức/công cộng và mang tính trang trọng.",
+      "📌 Chỉ dùng để trích dẫn hoặc thông báo nguồn tin chính thức/công cộng và mang tính trang trọng.",
     ],
     more: [
       "🧩 V / Aい / Na / N + との + N (danh từ chỉ thông tin: 連絡, ニュース...)",
       "⚖️ ～という (cũng là 'rằng', nhưng との trang trọng hơn và bắt buộc phải đi kèm với một danh từ chỉ thông tin)",
-      "💬Văn viết, trang trọng, dùng trong thông báo chính thức, báo chí.",
+      "💬 Văn viết, trang trọng, dùng trong thông báo chính thức, báo chí.",
       "📝 ví dụ",
       "・会議は中止されたとの連絡があった",
       "・社長が辞任するとのニュースを聞いた",
@@ -923,12 +923,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Có làm... cũng vô ích/Không thể tránh khỏi (Thể hiện sự chấp nhận điều không mong muốn)",
       "・Ví dụ: Dù có hối hận về những gì đã xảy ra thì cũng vô ích",
-      "📌Diễn tả sự vô ích của một hành động, thường là hành động mang tính cảm xúc đối với một sự thật không thể thay đổi",
+      "📌 Diễn tả sự vô ích của một hành động, thường là hành động mang tính cảm xúc đối với một sự thật không thể thay đổi",
     ],
     more: [
       "🧩 Vて + もしかたがない/しょうがない/どうしようもない",
       "⚖️ ～てもはじまらない (cũng là 'vô ích', trang trọng hơn)",
-      "💬Văn nói suồng sã, dùng để chấp nhận/biện minh cho sự vô ích.",
+      "💬 Văn nói suồng sã, dùng để chấp nhận/biện minh cho sự vô ích.",
       "📝 ví dụ",
       "・起きてしまったことを後悔してもしかたがない",
       "・終わったことを泣いてもしかたがない",
@@ -992,12 +992,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Nhất định sẽ.../Không thể không... (Diễn tả ý chí mạnh mẽ của người nói rằng hành động B nhất định sẽ xảy ra/ảnh hưởng đến người khác)",
       "・Ví dụ: Tác phẩm này nhất định sẽ gây ấn tượng mạnh mẽ cho người xem",
-      "📌Thể hiện sự chắc chắn rằng hành động sẽ gây ra một ảnh hưởng mạnh mẽ lên người/vật khác. Chỉ dùng cho ngôi thứ ba.",
+      "📌 Thể hiện sự chắc chắn rằng hành động sẽ gây ra một ảnh hưởng mạnh mẽ lên người/vật khác. Chỉ dùng cho ngôi thứ ba.",
     ],
     more: [
       "🧩 Vない + ずにはおかない (bỏ ない)",
       "⚖️ ～ずにはいられない (là 'không thể không/không kìm được', dùng cho cảm xúc của chính người nói)",
-      "💬Văn viết, trang trọng.",
+      "💬 Văn viết, trang trọng.",
       "📝 ví dụ",
       "・この作品は見る人に感動を与えずにはおかないだろう",
       "・彼の言葉は、彼女の心を傷つけずにはおかないだろう",
@@ -1061,12 +1061,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Nếu... thì sẽ... biết bao/Ước gì (Thể hiện cảm xúc mạnh mẽ, mong muốn điều gì xảy ra, thường là điều khó xảy ra)",
       "・Ví dụ: Nếu tôi có thể hiểu được cảm xúc của người đó thì tốt biết mấy",
-      "📌Diễn tả cảm xúc tột độ đối với một giả định không có thực hoặc khó xảy ra",
+      "📌 Diễn tả cảm xúc tột độ đối với một giả định không có thực hoặc khó xảy ra",
     ],
     more: [
       "🧩 Vたら / Nなら + どんなに + Vる/Aい + か/だろうか",
       "⚖️ ～ばいいのに (chỉ là ước muốn nhẹ nhàng hơn)",
-      "💬Văn nói, dùng để bày tỏ cảm xúc, ước muốn mạnh mẽ.",
+      "💬 Văn nói, dùng để bày tỏ cảm xúc, ước muốn mạnh mẽ.",
       "📝 ví dụ",
       "・あの人の気持ちがわかったらどんなにいいか",
       "・昔の親友に再会できたらどんなにうれしいか",
@@ -1120,12 +1120,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Trong khi.../Trong lúc... (Trong lúc chưa xảy ra/chưa nhận thấy A thì làm nhanh B)",
       "・Ví dụ: Trong lúc mẹ không để ý, thằng bé đã ăn vụng chiếc bánh ngọt",
-      "📌Thể hiện hành động B được thực hiện ngay lập tức hoặc thầm lặng trong trạng thái không rõ ràng/chưa nhận thấy của A.",
+      "📌 Thể hiện hành động B được thực hiện ngay lập tức hoặc thầm lặng trong trạng thái không rõ ràng/chưa nhận thấy của A.",
     ],
     more: [
       "🧩 Vない + ぬまに (chỉ dùng với một số động từ cố định)",
       "⚖️ ～ないうちに (cũng là 'trong khi chưa...', nhưng ぬまに trang trọng hơn và nhấn mạnh yếu tố bí mật/không nhận thấy)",
-      "💬Văn viết, trang trọng.",
+      "💬 Văn viết, trang trọng.",
       "📝 ví dụ",
       "・母親が目を離すぬまに、子供はお菓子をこっそり食べた",
       "・若く、経験がないぬまに、もっと多くのことにチャレンジするべきだ",
@@ -1174,12 +1174,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Vì nghĩ rằng... (Là lý do cho một hành động nào đó, thường là tiêu cực hoặc có kết quả không tốt)",
       "・Ví dụ: Vì nghĩ rằng còn nhiều thời gian, nên tôi đã lơ là việc chuẩn bị",
-      "📌Biểu thị lý do mang tính suy đoán chủ quan của người nói, dẫn đến hành động thiếu cẩn trọng và thường có kết quả không mong muốn/tiêu cực.",
+      "📌 Biểu thị lý do mang tính suy đoán chủ quan của người nói, dẫn đến hành động thiếu cẩn trọng và thường có kết quả không mong muốn/tiêu cực.",
     ],
     more: [
       "🧩 V / Aい / Na / N + だ + からとおもって",
       "⚖️ ～ので (chỉ lý do khách quan, còn からとおもって nhấn mạnh suy nghĩ chủ quan dẫn đến sai lầm)",
-      "💬Văn nói, dùng để biện minh cho hành động thiếu cẩn trọng.",
+      "💬 Văn nói, dùng để biện minh cho hành động thiếu cẩn trọng.",
       "📝 ví dụ",
       "・まだ時間があるからとおもって、準備を怠ってしまった",
       "・ちょっとしたミスだからとおもって報告しなかったら、大きな問題になった",
@@ -1229,12 +1229,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Vừa mới... đã lại.../Vừa A xong thì ngay lập tức B (Thể hiện sự thay đổi liên tục, nhanh chóng, thường là sự đối lập)",
       "・Ví dụ: Đứa bé vừa mới khóc xong thì đã lập tức cười",
-      "📌Diễn tả sự thay đổi trạng thái hoặc hành động nhanh chóng, bất ngờ, thường là sự đối lập hoặc luân phiên.",
+      "📌 Diễn tả sự thay đổi trạng thái hoặc hành động nhanh chóng, bất ngờ, thường là sự đối lập hoặc luân phiên.",
     ],
     more: [
       "🧩 Vた + かと思えば / かと思ったら",
       "⚖️ ～とたんに (chỉ sự thay đổi tức thì, nhưng かと思えば nhấn mạnh sự đối lập và luân phiên)",
-      "💬Văn nói, diễn tả sự thay đổi nhanh chóng, luân phiên.",
+      "💬 Văn nói, diễn tả sự thay đổi nhanh chóng, luân phiên.",
       "📝 ví dụ",
       "・あの赤ちゃんは泣いたかとおもえば、すぐ笑い出す",
       "・さっきまで晴れていたかとおもえば、急に雨が降り出した",
@@ -1283,12 +1283,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Nói là... thì không sai (Nhấn mạnh sự thật/mức độ gần như tuyệt đối, mang tính khẳng định)",
       "・Ví dụ: Cô ấy là người thành công nhất trong công ty, nói là 'thiên tài' thì không sai",
-      "📌Khẳng định một sự thật/đặc điểm là hoàn toàn chính xác, không cần phải nghi ngờ. Dùng để phóng đại sự thật",
+      "📌 Khẳng định một sự thật/đặc điểm là hoàn toàn chính xác, không cần phải nghi ngờ. Dùng để phóng đại sự thật",
     ],
     more: [
       "🧩 V / Aい / Na / N + といっても間違いない",
       "⚖️ ～といっても過言ではない (cũng là 'nói là... không quá lời', mạnh tương đương)",
-      "💬Văn nói và viết, dùng để khẳng định mạnh mẽ, phóng đại sự thật.",
+      "💬 Văn nói và viết, dùng để khẳng định mạnh mẽ, phóng đại sự thật.",
       "📝 ví dụ",
       "・彼女は社内で最も成功した人だ。天才といっても間違いない",
       "・この車は最後の限定モデルであり、傑作といっても間違いない",
@@ -1352,12 +1352,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Theo ý kiến của.../Nếu để... nói (Trích dẫn quan điểm của một người/nhóm người nào đó)",
       "・Ví dụ: Theo ý kiến của các chuyên gia thì biện pháp này là chưa đủ",
-      "📌Trích dẫn ý kiến mang tính chủ quan hoặc đánh giá của một người/nhóm người. Thường dùng cho các chủ thể có thẩm quyền.",
+      "📌 Trích dẫn ý kiến mang tính chủ quan hoặc đánh giá của một người/nhóm người. Thường dùng cho các chủ thể có thẩm quyền.",
     ],
     more: [
       "🧩 N + にいわせれば",
       "⚖️ ～によると (chỉ nguồn thông tin khách quan, còn にいわせれば nhấn mạnh ý kiến/quan điểm cá nhân)",
-      "💬Văn nói và viết.",
+      "💬 Văn nói và viết.",
       "📝 ví dụ",
       "・専門家にいわせれば、この対策はまだ十分ではないそうだ",
       "・彼にいわせれば、できないことは何もないらしい",
@@ -1406,12 +1406,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Không phải... thì là gì/Chính là... (Cách nói nhấn mạnh, khẳng định chắc chắn điều gì đó, thường là những danh từ trừu tượng)",
       "・Ví dụ: Sự cống hiến quên mình vì gia đình đó, không phải là tình yêu thì là gì?",
-      "📌Dùng để khẳng định một cách mạnh mẽ rằng sự vật/sự việc là N, không còn cách giải thích nào khác.",
+      "📌 Dùng để khẳng định một cách mạnh mẽ rằng sự vật/sự việc là N, không còn cách giải thích nào khác.",
     ],
     more: [
       "🧩 N + でなくてなんだろう",
       "⚖️ ～にほかならない (cũng là 'chính là', nhưng でなくてなんだろう mang tính cảm thán, nhấn mạnh ý kiến cảm xúc của người nói hơn).",
-      "💬Văn viết, trang trọng, mang tính hùng biện, cảm thán mạnh mẽ.",
+      "💬 Văn viết, trang trọng, mang tính hùng biện, cảm thán mạnh mẽ.",
       "📝 ví dụ",
       "・家族のために尽くすその姿は、愛でなくてなんだろう",
       "・偶然の出来事が重なった。これは運命でなくてなんだろう",
@@ -1475,12 +1475,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Trong tình huống/hoàn cảnh... (Thường dùng cho hoàn cảnh đặc biệt, khó khăn hoặc đòi hỏi nghiêm ngặt, mang tính trang trọng)",
       "・Ví dụ: Trong hoàn cảnh thiên tai như thế này, sự hợp tác của mọi người là không thể thiếu",
-      "📌Dùng cho hoàn cảnh đặc biệt, khó khăn (thường là N) để rút ra một nhận định/yêu cầu mang tính trang trọng/nghiêm khắc.",
+      "📌 Dùng cho hoàn cảnh đặc biệt, khó khăn (thường là N) để rút ra một nhận định/yêu cầu mang tính trang trọng/nghiêm khắc.",
     ],
     more: [
       "🧩 N + にあっては",
       "⚖️ ～においては (chỉ trong phạm vi/lĩnh vực nào đó, còn にあっては nhấn mạnh tính đặc thù/nghiêm trọng của hoàn cảnh)",
-      "💬Văn viết, rất trang trọng.",
+      "💬 Văn viết, rất trang trọng.",
       "📝 ví dụ",
       "・このような天災にあっては、皆の協力が不可欠だ",
       "・この緊急事態にあっては、一刻一秒が惜しい",
@@ -1530,12 +1530,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Đại khái là/Chừng đó là cùng (Thể hiện mức độ tối đa, nhưng ở mức thấp hoặc trung bình, mang tính khiêm tốn)",
       "・Ví dụ: Tiền lương một tháng đại khái là 20 man là cùng",
-      "📌Đưa ra con số, mức độ hoặc phạm vi tối đa nhưng lại mang ý nghĩa không lớn/không đáng kể/chỉ đến thế mà thôi.",
+      "📌 Đưa ra con số, mức độ hoặc phạm vi tối đa nhưng lại mang ý nghĩa không lớn/không đáng kể/chỉ đến thế mà thôi.",
     ],
     more: [
       "🧩 N / Vる + といったところだ",
       "⚖️ ～ぐらい/ほどだ (chỉ mức độ thông thường, といったところだ nhấn mạnh mức độ tối đa nhưng không cao)",
-      "💬Văn nói và viết, mang tính khiêm tốn hoặc đánh giá mức độ thấp.",
+      "💬 Văn nói và viết, mang tính khiêm tốn hoặc đánh giá mức độ thấp.",
       "📝 ví dụ",
       "・一ヶ月の収入は20万円といったところだ",
       "・講義の内容は6割理解できたといったところだ",
@@ -1599,12 +1599,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Vì/Do (Là lý do đặc biệt nên kết quả là một trạng thái đặc biệt)",
       "・Ví dụ: Vì là Giáng sinh nên khắp phố đều tấp nập",
-      "📌Đưa ra một lý do đặc biệt (N, Na) và kết quả là một tình trạng đặc trưng hoặc khác thường.",
+      "📌 Đưa ra một lý do đặc biệt (N, Na) và kết quả là một tình trạng đặc trưng hoặc khác thường.",
     ],
     more: [
       "🧩 N / Na + とあって",
       "⚖️ ～だけあって (cũng là 'vì', nhưng だけあって nhấn mạnh sự xứng đáng, còn とあって nhấn mạnh sự đặc trưng của hoàn cảnh)",
-      "💬Văn viết, trang trọng, thường dùng trong báo chí.",
+      "💬 Văn viết, trang trọng, thường dùng trong báo chí.",
       "📝 ví dụ",
       "・クリスマスとあって、街はにぎやかだ",
       "・経験者とあって、彼女の仕事ぶりは見事だ",
@@ -1653,12 +1653,12 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Bất chấp/Mặc kệ (Làm điều gì đó một cách can đảm, bất chấp trở ngại)",
       "・Ví dụ: Anh ấy bất chấp bệnh tật mà tiếp tục nghiên cứu",
-      "📌Đi kèm với trở ngại, khó khăn (thường là N) và diễn tả hành động can đảm, kiên cường, kết quả thường là tích cực.",
+      "📌 Đi kèm với trở ngại, khó khăn (thường là N) và diễn tả hành động can đảm, kiên cường, kết quả thường là tích cực.",
     ],
     more: [
       "🧩 N + をものともせずに",
       "⚖️ ～にもかかわらず (cũng là 'mặc dù', nhưng をものともせずに nhấn mạnh sự kiên cường, bất chấp mạnh mẽ hơn)",
-      "💬Văn viết, trang trọng, mang tính ca ngợi.",
+      "💬 Văn viết, trang trọng, mang tính ca ngợi.",
       "📝 ví dụ",
       "・彼は病気をものともせずに研究を続けた",
       "・あらゆる批判をものともせずに、彼女は夢を追い続けた",
@@ -1707,7 +1707,7 @@ export const cards: FlashCardItem[] = [
     back: [
       "✨ Ngay sau khi (Diễn tả hành động B xảy ra tức thì sau khi hành động A vừa kết thúc)",
       "・Ví dụ: Vừa nghe chuông kết thúc, học sinh đã chạy ra khỏi lớp.",
-      "📌Nhấn mạnh tính tức thì, không có khoảng cách thời gian.",
+      "📌 Nhấn mạnh tính tức thì, không có khoảng cách thời gian.",
     ],
     more: [
       "🧩 Vる / Vた + が早いか / やいなや / なり / とたんに",
@@ -1716,7 +1716,7 @@ export const cards: FlashCardItem[] = [
       " * やいなや: Trang trọng, hành động bất ngờ. (Vる/Vた)",
       " * なり: Hành động bất ngờ, chủ ngữ duy nhất. (Vる)",
       " * とたんに: Thay đổi đột ngột (thường dùng cho hiện tượng tự nhiên). (Vる/Vた)",
-      "💬Cả văn nói và viết (trừ とたんに phổ biến hơn trong văn nói).",
+      "💬 Cả văn nói và viết (trừ とたんに phổ biến hơn trong văn nói).",
       "📝 ví dụ",
       "・チャイムが鳴るが早いか、生徒たちは教室を飛び出した",
       "・総理大臣が演説を終えるやいなや、会場は大きな拍手に包まれた",
