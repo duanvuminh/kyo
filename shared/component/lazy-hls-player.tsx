@@ -8,8 +8,8 @@ import { useInView } from "react-intersection-observer";
 type Props = {
   src: string;
   subs?: Sub[];
-  subVi?: string;
-  subJa?: string;
+  subVi?: Sub[];
+  subJa?: Sub[];
   controls?: boolean;
   className?: string;
   poster?: string;

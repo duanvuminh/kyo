@@ -15,8 +15,8 @@ type HlsPlayerProps = {
   muted?: boolean;
   className?: string;
   subs?: Sub[];
-  subVi?: string;
-  subJa?: string;
+  subVi?: Sub[];
+  subJa?: Sub[];
   poster?: string;
 };
 
@@ -31,11 +31,7 @@ export default function HlsPlayer({
   subJa,
   poster,
 }: HlsPlayerProps) {
-  const { videoRef, subtitleViUrl, subtitleJaUrl } = useHlsPlayer(
-    src,
-    subVi,
-    subJa
-  );
+  const { videoRef } = useHlsPlayer(src, subVi, subJa, subs);
   const { currentTime, handleSubtitleClick } = useSubtitleDisplay(videoRef);
   const { containerRef, itemRefs } = useSubtitleScroll(subs ?? [], currentTime);
   return (
@@ -48,26 +44,7 @@ export default function HlsPlayer({
         className={cn(className, "w-full aspect-video rounded-lg")}
         poster={poster}
         playsInline
-      >
-        {subtitleViUrl && (
-          <track
-            label="vi"
-            kind="subtitles"
-            srcLang="vi"
-            src={subtitleViUrl}
-            default
-          />
-        )}
-        {subtitleJaUrl && (
-          <track
-            label="ja"
-            kind="subtitles"
-            srcLang="ja"
-            src={subtitleJaUrl}
-            default
-          />
-        )}
-      </video>
+      ></video>
       {subs && (
         <div
           ref={containerRef}
@@ -107,6 +84,10 @@ export default function HlsPlayer({
               </div>
             );
           })}
+          <div className="h-100 flex flex-col items-center justify-center text-center">
+            --End-- <br />
+            Thank you for watching!
+          </div>
         </div>
       )}
     </div>

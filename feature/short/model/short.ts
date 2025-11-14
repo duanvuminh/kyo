@@ -23,8 +23,8 @@ export class Short {
     public type?: ShortType,
     public files?: KFile[],
     public poster?: string,
-    public subVi?: string,
-    public subJa?: string,
+    public subVi?: Sub[],
+    public subJa?: Sub[],
     public subs?: Sub[],
     public relateShort?: Short[]
   ) {}
@@ -40,7 +40,7 @@ export class Short {
     const parsed = matter(data.text);
     const type = Short.stringToShortType(parsed.data.type);
     let subs: Sub[] = [];
-    let subInfo: { vi?: string; ja?: string } = {};
+    let subInfo: { vi?: Sub[]; ja?: Sub[] } = {};
     let content = parsed.content.replaceAll("--&gt;", "-->");
     if (type === ShortType.SUBTITLE) {
       subs = parseVTT(content);

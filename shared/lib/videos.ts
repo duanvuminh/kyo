@@ -22,9 +22,7 @@ export const parseVTT = (vtt: string): Sub[] => {
     if (isIndex) i++;
 
     const timeLine = lines[i];
-    const match = timeLine.match(
-      /^(\d{2}:\d{2}:\d{2}[.,]\d{3})\s-->\s(\d{2}:\d{2}:\d{2}[.,]\d{3})$/
-    );
+    const match = _matchVTTTimeLine(timeLine);
     if (!match) {
       i++;
       continue;
@@ -58,9 +56,8 @@ export const parseVTT = (vtt: string): Sub[] => {
 export function splitVTT(vtt: string) {
   const lines = vtt.split("\n").map((line) => line.trim());
   let i = 0;
-  let blockIndex = 1;
-  const viBlocks: string[] = ["WEBVTT"];
-  const jaBlocks: string[] = ["WEBVTT"];
+  const viSubs: Sub[] = [];
+  const jaSubs: Sub[] = [];
 
   while (i < lines.length) {
     if (!lines[i] || lines[i] === "WEBVTT") {
@@ -68,65 +65,56 @@ export function splitVTT(vtt: string) {
       continue;
     }
 
-    // Index line
     const isIndex = /^\d+$/.test(lines[i]);
     if (isIndex) i++;
 
-    // Time line
     const timeLine = lines[i];
-    const match = timeLine.match(
-      /^(\d{2}:\d{2}:\d{2}\.\d{3})\s-->\s(\d{2}:\d{2}:\d{2}\.\d{3})$/
-    );
+    const match = _matchVTTTimeLine(timeLine);
     if (!match) {
       i++;
       continue;
     }
+    const start = timeStringToSeconds(match[1].replace(",", "."));
+    const end = timeStringToSeconds(match[2].replace(",", "."));
     i++;
 
-    // Content lines
-    let jaLine = "";
-    let viLine = "";
-    let processingVi = false;
+    let jaLines: string[] = [];
+    let viLines: string[] = [];
     while (i < lines.length && lines[i]) {
-      if (lines[i].startsWith("vn:")) {
-        processingVi = true;
-        viLine += lines[i].replace(/^vn:/, "").trim();
-      } else if (lines[i].startsWith("vi:")) {
-        processingVi = true;
-        viLine += lines[i].replace(/^vi:/, "").trim();
-      } else if (processingVi) {
-        viLine += "\n" + lines[i];
-        if (lines[i] === "\n") {
-          processingVi = false;
-        }
+      if (lines[i].startsWith("vn:") || lines[i].startsWith("vi:")) {
+        viLines.push(lines[i].replace(/^vn:/, "").replace(/^vi:/, "").trim());
       } else {
-        if (!processingVi) jaLine += lines[i];
+        jaLines.push(lines[i].replace(/^ja:/, "").trim());
       }
       i++;
     }
 
-    // Build vi block
-    if (viLine) {
-      viBlocks.push(""); // Thêm dòng trống trước mỗi block
-      viBlocks.push(`${blockIndex}`);
-      viBlocks.push(timeLine);
-      viBlocks.push(viLine);
+    if (viLines.length) {
+      viSubs.push({
+        start,
+        end,
+        content: viLines.join("\n"),
+      });
+    }
+    if (jaLines.length) {
+      jaSubs.push({
+        start,
+        end,
+        content: jaLines.join("\n"),
+      });
     }
 
-    // Build ja block
-    if (jaLine) {
-      jaBlocks.push(""); // Thêm dòng trống trước mỗi block
-      jaBlocks.push(`${blockIndex}`);
-      jaBlocks.push(timeLine);
-      jaBlocks.push(jaLine);
-    }
-
-    blockIndex++;
     i++;
   }
 
   return {
-    vi: viBlocks.join("\n"),
-    ja: jaBlocks.join("\n"),
+    vi: viSubs,
+    ja: jaSubs,
   };
+}
+
+function _matchVTTTimeLine(line: string) {
+  return line.match(
+    /^(\d{2}:\d{2}:\d{2}[.,]\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2}[.,]\d{3})$/
+  );
 }
