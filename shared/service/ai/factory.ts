@@ -18,7 +18,6 @@ enum AIProvider {
   AI_OPENROUTER_DEEPSEEK_R1,
 }
 function createInstance(type: AIProvider): AiBase {
-  console.log("AI Provider:", AIProvider[type]);
   switch (type) {
     case AIProvider.AI_OPENROUTER_META_LLAMA:
       return new AIOpenRouterMetaLlama();

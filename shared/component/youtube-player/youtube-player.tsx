@@ -36,7 +36,6 @@ export default function YouTubePlayer({
     getPlayer,
     isReady
   );
-  console.log("currentTime", currentTime);
   const { containerRef, itemRefs } = useSubtitleScroll(subs ?? [], currentTime);
 
   return (
