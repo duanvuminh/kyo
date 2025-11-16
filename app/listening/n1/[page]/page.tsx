@@ -17,7 +17,7 @@ export default async function Page({
   params: Promise<{ page: string }>;
 }) {
   const { page } = await params;
-  const pageData: ListeningPage = await getListening({ page, level: "n5" });
+  const pageData: ListeningPage = await getListening({ page, level: "n1" });
   return hasData(pageData) ? (
     <div className="p-2 prose mx-auto">
       {displayData(pageData).map((listening) => (
@@ -33,7 +33,7 @@ export default async function Page({
   ) : (
     <CenterMessage>
       Không tìm thấy bài viết cũ hơn.
-      <Link href="/listening/n5/newest">↪︎Click để quay lại</Link>.
+      <Link href="/listening/n1/newest">↪︎Click để quay lại</Link>.
     </CenterMessage>
   );
 }

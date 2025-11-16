@@ -8,11 +8,22 @@ const defaultPage = "newest";
 
 export const getListening = async ({
   page,
+  level,
 }: {
   page: string;
+  level: string;
 }): Promise<ListeningPage> => {
+  let channelId: string;
+  switch (level) {
+    case "n1":
+      channelId = "1439409864488259624";
+      break;
+    default:
+      channelId = "1421561218455310476";
+      break;
+  }
   const data = await getListMessageFromDisCord({
-    channelId: "1421561218455310476",
+    channelId,
     before: page == defaultPage ? undefined : page,
     limit,
   });
