@@ -36,8 +36,7 @@ function createInstance(type: AIProvider): AiBase {
 const availableProviders = getEnumValues(AIProvider);
 const aiProvider = () => {
   if (process.env.NODE_ENV === "development") {
-    // return AIProvider.AI_GOOGLE_GENERATIVE;
-    return AIProvider.AI_OPENROUTER_META_LLAMA;
+    return AIProvider.AI_GOOGLE_GENERATIVE;
   }
   return randomArrayElement<AIProvider>(availableProviders);
 };
