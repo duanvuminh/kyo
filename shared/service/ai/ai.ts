@@ -16,6 +16,7 @@ import { LanguageModel, ModelMessage, StreamTextResult, ToolSet } from "ai";
 export abstract class AiBase {
   abstract model: LanguageModel;
   abstract saveAiReply: (item: BaseItem) => void;
+  abstract maxOutputTokens?: number;
   async handleMessages(
     messages: ModelMessage[]
   ): Promise<StreamTextResult<ToolSet, never> | string | undefined> {
@@ -47,7 +48,13 @@ export abstract class AiBase {
       }
     };
 
-    const opts = { model: this.model, messages, onFinish, system: "" };
+    const opts = {
+      model: this.model,
+      messages,
+      system: "",
+      maxOutputTokens: this.maxOutputTokens,
+      onFinish,
+    };
     switch (word.type) {
       case KWordType.KANJI:
         opts.system = instructionKanji
@@ -73,11 +80,13 @@ export abstract class AiBase {
             model: this.model,
             prompt: word.words,
             system: instructionPracticeGrammar.replace("$1", word.words),
+            maxOutputTokens: this.maxOutputTokens,
           }
         : {
             model: this.model,
             prompt: word.words,
             system: instructionPracticeWord.replace("$1", word.words),
+            maxOutputTokens: this.maxOutputTokens,
           };
     const result = askAi({
       ...opts,

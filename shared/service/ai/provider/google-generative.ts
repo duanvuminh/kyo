@@ -4,6 +4,7 @@ import { BaseItem } from "@/shared/types/models/word";
 import { google } from "@ai-sdk/google";
 
 export class AiGoogleGenerative extends AiBase {
+  maxOutputTokens = undefined;
   saveAiReply = (item: BaseItem) => {
     return updateWordsContent(item);
   };
