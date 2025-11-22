@@ -1,4 +1,4 @@
-import { KanjiN1Paging } from "@/feature/kanji/component/paging";
+import { WordPaging } from "@/feature/word/component/paging";
 
 export default async function Layout({
   children,
@@ -8,7 +8,7 @@ export default async function Layout({
   return (
     <>
       {children}
-      <KanjiN1Paging totalPages={95} />
+      <WordPaging totalPages={95} />
     </>
   );
 }
