@@ -58,6 +58,40 @@ const _getThread = async ({
   return replies.messages;
 };
 
+const _parseMultipleMetadata = (
+  text: string,
+  baseItem: SlackMessageDTO
+): SlackMessageDTO[] => {
+  const result: SlackMessageDTO[] = [];
+  const regex = /---\n([\s\S]*?)\n---/g;
+  let match;
+  let index = 0;
+
+  while ((match = regex.exec(text)) !== null) {
+    const metadataStart = match.index;
+    const metadataEnd = regex.lastIndex;
+    const nextMatch = regex.exec(text);
+    regex.lastIndex = metadataEnd;
+
+    const contentEnd = nextMatch ? nextMatch.index : text.length;
+    const fullBlock = text.slice(metadataStart, contentEnd).trim();
+
+    if (fullBlock) {
+      const parsed = matter(fullBlock);
+      if (parsed.data?.title != null) {
+        result.push({
+          ...baseItem,
+          text: fullBlock,
+          ts: `${baseItem.ts}_${index}`,
+        });
+        index++;
+      }
+    }
+  }
+
+  return result;
+};
+
 const _getRelated = async ({
   threads,
 }: {
@@ -67,14 +101,26 @@ const _getRelated = async ({
   let current: SlackMessageDTO | null = null;
 
   for (const item of threads) {
-    const parsed = matter(item.text ?? "");
+    const text = item.text ?? "";
+
+    const multipleItems = _parseMultipleMetadata(text, item);
+    if (multipleItems.length > 1) {
+      if (current) {
+        result.push(current);
+        current = null;
+      }
+      result.push(...multipleItems);
+      continue;
+    }
+
+    const parsed = matter(text);
     if (parsed.data?.title != null) {
       if (current) {
         result.push(current);
       }
       current = { ...item };
     } else if (current) {
-      current.text = (current.text ?? "") + "\n\n" + (item.text ?? "");
+      current.text = (current.text ?? "") + "\n\n" + text;
     }
   }
   if (current) {
