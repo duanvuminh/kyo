@@ -11,7 +11,7 @@ export const KanjiN1Paging = ({ totalPages }: { totalPages: number }) => {
   const initPage = match ? Number(match[1]) - 1 : 0;
 
   const refine = (page: number) => {
-    router.push(`/words/n1/page${page + 1}`);
+    router.push(`/kanji/n1/page${page + 1}`);
   };
 
   return (

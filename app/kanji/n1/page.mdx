@@ -1,22 +1,78 @@
-import Link from "next/link";
+import FlashCardLink from "@/shared/component/flash-card-link";
 
-# Danh sách kanji N1
+# Danh sách kanji N1 page 1
 
-- <Link href="/kanji/n1/page1">Page 1</Link>
-- <Link href="/kanji/n1/page2">Page 2</Link>
-- <Link href="/kanji/n1/page3">Page 3</Link>
-- <Link href="/kanji/n1/page4">Page 4</Link>
-- <Link href="/kanji/n1/page5">Page 5</Link>
-- <Link href="/kanji/n1/page6">Page 6</Link>
-- <Link href="/kanji/n1/page7">Page 7</Link>
-- <Link href="/kanji/n1/page8">Page 8</Link>
-- <Link href="/kanji/n1/page9">Page 9</Link>
-- <Link href="/kanji/n1/page10">Page 10</Link>
-- <Link href="/kanji/n1/page11">Page 11</Link>
-- <Link href="/kanji/n1/page12">Page 12</Link>
-- <Link href="/kanji/n1/page13">Page 13</Link>
-- <Link href="/kanji/n1/page14">Page 14</Link>
-- <Link href="/kanji/n1/page15">Page 15</Link>
-- <Link href="/kanji/n1/page16">Page 16</Link>
-- <Link href="/kanji/n1/page17">Page 17</Link>
-- <Link href="/kanji/n1/page18">Page 18</Link>
+| Kanji | Hán Việt | Ý nghĩa ngắn gọn           |
+| :---: | :------: | :------------------------- |
+|   氏   |    Thị   | Họ, dòng họ                |
+|   統   |   Thống  | Thống nhất, điều hành      |
+|   保   |    Bảo   | Giữ, bảo vệ                |
+|   第   |    Đệ    | Thứ tự, cấp bậc            |
+|   結   |    Kết   | Kết nối, buộc              |
+|   派   |   Phái   | Nhóm, phe, trường phái     |
+|   案   |    Án    | Đề án, kế hoạch            |
+|   策   |   Sách   | Kế sách, biện pháp         |
+|   基   |    Cơ    | Cơ bản, nền tảng           |
+|   価   |    Giá   | Giá trị, giá cả            |
+|   提   |    Đề    | Đề xuất, trình ra          |
+|   挙   |    Cử    | Nâng lên, cử hành          |
+|   応   |    Ứng   | Ứng phó, phản ứng          |
+|   企   |    Xí    | Lập kế hoạch, doanh nghiệp |
+|   検   |   Kiểm   | Kiểm tra, tra xét          |
+|   藤   |   Đằng   | Dây leo, họ tên (Fuji)     |
+|   沢   |   Trạch  | Đầm lầy, phong phú         |
+|   裁   |    Tài   | Phán xét, cắt may          |
+|   証   |   Chứng  | Chứng minh, bằng chứng     |
+|   援   |   Viên   | Hỗ trợ, viện trợ           |
+|   施   |    Thi   | Thực hiện, ban bố          |
+|   井   |   Tỉnh   | Giếng nước                 |
+|   護   |    Hộ    | Bảo vệ, hộ vệ              |
+|   展   |   Triển  | Phát triển, mở rộng        |
+|   態   |   Thái   | Trạng thái, hình dạng      |
+|   鮮   |   Tiên   | Tươi, mới, trong sáng      |
+|   視   |    Thị   | Nhìn, quan sát             |
+|   条   |   Điều   | Điều khoản, quy định       |
+|   幹   |    Cán   | Cốt lõi, thân cây          |
+|   独   |    Độc   | Một mình, độc lập          |
+|   宮   |   Cung   | Cung điện, đền             |
+|   率   |   Suất   | Tỷ lệ, suất                |
+|   衛   |    Vệ    | Bảo vệ, phòng vệ           |
+|   張   |  Trương  | Kéo dài, căng ra           |
+|   監   |   Giam   | Giám sát                   |
+|   環   |   Hoàn   | Vòng, tuần hoàn            |
+|   審   |   Thẩm   | Xem xét, thẩm tra          |
+|   義   |   Nghĩa  | Chính nghĩa, đạo lý        |
+|   訴   |    Tố    | Tố cáo, kiện               |
+|   株   |    Chu   | Gốc cây, cổ phần           |
+|   姿   |    Tư    | Dáng vẻ, hình dạng         |
+|   閣   |    Các   | Nhà lớn, nội các           |
+|   衆   |   Chúng  | Đám đông, quần chúng       |
+|   評   |   Bình   | Đánh giá, bình luận        |
+|   影   |    Ảnh   | Bóng, hình ảnh             |
+|   松   |   Tùng   | Cây tùng                   |
+|   撃   |   Kích   | Tấn công, đánh             |
+|   佐   |    Tá    | Trợ giúp, phụ tá           |
+|   核   |   Hạch   | Hạt nhân, lõi              |
+|   整   |   Chỉnh  | Sắp xếp, điều chỉnh        |
+|   融   |   Dung   | Hòa hợp, dung hợp          |
+|   製   |    Chế   | Chế tạo                    |
+|   票   |   Phiếu  | Lá phiếu, vé               |
+|   渉   |   Thiệp  | Giao thiệp, can dự         |
+|   響   |   Hưởng  | Âm vang, ảnh hưởng         |
+|   推   |   Thôi   | Đẩy, suy đoán              |
+|   請   |   Thỉnh  | Yêu cầu, thỉnh cầu         |
+|   器   |    Khí   | Dụng cụ, tài năng          |
+|   士   |    Sĩ    | Người, học giả             |
+|   討   |   Thảo   | Thảo luận, chinh phạt      |
+|   攻   |   Công   | Tấn công                   |
+|   崎   |    Khi   | Mũi đất, dốc núi           |
+|   督   |    Đốc   | Giám sát, thúc đẩy         |
+|   授   |    Thụ   | Nhận, truyền thụ           |
+|   催   |   Thôi   | Tổ chức, thúc giục         |
+|   及   |    Cập   | Đến, lan tới               |
+|   憲   |   Hiến   | Hiến pháp, quy định        |
+|   離   |    Li    | Rời xa, tách rời           |
+|   激   |   Kích   | Mạnh mẽ, kích thích        |
+|   摘   |   Trích  | Chọn, trích ra             |
+
+<FlashCardLink href="/kanji/n1/page1/flash-card"/>
