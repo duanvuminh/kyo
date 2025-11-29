@@ -10,6 +10,8 @@ import { CenterMessage } from "@/shared/component/center-message";
 import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 import Link from "next/link";
 
+export const revalidate = 604800; // 1 week
+
 export default async function Page({
   params,
 }: {

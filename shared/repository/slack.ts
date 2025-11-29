@@ -1,5 +1,11 @@
 import { SlackHistoryResponseDTO } from "@/shared/types/dto/slack-message";
 
+const emptyResponse: SlackHistoryResponseDTO = {
+  ok: false,
+  messages: [],
+  has_more: false,
+};
+
 export const getListMessageFromSlack = async ({
   channelId,
   cursor,
@@ -15,17 +21,26 @@ export const getListMessageFromSlack = async ({
   if (cursor) params.append("cursor", cursor);
   if (limit) params.append("limit", `${limit}`);
 
-  const res = await fetch(
-    `https://slack.com/api/conversations.history?${params.toString()}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.SLACK_API_KEY}`,
-      },
-    }
-  );
+  try {
+    const res = await fetch(
+      `https://slack.com/api/conversations.history?${params.toString()}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.SLACK_API_KEY}`,
+        },
+        ...(process.env.NODE_ENV !== "development" && {
+          next: { revalidate: 604800 },
+        }),
+      }
+    );
 
-  const data = await res.json();
-  return data as SlackHistoryResponseDTO;
+    if (!res.ok) return emptyResponse;
+
+    const data = await res.json();
+    return data.ok ? (data as SlackHistoryResponseDTO) : emptyResponse;
+  } catch {
+    return emptyResponse;
+  }
 };
 
 export const getListReplyFromSlack = async ({
@@ -40,15 +55,24 @@ export const getListReplyFromSlack = async ({
   });
   params.append("ts", `${ts}`);
 
-  const res = await fetch(
-    `https://slack.com/api/conversations.replies?${params.toString()}`,
-    {
-      headers: {
-        Authorization: `Bearer ${process.env.SLACK_API_KEY}`,
-      },
-    }
-  );
+  try {
+    const res = await fetch(
+      `https://slack.com/api/conversations.replies?${params.toString()}`,
+      {
+        headers: {
+          Authorization: `Bearer ${process.env.SLACK_API_KEY}`,
+        },
+        ...(process.env.NODE_ENV !== "development" && {
+          next: { revalidate: 604800 },
+        }),
+      }
+    );
 
-  const data = await res.json();
-  return data as SlackHistoryResponseDTO;
+    if (!res.ok) return emptyResponse;
+
+    const data = await res.json();
+    return data.ok ? (data as SlackHistoryResponseDTO) : emptyResponse;
+  } catch {
+    return emptyResponse;
+  }
 };
