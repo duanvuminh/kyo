@@ -39,7 +39,9 @@ export const getShort = async ({
       return item;
     })
   );
-  const shorts = mapDatas(newData, Short.fromDTO);
+  const shorts = mapDatas(newData, Short.fromDTO).filter(
+    (short) => short.hidden !== true
+  );
   return {
     shorts,
     nextPage: data.response_metadata?.next_cursor,
