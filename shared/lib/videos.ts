@@ -78,8 +78,8 @@ export function splitVTT(vtt: string) {
     const end = timeStringToSeconds(match[2].replace(",", "."));
     i++;
 
-    let jaLines: string[] = [];
-    let viLines: string[] = [];
+    const jaLines: string[] = [];
+    const viLines: string[] = [];
     while (i < lines.length && lines[i]) {
       if (lines[i].startsWith("vn:") || lines[i].startsWith("vi:")) {
         viLines.push(lines[i].replace(/^vn:/, "").replace(/^vi:/, "").trim());

@@ -10,9 +10,12 @@ export function useEditBox() {
     words: "",
   };
   const [value, setValue] = useState(item.content);
+
   useEffect(() => {
+    // Reading from localStorage (external system) - valid useEffect usage
     const memo = MemoStorageRepository.getMemo();
     if (memo) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setValue(memo);
     }
   }, []);

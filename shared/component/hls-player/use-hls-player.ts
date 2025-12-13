@@ -51,7 +51,7 @@ export function useHlsPlayer(
         trackJa.addCue(new VTTCue(sub.start, sub.end, sub.content));
       });
     }
-  }, [videoRef]);
+  }, [subJa, subVi, subs, videoRef]);
 
   return { videoRef };
 }
