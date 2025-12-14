@@ -1,13 +1,16 @@
-import { AiBase } from "@/shared/service/ai/ai";
-import { updateWordsContent } from "@/shared/service/dictionary";
-import { BaseItem } from "@/shared/types/models/word";
 import { google } from "@ai-sdk/google";
+import { LanguageModel } from "ai";
 
-export class AiGoogleGenerative extends AiBase {
-  maxOutputTokens = undefined;
-  saveAiReply = (item: BaseItem) => {
-    return updateWordsContent(item);
-  };
-
-  model = google("gemini-2.0-flash-lite-001");
+export interface AIModelConfig {
+  id: string;
+  name: string;
+  model: LanguageModel;
+  maxOutputTokens?: number;
 }
+
+// Gemini 2.0 Flash Lite - model rẻ nhất của Google
+export const defaultModel: AIModelConfig = {
+  id: "gemini-flash-lite",
+  name: "Gemini 2.0 Flash Lite",
+  model: google("gemini-2.0-flash-lite-001"),
+};

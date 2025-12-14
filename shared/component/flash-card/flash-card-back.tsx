@@ -14,11 +14,17 @@ export function FlashCardBack({
   questions?: Question[];
   front: string;
 }) {
+  const grammarPoint = [...back, ...(more ?? [])].join("\n");
+
   return (
     <div>
       <MeaningSection back={back} />
       <UsageSection more={more} front={front} />
-      <QuestionSection questions={questions} />
+      <QuestionSection
+        questions={questions}
+        grammarPoint={grammarPoint}
+        front={front}
+      />
     </div>
   );
 }

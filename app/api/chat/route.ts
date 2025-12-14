@@ -1,3 +1,4 @@
+import { handleChatMessages } from "@/shared/service/ai/chat-handler";
 import { aiService } from "@/shared/service/ai/factory";
 import { convertToModelMessages, UIMessage } from "ai";
 import { NextResponse } from "next/server";
@@ -12,9 +13,11 @@ export async function POST(req: Request) {
     });
   }
 
-  const result = await aiService().handleMessages(
+  const result = await handleChatMessages(
+    aiService(),
     convertToModelMessages(messages)
   );
+
   if (typeof result === "string") {
     const stringify = JSON.stringify(result);
     const stream = new ReadableStream({
@@ -38,5 +41,6 @@ export async function POST(req: Request) {
       },
     });
   }
+
   return result?.toUIMessageStreamResponse();
 }
