@@ -3,6 +3,7 @@ import {
   instructionGenerateQuestions,
   promptGenerateQuestions,
 } from "@/shared/service/ai/instructions";
+import { protectApi } from "@/shared/utils/api-protection";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -28,6 +29,11 @@ const questionSchema = z.object({
 });
 
 export async function POST(req: Request) {
+  const protection = protectApi(req, { maxRequests: 5, windowMs: 60000 });
+  if (!protection.success) {
+    return protection.response;
+  }
+
   try {
     const { grammarPoint, front }: { grammarPoint: string; front: string } =
       await req.json();

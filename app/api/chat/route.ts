@@ -1,11 +1,17 @@
 import { handleChatMessages } from "@/shared/service/ai/chat-handler";
 import { aiService } from "@/shared/service/ai/factory";
+import { protectApi } from "@/shared/utils/api-protection";
 import { convertToModelMessages, UIMessage } from "ai";
 import { NextResponse } from "next/server";
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
+  const protection = protectApi(req, { maxRequests: 20, windowMs: 60000 });
+  if (!protection.success) {
+    return protection.response;
+  }
+
   const { messages }: { messages: UIMessage[] } = await req.json();
   if (!messages) {
     return NextResponse.json(null, {
