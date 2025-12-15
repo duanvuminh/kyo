@@ -1,9 +1,9 @@
+import { protectApi } from "@/core/utils/api-protection";
 import { aiService } from "@/shared/service/ai/factory";
 import {
   instructionGenerateQuestions,
   promptGenerateQuestions,
 } from "@/shared/service/ai/instructions";
-import { protectApi } from "@/shared/utils/api-protection";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -19,7 +19,9 @@ const questionSchema = z.object({
       answer4: z.string().describe("Đáp án 4"),
       correctAnswer: z
         .number()
-        .describe("Index của đáp án đúng (0=answer1, 1=answer2, 2=answer3, 3=answer4)"),
+        .describe(
+          "Index của đáp án đúng (0=answer1, 1=answer2, 2=answer3, 3=answer4)"
+        ),
       memo1: z.string().describe("Giải thích cho đáp án 1"),
       memo2: z.string().describe("Giải thích cho đáp án 2"),
       memo3: z.string().describe("Giải thích cho đáp án 3"),
@@ -58,7 +60,7 @@ export async function POST(req: Request) {
         string,
         string,
         string,
-        string,
+        string
       ],
       correctAnswer: q.correctAnswer as 0 | 1 | 2 | 3,
       memo: [q.memo1, q.memo2, q.memo3, q.memo4],

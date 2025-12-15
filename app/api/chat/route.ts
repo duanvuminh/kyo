@@ -1,6 +1,6 @@
+import { protectApi } from "@/core/utils/api-protection";
 import { handleChatMessages } from "@/shared/service/ai/chat-handler";
 import { aiService } from "@/shared/service/ai/factory";
-import { protectApi } from "@/shared/utils/api-protection";
 import { convertToModelMessages, UIMessage } from "ai";
 import { NextResponse } from "next/server";
 
