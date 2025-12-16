@@ -1,10 +1,8 @@
 "use client";
-import { shuffle } from "@/core/utils/utils";
 import { useGenerateQuestions } from "@/shared/component/flash-card/use-generate-questions";
 import { QuestionDetail } from "@/shared/component/question-detail/question-detail";
 import { Button } from "@/shared/component/ui/button";
 import { Question } from "@/shared/types/models/question";
-import { useMemo } from "react";
 
 interface QuestionSectionProps {
   questions?: Question[];
@@ -20,10 +18,7 @@ export function QuestionSection({
   const { generatedQuestions, isLoading, generateQuestions } =
     useGenerateQuestions();
 
-  const allQuestions = useMemo(() => {
-    const combined = [...(questions ?? []), ...generatedQuestions];
-    return combined;
-  }, [questions, generatedQuestions]);
+  const allQuestions = [...(questions ?? []), ...generatedQuestions];
 
   const handleGenerate = () => {
     if (!grammarPoint || !front) return;

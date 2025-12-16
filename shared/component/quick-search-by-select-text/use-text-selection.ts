@@ -1,56 +1,47 @@
-import { useEffect, useState } from "react";
+import { useSelectionDetect } from "@/shared/component/quick-search-by-select-text/use-selection-detect";
+import { useSheetHistory } from "@/shared/hooks/use-sheet-history";
+import { useCallback, useState } from "react";
 
+/**
+ * Hook chính - kết hợp selection detect + sheet history
+ */
 export function useTextSelection() {
-  const [selectedText, setSelectedText] = useState("");
-  const [menuPos, setMenuPos] = useState<{ x: number; y: number } | null>(null);
   const [open, setOpen] = useState(false);
+  const [savedText, setSavedText] = useState("");
 
-  useEffect(() => {
-    const handleSelect = () => {
-      if (open) return;
-      const selection = window.getSelection();
-      const text = selection?.toString().trim();
-      if (text && selection && selection.rangeCount > 0) {
-        const rect = selection.getRangeAt(0).getBoundingClientRect();
-        if (rect.width === 0 || rect.height === 0) {
-          setMenuPos({
-            x: window.innerWidth / 2 - 24,
-            y: window.innerHeight / 2,
-          });
-        } else {
-          setMenuPos({
-            x: rect.left,
-            y: rect.bottom,
-          });
-        }
-        setSelectedText(text);
-      } else {
-        setMenuPos(null);
-      }
-    };
-    document.addEventListener("mouseup", handleSelect);
-    document.addEventListener("touchend", handleSelect);
-    return () => {
-      document.removeEventListener("mouseup", handleSelect);
-      document.removeEventListener("touchend", handleSelect);
-    };
-  }, [open]);
+  const { selectedText, menuPos, clearSelection } = useSelectionDetect(!open);
 
-  const handleMenuClick = () => {
+  const handleClose = useCallback(() => {
+    setOpen(false);
+    setSavedText("");
+    clearSelection();
+  }, [clearSelection]);
+
+  const { cleanupHistory } = useSheetHistory(open, handleClose);
+
+  const handleMenuClick = useCallback(() => {
+    setSavedText(selectedText);
     setOpen(true);
-    setMenuPos(null);
-  };
+    clearSelection();
+  }, [selectedText, clearSelection]);
 
-  const onOpenChange = () => {
-    setOpen(!open);
-    setSelectedText("");
-  };
+  const handleOpenChange = useCallback(
+    (newOpen: boolean) => {
+      if (!newOpen) {
+        cleanupHistory();
+        handleClose();
+      } else {
+        setOpen(true);
+      }
+    },
+    [cleanupHistory, handleClose]
+  );
 
   return {
-    selectedText,
+    selectedText: open ? savedText : selectedText,
     menuPos,
     open,
     handleMenuClick,
-    onOpenChange,
+    onOpenChange: handleOpenChange,
   };
 }

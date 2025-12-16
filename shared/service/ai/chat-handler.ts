@@ -7,6 +7,7 @@ import {
   instructionWord,
 } from "@/shared/service/ai/instructions";
 import { searchWord, updateWordsContent } from "@/shared/service/dictionary";
+import { AppError, ErrorCode } from "@/shared/types/models/error";
 import { KWordType } from "@/shared/types/models/word-type";
 import { ModelMessage, StreamTextResult, ToolSet } from "ai";
 
@@ -55,6 +56,10 @@ export async function handleChatMessages(
     return await aiService.chat(messages, { system, onFinish });
   } catch (error) {
     console.error("Chat handler error:", error);
-    return undefined;
+    if (error instanceof AppError) {
+      throw error;
+    }
+    const err = error instanceof Error ? error : new Error("Chat handler error");
+    throw new AppError(ErrorCode.AI_MODEL_ERROR, { cause: err });
   }
 }

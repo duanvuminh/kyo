@@ -1,5 +1,5 @@
+import { checkWord } from "@/shared/api/check";
 import { PracticeStorage } from "@/shared/service/storage";
-import { ApiResponse } from "@/shared/types/dto/api-responses";
 import { useChat } from "@ai-sdk/react";
 import { useState } from "react";
 
@@ -37,14 +37,15 @@ export function useAssistantMenu({
   );
 
   const add = async (words: string) => {
-    const res = await fetch(`/api/check?words=${words}`, {
-      method: "GET",
-    });
-    const data = (await res.json()) as ApiResponse;
-    if (data.success) {
-      PracticeStorage.addToPracticeList(words);
+    try {
+      const isValid = await checkWord(words);
+      if (isValid) {
+        PracticeStorage.addToPracticeList(words);
+      }
+      return isValid;
+    } catch {
+      return false;
     }
-    return data.success;
   };
 
   return {

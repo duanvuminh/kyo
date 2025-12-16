@@ -26,12 +26,14 @@ export const getListMessageFromDisCord = async ({
       }
     );
     if (!res.ok) {
-      throw new Error(`Discord API error: ${res.status} ${res.statusText}`);
+      throw new AppError(ErrorCode.DISCORD);
     }
     const data = await res.json();
     return data as DiscordMessageDTO[];
   } catch (e) {
-    throw new AppError(ErrorCode.DISCORD, (e as Error).message);
+    if (e instanceof AppError) throw e;
+    const err = e instanceof Error ? e : new Error(String(e));
+    throw new AppError(ErrorCode.DISCORD, { cause: err });
   }
 };
 
@@ -56,10 +58,8 @@ export const getMessageFromDisCord = async ({
     const data = (await res.json()) as DiscordMessageDTO;
     return data;
   } catch (e) {
-    throw new AppError(
-      ErrorCode.DISCORD,
-      e instanceof Error ? e.message : String(e)
-    );
+    const err = e instanceof Error ? e : new Error(String(e));
+    throw new AppError(ErrorCode.DISCORD, { cause: err });
   }
 };
 

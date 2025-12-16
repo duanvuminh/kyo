@@ -1,4 +1,6 @@
 "use client";
+import { generateQuestions as generateQuestionsApi } from "@/shared/api/generate-questions";
+import { AppError, ErrorCode, ErrorMessage } from "@/shared/types/models/error";
 import { Question } from "@/shared/types/models/question";
 import { useCallback, useState } from "react";
 
@@ -18,23 +20,13 @@ export function useGenerateQuestions() {
       setError(null);
 
       try {
-        const response = await fetch("/api/generate-questions", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ grammarPoint, front }),
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to generate questions");
-        }
-
-        const data = await response.json();
-        setGeneratedQuestions((prev) => [...prev, ...data.questions]);
-        return data.questions as Question[];
-      } catch (err) {
-        const message =
-          err instanceof Error ? err.message : "Unknown error occurred";
-        setError(message);
+        const questions = await generateQuestionsApi({ grammarPoint, front });
+        setGeneratedQuestions((prev) => [...prev, ...questions]);
+        return questions;
+      } catch (e) {
+        const code =
+          e instanceof AppError ? e.code : ErrorCode.AI_MODEL_ERROR;
+        setError(ErrorMessage[code]);
         return [];
       } finally {
         setIsLoading(false);

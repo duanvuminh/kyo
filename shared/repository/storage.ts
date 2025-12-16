@@ -9,7 +9,8 @@ export class PracticeStorageRepository {
       const data = localStorage.getItem(this.STORAGE_KEY);
       return data ? JSON.parse(data) : [];
     } catch (e) {
-      throw new AppError(ErrorCode.STORAGE, (e as Error).message);
+      const err = e instanceof Error ? e : new Error(String(e));
+      throw new AppError(ErrorCode.STORAGE, { cause: err });
     }
   }
 
@@ -28,10 +29,7 @@ export class PracticeStorageRepository {
 
       const exists = items.find((item) => item.keyword === keyword);
       if (exists) {
-        throw new AppError(
-          ErrorCode.DUPLICATE_KEYWORD,
-          "Keyword already exists"
-        );
+        throw new AppError(ErrorCode.DUPLICATE_KEYWORD);
       }
 
       items.unshift(newItem);
@@ -41,7 +39,8 @@ export class PracticeStorageRepository {
       if (error instanceof AppError) {
         throw error;
       }
-      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw new AppError(ErrorCode.STORAGE, { cause: err });
     }
   }
   static update(
@@ -53,7 +52,7 @@ export class PracticeStorageRepository {
       const index = items.findIndex((item) => item.id === id);
 
       if (index === -1) {
-        throw new Error("Keyword not found");
+        throw new AppError(ErrorCode.STORAGE);
       }
 
       items[index] = {
@@ -65,7 +64,9 @@ export class PracticeStorageRepository {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
       return items[index];
     } catch (error) {
-      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
+      if (error instanceof AppError) throw error;
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw new AppError(ErrorCode.STORAGE, { cause: err });
     }
   }
 
@@ -81,7 +82,8 @@ export class PracticeStorageRepository {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(filteredItems));
       return true;
     } catch (error) {
-      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw new AppError(ErrorCode.STORAGE, { cause: err });
     }
   }
 
@@ -94,7 +96,8 @@ export class PracticeStorageRepository {
     try {
       localStorage.removeItem(this.STORAGE_KEY);
     } catch (error) {
-      throw new AppError(ErrorCode.STORAGE, (error as Error).message);
+      const err = error instanceof Error ? error : new Error(String(error));
+      throw new AppError(ErrorCode.STORAGE, { cause: err });
     }
   }
 
@@ -124,7 +127,8 @@ export class MemoStorageRepository {
       const data = localStorage.getItem(this.STORAGE_KEY);
       return data;
     } catch (e) {
-      throw new AppError(ErrorCode.STORAGE, (e as Error).message);
+      const err = e instanceof Error ? e : new Error(String(e));
+      throw new AppError(ErrorCode.STORAGE, { cause: err });
     }
   }
 
@@ -132,7 +136,8 @@ export class MemoStorageRepository {
     try {
       localStorage.setItem(this.STORAGE_KEY, content);
     } catch (e) {
-      throw new AppError(ErrorCode.STORAGE, (e as Error).message);
+      const err = e instanceof Error ? e : new Error(String(e));
+      throw new AppError(ErrorCode.STORAGE, { cause: err });
     }
   }
 }

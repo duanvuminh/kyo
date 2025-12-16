@@ -4,6 +4,9 @@ import {
   instructionGenerateQuestions,
   promptGenerateQuestions,
 } from "@/shared/service/ai/instructions";
+import { ApiResponse } from "@/shared/types/dto/api-responses";
+import { AppError, ErrorCode } from "@/shared/types/models/error";
+import { Question } from "@/shared/types/models/question";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
@@ -41,8 +44,8 @@ export async function POST(req: Request) {
       await req.json();
 
     if (!grammarPoint) {
-      return NextResponse.json(
-        { error: "grammarPoint is required" },
+      return NextResponse.json<ApiResponse>(
+        { error: ErrorCode.AI_MODEL_ERROR },
         { status: 400 }
       );
     }
@@ -53,7 +56,7 @@ export async function POST(req: Request) {
       system: instructionGenerateQuestions,
     });
 
-    const questions = result.questions.map((q, index) => ({
+    const questions: Question[] = result.questions.map((q, index) => ({
       id: `gen-${Date.now()}-${index}`,
       content: q.content,
       answers: [q.answer1, q.answer2, q.answer3, q.answer4] as [
@@ -66,11 +69,12 @@ export async function POST(req: Request) {
       memo: [q.memo1, q.memo2, q.memo3, q.memo4],
     }));
 
-    return NextResponse.json({ questions });
+    return NextResponse.json<ApiResponse<Question[]>>({ data: questions });
   } catch (error) {
-    console.error("Generate questions error:", error);
-    return NextResponse.json(
-      { error: "Failed to generate questions" },
+    const errorCode =
+      error instanceof AppError ? error.code : ErrorCode.AI_MODEL_ERROR;
+    return NextResponse.json<ApiResponse>(
+      { error: errorCode },
       { status: 500 }
     );
   }

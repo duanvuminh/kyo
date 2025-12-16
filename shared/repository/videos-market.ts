@@ -32,14 +32,14 @@ export const getVideosMarket = async ({
       body: JSON.stringify(data),
     });
     if (!response.ok) {
-      throw new Error(
-        `videos market API error: ${response.status} ${response.statusText}`
-      );
+      throw new AppError(ErrorCode.VIDEOS_MARKET);
     }
     const jsonData = await response.json();
     if (jsonData.data?.searchTitles == undefined) return [];
     return jsonData.data?.searchTitles as VideoMarketDTO[];
   } catch (e) {
-    throw new AppError(ErrorCode.VIDEOS_MARKET, (e as Error).message);
+    if (e instanceof AppError) throw e;
+    const err = e instanceof Error ? e : new Error(String(e));
+    throw new AppError(ErrorCode.VIDEOS_MARKET, { cause: err });
   }
 };

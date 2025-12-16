@@ -1,18 +1,13 @@
-import { ApiResponse } from "@/shared/types/dto/api-responses";
+import { getFurigana } from "@/shared/api/furigana";
 import { useEffect, useState } from "react";
 
 export function useYomi(text: string) {
   const [yomi, setYomi] = useState<string | undefined>(undefined);
 
   useEffect(() => {
-    fetch("/api/furigana", {
-      method: "POST",
-      body: JSON.stringify({ text }),
-      headers: { "Content-Type": "application/json" },
-    }).then(async (res) => {
-      const result = (await res.json()) as ApiResponse<string>;
-      setYomi(result.data);
-    });
+    getFurigana(text)
+      .then(setYomi)
+      .catch(() => setYomi(undefined));
   }, [text]);
 
   return yomi;
