@@ -828,7 +828,7 @@ export const cards: FlashCardItem[] = [
         ],
         correctAnswer: 2,
         memo: [
-          "いざ/になったら: Không phù hợp cấu trúc (いざ đi với Vる).",
+          "いざ/になったら: Sai cấu trúc. いざ đi với となると/となれば/となったら, không phải になったら.",
           "まさか/となると: 'Không ngờ...', không phù hợp.",
           "いざ/となると: 'Cứ hễ đến lúc/khi cần thiết... thì...'. Luôn nói mạnh miệng nhưng cứ hễ đến lúc thực hành thì lại không làm được. (Đúng)",
           "いざ/にしても: 'Dù là...', không phù hợp.",
@@ -853,19 +853,19 @@ export const cards: FlashCardItem[] = [
       },
       {
         id: "15-3",
-        content: "普段はおとなしいが、___トラブル___、彼は頼りになる",
+        content: "普段はおとなしいが、___、彼は頼りになる",
         answers: [
           "いざという時",
-          "いざ/となっては",
-          "まさか/となったら",
-          "いざ/になったら",
+          "いざとなっては",
+          "まさかとなったら",
+          "いざになったら",
         ],
         correctAnswer: 0,
         memo: [
           "いざという時: 'Vào lúc cần thiết/khẩn cấp'. Là một cụm từ cố định chỉ thời điểm quan trọng. (Đúng)",
-          "いざ/となっては: Có ý nghĩa tương tự, nhưng いざという時 phổ biến hơn.",
-          "まさか/となったら: 'Không ngờ...', không phù hợp.",
-          "いざ/になったら: Không phù hợp cấu trúc.",
+          "いざとなっては: 'Đến lúc...' mang sắc thái tiêu cực, không phù hợp với 頼りになる (đáng tin cậy).",
+          "まさかとなったら: 'Không ngờ...', không phù hợp ngữ cảnh.",
+          "いざになったら: Sai cấu trúc. いざ đi với となると/となれば/となったら.",
         ],
       },
     ],
@@ -977,12 +977,7 @@ export const cards: FlashCardItem[] = [
       {
         id: "17-3",
         content: "電車が遅れて遅刻したのだから、___。",
-        answers: [
-          "しかたがない",
-          "はじまらない",
-          "わけがない",
-          "ものではない",
-        ],
+        answers: ["しかたがない", "はじまらない", "わけがない", "ものではない"],
         correctAnswer: 0,
         memo: [
           "しかたがない: 'Đành chịu/Không có cách nào'. Diễn tả sự chấp nhận điều không mong muốn do hoàn cảnh khách quan (tàu trễ). (Đúng)",
