@@ -22,7 +22,7 @@ export function QuestionSection({
 
   const allQuestions = useMemo(() => {
     const combined = [...(questions ?? []), ...generatedQuestions];
-    return shuffle(combined);
+    return combined;
   }, [questions, generatedQuestions]);
 
   const handleGenerate = () => {
