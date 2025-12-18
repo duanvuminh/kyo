@@ -37,9 +37,7 @@ export async function getShort({ page }: { page: string }): Promise<ShortPage> {
     })
   );
 
-  const shorts = mapDatas(newData, Short.fromDTO).filter(
-    (short) => short.hidden !== true
-  );
+  const shorts = mapDatas(newData, Short.fromDTO);
 
   return {
     shorts,
@@ -62,12 +60,13 @@ export function hasData(pageData: ShortPage | undefined): boolean {
 }
 
 export function displayData(pageData: ShortPage | undefined): Short[] {
-  return pageData?.shorts ?? [];
+  console.log(pageData?.shorts.length);
+  return (pageData?.shorts ?? []).filter((short) => !short.hidden);
 }
 
 export function showNextPage(pageData: ShortPage | undefined): boolean {
   const data = displayData(pageData);
-  return data.length == pageData?.limit && data.length > 0;
+  return pageData?.shorts.length == pageData?.limit && data.length > 0;
 }
 
 export function getNextPageOrDefault(pageData: ShortPage | undefined): string {
