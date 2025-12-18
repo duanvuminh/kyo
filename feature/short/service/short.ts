@@ -1,35 +1,32 @@
 import { Short, ShortPage, ShortType } from "@/feature/short/model/short";
+import {
+  parseRelatedItems,
+  parseReplyContent,
+} from "@/feature/short/service/short-parser";
 import { mapDatas } from "@/shared/lib/data-convert";
 import {
   getListMessageFromSlack,
   getListReplyFromSlack,
 } from "@/shared/repository/slack";
 import { SlackMessageDTO } from "@/shared/types/dto/slack-message";
-import matter from "gray-matter";
 
 const limit = 5;
 const defaultPage = "newest";
 const channelId = "C071E9YUDHU";
 
-export const getShort = async ({
-  page,
-}: {
-  page: string;
-}): Promise<ShortPage> => {
+export async function getShort({ page }: { page: string }): Promise<ShortPage> {
   const data = await getListMessageFromSlack({
     channelId,
     cursor: page == defaultPage ? undefined : page,
     limit,
   });
+
   const newData = await Promise.all(
     data.messages.map(async (item) => {
       if (item.thread_ts) {
-        const threads = await _getThread({
-          channelId,
-          ts: item.thread_ts,
-        });
-        const content = await _getReplyContent({ threads });
-        const relateds = await _getRelated({ threads });
+        const threads = await getThreadMessages(channelId, item.thread_ts);
+        const content = parseReplyContent(threads);
+        const relateds = parseRelatedItems(threads);
         return {
           ...item,
           text: content,
@@ -39,115 +36,27 @@ export const getShort = async ({
       return item;
     })
   );
+
   const shorts = mapDatas(newData, Short.fromDTO).filter(
     (short) => short.hidden !== true
   );
+
   return {
     shorts,
     nextPage: data.response_metadata?.next_cursor,
     limit,
   };
-};
+}
 
-const _getThread = async ({
-  channelId,
-  ts,
-}: {
-  channelId: string;
-  ts: string;
-}): Promise<SlackMessageDTO[]> => {
+async function getThreadMessages(
+  channelId: string,
+  ts: string
+): Promise<SlackMessageDTO[]> {
   const replies = await getListReplyFromSlack({ channelId, ts });
   return replies.messages;
-};
+}
 
-const _parseMultipleMetadata = (
-  text: string,
-  baseItem: SlackMessageDTO
-): SlackMessageDTO[] => {
-  const result: SlackMessageDTO[] = [];
-  const regex = /---\n([\s\S]*?)\n---/g;
-  let match;
-  let index = 0;
-
-  while ((match = regex.exec(text)) !== null) {
-    const metadataStart = match.index;
-    const metadataEnd = regex.lastIndex;
-    const nextMatch = regex.exec(text);
-    regex.lastIndex = metadataEnd;
-
-    const contentEnd = nextMatch ? nextMatch.index : text.length;
-    const fullBlock = text.slice(metadataStart, contentEnd).trim();
-
-    if (fullBlock) {
-      const parsed = matter(fullBlock);
-      if (parsed.data?.title != null) {
-        result.push({
-          ...baseItem,
-          text: fullBlock,
-          ts: `${baseItem.ts}_${index}`,
-        });
-        index++;
-      }
-    }
-  }
-
-  return result;
-};
-
-const _getRelated = async ({
-  threads,
-}: {
-  threads: SlackMessageDTO[];
-}): Promise<SlackMessageDTO[]> => {
-  const result: SlackMessageDTO[] = [];
-  let current: SlackMessageDTO | null = null;
-
-  for (const item of threads) {
-    const text = item.text ?? "";
-
-    const multipleItems = _parseMultipleMetadata(text, item);
-    if (multipleItems.length > 1) {
-      if (current) {
-        result.push(current);
-        current = null;
-      }
-      result.push(...multipleItems);
-      continue;
-    }
-
-    const parsed = matter(text);
-    if (parsed.data?.title != null) {
-      if (current) {
-        result.push(current);
-      }
-      current = { ...item };
-    } else if (current) {
-      current.text = (current.text ?? "") + "\n\n" + text;
-    }
-  }
-  if (current) {
-    result.push(current);
-  }
-  return result;
-};
-
-const _getReplyContent = async ({
-  threads,
-}: {
-  threads: SlackMessageDTO[];
-}): Promise<string> => {
-  const result: string[] = [];
-  for (let i = 0; i < threads.length; i++) {
-    const item = threads[i];
-    const parsed = matter(item.text ?? "");
-    if (parsed.data?.title != null && i != 0) {
-      break;
-    }
-    result.push(item.text ?? "");
-  }
-  return result.join("\n\n");
-};
-
+// Page utilities
 export function hasData(pageData: ShortPage | undefined): boolean {
   return !!pageData && pageData.shorts.length > 0;
 }
