@@ -5,7 +5,9 @@ export function useQuestionDetail(onNextQuestion?: () => void) {
   const [showResult, setShowResult] = useState(false);
 
   const handleAnswerClick = (index: number) => {
-    if (showResult) return;
+    if (showResult) {
+      return;
+    }
     setSelectedAnswer(index);
   };
 

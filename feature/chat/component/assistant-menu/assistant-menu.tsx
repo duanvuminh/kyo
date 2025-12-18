@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/core/utils/utils";
+import { AddButton } from "@/feature/chat/component/assistant-menu/add-button";
 import {
   AppendFn,
   useAssistantMenu,
@@ -9,21 +10,9 @@ import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
 import { Button } from "@/shared/component/ui/button";
 import { Write } from "@/shared/component/write";
 import { Yomi } from "@/shared/component/yomi/yomi";
-import { Plus } from "lucide-react";
-import { toast } from "sonner";
 
-export const AssistantMenu = ({
-  command,
-  append,
-}: {
-  command: string;
-  append: AppendFn;
-}) => {
-  const { option, menuOptions, handleClick, AssistantMenuType, add } =
-    useAssistantMenu({
-      command,
-      append,
-    });
+export const AssistantMenu = ({ command, append }: { command: string; append: AppendFn }) => {
+  const { option, menuOptions, handleClick, AssistantMenuType, add } = useAssistantMenu({ command, append });
 
   return (
     <div className="p-2">
@@ -40,20 +29,7 @@ export const AssistantMenu = ({
           </Button>
         ))}
         <AudioPlayer text={command} />
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => {
-            add(command).then((value) => {
-              if (value) {
-                toast("Menu > practice để luyện tập");
-              }
-            });
-          }}
-          className="text-muted"
-        >
-          <Plus />
-        </Button>
+        <AddButton command={command} add={add} />
       </div>
       <article className="flex justify-end">
         {option === AssistantMenuType.WRITE && <Write text={command} />}

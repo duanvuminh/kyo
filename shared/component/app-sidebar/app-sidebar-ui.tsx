@@ -1,10 +1,6 @@
-// AppSidebar.tsx (server component)
-
-import { ChevronUp, User2 } from "lucide-react";
 import Link from "next/link";
-
+import { SidebarFooterMenu } from "@/shared/component/app-sidebar/sidebar-footer-menu";
 import { PracticeLink } from "@/shared/component/practice-link";
-import { Button } from "@/shared/component/ui/button";
 import {
   Sidebar,
   SidebarContent,
@@ -16,11 +12,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/shared/component/ui/sidebar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
 
 const items = [
   { title: "Từ vựng", url: "/words" },
@@ -35,25 +26,19 @@ const items = [
   { title: "Memo", url: "/memo" },
 ];
 
-export function AppSidebarUI({
-  email,
-  onLogin,
-  onLogout,
-  isLoading,
-}: {
+interface AppSidebarUIProps {
   email: string | null;
   onLogin: () => void;
   onLogout: () => void;
   isLoading: boolean;
-}) {
+}
+
+export function AppSidebarUI({ email, onLogin, onLogout, isLoading }: AppSidebarUIProps) {
   return (
     <Sidebar>
       <SidebarHeader>
-        <Link href="/" className="mr-5">
-          Kyo
-        </Link>
+        <Link href="/" className="mr-5">Kyo</Link>
       </SidebarHeader>
-
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
@@ -61,13 +46,10 @@ export function AppSidebarUI({
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <Link href={item.url}>
-                      <span>{item.title}</span>
-                    </Link>
+                    <Link href={item.url}><span>{item.title}</span></Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
-
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <PracticeLink />
@@ -77,37 +59,8 @@ export function AppSidebarUI({
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
       <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            {isLoading ? (
-              <SidebarMenuButton>Đang tải…</SidebarMenuButton>
-            ) : email ? (
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <SidebarMenuButton>
-                    <User2 /> {email}
-                    <ChevronUp className="ml-auto" />
-                  </SidebarMenuButton>
-                </DropdownMenuTrigger>
-
-                <DropdownMenuContent
-                  side="top"
-                  className="w-[--radix-popper-anchor-width]"
-                >
-                  <Button onClick={onLogout} variant="link" size="sm">
-                    Thoát
-                  </Button>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            ) : (
-              <Button onClick={onLogin} variant="link" size="sm">
-                Đăng nhập
-              </Button>
-            )}
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <SidebarFooterMenu email={email} onLogin={onLogin} onLogout={onLogout} isLoading={isLoading} />
       </SidebarFooter>
     </Sidebar>
   );

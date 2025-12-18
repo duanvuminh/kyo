@@ -25,7 +25,9 @@ export function useEditBox() {
   };
 
   const handleSubmit = async () => {
-    if (!value) return;
+    if (!value) {
+      return;
+    }
     MemoStorageRepository.saveMemo(value);
     toast("Memo saved!");
   };

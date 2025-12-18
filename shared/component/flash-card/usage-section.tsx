@@ -7,7 +7,9 @@ export function UsageSection({
   more?: string[];
   front: string;
 }) {
-  if (!more || more.length === 0) return null;
+  if (!more || more.length === 0) {
+    return null;
+  }
   return (
     <details className="mt-3">
       <summary className="cursor-pointer text-sm text-gray-600">

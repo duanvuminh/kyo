@@ -8,7 +8,9 @@ export function useSyncEditMessageFromChat(messages: UIMessage[]) {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (messages.length < 2) return;
+    if (messages.length < 2) {
+      return;
+    }
 
     const words = messages
       .at(-2)
@@ -16,7 +18,9 @@ export function useSyncEditMessageFromChat(messages: UIMessage[]) {
     const content = messages
       .at(-1)
       ?.parts.find((item) => item.type === "text")?.text;
-    if (!words) return;
+    if (!words) {
+      return;
+    }
     dispatch(
       updateEditMessage({
         words,

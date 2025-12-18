@@ -8,7 +8,9 @@ export function useSubtitleDisplay(
 
   useEffect(() => {
     const video = videoRef?.current;
-    if (!video) return;
+    if (!video) {
+      return;
+    }
 
     const onTimeUpdate = () => {
       setCurrentTime(video.currentTime);

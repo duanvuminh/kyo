@@ -14,8 +14,12 @@ export const getListMessageFromDisCord = async ({
 }): Promise<DiscordMessageDTO[]> => {
   try {
     const params = new URLSearchParams();
-    if (before) params.append("before", before);
-    if (limit) params.append("limit", `${limit}`);
+    if (before) {
+      params.append("before", before);
+    }
+    if (limit) {
+      params.append("limit", `${limit}`);
+    }
     const res = await fetch(
       `${discordBaseUrl}/channels/${channelId}/messages?${params.toString()}`,
       {
@@ -31,7 +35,9 @@ export const getListMessageFromDisCord = async ({
     const data = await res.json();
     return data as DiscordMessageDTO[];
   } catch (e) {
-    if (e instanceof AppError) throw e;
+    if (e instanceof AppError) {
+      throw e;
+    }
     const err = e instanceof Error ? e : new Error(String(e));
     throw new AppError(ErrorCode.DISCORD, { cause: err });
   }
@@ -103,8 +109,12 @@ export const getThreadMessages = async ({
 }) => {
   try {
     const params = new URLSearchParams();
-    if (limit) params.append("limit", `${limit}`);
-    if (before) params.append("before", before);
+    if (limit) {
+      params.append("limit", `${limit}`);
+    }
+    if (before) {
+      params.append("before", before);
+    }
 
     const res = await fetch(
       `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,

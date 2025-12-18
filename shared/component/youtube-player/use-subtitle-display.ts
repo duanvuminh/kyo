@@ -11,13 +11,17 @@ export function useYouTubeSubtitleDisplay(
 
   const handleSubtitleClick = (sub: Sub) => {
     const player = getPlayer();
-    if (!player) return;
+    if (!player) {
+      return;
+    }
 
     player.seekTo(sub.start, true);
     player.playVideo();
 
     if (autoPause) {
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
       timeoutRef.current = setTimeout(() => {
         player.pauseVideo();
       }, (sub.end - sub.start) * 1000);
@@ -25,12 +29,16 @@ export function useYouTubeSubtitleDisplay(
   };
 
   useEffect(() => {
-    if (!isReady) return;
+    if (!isReady) {
+      return;
+    }
 
     const interval = setInterval(() => {
       const player = getPlayer();
       const time = player?.getCurrentTime?.();
-      if (typeof time === "number") setCurrentTime(time);
+      if (typeof time === "number") {
+        setCurrentTime(time);
+      }
     }, 300);
 
     return () => clearInterval(interval);

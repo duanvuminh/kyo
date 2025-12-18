@@ -54,7 +54,9 @@ export function stripUndefined<T extends Record<string, unknown>>(
 }
 
 export function hasYouTubeLink(str?: string): boolean {
-  if (!str) return false;
+  if (!str) {
+    return false;
+  }
   return /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\//.test(str);
 }
 

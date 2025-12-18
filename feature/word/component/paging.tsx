@@ -1,5 +1,5 @@
 "use client";
-import { KPaging } from "@/shared/component/paging";
+import { KPaging } from "@/shared/component/paging/paging";
 import { usePathname, useRouter } from "next/navigation";
 
 export const WordPaging = ({ totalPages }: { totalPages: number }) => {

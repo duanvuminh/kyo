@@ -18,21 +18,11 @@ interface PracticeCardProps {
   practice: Practice[];
 }
 
-export const KPracticeCard = ({
-  word,
-  flashCard,
-  practice,
-}: PracticeCardProps) => {
-  const {
-    mode,
-    question,
-    handleModeChange,
-    handleNextQuestion,
-    nextWord,
-    removeWordsToPractice,
-  } = usePracticeCard(word, practice);
+export const KPracticeCard = ({ word, flashCard, practice }: PracticeCardProps) => {
+  const { mode, question, handleModeChange, handleNextQuestion, nextWord, removeWordsToPractice } =
+    usePracticeCard(word, practice);
 
-  const remove = () => {
+  const handleRemove = () => {
     removeWordsToPractice(word);
     toast("Đã xóa khỏi danh sách luyện tập");
   };
@@ -47,7 +37,7 @@ export const KPracticeCard = ({
           mode={mode}
           handleModeChange={handleModeChange}
           word={word}
-          onRemove={remove}
+          onRemove={handleRemove}
         />
         <NextWordButton nextWord={nextWord} mode={mode} />
       </CardAction>

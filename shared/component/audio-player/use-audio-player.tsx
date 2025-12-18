@@ -1,5 +1,18 @@
 import { useRef, useState } from "react";
 
+async function fetchAudioUrl(text: string): Promise<string | null> {
+  const response = await fetch("/api/speak", {
+    method: "POST",
+    body: JSON.stringify({ text }),
+    headers: { "Content-Type": "application/json" },
+  });
+  if (!response.ok) {
+    return null;
+  }
+  const blob = await response.blob();
+  return URL.createObjectURL(blob);
+}
+
 export function useAudioPlayer(text: string) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playUrl, setPlayUrl] = useState("");
@@ -9,24 +22,13 @@ export function useAudioPlayer(text: string) {
     if (audioRef.current?.src) {
       return audioRef.current.play();
     }
-
     try {
       setIsLoading(true);
-      const response = await fetch("/api/speak", {
-        method: "POST",
-        body: JSON.stringify({ text }),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (!response.ok) return;
-
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      setPlayUrl(url);
-
-      setTimeout(() => {
-        audioRef.current?.play();
-      }, 100);
+      const url = await fetchAudioUrl(text);
+      if (url) {
+        setPlayUrl(url);
+        setTimeout(() => audioRef.current?.play(), 100);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -38,11 +40,5 @@ export function useAudioPlayer(text: string) {
     }
   };
 
-  return {
-    audioRef,
-    playUrl,
-    isLoading,
-    handlePlayAudio,
-    cleanup,
-  };
+  return { audioRef, playUrl, isLoading, handlePlayAudio, cleanup };
 }

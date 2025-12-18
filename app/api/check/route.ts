@@ -8,10 +8,10 @@ export async function GET(req: NextRequest) {
   try {
     const words = req.nextUrl.searchParams.get("words");
     if (!words)
-      return NextResponse.json<ApiResponse>(
+      {return NextResponse.json<ApiResponse>(
         { error: ErrorCode.UNKNOWN },
         { status: 400 }
-      );
+      );}
     const result = await searchWord(words);
     const isValid = result.words === words && result.type !== KWordType.OTHER;
     return NextResponse.json<ApiResponse<boolean>>({ data: isValid });

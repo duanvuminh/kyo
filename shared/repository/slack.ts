@@ -18,8 +18,12 @@ export const getListMessageFromSlack = async ({
   const params = new URLSearchParams({
     channel: channelId,
   });
-  if (cursor) params.append("cursor", cursor);
-  if (limit) params.append("limit", `${limit}`);
+  if (cursor) {
+    params.append("cursor", cursor);
+  }
+  if (limit) {
+    params.append("limit", `${limit}`);
+  }
 
   try {
     const res = await fetch(
@@ -34,7 +38,9 @@ export const getListMessageFromSlack = async ({
       }
     );
 
-    if (!res.ok) return emptyResponse;
+    if (!res.ok) {
+      return emptyResponse;
+    }
 
     const data = await res.json();
     return data.ok ? (data as SlackHistoryResponseDTO) : emptyResponse;
@@ -68,7 +74,9 @@ export const getListReplyFromSlack = async ({
       }
     );
 
-    if (!res.ok) return emptyResponse;
+    if (!res.ok) {
+      return emptyResponse;
+    }
 
     const data = await res.json();
     return data.ok ? (data as SlackHistoryResponseDTO) : emptyResponse;

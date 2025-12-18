@@ -13,7 +13,9 @@ export function useSelectionDetect(enabled: boolean) {
   const [menuPos, setMenuPos] = useState<Position | null>(null);
 
   useEffect(() => {
-    if (!enabled) return;
+    if (!enabled) {
+      return;
+    }
 
     const handleSelect = () => {
       const selection = window.getSelection();

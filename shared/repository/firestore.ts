@@ -9,7 +9,9 @@ export const getWordById = async (
   const docRef = db.collection("dictionary").doc(word);
   const snapshot = await docRef.get();
 
-  if (!snapshot.exists) return undefined;
+  if (!snapshot.exists) {
+    return undefined;
+  }
   return WordDTO.fromFirestore(snapshot.data()!);
 };
 
@@ -36,7 +38,9 @@ export const getAllGrammar = async (): Promise<WordDTO[]> => {
   "use cache";
   const query = db.collection("dictionary").where("type", "==", "grammar");
   const snapshot = await query.get();
-  if (snapshot.empty) return [];
+  if (snapshot.empty) {
+    return [];
+  }
   const result = mapDocs(snapshot, WordDTO.fromFirestore);
   return result;
 };

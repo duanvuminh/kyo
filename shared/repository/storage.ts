@@ -64,7 +64,9 @@ export class PracticeStorageRepository {
       localStorage.setItem(this.STORAGE_KEY, JSON.stringify(items));
       return items[index];
     } catch (error) {
-      if (error instanceof AppError) throw error;
+      if (error instanceof AppError) {
+        throw error;
+      }
       const err = error instanceof Error ? error : new Error(String(error));
       throw new AppError(ErrorCode.STORAGE, { cause: err });
     }

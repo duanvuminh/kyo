@@ -1,4 +1,5 @@
 "use client";
+
 import { FlashCardBack } from "@/shared/component/flash-card/flash-card-back";
 import { FlashCardControls } from "@/shared/component/flash-card/flash-card-controls";
 import { FlashCardFront } from "@/shared/component/flash-card/flash-card-front";
@@ -15,20 +16,12 @@ export interface FlashCardItem {
 }
 
 export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
-  const {
-    currentCards,
-    currentCard,
-    index,
-    page,
-    totalPages,
-    showBack,
-    goToPage,
-    nextCard,
-    prevCard,
-    toggleShowBack,
-  } = useFlashCard(cards);
+  const { currentCards, currentCard, index, page, totalPages, showBack, goToPage, nextCard, prevCard, toggleShowBack } =
+    useFlashCard(cards);
 
-  if (cards.length === 0) return <div>Không có flash card nào.</div>;
+  if (cards.length === 0) {
+    return <div>Không có flash card nào.</div>;
+  }
 
   return (
     <div className="flex flex-col items-center gap-4 max-w-sm mx-auto mt-8">
@@ -36,12 +29,7 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
         <CardContent>
           {showBack ? (
             <div onClick={(e) => e.stopPropagation()}>
-              <FlashCardBack
-                back={currentCard.back}
-                more={currentCard.more}
-                questions={currentCard.questions}
-                front={currentCard.front}
-              />
+              <FlashCardBack back={currentCard.back} more={currentCard.more} questions={currentCard.questions} front={currentCard.front} />
             </div>
           ) : (
             <FlashCardFront front={currentCard.front} />
@@ -49,14 +37,8 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
         </CardContent>
       </Card>
       <FlashCardControls prevCard={prevCard} nextCard={nextCard} />
-      <FlashCardPagination
-        totalPages={totalPages}
-        page={page}
-        goToPage={goToPage}
-      />
-      <div className="text-sm text-gray-500">
-        Thẻ {index + 1}/{currentCards.length}
-      </div>
+      <FlashCardPagination totalPages={totalPages} page={page} goToPage={goToPage} />
+      <div className="text-sm text-gray-500">Thẻ {index + 1}/{currentCards.length}</div>
       <div className="text-xs text-gray-400">Nhấn vào thẻ để lật mặt sau</div>
     </div>
   );

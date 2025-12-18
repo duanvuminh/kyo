@@ -1,9 +1,8 @@
 "use client";
-import type { AppStore } from "@/shared/stores/store";
-import { makeStore } from "@/shared/stores/store";
+
+import { makeStore, type AppStore } from "@/shared/stores/store";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import type { ReactNode } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import { Provider } from "react-redux";
 
 interface Props {

@@ -39,42 +39,44 @@ export function parseMultipleMetadata(
   return result;
 }
 
+function hasTitle(text: string): boolean {
+  return matter(text).data?.title != null;
+}
+
+function pushIfExists(result: SlackMessageDTO[], item: SlackMessageDTO | null) {
+  if (item) {
+    result.push(item);
+  }
+}
+
 /**
  * Parse threads thành danh sách related items
  * Gom các message không có title vào message trước đó
  */
-export function parseRelatedItems(
-  threads: SlackMessageDTO[]
-): SlackMessageDTO[] {
+export function parseRelatedItems(threads: SlackMessageDTO[]): SlackMessageDTO[] {
   const result: SlackMessageDTO[] = [];
   let current: SlackMessageDTO | null = null;
 
   for (const item of threads) {
     const text = item.text ?? "";
-
     const multipleItems = parseMultipleMetadata(text, item);
+
     if (multipleItems.length > 1) {
-      if (current) {
-        result.push(current);
-        current = null;
-      }
+      pushIfExists(result, current);
+      current = null;
       result.push(...multipleItems);
       continue;
     }
 
-    const parsed = matter(text);
-    if (parsed.data?.title != null) {
-      if (current) {
-        result.push(current);
-      }
+    if (hasTitle(text)) {
+      pushIfExists(result, current);
       current = { ...item };
     } else if (current) {
       current.text = (current.text ?? "") + "\n\n" + text;
     }
   }
-  if (current) {
-    result.push(current);
-  }
+
+  pushIfExists(result, current);
   return result;
 }
 

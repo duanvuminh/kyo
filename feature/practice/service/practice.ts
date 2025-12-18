@@ -20,18 +20,24 @@ export const getFlashCard = async (word: string): Promise<Practice | null> => {
         channelId,
         messageId: wordFromDictionary.practiceId,
       });
-      if (!discordMessage) return null;
+      if (!discordMessage) {
+        return null;
+      }
       return Practice.fromDTO(discordMessage);
     } else {
       const result = await aiService().summaryWord(
         KWord.fromDTO(wordFromDictionary)
       );
-      if (!result) return null;
+      if (!result) {
+        return null;
+      }
       const discordMessage = await sendDiscordMessage({
         channelId,
         message: result,
       });
-      if (!discordMessage) return null;
+      if (!discordMessage) {
+        return null;
+      }
       updateDocument(word, { practiceId: discordMessage.id });
       return Practice.fromDTO(discordMessage);
     }

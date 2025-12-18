@@ -9,7 +9,9 @@ interface NextWordButtonProps {
 }
 
 export const NextWordButton = ({ nextWord, mode }: NextWordButtonProps) => {
-  if (!nextWord) return <></>;
+  if (!nextWord) {
+    return <></>;
+  }
   return (
     <Button
       asChild

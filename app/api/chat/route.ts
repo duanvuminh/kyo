@@ -1,6 +1,7 @@
 import { protectApi } from "@/core/utils/api-protection";
 import { handleChatMessages } from "@/shared/service/ai/chat-handler";
 import { aiService } from "@/shared/service/ai/factory";
+import { createTextStreamResponse } from "@/core/utils/stream-response";
 import { ApiResponse } from "@/shared/types/dto/api-responses";
 import { AppError, ErrorCode } from "@/shared/types/models/error";
 import { convertToModelMessages, UIMessage } from "ai";
@@ -29,27 +30,7 @@ export async function POST(req: Request) {
     );
 
     if (typeof result === "string") {
-      const stringify = JSON.stringify(result);
-      const stream = new ReadableStream({
-        start(controller) {
-          controller.enqueue(`data: {"type":"start"}\n\n`);
-          controller.enqueue(`data: {"type":"start-step"}\n\n`);
-          controller.enqueue(`data: {"type":"text-start","id":"0"}\n\n`);
-          controller.enqueue(
-            `data: {"type":"text-delta","id":"0","delta":${stringify}}\n\n`
-          );
-          controller.enqueue(`data: {"type":"text-end","id":"0"}\n\n`);
-          controller.enqueue(`data: {"type":"finish-step"}\n\n`);
-          controller.enqueue(`data: {"type":"finish"}\n\n`);
-          controller.enqueue(`data: [DONE]\n\n`);
-          controller.close();
-        },
-      });
-      return new NextResponse(stream, {
-        headers: {
-          "Content-Type": "text/plain; charset=utf-8",
-        },
-      });
+      return createTextStreamResponse(result);
     }
 
     return result?.toUIMessageStreamResponse();

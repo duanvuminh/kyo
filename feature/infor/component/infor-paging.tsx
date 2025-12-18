@@ -1,4 +1,4 @@
-import { KBasePaging } from "@/shared/component/paging";
+import { KBasePaging } from "@/shared/component/paging/paging";
 import { usePagination } from "react-instantsearch";
 
 export function InforPagination() {
