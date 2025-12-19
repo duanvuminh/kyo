@@ -135,6 +135,59 @@ export const getThreadMessages = async ({
   }
 };
 
+export const createThreadFromMessage = async ({
+  channelId,
+  messageId,
+  name,
+}: {
+  channelId: string;
+  messageId: string;
+  name: string;
+}): Promise<{ id: string } | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}/threads`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      }
+    );
+
+    const data = await res.json();
+    return data as { id: string };
+  } catch {
+    return null;
+  }
+};
+
+export const sendMessageToThread = async ({
+  threadId,
+  message,
+}: {
+  threadId: string;
+  message: string;
+}): Promise<DiscordMessageDTO | null> => {
+  try {
+    const res = await fetch(`${discordBaseUrl}/channels/${threadId}/messages`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: message }),
+    });
+
+    const data = await res.json();
+    return data as DiscordMessageDTO;
+  } catch {
+    return null;
+  }
+};
+
 export const updateDiscordMessage = async ({
   channelId,
   messageId,

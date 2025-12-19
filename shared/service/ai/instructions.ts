@@ -17,10 +17,10 @@ $1(cách phát âm)
 Nếu là câu hỏi thì hãy trả lời nó.
 `;
 
-export const instructionPracticeGrammar = `Giải thích ngắn gọn cách phát âm, ngữ pháp $1 trong 2 dòng`;
-export const instructionPracticeWord = `Giải thích ngắn gọn cách phát âm, ý nghĩa $1 trong 2 dòng`;
+export const instructionPracticeGrammar = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ngữ pháp $1 trong 2 dòng`;
+export const instructionPracticeWord = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ý nghĩa $1 trong 2 dòng`;
 
-export const instructionGenerateQuestions = `Bạn là giáo viên tiếng Nhật chuyên tạo câu hỏi trắc nghiệm N1.
+export const instructionGenerateGrammarQuestions = `Bạn là giáo viên tiếng Nhật chuyên tạo câu hỏi trắc nghiệm N1.
 
 ## Yêu cầu:
 1. Tạo đúng 3 câu hỏi trắc nghiệm cho cấu trúc ngữ pháp được cung cấp
@@ -42,10 +42,44 @@ Nếu cấu trúc là "てもしかたがない", các đáp án nên đa dạng
 ["てもしかたがない", "てもはじまらない", "わけがない", "ものではない"]
 KHÔNG nên: ["しかたがない", "しょうがない", "どうしようもない", "やむをえない"] (tất cả cùng nghĩa "không có cách nào")`;
 
-export const promptGenerateQuestions = (front: string, grammarPoint: string) =>
+export const instructionGenerateVocabQuestions = `Bạn là giáo viên tiếng Nhật chuyên tạo câu hỏi trắc nghiệm từ vựng N1.
+
+## Yêu cầu:
+1. Tạo đúng 3 câu hỏi trắc nghiệm ĐA DẠNG cho từ vựng được cung cấp
+2. Mỗi câu có 4 đáp án, chỉ 1 đáp án đúng
+3. **QUAN TRỌNG**: 3 câu hỏi phải thuộc 3 KIỂU KHÁC NHAU từ danh sách sau:
+   - Kiểu 1: Điền từ vào chỗ trống trong câu (test cách dùng)
+   - Kiểu 2: Chọn từ đồng nghĩa/gần nghĩa (「___」の言葉に意味が最も近いものを選びなさい)
+   - Kiểu 3: Chọn nghĩa đúng của từ (「___」の意味として最も適当なものを選びなさい)
+4. Các đáp án sai phải hợp lý, dễ nhầm lẫn nhưng sai rõ ràng
+5. Memo giải thích ngắn gọn tại sao đáp án đúng là đúng
+
+## Format câu hỏi:
+- content: Câu hỏi tiếng Nhật
+- answers: Array 4 đáp án
+- correctAnswer: Index của đáp án đúng (0-3)
+- memo: Array giải thích cho từng đáp án
+
+## Ví dụ cho từ "憂鬱" (ゆううつ):
+Câu 1 (điền từ): 試験に落ちて、___な気分になった。
+Câu 2 (đồng nghĩa): 「憂鬱」の言葉に意味が最も近いものはどれですか。
+Câu 3 (nghĩa): 「憂鬱」の意味として最も適当なものはどれですか。`;
+
+export const promptGenerateGrammarQuestions = (
+  front: string,
+  grammarPoint: string
+) =>
   `Tạo 3 câu hỏi trắc nghiệm N1 cho cấu trúc ngữ pháp: "${front}"
 
 Thông tin bổ sung về cấu trúc:
 ${grammarPoint}
 
 Hãy tạo câu hỏi đa dạng, thực tế và đảm bảo 4 đáp án là 4 cấu trúc khác nhau hoàn toàn.`;
+
+export const promptGenerateVocabQuestions = (word: string, wordInfo: string) =>
+  `Tạo 3 câu hỏi trắc nghiệm N1 cho từ vựng: "${word}"
+
+Thông tin về từ:
+${wordInfo}
+
+Hãy tạo 3 câu hỏi thuộc 3 kiểu khác nhau (điền từ, đồng nghĩa, nghĩa) để test toàn diện hiểu biết về từ này.`;

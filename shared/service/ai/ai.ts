@@ -1,4 +1,3 @@
-import { askAi } from "@/shared/repository/ai";
 import {
   instructionPracticeGrammar,
   instructionPracticeWord,
@@ -8,8 +7,10 @@ import { KWord } from "@/shared/types/models/word";
 import { KWordType } from "@/shared/types/models/word-type";
 import {
   generateObject as aiGenerateObject,
+  generateText as aiGenerateText,
   ModelMessage,
   Schema,
+  streamText,
   StreamTextResult,
   ToolSet,
 } from "ai";
@@ -26,18 +27,17 @@ export class AIService {
     return this.config.maxOutputTokens;
   }
 
-  async chat(
+  chat(
     messages: ModelMessage[],
     options?: {
       system?: string;
       onFinish?: (result: { text: string }) => void;
     }
-  ): Promise<StreamTextResult<ToolSet, never> | undefined> {
-    return askAi({
+  ): StreamTextResult<ToolSet, never> {
+    return streamText({
       model: this.model,
       messages,
       system: options?.system,
-      maxOutputTokens: this.maxOutputTokens,
       onFinish: options?.onFinish,
     });
   }
@@ -66,13 +66,12 @@ export class AIService {
         ? instructionPracticeGrammar.replace("$1", word.words)
         : instructionPracticeWord.replace("$1", word.words);
 
-    const result = askAi({
+    const result = await aiGenerateText({
       model: this.model,
       prompt: word.words,
       system,
-      maxOutputTokens: this.maxOutputTokens,
     });
 
-    return result?.text;
+    return result.text;
   }
 }

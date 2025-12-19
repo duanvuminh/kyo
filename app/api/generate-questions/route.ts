@@ -2,8 +2,8 @@ import { protectApi } from "@/core/utils/api-protection";
 import { mapToQuestions, questionSchema } from "@/shared/lib/question-mapper";
 import { aiService } from "@/shared/service/ai/factory";
 import {
-  instructionGenerateQuestions,
-  promptGenerateQuestions,
+  instructionGenerateGrammarQuestions,
+  promptGenerateGrammarQuestions,
 } from "@/shared/service/ai/instructions";
 import { ApiResponse } from "@/shared/types/dto/api-responses";
 import { AppError, ErrorCode } from "@/shared/types/models/error";
@@ -27,8 +27,8 @@ export async function POST(req: Request) {
 
     const result = await aiService().generateObject({
       schema: questionSchema,
-      prompt: promptGenerateQuestions(front, grammarPoint),
-      system: instructionGenerateQuestions,
+      prompt: promptGenerateGrammarQuestions(front, grammarPoint),
+      system: instructionGenerateGrammarQuestions,
     });
 
     const questions: Question[] = mapToQuestions(result.questions);
