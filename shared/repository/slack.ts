@@ -1,3 +1,4 @@
+import { fetchCacheConfig } from "@/shared/config/cache";
 import { SlackHistoryResponseDTO } from "@/shared/types/dto/slack-message";
 
 const emptyResponse: SlackHistoryResponseDTO = {
@@ -32,9 +33,7 @@ export const getListMessageFromSlack = async ({
         headers: {
           Authorization: `Bearer ${process.env.SLACK_API_KEY}`,
         },
-        ...(process.env.NODE_ENV !== "development" && {
-          next: { revalidate: 604800 },
-        }),
+        ...fetchCacheConfig,
       }
     );
 
@@ -68,9 +67,7 @@ export const getListReplyFromSlack = async ({
         headers: {
           Authorization: `Bearer ${process.env.SLACK_API_KEY}`,
         },
-        ...(process.env.NODE_ENV !== "development" && {
-          next: { revalidate: 604800 },
-        }),
+        ...fetchCacheConfig,
       }
     );
 

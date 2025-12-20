@@ -1,3 +1,4 @@
+import { fetchCacheConfig } from "@/shared/config/cache";
 import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
 import { AppError, ErrorCode } from "@/shared/types/models/error";
 
@@ -27,6 +28,7 @@ export const getListMessageFromDisCord = async ({
         headers: {
           Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
         },
+        ...fetchCacheConfig,
       }
     );
     if (!res.ok) {
@@ -58,6 +60,7 @@ export const getMessageFromDisCord = async ({
         headers: {
           Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
         },
+        ...fetchCacheConfig,
       }
     );
 
@@ -123,6 +126,7 @@ export const getThreadMessages = async ({
         headers: {
           Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
         },
+        ...fetchCacheConfig,
       }
     );
     const data = await res.json();
