@@ -13,6 +13,7 @@ interface EditBoxUIProps {
   defaultTab?: string;
   handleChange: (v: ChangeEvent<HTMLTextAreaElement>) => void;
   handleSubmit: () => void;
+  pending?: boolean;
 }
 
 export function EditBoxUI({
@@ -20,6 +21,7 @@ export function EditBoxUI({
   value,
   handleChange,
   handleSubmit,
+  pending,
   defaultTab,
 }: EditBoxUIProps) {
   if (
@@ -39,7 +41,7 @@ export function EditBoxUI({
       >
         <EditTab value={value} onChange={handleChange} />
         <PreviewTab content={value} />
-        <TabControls onSubmit={handleSubmit} />
+        <TabControls onSubmit={handleSubmit} pending={pending} />
       </Tabs>
     </div>
   );

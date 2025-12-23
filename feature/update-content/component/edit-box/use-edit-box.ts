@@ -14,13 +14,6 @@ export function useEditBox() {
   };
 
   const handleSubmit = async () => {
-    await fetch("/api/update-content", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...item, content: value }),
-    });
     if (item.source === Source.ALGOLIA && !item.documentId) {
       router.back();
     }
