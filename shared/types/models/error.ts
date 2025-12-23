@@ -5,6 +5,8 @@ export enum ErrorCode {
   STORAGE,
   AI_MODEL_ERROR,
   AI_MODEL_ERROR_MAX_RETRIES_EXCEEDED,
+  UNAUTHENTICATED,
+  VALIDATION,
   UNKNOWN,
 }
 
@@ -13,10 +15,12 @@ export const ErrorMessage: Record<ErrorCode, string> = {
   [ErrorCode.DUPLICATE_KEYWORD]: "Từ khóa đã tồn tại",
   [ErrorCode.DISCORD]: "Lỗi kết nối Discord",
   [ErrorCode.VIDEOS_MARKET]: "Không thể lấy dữ liệu video",
-  [ErrorCode.STORAGE]: "Lỗi lưu trữ dữ liệu",
+  [ErrorCode.STORAGE]: "Lỗi lưu trữ storage",
   [ErrorCode.AI_MODEL_ERROR]: "Vui lòng thử lại sau vài phút",
   [ErrorCode.AI_MODEL_ERROR_MAX_RETRIES_EXCEEDED]:
     "Vui lòng thử lại sau vài phút",
+  [ErrorCode.UNAUTHENTICATED]: "Vui lòng đăng nhập để thực hiện hành động này",
+  [ErrorCode.VALIDATION]: "Dữ liệu không hợp lệ, vui lòng kiểm tra lại",
   [ErrorCode.UNKNOWN]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
 };
 

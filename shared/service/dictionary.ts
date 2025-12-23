@@ -7,15 +7,27 @@ import {
   updateDocument,
 } from "@/shared/repository/firestore";
 import { getWordFromExternalService } from "@/shared/repository/mazzi";
+import { freeAiService } from "@/shared/service/ai/factory";
+import {
+  instructionCompareContent,
+  promptCompareContent,
+} from "@/shared/service/ai/instructions";
 import { WordDTO } from "@/shared/types/dto/word";
 import { BaseItem, KWord, Source } from "@/shared/types/models/word";
 import { KWordType } from "@/shared/types/models/word-type";
 import Fuse from "fuse.js";
+import { z } from "zod";
 
 function createWordResult(word: string, searchWord: string): KWord {
   const isExactMatch = word === searchWord;
   if (isExactMatch) {
-    addWords({ words: searchWord, type: "word", hantu: null, content: null, practiceId: null });
+    addWords({
+      words: searchWord,
+      type: "word",
+      hantu: null,
+      content: null,
+      practiceId: null,
+    });
   }
   return {
     words: isExactMatch ? word : searchWord,
@@ -26,7 +38,12 @@ function createWordResult(word: string, searchWord: string): KWord {
 }
 
 function createDefaultResult(word: string): KWord {
-  return { words: word, source: Source.FIREBASE, documentId: word, type: KWordType.OTHER };
+  return {
+    words: word,
+    source: Source.FIREBASE,
+    documentId: word,
+    type: KWordType.OTHER,
+  };
 }
 
 export async function searchWord(word: string): Promise<KWord> {
@@ -59,35 +76,80 @@ export async function searchGrammar(value: string): Promise<WordDTO[]> {
   return fuse.search(value).map((result) => result.item);
 }
 
-export const updateWordsContent = (item: BaseItem) => {
-  switch (item.source) {
-    case Source.FIREBASE:
-      if (!item.words) {
-        return;
-      }
-      updateDocument(item.words, { content: item.content });
-      break;
-    case Source.DISCORD:
-      if (!item.words) {
-        return;
-      }
-      if (!item.documentId) {
-        return;
-      }
-      updateDiscordMessage({
-        channelId: "1386090536753958952",
-        messageId: item.documentId,
-        content: item.content,
-      });
-      break;
-    case Source.ALGOLIA:
-      if (!item.documentId) {
-        algoliaAdd([item]);
-      } else {
-        algoliaUpdate([item]);
-      }
-      break;
-    default:
-      break;
+const isDev = process.env.NODE_ENV === "development";
+
+const shouldUpdateWithAi = async (
+  wordKey: string,
+  newContent: string
+): Promise<boolean> => {
+  const existing = await getWordById(wordKey);
+  const oldContent = existing?.content ?? "";
+
+  if (!oldContent || oldContent === newContent) {
+    return true;
+  }
+
+  const ai = freeAiService();
+  const CompareSchema = z.object({
+    is_better: z.boolean(),
+    reason: z.string().optional(),
+  });
+
+  const result = await ai.generateObject({
+    schema: CompareSchema,
+    system: instructionCompareContent,
+    prompt: promptCompareContent(oldContent, newContent),
+  });
+
+  return result.is_better;
+};
+
+const handleFirebaseUpdate = async (item: BaseItem) => {
+  if (!item.words || !item.content) {
+    return;
+  }
+
+  if (isDev) {
+    updateDocument(item.words, { content: item.content });
+    return;
+  }
+
+  if (await shouldUpdateWithAi(item.words, item.content)) {
+    updateDocument(item.words, { content: item.content });
+  }
+};
+
+const handleDiscordUpdate = (item: BaseItem) => {
+  if (!item.words || !item.documentId) {
+    return;
+  }
+  updateDiscordMessage({
+    channelId: "1386090536753958952",
+    messageId: item.documentId,
+    content: item.content,
+  });
+};
+
+const handleAlgoliaUpdate = (item: BaseItem) => {
+  if (!item.documentId) {
+    algoliaAdd([item]);
+  } else {
+    algoliaUpdate([item]);
+  }
+};
+
+export const updateWordsContent = async (item: BaseItem) => {
+  if (item.source === Source.FIREBASE) {
+    await handleFirebaseUpdate(item);
+    return;
+  }
+
+  if (item.source === Source.DISCORD) {
+    handleDiscordUpdate(item);
+    return;
+  }
+
+  if (item.source === Source.ALGOLIA) {
+    handleAlgoliaUpdate(item);
   }
 };

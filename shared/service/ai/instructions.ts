@@ -20,6 +20,9 @@ Nếu là câu hỏi thì hãy trả lời nó.
 export const instructionPracticeGrammar = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ngữ pháp $1 trong 2 dòng`;
 export const instructionPracticeWord = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ý nghĩa $1 trong 2 dòng`;
 
+export const instructionCompareContent =
+  "You are an assistant that compares two Vietnamese learning contents and decides if the new one is strictly better for learners.";
+
 export const instructionGenerateGrammarQuestions = `Bạn là giáo viên tiếng Nhật chuyên tạo câu hỏi trắc nghiệm N1.
 
 ## Yêu cầu:
@@ -83,3 +86,6 @@ Thông tin về từ:
 ${wordInfo}
 
 Hãy tạo 3 câu hỏi thuộc 3 kiểu khác nhau (điền từ, đồng nghĩa, nghĩa) để test toàn diện hiểu biết về từ này.`;
+
+export const promptCompareContent = (oldContent: string, newContent: string) =>
+  `Hãy so sánh hai nội dung sau dành cho người học tiếng Nhật.\n\nNội dung cũ:\n${oldContent}\n\nNội dung mới:\n${newContent}\n\nTrả lời dưới dạng JSON với field is_better: true nếu nội dung mới tốt hơn rõ rệt (chính xác hơn, đầy đủ hơn, rõ ràng hơn), ngược lại false.`;
