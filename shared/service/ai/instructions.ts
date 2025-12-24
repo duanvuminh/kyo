@@ -21,7 +21,7 @@ export const instructionPracticeGrammar = `Giải thích ngắn gọn cách đ�
 export const instructionPracticeWord = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ý nghĩa $1 trong 2 dòng`;
 
 export const instructionCompareContent =
-  "You are an assistant that compares two Vietnamese learning contents and decides if the new one is strictly better for learners.";
+  "You compare two versions of content about the SAME Japanese learning topic (same word/grammar) and decide if the new one is strictly better for learners.";
 
 export const instructionGenerateGrammarQuestions = `Bạn là giáo viên tiếng Nhật chuyên tạo câu hỏi trắc nghiệm N1.
 

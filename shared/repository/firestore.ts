@@ -25,11 +25,33 @@ export const updateDocument = (
   { content, practiceId }: { content?: string; practiceId?: string }
 ): void => {
   const docRef = db.collection("dictionary").doc(words);
+  docRef.update(stripUndefined({ content, practiceId }));
+};
+
+export const createDocument = (
+  words: string,
+  { content, practiceId }: { content?: string; practiceId?: string }
+): void => {
+  const docRef = db.collection("dictionary").doc(words);
+  docRef.set({
+    content,
+    practiceId: practiceId ?? null,
+    words,
+    type: "word",
+    hantu: null,
+  });
+};
+
+export const upsertDocument = (
+  words: string,
+  payload: { content?: string; practiceId?: string }
+): void => {
+  const docRef = db.collection("dictionary").doc(words);
   docRef.get().then((docSnapshot) => {
     if (docSnapshot.exists) {
-      docRef.update(stripUndefined({ content, practiceId }));
+      updateDocument(words, payload);
     } else {
-      docRef.set({ content, words, type: "word", hantu: null });
+      createDocument(words, payload);
     }
   });
 };

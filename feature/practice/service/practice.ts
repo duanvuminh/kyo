@@ -8,7 +8,7 @@ import {
   sendDiscordMessage,
   sendMessageToThread,
 } from "@/shared/repository/discord";
-import { getWordById, updateDocument } from "@/shared/repository/firestore";
+import { getWordById, upsertDocument } from "@/shared/repository/firestore";
 import { freeAiService } from "@/shared/service/ai/factory";
 import {
   instructionGenerateGrammarQuestions,
@@ -16,9 +16,9 @@ import {
   promptGenerateGrammarQuestions,
   promptGenerateVocabQuestions,
 } from "@/shared/service/ai/instructions";
-import { KWordType } from "@/shared/types/models/word-type";
 import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
 import { KWord } from "@/shared/types/models/word";
+import { KWordType } from "@/shared/types/models/word-type";
 
 const _channelId = "1386090536753958952";
 
@@ -72,7 +72,7 @@ const _createNewFlashCard = async (
     return null;
   }
 
-  updateDocument(word, { practiceId: discordMessage.id });
+  upsertDocument(word, { practiceId: discordMessage.id });
 
   // Tạo practice questions trong background
   _createPracticeQuestions(

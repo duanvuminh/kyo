@@ -18,5 +18,5 @@ export async function submitUpdateContent(formData: FormData) {
 
   const item: BaseItem = JSON.parse(itemJson);
 
-  updateWordsContent(item);
+  await updateWordsContent(item);
 }

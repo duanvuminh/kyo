@@ -1,7 +1,9 @@
-import { algoliaAdd, algoliaUpdate } from "@/shared/repository/algolia";
+import { isDev } from "@/shared/config/env";
+import { algoliaUpdate } from "@/shared/repository/algolia";
 import { updateDiscordMessage } from "@/shared/repository/discord";
 import {
   addWords,
+  createDocument,
   getAllGrammar,
   getWordById,
   updateDocument,
@@ -18,7 +20,7 @@ import { KWordType } from "@/shared/types/models/word-type";
 import Fuse from "fuse.js";
 import { z } from "zod";
 
-function createWordResult(word: string, searchWord: string): KWord {
+function _createWordResult(word: string, searchWord: string): KWord {
   const isExactMatch = word === searchWord;
   if (isExactMatch) {
     addWords({
@@ -37,7 +39,7 @@ function createWordResult(word: string, searchWord: string): KWord {
   };
 }
 
-function createDefaultResult(word: string): KWord {
+function _createDefaultResult(word: string): KWord {
   return {
     words: word,
     source: Source.FIREBASE,
@@ -60,10 +62,10 @@ export async function searchWord(word: string): Promise<KWord> {
   const wordFromInternet = await getWordFromExternalService(word);
   const externalWord = wordFromInternet?.data?.[0]?.word;
   if (externalWord) {
-    return createWordResult(word, externalWord);
+    return _createWordResult(word, externalWord);
   }
 
-  return createDefaultResult(word);
+  return _createDefaultResult(word);
 }
 
 export async function searchGrammar(value: string): Promise<WordDTO[]> {
@@ -76,9 +78,33 @@ export async function searchGrammar(value: string): Promise<WordDTO[]> {
   return fuse.search(value).map((result) => result.item);
 }
 
-const isDev = process.env.NODE_ENV === "development";
+export const createWordsContent = async (item: BaseItem) => {
+  if (item.source !== Source.FIREBASE) {
+    return;
+  }
+  if (!item.words || !item.content) {
+    return;
+  }
+  createDocument(item.words, { content: item.content });
+};
 
-const shouldUpdateWithAi = async (
+export const updateWordsContent = async (item: BaseItem) => {
+  if (item.source === Source.FIREBASE) {
+    await _handleFirebaseUpdate(item);
+    return;
+  }
+
+  if (item.source === Source.DISCORD) {
+    await _handleDiscordUpdate(item);
+    return;
+  }
+
+  if (item.source === Source.ALGOLIA) {
+    await _handleAlgoliaUpdate(item);
+  }
+};
+
+const _shouldUpdateWithAi = async (
   wordKey: string,
   newContent: string
 ): Promise<boolean> => {
@@ -104,7 +130,7 @@ const shouldUpdateWithAi = async (
   return result.is_better;
 };
 
-const handleFirebaseUpdate = async (item: BaseItem) => {
+const _handleFirebaseUpdate = async (item: BaseItem) => {
   if (!item.words || !item.content) {
     return;
   }
@@ -114,42 +140,45 @@ const handleFirebaseUpdate = async (item: BaseItem) => {
     return;
   }
 
-  if (await shouldUpdateWithAi(item.words, item.content)) {
+  if (await _shouldUpdateWithAi(item.words, item.content)) {
     updateDocument(item.words, { content: item.content });
   }
 };
 
-const handleDiscordUpdate = (item: BaseItem) => {
-  if (!item.words || !item.documentId) {
+const _handleDiscordUpdate = async (item: BaseItem) => {
+  if (!item.words || !item.documentId || !item.content) {
     return;
   }
-  updateDiscordMessage({
-    channelId: "1386090536753958952",
-    messageId: item.documentId,
-    content: item.content,
-  });
+
+  if (isDev) {
+    updateDiscordMessage({
+      channelId: "1386090536753958952",
+      messageId: item.documentId,
+      content: item.content,
+    });
+    return;
+  }
+
+  if (await _shouldUpdateWithAi(item.words, item.content)) {
+    updateDiscordMessage({
+      channelId: "1386090536753958952",
+      messageId: item.documentId,
+      content: item.content,
+    });
+  }
 };
 
-const handleAlgoliaUpdate = (item: BaseItem) => {
-  if (!item.documentId) {
-    algoliaAdd([item]);
-  } else {
+const _handleAlgoliaUpdate = async (item: BaseItem) => {
+  if (!item.documentId || !item.words || !item.content) {
+    return;
+  }
+
+  if (isDev) {
     algoliaUpdate([item]);
-  }
-};
-
-export const updateWordsContent = async (item: BaseItem) => {
-  if (item.source === Source.FIREBASE) {
-    await handleFirebaseUpdate(item);
     return;
   }
 
-  if (item.source === Source.DISCORD) {
-    handleDiscordUpdate(item);
-    return;
-  }
-
-  if (item.source === Source.ALGOLIA) {
-    handleAlgoliaUpdate(item);
+  if (await _shouldUpdateWithAi(item.words, item.content)) {
+    algoliaUpdate([item]);
   }
 };
