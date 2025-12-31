@@ -30,6 +30,11 @@ const nextConfig: NextConfig = withMDX({
         hostname: "cdn.discordapp.com",
         pathname: "/attachments/**",
       },
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        pathname: "/**",
+      },
     ],
   },
 });

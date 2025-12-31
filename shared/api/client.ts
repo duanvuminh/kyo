@@ -2,7 +2,8 @@ import { ApiResponse } from "@/shared/types/dto/api-responses";
 import { AppError, ErrorCode } from "@/shared/types/models/error";
 
 /**
- * Helper để gọi API và handle error
+ * Helper để gọi internal API và handle error
+ * Response phải theo format ApiResponse<T>
  * Throw AppError nếu có lỗi
  */
 export async function fetchApi<T>(

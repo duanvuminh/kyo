@@ -1,4 +1,5 @@
 import { KManga } from "@/feature/manga/component/manga";
+import { MangaChat } from "@/feature/manga/component/manga-chat/manga-chat";
 import { MangaPage } from "@/feature/manga/model/manga";
 import {
   displayData,
@@ -8,7 +9,6 @@ import {
   showNextPage,
 } from "@/feature/manga/service/manga";
 import { CenterMessage } from "@/shared/component/center-message";
-import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 import Link from "next/link";
 
 export default async function Page({
@@ -28,7 +28,7 @@ export default async function Page({
           Bài viết cũ hơn
         </Link>
       )}
-      <QuickSearchBySelectText />
+      <MangaChat />
     </div>
   ) : (
     <CenterMessage>
