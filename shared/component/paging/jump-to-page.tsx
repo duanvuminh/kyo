@@ -4,7 +4,7 @@ interface JumpToPageProps {
   totalPages: number;
   inputPage: string;
   setInputPage: (value: string) => void;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (e: React.SyntheticEvent<HTMLFormElement>) => void;
 }
 
 export function JumpToPage({ totalPages, inputPage, setInputPage, onSubmit }: JumpToPageProps) {

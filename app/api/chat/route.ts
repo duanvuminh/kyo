@@ -26,7 +26,7 @@ export async function POST(req: Request) {
 
     const result = await handleChatMessages(
       aiService(),
-      convertToModelMessages(messages)
+      await convertToModelMessages(messages)
     );
 
     if (typeof result === "string") {

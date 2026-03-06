@@ -6,9 +6,9 @@ import { AIModelConfig } from "@/shared/service/ai/provider/google-generative";
 import { KWord } from "@/shared/types/models/word";
 import { KWordType } from "@/shared/types/models/word-type";
 import {
-  generateObject as aiGenerateObject,
   generateText as aiGenerateText,
   ModelMessage,
+  Output,
   Schema,
   streamText,
   StreamTextResult,
@@ -51,13 +51,13 @@ export class AIService {
     system?: string;
     schema: z.ZodType<T> | Schema<T>;
   }): Promise<T> {
-    const result = await aiGenerateObject({
+    const result = await aiGenerateText({
       model: this.model,
       prompt,
       system,
-      schema,
+      output: Output.object({ schema }),
     });
-    return result.object;
+    return result.output as T;
   }
 
   async summaryWord(word: KWord): Promise<string | undefined> {

@@ -24,7 +24,7 @@ export function KBasePaging({
   showJumpInput = true,
 }: BasePagingProps) {
   const [inputPage, setInputPage] = useState("");
-  const handleJumpToPage = (e: React.FormEvent) => {
+  const handleJumpToPage = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const pageNum = parseInt(inputPage, 10);
     if (pageNum >= 1 && pageNum <= totalPages) {

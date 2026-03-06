@@ -8,7 +8,7 @@ export function useChatInput(onSend: (text: string, image?: string) => void) {
   const { imagePreview, fileInputRef, handleImageSelect, clearImage, openFilePicker, uploadImage, isUploading } =
     useImageInput();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     setUploadError(null);
 
