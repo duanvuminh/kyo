@@ -31,6 +31,8 @@ export default async function Page({
 
   return (
     <div className="p-2 prose mx-auto relative flex flex-col gap-12">
+      <Link href="/video/random">Xen thêm Anime không phụ đề</Link>
+
       {displayData(pageData).map((short) => (
         <ShortBlock key={short.id} short={short} />
       ))}

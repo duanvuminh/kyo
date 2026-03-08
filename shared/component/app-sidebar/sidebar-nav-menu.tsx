@@ -12,9 +12,10 @@ const items = [
   { title: "Kanji", url: "/kanji" },
   { title: "Đọc", url: "/reading" },
   { title: "Nghe", url: "/listening" },
-  { title: "Short", url: "/short/newest" },
-  { title: "Anime", url: "/video/random" },
-  { title: "Manga", url: "/manga/newest" },
+  { title: "Học qua video", url: "/short/newest" },
+  { title: "Học qua truyện tranh", url: "/manga/newest" },
+];
+const others = [
   { title: "Thủ tục", url: "/infor" },
   { title: "Memo", url: "/memo" },
 ];
@@ -36,6 +37,15 @@ export function SidebarNavMenu() {
           <PracticeLink />
         </SidebarMenuButton>
       </SidebarMenuItem>
+      {others.map((item) => (
+        <SidebarMenuItem key={item.title}>
+          <SidebarMenuButton asChild>
+            <Link href={item.url} className="text-sidebar-foreground/50">
+              <span>{item.title}</span>
+            </Link>
+          </SidebarMenuButton>
+        </SidebarMenuItem>
+      ))}
     </SidebarMenu>
   );
 }
