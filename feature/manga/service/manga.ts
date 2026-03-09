@@ -2,7 +2,7 @@ import { Manga, MangaPage } from "@/feature/manga/model/manga";
 import { mapDatas } from "@/shared/lib/data-convert";
 import { getListMessageFromDisCord } from "@/shared/repository/discord";
 
-const limit = 10;
+const limit = 1;
 const defaultPage = "newest";
 
 export const getManga = async ({
@@ -18,7 +18,7 @@ export const getManga = async ({
   return {
     mangaList: mapDatas(data, Manga.fromDTO),
     limit,
-    nextPage: data.length == 10 ? data.at(-1)?.id : undefined,
+    nextPage: data.length == limit ? data.at(-1)?.id : undefined,
   };
 };
 

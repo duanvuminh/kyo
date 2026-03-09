@@ -1,5 +1,5 @@
 import { Manga } from "@/feature/manga/model/manga";
-import Link from "next/link";
+import Image from "next/image";
 import Markdown from "react-markdown";
 
 export const KManga = ({ manga }: { manga: Manga }) => {
@@ -7,8 +7,19 @@ export const KManga = ({ manga }: { manga: Manga }) => {
     <>
       <h1>{manga.title}</h1>
       <Markdown>{manga.content}</Markdown>
-      <Link href={manga.source}>Xem trang gốc</Link>
-      <iframe src={manga.source} className="w-full h-96 border rounded my-2" />
+      <div className="flex flex-col items-center gap-1 not-prose">
+        {manga.images.map((url, i) => (
+          <Image
+            key={i}
+            src={url}
+            alt={`${manga.title} trang ${i + 1}`}
+            width={800}
+            height={1200}
+            className="w-full max-w-2xl h-auto"
+            unoptimized
+          />
+        ))}
+      </div>
     </>
   );
 };

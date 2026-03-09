@@ -22,11 +22,6 @@ const nextConfig: NextConfig = withMDX({
       },
       {
         protocol: "https",
-        hostname: "cmoa.akamaized.net",
-        pathname: "/data/image/**",
-      },
-      {
-        protocol: "https",
         hostname: "cdn.discordapp.com",
         pathname: "/attachments/**",
       },

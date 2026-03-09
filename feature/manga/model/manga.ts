@@ -6,7 +6,7 @@ export class Manga {
     public id: string,
     public content: string,
     public title: string,
-    public source: string
+    public images: string[]
   ) {}
 
   static fromDTO(data: DiscordMessageDTO): Manga {
@@ -15,7 +15,9 @@ export class Manga {
       id: data.id,
       content: parsed.content,
       title: parsed.data.title,
-      source: parsed.data.source,
+      images: (data.attachments ?? [])
+        .filter((a) => a.content_type?.startsWith("image/"))
+        .map((a) => a.url),
     };
   }
 }
