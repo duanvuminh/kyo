@@ -3,17 +3,12 @@
 import { ChatInput } from "@/feature/manga/component/manga-chat/chat-input";
 import { ChatMessages } from "@/feature/manga/component/manga-chat/chat-messages";
 import { useAblyChat } from "@/feature/manga/component/manga-chat/use-ably-chat";
-import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
+import { CenterMessage } from "@/shared/component/center-message";
 import { useSession } from "next-auth/react";
 
-export default function HoiDapPage() {
-  const { data: session } = useSession();
-  const { messages, sendMessage, isConnected, isLoadingHistory } = useAblyChat();
-
-  const email = session?.user?.email;
-  if (!email) {
-    return <QuickSearchBySelectText />;
-  }
+function HoiDapChat({ email }: { email: string }) {
+  const { messages, sendMessage, isConnected, isLoadingHistory } =
+    useAblyChat();
 
   const handleSend = (text: string, image?: string) => {
     sendMessage(text, email, image);
@@ -33,4 +28,23 @@ export default function HoiDapPage() {
       <ChatInput onSend={handleSend} disabled={!isConnected} />
     </div>
   );
+}
+
+export default function HoiDapPage() {
+  const { data: session } = useSession();
+  const email = session?.user?.email;
+
+  if (!email) {
+    return (
+      <CenterMessage>
+        <div className="flex flex-col items-center gap-4">
+          <p className="text-muted-foreground">
+            Vui lòng đăng nhập để sử dụng hỏi đáp
+          </p>
+        </div>
+      </CenterMessage>
+    );
+  }
+
+  return <HoiDapChat email={email} />;
 }
