@@ -1,5 +1,4 @@
 import { KManga } from "@/feature/manga/component/manga";
-import { MangaChatEntry } from "@/feature/manga/component/manga-chat/manga-chat-entry";
 import { MangaPage } from "@/feature/manga/model/manga";
 import {
   displayData,
@@ -28,7 +27,6 @@ export default async function Page({
           Bài viết cũ hơn
         </Link>
       )}
-      <MangaChatEntry />
     </div>
   ) : (
     <CenterMessage>

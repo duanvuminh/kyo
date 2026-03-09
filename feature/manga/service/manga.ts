@@ -2,6 +2,8 @@ import { Manga, MangaPage } from "@/feature/manga/model/manga";
 import { mapDatas } from "@/shared/lib/data-convert";
 import { getListMessageFromDisCord } from "@/shared/repository/discord";
 
+const TWELVE_HOURS = 43200;
+
 const limit = 1;
 const defaultPage = "newest";
 
@@ -14,6 +16,7 @@ export const getManga = async ({
     channelId: "1225629428420186122",
     before: page == defaultPage ? undefined : page,
     limit,
+    revalidate: TWELVE_HOURS,
   });
   return {
     mangaList: mapDatas(data, Manga.fromDTO),
