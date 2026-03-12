@@ -4,6 +4,17 @@ import { AppError, ErrorCode } from "@/shared/types/models/error";
 
 const discordBaseUrl = "https://discord.com/api/v10";
 
+function buildMessageParams(before?: string, limit?: number) {
+  const params = new URLSearchParams();
+  if (before) {
+    params.append("before", before);
+  }
+  if (limit) {
+    params.append("limit", `${limit}`);
+  }
+  return params;
+}
+
 export const getListMessageFromDisCord = async ({
   channelId,
   before,
@@ -16,25 +27,16 @@ export const getListMessageFromDisCord = async ({
   revalidate?: number;
 }): Promise<DiscordMessageDTO[]> => {
   try {
-    const params = new URLSearchParams();
-    if (before) {
-      params.append("before", before);
-    }
-    if (limit) {
-      params.append("limit", `${limit}`);
-    }
-    const cacheConfig = revalidate !== undefined
-      ? { next: { revalidate } }
-      : fetchCacheConfig;
+    const params = buildMessageParams(before, limit);
+    const cacheConfig =
+      revalidate !== undefined ? { next: { revalidate } } : fetchCacheConfig;
     const res = await fetch(
       `${discordBaseUrl}/channels/${channelId}/messages?${params.toString()}`,
       {
         method: "GET",
-        headers: {
-          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
-        },
+        headers: { Authorization: `Bot ${process.env.DISCORD_API_KEY}` },
         ...cacheConfig,
-      }
+      },
     );
     if (!res.ok) {
       throw new AppError(ErrorCode.DISCORD);
@@ -66,7 +68,7 @@ export const getMessageFromDisCord = async ({
           Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
         },
         ...fetchCacheConfig,
-      }
+      },
     );
 
     const data = (await res.json()) as DiscordMessageDTO;
@@ -96,7 +98,7 @@ export const sendDiscordMessage = async ({
         body: JSON.stringify({
           content: message,
         }),
-      }
+      },
     );
 
     const data = await res.json();
@@ -132,7 +134,7 @@ export const getThreadMessages = async ({
           Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
         },
         ...fetchCacheConfig,
-      }
+      },
     );
     const data = await res.json();
     if (!Array.isArray(data)) {
@@ -163,7 +165,7 @@ export const createThreadFromMessage = async ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ name }),
-      }
+      },
     );
 
     const data = await res.json();
@@ -216,7 +218,7 @@ export const updateDiscordMessage = async ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ content }),
-      }
+      },
     );
 
     const data = await res.json();

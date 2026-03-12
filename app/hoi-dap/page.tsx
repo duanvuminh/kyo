@@ -6,7 +6,7 @@ import { useAblyChat } from "@/feature/manga/component/manga-chat/use-ably-chat"
 import { CenterMessage } from "@/shared/component/center-message";
 import { useSession } from "next-auth/react";
 
-function HoiDapChat({ email }: { email: string }) {
+function QnaChat({ email }: { email: string }) {
   const { messages, sendMessage, isConnected, isLoadingHistory } =
     useAblyChat();
 
@@ -46,5 +46,5 @@ export default function HoiDapPage() {
     );
   }
 
-  return <HoiDapChat email={email} />;
+  return <QnaChat email={email} />;
 }

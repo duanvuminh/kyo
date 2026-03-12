@@ -1,7 +1,7 @@
 import { checkWord } from "@/shared/api/check";
 import { PracticeStorage } from "@/shared/service/storage";
 import { useChat } from "@ai-sdk/react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 enum AssistantMenuType {
   SEARCH = "Tra cứu",
@@ -12,6 +12,18 @@ enum AssistantMenuType {
 
 export type AppendFn = ReturnType<typeof useChat>["sendMessage"];
 
+async function addWord(words: string) {
+  try {
+    const isValid = await checkWord(words);
+    if (isValid) {
+      PracticeStorage.addToPracticeList(words);
+    }
+    return isValid;
+  } catch {
+    return false;
+  }
+}
+
 export function useAssistantMenu({
   command,
   append,
@@ -20,8 +32,19 @@ export function useAssistantMenu({
   append: AppendFn;
 }) {
   const [option, setOption] = useState<AssistantMenuType>(
-    AssistantMenuType.WRITE
+    AssistantMenuType.SEARCH,
   );
+
+  const appendRef = useRef(append);
+  const commandRef = useRef(command);
+  const calledRef = useRef(false);
+  useEffect(() => {
+    if (calledRef.current) { return; }
+    calledRef.current = true;
+    setTimeout(() => {
+      appendRef.current({ text: commandRef.current });
+    }, 0);
+  }, []);
 
   const handleClick = (action: AssistantMenuType) => {
     if (action === AssistantMenuType.SEARCH) {
@@ -33,26 +56,14 @@ export function useAssistantMenu({
   };
 
   const menuOptions = Object.values(AssistantMenuType).filter(
-    (label) => label !== AssistantMenuType.SPEECH
+    (label) => label !== AssistantMenuType.SPEECH,
   );
-
-  const add = async (words: string) => {
-    try {
-      const isValid = await checkWord(words);
-      if (isValid) {
-        PracticeStorage.addToPracticeList(words);
-      }
-      return isValid;
-    } catch {
-      return false;
-    }
-  };
 
   return {
     option,
     menuOptions,
     handleClick,
     AssistantMenuType,
-    add,
+    add: addWord,
   };
 }

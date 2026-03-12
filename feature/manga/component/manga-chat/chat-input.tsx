@@ -1,7 +1,7 @@
 "use client";
 import { ImagePreview } from "@/feature/manga/component/manga-chat/image-preview";
 import { useChatInput } from "@/feature/manga/component/manga-chat/use-chat-input";
-import { InlineQuickSearch } from "@/shared/component/quick-search-by-select-text/inline-quick-search";
+import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 import { Button } from "@/shared/component/ui/button";
 import { ImagePlus, Loader2, Send } from "lucide-react";
 
@@ -44,7 +44,7 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
           {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
         </Button>
       </div>
-      <InlineQuickSearch hideButton />
+      <QuickSearchBySelectText />
     </form>
   );
 }

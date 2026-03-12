@@ -26,6 +26,7 @@ const eslintConfig = defineConfig([
         },
       ],
       "@typescript-eslint/no-deprecated": "warn",
+      "@typescript-eslint/no-unused-vars": "warn",
       // Disable because official Redux pattern uses ref during render for lazy store initialization
       "react-hooks/refs": "off",
 

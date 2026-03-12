@@ -1,6 +1,6 @@
 import { useSelectionDetect } from "@/shared/component/quick-search-by-select-text/use-selection-detect";
 import { useSheetHistory } from "@/shared/hooks/use-sheet-history";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 /**
  * Hook chính - kết hợp selection detect + sheet history
@@ -9,7 +9,7 @@ export function useTextSelection() {
   const [open, setOpen] = useState(false);
   const [savedText, setSavedText] = useState("");
 
-  const { selectedText, menuPos, clearSelection } = useSelectionDetect(!open);
+  const { clearSelection, onOpenRef } = useSelectionDetect(!open);
 
   const handleClose = useCallback(() => {
     setOpen(false);
@@ -19,11 +19,13 @@ export function useTextSelection() {
 
   const { cleanupHistory } = useSheetHistory(open, handleClose);
 
-  const handleMenuClick = useCallback(() => {
-    setSavedText(selectedText);
-    setOpen(true);
-    clearSelection();
-  }, [selectedText, clearSelection]);
+  useEffect(() => {
+    onOpenRef.current = (text: string) => {
+      setSavedText(text);
+      setOpen(true);
+      clearSelection();
+    };
+  });
 
   const handleOpenChange = useCallback(
     (newOpen: boolean) => {
@@ -34,14 +36,12 @@ export function useTextSelection() {
         setOpen(true);
       }
     },
-    [cleanupHistory, handleClose]
+    [cleanupHistory, handleClose],
   );
 
   return {
-    selectedText: open ? savedText : selectedText,
-    menuPos,
+    selectedText: savedText,
     open,
-    handleMenuClick,
     onOpenChange: handleOpenChange,
   };
 }
