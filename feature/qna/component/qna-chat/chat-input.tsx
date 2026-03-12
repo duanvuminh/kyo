@@ -3,7 +3,6 @@ import { ImagePreview } from "@/feature/qna/component/qna-chat/image-preview";
 import { InputRow } from "@/feature/qna/component/qna-chat/input-row";
 import { UploadError } from "@/feature/qna/component/qna-chat/upload-error";
 import { useChatInput } from "@/feature/qna/component/qna-chat/use-chat-input";
-import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 
 interface ChatInputProps {
   onSend: (text: string, image?: string) => void;
@@ -44,7 +43,6 @@ export function ChatInput({ onSend, disabled }: ChatInputProps) {
         openFilePicker={openFilePicker}
         isUploading={isUploading}
       />
-      <QuickSearchBySelectText />
     </form>
   );
 }

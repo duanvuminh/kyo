@@ -6,41 +6,74 @@ import { useAppSelector } from "@/shared/stores/hook";
 import { selectMessage } from "@/shared/stores/slice-message";
 import { UIMessage } from "ai";
 import { Send } from "lucide-react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { WordHistory, WordHistoryItem, useWordHistory } from "./word-history";
 
 interface ChatInputProps {
   messages: UIMessage[];
   sendMessage: ({ text }: { text: string }) => void;
+  onSelectHistory: (item: WordHistoryItem) => void;
 }
 
-export function ChatInput({ sendMessage }: ChatInputProps) {
-  const words = useAppSelector(selectMessage).words;
+export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
+  const message = useAppSelector(selectMessage);
   const [input, setInput] = useState("");
+  const { history, addWord } = useWordHistory();
+
+  useEffect(() => {
+    if (message.words) {
+      addWord({ words: message.words, content: message.content });
+    }
+  }, [message.words, message.content, addWord]);
+
+  return (
+    <ChatForm
+      input={input}
+      words={message.words}
+      history={history}
+      onInput={setInput}
+      onSelectHistory={onSelectHistory}
+      onSubmit={() => {
+        sendMessage({ text: input });
+        setInput("");
+      }}
+    />
+  );
+}
+
+interface ChatFormProps {
+  input: string;
+  words: string;
+  history: WordHistoryItem[];
+  onInput: (v: string) => void;
+  onSelectHistory: (item: WordHistoryItem) => void;
+  onSubmit: () => void;
+}
+
+function ChatForm({ input, words, history, onInput, onSelectHistory, onSubmit }: ChatFormProps) {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        sendMessage({ text: input });
-        setInput("");
+        onSubmit();
       }}
       className="sticky bottom-8 w-full prose p-2 mx-auto pt-20"
     >
+      <WordHistory history={history} onSelect={onSelectHistory} />
       <div className="relative">
         <ChatTextArea
           value={input}
           placeholder="Hỏi bất kì điều gì"
-          onChange={(e) => setInput(e.currentTarget.value)}
+          onChange={(e) => onInput(e.currentTarget.value)}
         />
-        <div>
-          <Button
-            variant="ghost"
-            size="icon"
-            type="submit"
-            className="absolute flex right-1 bottom-1"
-          >
-            <Send />
-          </Button>
-        </div>
+        <Button
+          variant="ghost"
+          size="icon"
+          type="submit"
+          className="absolute flex right-1 bottom-1"
+        >
+          <Send />
+        </Button>
       </div>
       {words != "" && (
         <div className="flex p-2 items-center gap-2">
@@ -58,11 +91,7 @@ interface ChatTextAreaProps {
   placeholder?: string;
 }
 
-function ChatTextArea({
-  value,
-  onChange,
-  placeholder = "",
-}: ChatTextAreaProps) {
+function ChatTextArea({ value, onChange, placeholder = "" }: ChatTextAreaProps) {
   return (
     <Textarea
       value={value}
