@@ -1,5 +1,5 @@
 "use client";
-import { ChatMessage } from "@/feature/manga/component/manga-chat/use-ably-chat";
+import { ChatMessage } from "@/feature/qna/component/qna-chat/use-ably-chat";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
@@ -7,6 +7,21 @@ import { useEffect, useRef } from "react";
 interface ChatMessagesProps {
   messages: ChatMessage[];
   isLoading?: boolean;
+}
+
+function MessageItem({ msg }: { msg: ChatMessage }) {
+  return (
+    <div key={msg.id} className="p-2 rounded-lg bg-muted">
+      <div className="flex justify-between text-xs text-muted-foreground mb-1">
+        <span>{msg.sender}</span>
+        <span>{new Date(msg.timestamp).toLocaleTimeString()}</span>
+      </div>
+      {msg.image && (
+        <Image src={msg.image} alt="Chat image" width={200} height={200} className="rounded-md object-cover mb-1" />
+      )}
+      {msg.text && <p>{msg.text}</p>}
+    </div>
+  );
 }
 
 export function ChatMessages({ messages, isLoading }: ChatMessagesProps) {
@@ -29,18 +44,7 @@ export function ChatMessages({ messages, isLoading }: ChatMessagesProps) {
       {messages.length === 0 ? (
         <p className="text-center text-muted-foreground">Chưa có tin nhắn nào</p>
       ) : (
-        messages.map((msg) => (
-          <div key={msg.id} className="p-2 rounded-lg bg-muted">
-            <div className="flex justify-between text-xs text-muted-foreground mb-1">
-              <span>{msg.sender}</span>
-              <span>{new Date(msg.timestamp).toLocaleTimeString()}</span>
-            </div>
-            {msg.image && (
-              <Image src={msg.image} alt="Chat image" width={200} height={200} className="rounded-md object-cover mb-1" />
-            )}
-            {msg.text && <p>{msg.text}</p>}
-          </div>
-        ))
+        messages.map((msg) => <MessageItem key={msg.id} msg={msg} />)
       )}
       <div ref={bottomRef} />
     </div>
