@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 
 const STORAGE_KEY = "word-history";
 const MAX_HISTORY = 20;
@@ -8,28 +8,51 @@ export interface WordHistoryItem {
   content?: string;
 }
 
-function loadHistory(): WordHistoryItem[] {
-  if (typeof window === "undefined") { return []; }
-  const stored = localStorage.getItem(STORAGE_KEY);
-  return stored ? JSON.parse(stored) : [];
+let cachedRaw: string | null = null;
+let cachedParsed: WordHistoryItem[] = [];
+
+function getSnapshot(): WordHistoryItem[] {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw !== cachedRaw) {
+    cachedRaw = raw;
+    cachedParsed = raw ? JSON.parse(raw) : [];
+  }
+  return cachedParsed;
+}
+
+const EMPTY: WordHistoryItem[] = [];
+
+function getServerSnapshot(): WordHistoryItem[] {
+  return EMPTY;
+}
+
+const listeners = new Set<() => void>();
+
+function subscribe(cb: () => void) {
+  listeners.add(cb);
+  return () => listeners.delete(cb);
+}
+
+function notify() {
+  cachedRaw = null;
+  listeners.forEach((cb) => cb());
 }
 
 export function useWordHistory() {
-  const [history, setHistory] = useState<WordHistoryItem[]>(loadHistory);
+  const history = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const addWord = useCallback((item: WordHistoryItem) => {
-    setHistory((prev) => {
-      const filtered = prev.filter((h) => h.words !== item.words);
-      const next = [item, ...filtered].slice(0, MAX_HISTORY);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-      return next;
-    });
+    const prev: WordHistoryItem[] = getSnapshot();
+    const filtered = prev.filter((h) => h.words !== item.words);
+    const next = [item, ...filtered].slice(0, MAX_HISTORY);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    notify();
   }, []);
 
-  function clearHistory() {
+  const clearHistory = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
-    setHistory([]);
-  }
+    notify();
+  }, []);
 
   return { history, addWord, clearHistory };
 }

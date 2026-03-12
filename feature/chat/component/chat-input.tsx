@@ -6,7 +6,7 @@ import { useAppSelector } from "@/shared/stores/hook";
 import { selectMessage } from "@/shared/stores/slice-message";
 import { UIMessage } from "ai";
 import { Send } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { WordHistory, WordHistoryItem, useWordHistory } from "./word-history";
 
 interface ChatInputProps {
@@ -19,9 +19,11 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
   const message = useAppSelector(selectMessage);
   const [input, setInput] = useState("");
   const { history, addWord } = useWordHistory();
+  const savedRef = useRef("");
 
   useEffect(() => {
-    if (message.words) {
+    if (message.words && message.content && message.words !== savedRef.current) {
+      savedRef.current = `${message.words}::${message.content}`;
       addWord({ words: message.words, content: message.content });
     }
   }, [message.words, message.content, addWord]);
