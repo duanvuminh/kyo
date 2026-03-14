@@ -39,7 +39,11 @@ function notify() {
 }
 
 export function useWordHistory() {
-  const history = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const history = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   const addWord = useCallback((item: WordHistoryItem) => {
     const prev: WordHistoryItem[] = getSnapshot();
@@ -74,9 +78,9 @@ export function WordHistory({ history, onSelect }: WordHistoryProps) {
           key={item.words}
           type="button"
           onClick={() => onSelect(item)}
-          className="text-xs px-2 py-0.5 rounded-full bg-muted hover:bg-muted/80 text-muted-foreground transition-colors"
+          className="text-xs px-2 py-0.5 rounded-full bg-muted hover:bg-muted/80 text-muted-foreground transition-colors max-w-30 truncate"
         >
-          {item.words.split(" ").slice(0, 3).join(" ")}
+          {item.words}
         </button>
       ))}
     </div>

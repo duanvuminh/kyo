@@ -22,14 +22,15 @@ export function Chat({ assistantText }: { assistantText?: string }) {
         {assistantText && (
           <AssistantMenu command={assistantText} append={sendMessage} />
         )}
-        {cached && messages.length === 0 && (
+        {cached ? (
           <div className="p-2">
             <ChatContainer isUser={false}>
               <Markdown>{cached.content ?? ""}</Markdown>
             </ChatContainer>
           </div>
+        ) : (
+          <MessageList messages={messages} />
         )}
-        <MessageList messages={messages} />
       </div>
       <ChatInput
         messages={messages}

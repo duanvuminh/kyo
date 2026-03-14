@@ -12,12 +12,11 @@ export function useSyncEditMessageFromChat(messages: UIMessage[]) {
       return;
     }
 
-    const words = messages
-      .at(-2)
-      ?.parts.find((item) => item.type === "text")?.text;
-    const content = messages
-      .at(-1)
-      ?.parts.find((item) => item.type === "text")?.text;
+    const lastAssistant = [...messages].reverse().find((m) => m.role === "assistant");
+    const lastUser = [...messages].reverse().find((m) => m.role === "user");
+
+    const words = lastUser?.parts.find((item) => item.type === "text")?.text;
+    const content = lastAssistant?.parts.find((item) => item.type === "text")?.text;
     if (!words) {
       return;
     }
