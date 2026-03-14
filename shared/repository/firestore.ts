@@ -63,6 +63,6 @@ export const getAllGrammar = async (): Promise<WordDTO[]> => {
   if (snapshot.empty) {
     return [];
   }
-  const result = mapDocs(snapshot, WordDTO.fromFirestore);
+  const result = mapDocs(snapshot, (doc) => WordDTO.fromFirestore(doc.data()));
   return result;
 };

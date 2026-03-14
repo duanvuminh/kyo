@@ -106,7 +106,7 @@ export const updateWordsContent = async (item: BaseItem) => {
 
 const _shouldUpdateWithAi = async (
   wordKey: string,
-  newContent: string
+  newContent: string,
 ): Promise<boolean> => {
   const existing = await getWordById(wordKey);
   const oldContent = existing?.content ?? "";
