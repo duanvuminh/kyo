@@ -19,23 +19,19 @@ export const getListMessageFromDisCord = async ({
   channelId,
   before,
   limit,
-  revalidate,
 }: {
   channelId: string;
   before?: string;
   limit?: number;
-  revalidate?: number;
 }): Promise<DiscordMessageDTO[]> => {
   try {
     const params = buildMessageParams(before, limit);
-    const cacheConfig =
-      revalidate !== undefined ? { next: { revalidate } } : fetchCacheConfig;
     const res = await fetch(
       `${discordBaseUrl}/channels/${channelId}/messages?${params.toString()}`,
       {
         method: "GET",
         headers: { Authorization: `Bot ${process.env.DISCORD_API_KEY}` },
-        ...cacheConfig,
+        ...fetchCacheConfig,
       },
     );
     if (!res.ok) {

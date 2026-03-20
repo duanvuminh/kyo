@@ -1,4 +1,6 @@
-import { KManga } from "@/feature/manga/component/manga";
+export const dynamic = "force-dynamic";
+
+import { KManga } from "@/feature/manga/component/manga-panel";
 import { MangaPage } from "@/feature/manga/model/manga";
 import {
   displayData,

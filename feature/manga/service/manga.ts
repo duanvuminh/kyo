@@ -1,9 +1,10 @@
 import { Manga, MangaPage } from "@/feature/manga/model/manga";
-import { mapDatas } from "@/shared/lib/data-convert";
-import { getListMessageFromDisCord } from "@/shared/repository/discord";
+import {
+  getListMessageFromDisCord,
+  getThreadMessages,
+} from "@/shared/repository/discord";
 
-const TWELVE_HOURS = 43200;
-
+const CHANNEL_ID = "1225629428420186122";
 const limit = 1;
 const defaultPage = "newest";
 
@@ -13,13 +14,20 @@ export const getManga = async ({
   page: string;
 }): Promise<MangaPage> => {
   const data = await getListMessageFromDisCord({
-    channelId: "1225629428420186122",
+    channelId: CHANNEL_ID,
     before: page == defaultPage ? undefined : page,
     limit,
-    revalidate: TWELVE_HOURS,
   });
+
+  const mangaList = await Promise.all(
+    data.map(async (msg) => {
+      const threadMessages = await getThreadMessages({ threadId: msg.id });
+      return Manga.fromDTO(msg, threadMessages);
+    }),
+  );
+
   return {
-    mangaList: mapDatas(data, Manga.fromDTO),
+    mangaList,
     limit,
     nextPage: data.length == limit ? data.at(-1)?.id : undefined,
   };
