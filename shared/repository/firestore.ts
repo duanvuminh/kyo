@@ -2,9 +2,10 @@ import { stripUndefined } from "@/core/utils/utils";
 import { mapDocs } from "@/shared/lib/data-convert";
 import { db } from "@/shared/lib/firebase-admin";
 import { WordDTO } from "@/shared/types/dto/word";
+import { KWordType } from "@/shared/types/models/word-type";
 
 export const getWordById = async (
-  word: string
+  word: string,
 ): Promise<WordDTO | undefined> => {
   const docRef = db.collection("dictionary").doc(word);
   const snapshot = await docRef.get();
@@ -22,7 +23,7 @@ export const addWords = (wordDTO: WordDTO): void => {
 
 export const updateDocument = (
   words: string,
-  { content, practiceId }: { content?: string; practiceId?: string }
+  { content, practiceId }: { content?: string; practiceId?: string },
 ): void => {
   const docRef = db.collection("dictionary").doc(words);
   docRef.update(stripUndefined({ content, practiceId }));
@@ -30,21 +31,21 @@ export const updateDocument = (
 
 export const createDocument = (
   words: string,
-  { content, practiceId }: { content?: string; practiceId?: string }
+  { content, practiceId }: { content?: string; practiceId?: string },
 ): void => {
   const docRef = db.collection("dictionary").doc(words);
   docRef.set({
     content,
     practiceId: practiceId ?? null,
     words,
-    type: "word",
+    type: words.length === 1 ? KWordType.KANJI : KWordType.WORD,
     hantu: null,
   });
 };
 
 export const upsertDocument = (
   words: string,
-  payload: { content?: string; practiceId?: string }
+  payload: { content?: string; practiceId?: string },
 ): void => {
   const docRef = db.collection("dictionary").doc(words);
   docRef.get().then((docSnapshot) => {

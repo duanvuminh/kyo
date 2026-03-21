@@ -3,6 +3,8 @@ import matter from "gray-matter";
 
 export interface MangaPanel {
   image: string;
+  width: number;
+  height: number;
   content: string;
 }
 
@@ -22,16 +24,19 @@ export class Manga {
       .reverse()
       .filter((m) => m.attachments && m.attachments.length > 0)
       .map((m) => {
-        const image = m.attachments!.find((a) =>
+        const attachment = m.attachments!.find((a) =>
           a.content_type?.startsWith("image/"),
-        )!.url;
+        )!;
+        const image = attachment.url;
+        const width = attachment.width ?? 0;
+        const height = attachment.height ?? 0;
         const content = m.content
           .replace(/(<image[^>]*\s)href="[^"]*"/g, `$1href="${image}"`)
           .replace(
             /(<image[^>]*\s)xlink:href="[^"]*"/g,
             `$1xlink:href="${image}"`,
           );
-        return { image, content };
+        return { image, width, height, content };
       });
     return {
       id: data.id,

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useSvgTooltip } from "@/feature/manga/component/useSvgTooltip";
 import { Manga, MangaPanel } from "@/feature/manga/model/manga";
 
@@ -7,7 +8,7 @@ const KMangaPanel = ({ panel }: { panel: MangaPanel }) => {
   const { tooltip, handleClick } = useSvgTooltip();
 
   if (!panel.content) {
-    return <img src={panel.image} className="w-full" />;
+    return <Image src={panel.image} alt="" width={panel.width} height={panel.height} className="w-full" />;
   }
 
   return (

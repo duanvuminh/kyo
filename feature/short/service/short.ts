@@ -34,7 +34,7 @@ export async function getShort({ page }: { page: string }): Promise<ShortPage> {
         };
       }
       return item;
-    })
+    }),
   );
 
   const shorts = mapDatas(newData, Short.fromDTO);
@@ -48,7 +48,7 @@ export async function getShort({ page }: { page: string }): Promise<ShortPage> {
 
 async function getThreadMessages(
   channelId: string,
-  ts: string
+  ts: string,
 ): Promise<SlackMessageDTO[]> {
   const replies = await getListReplyFromSlack({ channelId, ts });
   return replies.messages;
@@ -60,7 +60,6 @@ export function hasData(pageData: ShortPage | undefined): boolean {
 }
 
 export function displayData(pageData: ShortPage | undefined): Short[] {
-  console.log(pageData?.shorts.length);
   return (pageData?.shorts ?? []).filter((short) => !short.hidden);
 }
 

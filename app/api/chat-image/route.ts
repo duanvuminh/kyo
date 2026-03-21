@@ -11,7 +11,7 @@ async function getNextImageIndex(): Promise<number> {
   const counterRef = db.collection("counters").doc(COUNTER_DOC);
   const doc = await counterRef.get();
 
-  const currentIndex = doc.exists ? doc.data()?.index ?? 0 : 0;
+  const currentIndex = doc.exists ? (doc.data()?.index ?? 0) : 0;
   const nextIndex = (currentIndex % MAX_IMAGES) + 1;
 
   await counterRef.set({ index: nextIndex });
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
   if (!email) {
     return NextResponse.json(
       { error: ErrorCode.UNAUTHENTICATED } satisfies ApiResponse,
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
     if (!image) {
       return NextResponse.json(
         { error: ErrorCode.VALIDATION } satisfies ApiResponse,
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
     console.error("Upload error:", error);
     return NextResponse.json(
       { error: ErrorCode.CHAT_IMAGE_UPLOAD } satisfies ApiResponse,
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

@@ -6,10 +6,12 @@ import { ChatContainer } from "@/feature/chat/component/chat-container";
 import { ChatInput } from "@/feature/chat/component/chat-input";
 import { useSyncEditMessageFromChat } from "@/feature/chat/component/chat/use-sync-edit-message-from-chat";
 import { WordHistoryItem } from "@/feature/chat/component/word-history";
+import { findHuusennarareSlug } from "@/shared/lib/huusennarare-index";
 import { useChat } from "@ai-sdk/react";
 import { UIMessage } from "ai";
-import Markdown from "react-markdown";
+import Link from "next/link";
 import { useState } from "react";
+import Markdown from "react-markdown";
 
 export function Chat({ assistantText }: { assistantText?: string }) {
   const { messages, sendMessage } = useChat();
@@ -23,28 +25,52 @@ export function Chat({ assistantText }: { assistantText?: string }) {
           <AssistantMenu command={assistantText} append={sendMessage} />
         )}
         {cached ? (
-          <div className="p-2">
-            <ChatContainer isUser={false}>
-              <Markdown>{cached.content ?? ""}</Markdown>
-            </ChatContainer>
-          </div>
+          <CachedMessage cached={cached} />
         ) : (
           <MessageList messages={messages} />
         )}
       </div>
       <ChatInput
         messages={messages}
-        sendMessage={(args) => { setCached(null); sendMessage(args); }}
+        sendMessage={(args) => {
+          setCached(null);
+          sendMessage(args);
+        }}
         onSelectHistory={(item) => setCached(item)}
       />
     </div>
   );
 }
 
+function CachedMessage({ cached }: { cached: WordHistoryItem }) {
+  const slug = findHuusennarareSlug(cached.words);
+  return (
+    <div className="p-2">
+      <ChatContainer isUser={false}>
+        <Markdown>{cached.content ?? ""}</Markdown>
+      </ChatContainer>
+      {slug && (
+        <Link href={`/huusennarare/${slug}`} className="mt-1 text-sm text-secondary">
+          Xem thêm →
+        </Link>
+      )}
+    </div>
+  );
+}
+
 function MessageList({ messages }: { messages: UIMessage[] }) {
+  const lastUserMessage = [...messages]
+    .reverse()
+    .find((m) => m.role === "user");
+  const referenceSlug = lastUserMessage
+    ? findHuusennarareSlug(
+        lastUserMessage.parts.find((p) => p.type === "text")?.text.trim() ?? "",
+      )
+    : undefined;
+
   return (
     <>
-      {messages.map((message) => (
+      {messages.map((message, index) => (
         <div key={message.id} className="p-2">
           <ChatContainer isUser={message.role === "user"}>
             {message.parts.map((part, i) => {
@@ -58,6 +84,16 @@ function MessageList({ messages }: { messages: UIMessage[] }) {
               }
             })}
           </ChatContainer>
+          {message.role === "assistant" &&
+            index === messages.length - 1 &&
+            referenceSlug && (
+              <Link
+                href={`/huusennarare/${referenceSlug}`}
+                className="mt-1 text-sm text-secondary"
+              >
+                Xem thêm →
+              </Link>
+            )}
         </div>
       ))}
     </>
