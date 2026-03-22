@@ -15,12 +15,12 @@ export const useSvgTooltip = () => {
     }
     const title =
       anchor.getAttribute("xlink:title") ?? anchor.getAttribute("title");
-    if (!title) {
-      return;
-    }
+    if (!title) { return; }
     e.preventDefault();
-    setTooltip({ text: title, x: e.clientX, y: e.clientY });
+
+    const rect = (e.currentTarget as HTMLDivElement).getBoundingClientRect();
+    setTooltip({ text: title, x: e.clientX - rect.left, y: e.clientY - rect.top });
   };
 
-  return { tooltip, handleClick };
+  return { tooltip, handleClick, close: () => setTooltip(null) };
 };

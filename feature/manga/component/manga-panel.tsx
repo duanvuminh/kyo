@@ -3,26 +3,45 @@
 import Image from "next/image";
 import { useSvgTooltip } from "@/feature/manga/component/useSvgTooltip";
 import { Manga, MangaPanel } from "@/feature/manga/model/manga";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/shared/component/ui/popover";
 
 const KMangaPanel = ({ panel }: { panel: MangaPanel }) => {
-  const { tooltip, handleClick } = useSvgTooltip();
+  const { tooltip, handleClick, close } = useSvgTooltip();
 
   if (!panel.content) {
-    return <Image src={panel.image} alt="" width={panel.width} height={panel.height} className="w-full" />;
+    return (
+      <Image
+        src={panel.image}
+        alt=""
+        width={panel.width}
+        height={panel.height}
+        className="w-full"
+      />
+    );
   }
 
   return (
-    <div className="relative w-full" onClick={handleClick}>
-      <div dangerouslySetInnerHTML={{ __html: panel.content }} />
-      {tooltip && (
-        <div
-          className="fixed z-50 max-w-xs rounded bg-black/80 px-3 py-2 text-sm text-white whitespace-pre-line"
-          style={{ left: tooltip.x + 8, top: tooltip.y + 8 }}
-        >
-          {tooltip.text}
-        </div>
-      )}
-    </div>
+    <Popover open={!!tooltip} onOpenChange={(open) => { if (!open) close(); }}>
+      <div className="relative w-full" onClick={handleClick}>
+        <div dangerouslySetInnerHTML={{ __html: panel.content }} />
+        {tooltip && (
+          <PopoverTrigger
+            className="absolute size-0 p-0 border-0"
+            style={{ left: tooltip.x, top: tooltip.y }}
+          />
+        )}
+      </div>
+      <PopoverContent
+        className="text-sm whitespace-pre-line w-auto max-w-xs"
+        onOpenAutoFocus={(e) => e.preventDefault()}
+      >
+        {tooltip?.text}
+      </PopoverContent>
+    </Popover>
   );
 };
 
