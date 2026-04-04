@@ -1,5 +1,4 @@
 import createMDX from "@next/mdx";
-import type { NextConfig } from "next";
 
 const withMDX = createMDX({
   options: {
@@ -8,7 +7,7 @@ const withMDX = createMDX({
     rehypePlugins: [],
   },
 });
-const nextConfig: NextConfig = withMDX({
+const nextConfig = withMDX({
   experimental: {
     useCache: true,
   },
@@ -28,6 +27,11 @@ const nextConfig: NextConfig = withMDX({
       {
         protocol: "https",
         hostname: "storage.googleapis.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "i.postimg.cc",
         pathname: "/**",
       },
     ],

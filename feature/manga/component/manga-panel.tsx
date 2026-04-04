@@ -7,21 +7,12 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/shared/component/ui/popover";
-import Image from "next/image";
 
 const KMangaPanel = ({ panel }: { panel: MangaPanel }) => {
   const { tooltip, handleClick, close } = useSvgTooltip();
 
   if (!panel.content) {
-    return (
-      <Image
-        src={panel.image}
-        alt=""
-        width={panel.width}
-        height={panel.height}
-        className="w-full"
-      />
-    );
+    return null;
   }
 
   return (
