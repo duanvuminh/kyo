@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useSvgTooltip } from "@/feature/manga/component/useSvgTooltip";
 import { Manga, MangaPanel } from "@/feature/manga/model/manga";
 import {
@@ -8,6 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/shared/component/ui/popover";
+import Image from "next/image";
 
 const KMangaPanel = ({ panel }: { panel: MangaPanel }) => {
   const { tooltip, handleClick, close } = useSvgTooltip();
@@ -25,7 +25,14 @@ const KMangaPanel = ({ panel }: { panel: MangaPanel }) => {
   }
 
   return (
-    <Popover open={!!tooltip} onOpenChange={(open) => { if (!open) close(); }}>
+    <Popover
+      open={!!tooltip}
+      onOpenChange={(open) => {
+        if (!open) {
+          close();
+        }
+      }}
+    >
       <div className="relative w-full" onClick={handleClick}>
         <div dangerouslySetInnerHTML={{ __html: panel.content }} />
         {tooltip && (
