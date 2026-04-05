@@ -48,7 +48,7 @@ export function showNextPage(pageData: ListeningPage | undefined): boolean {
 }
 
 export function getNextPageOrDefault(
-  pageData: ListeningPage | undefined
+  pageData: ListeningPage | undefined,
 ): string {
   const data = displayData(pageData);
   return data.at(-1)?.id ?? defaultPage;
