@@ -5,273 +5,138 @@ import {
 
 const cards: FlashCardItem[] = [
   {
-    front: "戦",
-    back: ["- せん・いくさ", "- chiến tranh; trận chiến"],
+    front: "米を水に浸す",
+    back: ["- こめをみずにひたす", "- ngâm gạo vào nước"],
     more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 戦争は避けるべきだ。 (Nên tránh chiến tranh.)",
-      "❗ Ghi chú: せん dùng trong từ ghép (戦争: chiến tranh), いくさ là từ cổ.",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: 炊く前に米を水に浸す。 (Ngâm gạo vào nước trước khi nấu.)",
+      "❗ Ghi chú: 浸す (ひたす) = ngâm, nhúng vào chất lỏng.",
     ],
   },
   {
-    front: "大事",
-    back: ["- だいじ・おおごと", "- quan trọng; việc lớn; đại sự"],
+    front: "水けをふき取る",
+    back: ["- みずけをふきとる", "- làm khô nước; lau khô"],
     more: [
-      "📚 Từ loại: Danh từ, tính từ đuôi な",
-      "📝 Ví dụ: 健康は大事です。 (Sức khỏe rất quan trọng.)",
-      "❗ Ghi chú: お大事に - chúc mau khỏi bệnh; おおごと - việc nghiêm trọng.",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: 野菜を洗ったら水けをふき取る。 (Sau khi rửa rau thì lau khô nước.)",
+      "❗ Ghi chú: 水け (みずけ) = độ ẩm, nước.",
     ],
   },
   {
-    front: "着",
-    back: ["- ちゃく・ぎ", "- đến nơi; về đích; (đếm quần áo: ～着)"],
+    front: "味が染み込む",
+    back: ["- あじがしみこむ", "- ngấm gia vị"],
     more: [
-      "📚 Từ loại: Danh từ, hậu tố",
-      "📝 Ví dụ: 東京駅に到着した。 (Đã đến ga Tokyo.)",
-      "❗ Ghi chú: ちゃく dùng trong 到着, 一着 (về nhất); ぎ đếm quần áo (一着).",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: よく煮ると味が染み込む。 (Nấu kỹ thì gia vị ngấm sâu.)",
+      "❗ Ghi chú: 染み込む (しみこむ) = thấm vào, ngấm vào.",
     ],
   },
   {
-    front: "派",
-    back: ["- は", "- phe phái; nhóm; bè phái"],
+    front: "料理の腕前が上がる",
+    back: ["- りょうりのうでまえがあがる", "- tay nghề nấu ăn giỏi lên"],
     more: [
-      "📚 Từ loại: Danh từ, hậu tố",
-      "📝 Ví dụ: 彼は保守派だ。 (Anh ấy thuộc phe bảo thủ.)",
-      "❗ Ghi chú: Dùng trong từ ghép như 派遣 (cử đi), 〜派 (phe ~).",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: 毎日練習して料理の腕前が上がった。 (Luyện tập mỗi ngày nên tay nghề nấu ăn tiến bộ.)",
+      "❗ Ghi chú: 腕前 (うでまえ) = tay nghề, kỹ năng.",
     ],
   },
   {
-    front: "期",
-    back: ["- き・ご", "- kỳ hạn; giai đoạn; thời kỳ"],
+    front: "素材を吟味する",
+    back: ["- そざいをぎんみする", "- giám định; lựa chọn kỹ nguyên liệu"],
     more: [
-      "📚 Từ loại: Danh từ, hậu tố",
-      "📝 Ví dụ: 期限を守ってください。 (Hãy tuân thủ thời hạn.)",
-      "❗ Ghi chú: き dùng phổ biến (期間, 期待); ご dùng trong 末期 (まつご).",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: 素材を吟味して料理を作る。 (Lựa chọn kỹ nguyên liệu rồi nấu ăn.)",
+      "❗ Ghi chú: 吟味 (ぎんみ) = xem xét kỹ lưỡng, giám định.",
     ],
   },
   {
-    front: "覚え",
-    back: ["- おぼえ", "- ký ức; sự ghi nhớ; kinh nghiệm; sự tự tin"],
+    front: "本格的な味",
+    back: ["- ほんかくてきなあじ", "- mùi vị đúng chuẩn; chính hiệu"],
     more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 身に覚えがない。 (Tôi không có ký ức về điều đó.)",
-      "❗ Ghi chú: Danh từ của động từ 覚える (nhớ, học).",
+      "📚 Từ loại: Cụm danh từ",
+      "📝 Ví dụ: 本格的な味のラーメンが食べたい。 (Muốn ăn mì ramen đúng vị chính hiệu.)",
+      "❗ Ghi chú: 本格的 (ほんかくてき) = chính thống, đúng chuẩn. Đồng nghĩa: 本場な味.",
     ],
   },
   {
-    front: "同",
-    back: ["- どう", "- đồng; giống; cùng"],
+    front: "あっさりした味",
+    back: ["- あっさりしたあじ", "- vị thanh tao; nhẹ nhàng; không ngấy"],
     more: [
-      "📚 Từ loại: Tiền tố",
-      "📝 Ví dụ: 同時に始めましょう。 (Hãy bắt đầu cùng lúc.)",
-      "❗ Ghi chú: Dùng trong từ ghép như 同じ (giống), 同時 (đồng thời).",
+      "📚 Từ loại: Cụm danh từ",
+      "📝 Ví dụ: 暑い日はあっさりした料理がいい。 (Ngày nóng ăn món thanh tao là tốt.)",
+      "❗ Ghi chú: Đối lập: こってりした味 (vị đậm đà, béo ngậy).",
     ],
   },
   {
-    front: "再",
-    back: ["- さい", "- tái; lại lần nữa"],
+    front: "こってりした味",
+    back: ["- こってりしたあじ", "- vị đậm đà; béo ngậy; nặng vị"],
     more: [
-      "📚 Từ loại: Tiền tố",
-      "📝 Ví dụ: 再開を期待しています。 (Tôi mong đợi sự tái khai.)",
-      "❗ Ghi chú: Dùng trong từ ghép như 再び (một lần nữa), 再開 (tái khai).",
+      "📚 Từ loại: Cụm danh từ",
+      "📝 Ví dụ: こってりしたラーメンが好きだ。 (Tôi thích mì ramen vị đậm đà.)",
+      "❗ Ghi chú: Đối lập: あっさりした味.",
     ],
   },
   {
-    front: "一部",
-    back: ["- いちぶ", "- một phần; một bộ phận"],
+    front: "甘酸っぱい",
+    back: ["- あまずっぱい", "- chua chua ngọt ngọt"],
     more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 一部の人だけが知っている。 (Chỉ một số người biết.)",
-      "❗ Ghi chú: Trái nghĩa với 全部 (toàn bộ).",
+      "📚 Từ loại: Tính từ -i",
+      "📝 Ví dụ: 甘酸っぱいいちごが好きだ。 (Tôi thích dâu tây vị chua ngọt.)",
+      "❗ Ghi chú: Ghép từ 甘い (あまい - ngọt) + 酸っぱい (すっぱい - chua).",
     ],
   },
   {
-    front: "デザイン",
-    back: ["- デザイン", "- thiết kế; bản thiết kế"],
+    front: "生臭い",
+    back: ["- なまぐさい", "- hôi tanh"],
     more: [
-      "📚 Từ loại: Danh từ, động từ (する)",
-      "📝 Ví dụ: このデザインが気に入った。 (Tôi thích thiết kế này.)",
-      "❗ Ghi chú: Từ mượn tiếng Anh 'design'.",
+      "📚 Từ loại: Tính từ -i",
+      "📝 Ví dụ: 魚の生臭いにおいがする。 (Có mùi hôi tanh của cá.)",
+      "❗ Ghi chú: 生 (なま) = tươi sống + 臭い (くさい) = hôi.",
     ],
   },
   {
-    front: "事業",
-    back: ["- じぎょう", "- sự nghiệp; dự án; công việc kinh doanh"],
+    front: "焦げ臭い",
+    back: ["- こげくさい", "- mùi khét"],
     more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 新しい事業を始める。 (Bắt đầu kinh doanh mới.)",
-      "❗ Ghi chú: Thường dùng trong ngữ cảnh kinh doanh, công ty.",
+      "📚 Từ loại: Tính từ -i",
+      "📝 Ví dụ: キッチンから焦げ臭いにおいがする。 (Có mùi khét từ nhà bếp.)",
+      "❗ Ghi chú: 焦げ (こげ) = bị cháy, bị khét.",
     ],
   },
   {
-    front: "社",
-    back: ["- しゃ・やしろ", "- công ty; đền thờ"],
+    front: "子供をしつける",
+    back: ["- こどもをしつける", "- dạy con cách xử sự; rèn nếp con"],
     more: [
-      "📚 Từ loại: Danh từ, hậu tố",
-      "📝 Ví dụ: 会社に入社した。 (Tôi đã vào công ty.)",
-      "❗ Ghi chú: しゃ dùng trong 会社; やしろ dùng trong 神社 (đền thần đạo).",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: 子供を厳しくしつける。 (Dạy con cách xử sự một cách nghiêm khắc.)",
+      "❗ Ghi chú: しつける = dạy dỗ, rèn giũa cách cư xử.",
     ],
   },
   {
-    front: "ファン",
-    back: ["- ファン", "- người hâm mộ; fan"],
+    front: "育ち盛りの子",
+    back: ["- そだちざかりのこ", "- trẻ đang trong giai đoạn tăng trưởng"],
     more: [
-      "📚 Từ loại: Danh từ (katakana)",
-      "📝 Ví dụ: 彼女のファンが多い。 (Cô ấy có nhiều fan.)",
-      "❗ Ghi chú: Từ mượn tiếng Anh 'fan'.",
+      "📚 Từ loại: Cụm danh từ",
+      "📝 Ví dụ: 育ち盛りの子にはたくさん食べさせる。 (Cho trẻ đang lớn ăn thật nhiều.)",
+      "❗ Ghi chú: 盛り (ざかり) = đỉnh điểm, giai đoạn cao nhất.",
     ],
   },
   {
-    front: "データ",
-    back: ["- データ", "- dữ liệu; số liệu"],
+    front: "育児に頭を悩ます",
+    back: ["- いくじにあたまをなやます", "- đau đầu; vất vả khi nuôi dạy con"],
     more: [
-      "📚 Từ loại: Danh từ (katakana)",
-      "📝 Ví dụ: データを分析する。 (Phân tích dữ liệu.)",
-      "❗ Ghi chú: Từ mượn tiếng Anh 'data'.",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: 育児に頭を悩ます毎日だ。 (Mỗi ngày đều đau đầu vì chuyện nuôi con.)",
+      "❗ Ghi chú: 頭を悩ます (あたまをなやます) = làm đau đầu, làm phiền não.",
     ],
   },
   {
-    front: "ヶ月",
-    back: ["- かげつ", "- (khoảng) tháng"],
+    front: "育児を放棄する",
+    back: ["- いくじをほうきする", "- lơ là; bỏ mặc việc nuôi dạy con"],
     more: [
-      "📚 Từ loại: Hậu tố (lượng từ)",
-      "📝 Ví dụ: 3ヶ月間勉強した。 (Đã học 3 tháng.)",
-      "❗ Ghi chú: Dùng để đếm số tháng; ヶ đọc là か.",
-    ],
-  },
-  {
-    front: "映像",
-    back: ["- えいぞう", "- hình ảnh; video"],
-    more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 映像を撮影する。 (Quay video.)",
-      "❗ Ghi chú: Dùng cho hình ảnh động, video, phim.",
-    ],
-  },
-  {
-    front: "出演",
-    back: ["- しゅつえん", "- xuất hiện; tham gia biểu diễn"],
-    more: [
-      "📚 Từ loại: Danh từ, động từ (する)",
-      "📝 Ví dụ: テレビに出演する。 (Xuất hiện trên TV.)",
-      "❗ Ghi chú: Thường dùng trong ngữ cảnh giải trí, truyền hình.",
-    ],
-  },
-  {
-    front: "主なる",
-    back: ["- おもなる", "- chính; chủ yếu; quan trọng"],
-    more: [
-      "📚 Từ loại: Tính từ (連体詞)",
-      "📝 Ví dụ: 主なる原因は何ですか。 (Nguyên nhân chính là gì?)",
-      "❗ Ghi chú: Tương tự 主な; dùng trong văn viết trang trọng.",
-    ],
-  },
-  {
-    front: "発生",
-    back: ["- はっせい", "- phát sinh; xảy ra"],
-    more: [
-      "📚 Từ loại: Danh từ, động từ (する)",
-      "📝 Ví dụ: 事故が発生した。 (Tai nạn đã xảy ra.)",
-      "❗ Ghi chú: Thường dùng cho sự cố, vấn đề, hiện tượng.",
-    ],
-  },
-  {
-    front: "敵",
-    back: ["- てき・かたき", "- kẻ địch; kẻ thù"],
-    more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 敵を倒す。 (Đánh bại kẻ thù.)",
-      "❗ Ghi chú: てき dùng phổ biến; かたき dùng trong 親の敵 (kẻ thù của cha mẹ).",
-    ],
-  },
-  {
-    front: "面",
-    back: ["- めん・おもて・つら", "- mặt; bề mặt; khía cạnh; phương diện"],
-    more: [
-      "📚 Từ loại: Danh từ, hậu tố",
-      "📝 Ví dụ: その面では同意します。 (Về khía cạnh đó tôi đồng ý.)",
-      "❗ Ghi chú: めん dùng phổ biến; つら dùng trong 面白い (thú vị).",
-    ],
-  },
-  {
-    front: "入る",
-    back: ["- はいる", "- đi vào; vào; tham gia"],
-    more: [
-      "📚 Từ loại: Động từ (五段)",
-      "📝 Ví dụ: 部屋に入ってください。 (Xin mời vào phòng.)",
-      "❗ Ghi chú: 気に入る (きにいる) - thích, ưng ý.",
-    ],
-  },
-  {
-    front: "ポイント",
-    back: ["- ポイント", "- điểm; điểm mấu chốt"],
-    more: [
-      "📚 Từ loại: Danh từ (katakana)",
-      "📝 Ví dụ: ポイントを貯める。 (Tích điểm.)",
-      "❗ Ghi chú: Từ mượn tiếng Anh 'point'.",
-    ],
-  },
-  {
-    front: "選挙",
-    back: ["- せんきょ", "- bầu cử; cuộc tuyển cử"],
-    more: [
-      "📚 Từ loại: Danh từ, động từ (する)",
-      "📝 Ví dụ: 選挙に投票する。 (Bỏ phiếu bầu cử.)",
-      "❗ Ghi chú: 総選挙 (そうせんきょ) - tổng tuyển cử.",
-    ],
-  },
-  {
-    front: "企画",
-    back: ["- きかく", "- kế hoạch; sự lập kế hoạch"],
-    more: [
-      "📚 Từ loại: Danh từ, động từ (する)",
-      "📝 Ví dụ: 新しい企画を提案する。 (Đề xuất kế hoạch mới.)",
-      "❗ Ghi chú: Thường dùng trong công việc, dự án.",
-    ],
-  },
-  {
-    front: "使い",
-    back: ["- つかい", "- cách dùng; việc sử dụng; sứ giả"],
-    more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 使い方を教えてください。 (Xin hãy chỉ cách dùng.)",
-      "❗ Ghi chú: Danh từ của động từ 使う (sử dụng).",
-    ],
-  },
-  {
-    front: "無意味",
-    back: ["- むいみ", "- vô nghĩa; không có ý nghĩa"],
-    more: [
-      "📚 Từ loại: Danh từ, tính từ đuôi な",
-      "📝 Ví dụ: 無意味な議論はやめよう。 (Hãy dừng tranh luận vô nghĩa.)",
-      "❗ Ghi chú: Trái nghĩa với 有意義 (ゆういぎ) - có ý nghĩa.",
-    ],
-  },
-  {
-    front: "観",
-    back: ["- かん", "- quan điểm; cách nhìn; quan niệm"],
-    more: [
-      "📚 Từ loại: Danh từ, hậu tố",
-      "📝 Ví dụ: 人生観が変わった。 (Quan niệm về cuộc sống đã thay đổi.)",
-      "❗ Ghi chú: Dùng trong từ ghép như 世界観, 価値観.",
-    ],
-  },
-  {
-    front: "施設",
-    back: ["- しせつ", "- cơ sở; công trình; trang thiết bị"],
-    more: [
-      "📚 Từ loại: Danh từ",
-      "📝 Ví dụ: 公共施設を利用する。 (Sử dụng cơ sở công cộng.)",
-      "❗ Ghi chú: Thường dùng cho công trình, cơ sở hạ tầng.",
-    ],
-  },
-  {
-    front: "権",
-    back: ["- けん・ごん", "- quyền; quyền hạn"],
-    more: [
-      "📚 Từ loại: Danh từ, hậu tố",
-      "📝 Ví dụ: 人権を守る。 (Bảo vệ nhân quyền.)",
-      "❗ Ghi chú: けん dùng phổ biến (権利: quyền lợi); ごん dùng trong 権力.",
+      "📚 Từ loại: Cụm động từ",
+      "📝 Ví dụ: 育児を放棄する親が増えている。 (Ngày càng nhiều bậc cha mẹ bỏ bê việc nuôi con.)",
+      "❗ Ghi chú: 放棄 (ほうき) = bỏ mặc, từ bỏ trách nhiệm.",
     ],
   },
 ];
@@ -280,7 +145,7 @@ export default function Page() {
   return (
     <main>
       <h1 className="text-2xl font-bold text-center mt-8">
-        Flash Card N1 - Page 2
+        Flash Card N1 - Page 3
       </h1>
       <FlashCard cards={cards} />
     </main>
