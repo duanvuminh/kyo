@@ -10,6 +10,7 @@ import {
   RoadmapStatus,
 } from "@/feature/road-map/model/road-map";
 import { useMemo } from "react";
+import Link from "next/link";
 
 function getSelectedMeta(selectedId: string | null): RoadmapNodeMeta {
   if (selectedId == null) {
@@ -52,6 +53,14 @@ export function RoadmapDetail({
           <p className="mt-2 whitespace-pre-line text-muted-foreground">
             {meta.description}
           </p>
+          {meta.href && (
+            <Link
+              href={meta.href}
+              className="mt-2 inline-block text-sm text-blue-600 hover:underline"
+            >
+              Xem bài →
+            </Link>
+          )}
         </div>
         <div className="flex flex-wrap items-center gap-2 text-xs">
           <span className="text-muted-foreground">Cập nhật trạng thái:</span>
