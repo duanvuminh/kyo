@@ -35,7 +35,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 900,
     y: -298,
-    href: "/tu-vung/n1/page1",
+    href: "/words/n1/page1",
   },
   {
     id: "word-2",
@@ -45,7 +45,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 900,
     y: -208,
-    href: "/tu-vung/n1/page2",
+    href: "/words/n1/page2",
   },
   {
     id: "word-3",
@@ -55,7 +55,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 900,
     y: -118,
-    href: "/tu-vung/n1/page3",
+    href: "/words/n1/page3",
   },
   {
     id: "word-4",
@@ -65,7 +65,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 900,
     y: -28,
-    href: "/tu-vung/n1/page4",
+    href: "/words/n1/page4",
   },
   {
     id: "word-5",
@@ -75,7 +75,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 900,
     y: 62,
-    href: "/tu-vung/n1/page5",
+    href: "/words/n1/page5",
   },
   {
     id: "word-6",
@@ -85,7 +85,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1355,
     y: -298,
-    href: "/tu-vung/n1/page6",
+    href: "/words/n1/page6",
   },
   {
     id: "word-7",
@@ -95,7 +95,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1355,
     y: -208,
-    href: "/tu-vung/n1/page7",
+    href: "/words/n1/page7",
   },
   {
     id: "word-8",
@@ -105,7 +105,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1355,
     y: -118,
-    href: "/tu-vung/n1/page8",
+    href: "/words/n1/page8",
   },
   {
     id: "word-9",
@@ -115,7 +115,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1355,
     y: -28,
-    href: "/tu-vung/n1/page9",
+    href: "/words/n1/page9",
   },
   {
     id: "word-10",
@@ -125,7 +125,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1355,
     y: 62,
-    href: "/tu-vung/n1/page10",
+    href: "/words/n1/page10",
   },
   {
     id: "word-11",
@@ -135,7 +135,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1810,
     y: -298,
-    href: "/tu-vung/n1/page11",
+    href: "/words/n1/page11",
   },
   {
     id: "word-12",
@@ -145,7 +145,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1810,
     y: -208,
-    href: "/tu-vung/n1/page12",
+    href: "/words/n1/page12",
   },
   {
     id: "word-13",
@@ -155,7 +155,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1810,
     y: -118,
-    href: "/tu-vung/n1/page13",
+    href: "/words/n1/page13",
   },
   {
     id: "word-14",
@@ -165,7 +165,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1810,
     y: -28,
-    href: "/tu-vung/n1/page14",
+    href: "/words/n1/page14",
   },
   {
     id: "word-15",
@@ -175,7 +175,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 1810,
     y: 62,
-    href: "/tu-vung/n1/page15",
+    href: "/words/n1/page15",
   },
   {
     id: "word-16",
@@ -185,7 +185,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2265,
     y: -298,
-    href: "/tu-vung/n1/page16",
+    href: "/words/n1/page16",
   },
   {
     id: "word-17",
@@ -195,7 +195,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2265,
     y: -208,
-    href: "/tu-vung/n1/page17",
+    href: "/words/n1/page17",
   },
   {
     id: "word-18",
@@ -205,17 +205,18 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2265,
     y: -118,
-    href: "/tu-vung/n1/page18",
+    href: "/words/n1/page18",
   },
   {
     id: "word-19",
     label: "Bài 19",
-    description: "気象・地形・天体・機械 (Thời tiết & Địa hình & Thiên thể & Máy móc)",
+    description:
+      "気象・地形・天体・機械 (Thời tiết & Địa hình & Thiên thể & Máy móc)",
     status: "done",
     main: false,
     x: 2265,
     y: -28,
-    href: "/tu-vung/n1/page19",
+    href: "/words/n1/page19",
   },
   {
     id: "word-20",
@@ -225,7 +226,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2265,
     y: 62,
-    href: "/tu-vung/n1/page20",
+    href: "/words/n1/page20",
   },
   {
     id: "word-21",
@@ -235,7 +236,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2720,
     y: -298,
-    href: "/tu-vung/n1/page21",
+    href: "/words/n1/page21",
   },
   {
     id: "word-22",
@@ -245,7 +246,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2720,
     y: -208,
-    href: "/tu-vung/n1/page22",
+    href: "/words/n1/page22",
   },
   {
     id: "word-23",
@@ -255,7 +256,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2720,
     y: -118,
-    href: "/tu-vung/n1/page23",
+    href: "/words/n1/page23",
   },
   {
     id: "word-24",
@@ -265,7 +266,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2720,
     y: -28,
-    href: "/tu-vung/n1/page24",
+    href: "/words/n1/page24",
   },
   {
     id: "word-25",
@@ -275,17 +276,18 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 2720,
     y: 62,
-    href: "/tu-vung/n1/page25",
+    href: "/words/n1/page25",
   },
   {
     id: "word-26",
     label: "Bài 26",
-    description: "形が似ている言葉 - 規・発・補・賛・弁・持続 (Từ hình giống nhau)",
+    description:
+      "形が似ている言葉 - 規・発・補・賛・弁・持続 (Từ hình giống nhau)",
     status: "done",
     main: false,
     x: 3175,
     y: -298,
-    href: "/tu-vung/n1/page26",
+    href: "/words/n1/page26",
   },
   {
     id: "word-27",
@@ -295,7 +297,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 3175,
     y: -208,
-    href: "/tu-vung/n1/page27",
+    href: "/words/n1/page27",
   },
   {
     id: "word-28",
@@ -305,7 +307,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 3175,
     y: -118,
-    href: "/tu-vung/n1/page28",
+    href: "/words/n1/page28",
   },
   {
     id: "word-29",
@@ -315,7 +317,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 3175,
     y: -28,
-    href: "/tu-vung/n1/page29",
+    href: "/words/n1/page29",
   },
   {
     id: "word-30",
@@ -325,7 +327,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 3175,
     y: 62,
-    href: "/tu-vung/n1/page30",
+    href: "/words/n1/page30",
   },
   {
     id: "word-31",
@@ -335,7 +337,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 3630,
     y: -298,
-    href: "/tu-vung/n1/page31",
+    href: "/words/n1/page31",
   },
   {
     id: "word-32",
@@ -345,7 +347,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     main: false,
     x: 3630,
     y: -208,
-    href: "/tu-vung/n1/page32",
+    href: "/words/n1/page32",
   },
   {
     id: "main-grammar",
