@@ -31,7 +31,7 @@ export const BASE_META: RoadmapNodeMeta[] = [
     id: "word-1",
     label: "Bài 1",
     description: "性格・人柄・個性 (Tính cách)",
-    status: "done",
+    status: "todo",
     main: false,
     x: 900,
     y: -298,
