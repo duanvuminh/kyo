@@ -1,5 +1,4 @@
 import { FlashCardItem } from "@/shared/component/flash-card/flash-card";
-import { Question } from "@/shared/types/models/question";
 
 export const cards: FlashCardItem[] = [
   {
@@ -16,34 +15,30 @@ export const cards: FlashCardItem[] = [
       "・頭を畳につけんばかりにしてわびたのに、父は許してくれなかった。",
     ],
     questions: [
-      new Question(
-        "6-1",
-        "彼女は泣き出さん___の顔で私を見た。",
-        ["ばかり", "ともなく", "きらいがある", "ながらに"],
-        0,
-        [],
-        undefined,
-        [
+      {
+        id: "6-1",
+        content: "彼女は泣き出さん___の顔で私を見た。",
+        answers: ["ばかり", "ともなく", "きらいがある", "ながらに"],
+        correctAnswer: 0,
+        memo: [
           "ばかり: Cô ấy nhìn tôi với khuôn mặt như thể sắp khóc — cường điệu trạng thái. (Đúng)",
           "ともなく: Vô tình, tình cờ — không phù hợp mô tả cường điệu.",
           "きらいがある: Có tật là — không phù hợp cấu trúc này.",
           "ながらに: Giữ nguyên trạng thái — không phù hợp.",
-        ]
-      ),
-      new Question(
-        "6-2",
-        "「んばかりだ」の「する」の変化として正しいものはどれか。",
-        ["しんばかり", "するんばかり", "せんばかり", "さんばかり"],
-        2,
-        [],
-        undefined,
-        [
+        ],
+      },
+      {
+        id: "6-2",
+        content: "「んばかりだ」の「する」の変化として正しいものはどれか。",
+        answers: ["しんばかり", "するんばかり", "せんばかり", "さんばかり"],
+        correctAnswer: 2,
+        memo: [
           "しんばかり: Sai — する không chia thành し trong mẫu này.",
           "するんばかり: Sai — する không giữ nguyên.",
           "せんばかり: Đúng — する → せ + んばかり (ない形 đặc biệt của する là せ). (Đúng)",
           "さんばかり: Sai — không phải dạng chia của する.",
-        ]
-      ),
+        ],
+      },
     ],
   },
   {
@@ -61,39 +56,35 @@ export const cards: FlashCardItem[] = [
       "・「もう歩けない」とばかりに、子供はその場に座り込んだ。",
     ],
     questions: [
-      new Question(
-        "6-3",
-        "彼は「待ってました」___、すぐに反論した。",
-        ["とばかりに", "んばかりに", "ともなく", "ながらに"],
-        0,
-        [],
-        undefined,
-        [
+      {
+        id: "6-3",
+        content: "彼は「待ってました」___、すぐに反論した。",
+        answers: ["とばかりに", "んばかりに", "ともなく", "ながらに"],
+        correctAnswer: 0,
+        memo: [
           "とばかりに: Như thể muốn nói 'Đợi mãi rồi!' — hành động phản bác ngay như đã chờ cơ hội. (Đúng)",
           "んばかりに: Cường điệu mức độ, không nhấn 'như muốn nói điều gì đó'.",
           "ともなく: Vô tình, tình cờ — hoàn toàn trái nghĩa.",
           "ながらに: Giữ nguyên trạng thái, không phù hợp.",
-        ]
-      ),
-      new Question(
-        "6-4",
-        "「とばかりに」の使い方として正しいものはどれか。",
-        [
+        ],
+      },
+      {
+        id: "6-4",
+        content: "「とばかりに」の使い方として正しいものはどれか。",
+        answers: [
           "自分の行動を説明するときに使う",
           "第三者の行動がまるで何かを言いたそうなときに使う",
           "動作の程度が極端であることを表す",
           "偶然・意図せずに行動するときに使う",
         ],
-        1,
-        [],
-        undefined,
-        [
+        correctAnswer: 1,
+        memo: [
           "自分の行動を説明するときに使う: Sai — không dùng cho bản thân (ngôi 1).",
           "第三者の行動がまるで何かを言いたそうなときに使う: Đúng — người thứ 3 hành động như muốn nói điều gì đó. (Đúng)",
           "動作の程度が極端であることを表す: Đây là đặc điểm của んばかりだ.",
           "偶然・意図せずに行動するときに使う: Đây là đặc điểm của ともなく.",
-        ]
-      ),
+        ],
+      },
     ],
   },
   {
@@ -110,20 +101,18 @@ export const cards: FlashCardItem[] = [
       "・テレビを見るともなく見ていたら、友人が映っていて驚いた。",
     ],
     questions: [
-      new Question(
-        "6-5",
-        "音楽を聞く___聞いていたら、眠ってしまった。",
-        ["ともなく", "んばかりに", "とばかりに", "ながらに"],
-        0,
-        [],
-        undefined,
-        [
+      {
+        id: "6-5",
+        content: "音楽を聞く___聞いていたら、眠ってしまった。",
+        answers: ["ともなく", "んばかりに", "とばかりに", "ながらに"],
+        correctAnswer: 0,
+        memo: [
           "ともなく: Không định nghe nhưng nghe vô tình thì ngủ lúc nào không hay — hành động tình cờ. (Đúng)",
           "んばかりに: Cường điệu mức độ, không phù hợp.",
           "とばかりに: Hành động như muốn nói điều gì, không phù hợp.",
           "ながらに: Giữ nguyên trạng thái, không phù hợp.",
-        ]
-      ),
+        ],
+      },
     ],
   },
   {
@@ -140,20 +129,18 @@ export const cards: FlashCardItem[] = [
       "・どこからともなく、おいしそうなカレーの匂いがした。",
     ],
     questions: [
-      new Question(
-        "6-6",
-        "___ともなく、子供たちの笑い声が聞こえてきた。",
-        ["どこから", "だれが", "なぜ", "どのように"],
-        0,
-        [],
-        undefined,
-        [
+      {
+        id: "6-6",
+        content: "___ともなく、子供たちの笑い声が聞こえてきた。",
+        answers: ["どこから", "だれが", "なぜ", "どのように"],
+        correctAnswer: 0,
+        memo: [
           "どこから: Không biết từ chỗ nào mà nghe tiếng cười trẻ em — nguồn gốc không rõ. (Đúng)",
           "だれが: Không phù hợp — だれ thường dùng với ともなく khi nói về chủ thể, nhưng ngữ cảnh này là địa điểm.",
           "なぜ: なぜ không dùng với ともなく.",
           "どのように: どのように không dùng với ともなく.",
-        ]
-      ),
+        ],
+      },
     ],
   },
   {
@@ -171,20 +158,18 @@ export const cards: FlashCardItem[] = [
       "・この子は生まれながらに、優れた音楽の才能を持っている。",
     ],
     questions: [
-      new Question(
-        "6-7",
-        "彼女は涙___に、その出来事を語ってくれた。",
-        ["ながら", "ともなく", "んばかり", "とばかり"],
-        0,
-        [],
-        undefined,
-        [
+      {
+        id: "6-7",
+        content: "彼女は涙___に、その出来事を語ってくれた。",
+        answers: ["ながら", "ともなく", "んばかり", "とばかり"],
+        correctAnswer: 0,
+        memo: [
           "ながら: Vừa khóc vừa kể lại — trạng thái khóc giữ nguyên trong lúc kể. (Đúng)",
           "ともなく: Vô tình, không phù hợp.",
           "んばかり: Cường điệu, không phù hợp.",
           "とばかり: Như muốn nói điều gì, không phù hợp.",
-        ]
-      ),
+        ],
+      },
     ],
   },
   {
@@ -202,39 +187,35 @@ export const cards: FlashCardItem[] = [
       "・彼はどうも物事を悲観的に考えるきらいがある。",
     ],
     questions: [
-      new Question(
-        "6-8",
-        "彼女はともすれば人に頼り過ぎる___。",
-        ["きらいがある", "ともなく", "ながらに", "んばかりだ"],
-        0,
-        [],
-        undefined,
-        [
+      {
+        id: "6-8",
+        content: "彼女はともすれば人に頼り過ぎる___。",
+        answers: ["きらいがある", "ともなく", "ながらに", "んばかりだ"],
+        correctAnswer: 0,
+        memo: [
           "きらいがある: Có tật hay dựa dẫm vào người khác quá mức — tật xấu nhỏ, phê bình nhẹ. (Đúng)",
           "ともなく: Vô tình, không phù hợp.",
           "ながらに: Giữ nguyên trạng thái, không phù hợp.",
           "んばかりだ: Cường điệu, không phù hợp.",
-        ]
-      ),
-      new Question(
-        "6-9",
-        "「きらいがある」の使い方として正しいものはどれか。",
-        [
+        ],
+      },
+      {
+        id: "6-9",
+        content: "「きらいがある」の使い方として正しいものはどれか。",
+        answers: [
           "自分の悪い癖を強く批判するときに使う",
           "第三者の小さな欠点・悪い傾向を軽く指摘するときに使う",
           "自然現象の傾向を表すときに使う",
           "ポジティブな傾向を述べるときに使う",
         ],
-        1,
-        [],
-        undefined,
-        [
+        correctAnswer: 1,
+        memo: [
           "自分の悪い癖を強く批判するときに使う: Sai — không phải phê bình mạnh, và thường ngôi 3.",
           "第三者の小さな欠点・悪い傾向を軽く指摘するときに使う: Đúng — phê bình nhẹ tật xấu nhỏ của người thứ 3. (Đúng)",
           "自然現象の傾向を表すときに使う: Sai — dùng cho người, không dùng cho hiện tượng tự nhiên.",
           "ポジティブな傾向を述べるときに使う: Sai — mang sắc thái tiêu cực (tật xấu).",
-        ]
-      ),
+        ],
+      },
     ],
   },
 ];
