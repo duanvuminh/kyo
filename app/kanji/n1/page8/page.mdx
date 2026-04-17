@@ -1,74 +1,44 @@
-# Danh sách kanji N1 page 8
+import FlashCardLink from "@/shared/component/flash-card-link";
 
-| Kanji | Hán Việt | Ý nghĩa ngắn gọn |
-| :---: | :------: | :--------------- |
-| 妊 | NHÂM | Mang thai |
-| 熟 | THỤC | Chín, thuần thục |
-| 旭 | HÚC | Mặt trời mọc |
-| 恩 | ÂN | Ân huệ |
-| 騰 | ĐẰNG | Bay lên, tăng |
-| 往 | VÃNG | Đi, qua lại |
-| 豆 | ĐẬU | Hạt đậu |
-| 遂 | TOẠI | Thành đạt |
-| 狂 | CUỒNG | Điên cuồng |
-| 岐 | KÌ | Ngã rẽ |
-| 陛 | BỆ | Bệ hạ |
-| 緯 | VĨ | Vĩ độ |
-| 培 | BỒI | Bồi dưỡng |
-| 衰 | SUY | Suy yếu |
-| 艇 | ĐĨNH | Thuyền nhỏ |
-| 屈 | KHUẤT | Cong, khuất phục |
-| 径 | KÍNH | Đường kính |
-| 淡 | ĐẠM | Nhạt, nhẹ |
-| 抽 | TRỪU | Rút ra |
-| 披 | PHI | Mở ra |
-| 廷 | ĐÌNH | Triều đình |
-| 錦 | CẨM | Gấm vóc |
-| 准 | CHUẨN | Chuẩn bị |
-| 暑 | THỬ | Nóng bức |
-| 磯 | KI | Bờ đá |
-| 奨 | TƯỞNG | Khen thưởng |
-| 浸 | TẨM | Thấm, ngấm |
-| 剰 | THẶNG | Thặng dư |
-| 胆 | ĐẢM | Can đảm |
-| 繊 | TIÊM | Mảnh, sợi nhỏ |
-| 駒 | CÂU | Ngựa con |
-| 虚 | HƯ | Trống rỗng |
-| 霊 | LINH | Linh hồn |
-| 帳 | TRƯỚNG | Sổ sách, màn che |
-| 悔 | HỐI | Hối hận |
-| 諭 | DỤ | Khuyên bảo |
-| 惨 | THẢM | Thảm khốc |
-| 虐 | NGƯỢC | Ác độc |
-| 翻 | PHIÊN | Lật, phiên dịch |
-| 墜 | TRỤY | Rơi, trụy lạc |
-| 沼 | CHIỂU | Đầm lầy |
-| 据 | CƯ | Đặt, lắp |
-| 肥 | PHÌ | Béo, màu mỡ |
-| 徐 | TỪ | Chậm rãi |
-| 糖 | ĐƯỜNG | Đường ngọt |
-| 搭 | ĐÁP | Lên (xe, máy bay) |
-| 盾 | THUẪN | Khiên |
-| 脈 | MẠCH | Mạch máu |
-| 滝 | LANG | Thác nước |
-| 軌 | QUỸ | Quỹ đạo |
-| 俵 | BIỂU | Bao, túi |
-| 妨 | PHƯƠNG | Cản trở |
-| 擦 | SÁT | Cọ xát |
-| 鯨 | KÌNH | Cá voi |
-| 荘 | TRANG | Trang nghiêm |
-| 諾 | NẶC | Đồng ý |
-| 雷 | LÔI | Sấm sét |
-| 漂 | PHIÊU | Trôi nổi |
-| 懐 | HOÀI | Hoài niệm |
-| 勘 | KHÁM | Cảm tính |
-| 栽 | TÀI | Trồng trọt |
-| 拐 | QUẢI | Bắt cóc |
-| 駄 | ĐÀ | Vô ích, nặng |
-| 添 | THIÊM | Thêm vào |
-| 冠 | QUAN | Vương miện |
-| 斜 | TÀ | Nghiêng |
-| 鏡 | KÍNH | Gương soi |
-| 聡 | THÔNG | Thông minh |
-| 浪 | LÃNG | Sóng, lang thang |
-| 亜 | Á | Thứ, phụ |
+## な形容詞・副詞・その他 (Tính từ な, Phó từ và các từ khác)
+
+### な形容詞 (1) — Tính cách & trạng thái
+
+| Kanji | Hán Việt | Cách đọc           | Nghĩa                        | Từ vựng ví dụ                        |
+| :---- | :------- | :----------------- | :--------------------------- | :----------------------------------- |
+| 穏     | ÔN      | おだやか            | bình thản, ôn hòa            | 穏やか（おだやか）、穏健（おんけん）   |
+| 厳     | NGHIÊM  | きびしい・おごそか  | nghiêm khắc, trang nghiêm   | 厳しい、厳格（げんかく）               |
+| 贅     | TẠI     | ぜいたく            | xa xỉ, hoang phí             | 贅沢（ぜいたく）、贅沢品               |
+| 謙     | KHIÊM   | けんきょ            | khiêm tốn                    | 謙虚（けんきょ）、謙遜（けんそん）     |
+| 頑     | NGOAN   | がんこ              | cứng đầu, bướng bỉnh         | 頑固（がんこ）、頑丈（がんじょう）     |
+| 柔     | NHU     | やわらか・じゅうなん | mềm mại, uyển chuyển        | 柔らか（やわらか）、柔軟（じゅうなん） |
+| 粗     | THÔ     | そまつ・あらい      | thô ráp, sơ sài              | 粗末（そまつ）、粗雑（そざつ）         |
+| 繊     | TIÊM    | きめこまか          | mảnh mai, tỉ mỉ              | 繊細（せんさい）、繊維（せんい）       |
+
+### な形容詞 (2) — Quan hệ & đánh giá
+
+| Kanji | Hán Việt | Cách đọc           | Nghĩa                        | Từ vựng ví dụ                        |
+| :---- | :------- | :----------------- | :--------------------------- | :----------------------------------- |
+| 著     | TRỨ     | いちじるしい        | nổi bật, rõ ràng             | 著しい（いちじるしい）、著名（ちょめい）|
+| 顕     | HIỂN    | あきらか            | rõ ràng, hiển nhiên          | 顕著（けんちょ）、顕在（けんざい）     |
+| 微     | VI      | かすか・びしょう    | nhỏ bé, vi tế               | 微妙（びみょう）、微笑（びしょう）     |
+| 厄     | ÁCH     | やっかい            | phiền hà, tai ương           | 厄介（やっかい）、厄年（やくどし）     |
+| 曖     | ÁM      | あいまい            | mơ hồ, không rõ ràng        | 曖昧（あいまい）                       |
+| 露     | LỘ      | あからさま          | trắng trợn, không che giấu  | 露骨（ろこつ）、暴露（ばくろ）         |
+| 緻     | TRI     | きめこまか          | tỉ mỉ, chi tiết              | 緻密（ちみつ）                         |
+| 卑     | TY      | いやしい・ひきょう  | hèn hạ, ti tiện              | 卑怯（ひきょう）、卑劣（ひれつ）       |
+
+### 副詞・その他 — Phó từ và các từ khác
+
+| Kanji | Hán Việt | Cách đọc           | Nghĩa                        | Từ vựng ví dụ                        |
+| :---- | :------- | :----------------- | :--------------------------- | :----------------------------------- |
+| 徐     | TỪ      | じょじょに          | từ từ, chầm chậm             | 徐々に（じょじょに）、徐行（じょこう） |
+| 漸     | TIỆM    | ようやく・しだいに  | dần dần, từng bước           | 漸次（ぜんじ）、漸進（ぜんしん）       |
+| 途     | ĐỒ      | とちゅう            | giữa chừng, đang trên đường | 途中（とちゅう）、途絶（とだえ）       |
+| 更     | CANH    | さらに・いっそう    | hơn nữa, thêm vào            | 更に（さらに）、更新（こうしん）       |
+| 既     | KÝ      | すでに              | đã rồi, từ trước             | 既に（すでに）、既存（きそん）         |
+| 却     | KHƯỚC   | かえって            | ngược lại, trái hẳn          | 却って（かえって）、却下（きゃっか）   |
+| 概     | KHÁI    | おおむね            | nhìn chung, phần lớn         | 概ね（おおむね）、概要（がいよう）     |
+| 敢     | CẢM     | あえて              | dám, cố tình                 | 敢えて（あえて）、果敢（かかん）       |
+
+<FlashCardLink href="/kanji/n1/page8/flash-card" />

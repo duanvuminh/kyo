@@ -4,6 +4,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "遭",
     back: [
+      "🀄 THÁO (ソウ)",
       "✨ あう — gặp phải (tai họa, sự cố)",
       "・Ví dụ: 遭難（そうなん）: gặp tai nạn",
       "📌 遭う（あう）: gặp phải điều không hay",
@@ -44,6 +45,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "飼",
     back: [
+      "🀄 TỰ (シ)",
       "✨ かう — nuôi (động vật)",
       "・Ví dụ: 犬を飼う（いぬをかう）: nuôi chó",
       "📌 飼う（かう）: nuôi thú cưng, vật nuôi",
@@ -73,6 +75,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "狂",
     back: [
+      "🀄 CUỒNG (キョウ)",
       "✨ くるう — điên loạn, lệch khỏi bình thường",
       "・Ví dụ: 計画が狂う（けいかくがくるう）: kế hoạch bị lệch",
       "📌 狂う（くるう）: mất kiểm soát, trở nên điên loạn",
@@ -102,6 +105,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "誓",
     back: [
+      "🀄 THỆ (セイ)",
       "✨ ちかう — thề, hứa hẹn",
       "・Ví dụ: 神に誓う（かみにちかう）: thề trước thần",
       "📌 誓う（ちかう）: lập lời thề, cam kết trang trọng",
@@ -131,6 +135,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "侵",
     back: [
+      "🀄 XÂM (シン)",
       "✨ おかす — xâm phạm, vi phạm",
       "・Ví dụ: 領土を侵す（りょうどをおかす）: xâm phạm lãnh thổ",
       "📌 侵す（おかす）: xâm lấn, vi phạm ranh giới",
@@ -160,6 +165,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "聴",
     back: [
+      "🀄 THÍNH (チョウ)",
       "✨ きく — lắng nghe (chú ý, tập trung)",
       "・Ví dụ: 音楽を聴く（おんがくをきく）: nghe nhạc",
       "📌 聴く（きく）: nghe chú ý; 聞く（きく）: nghe thông thường / hỏi",
@@ -206,6 +212,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "拭",
     back: [
+      "🀄 THỨC (ショク)",
       "✨ ふく — lau, chùi sạch",
       "・Ví dụ: テーブルを拭く（テーブルをふく）: lau bàn",
       "📌 拭く（ふく）: lau bằng khăn; 拭き取る（ふきとる）: lau sạch",
@@ -234,6 +241,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "炊",
     back: [
+      "🀄 XÚY (スイ)",
       "✨ たく — nấu (cơm)",
       "・Ví dụ: ご飯を炊く（ごはんをたく）: nấu cơm",
       "📌 炊く（たく）: chỉ dùng cho việc nấu cơm, không dùng cho nấu chung",
@@ -263,6 +271,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "弾",
     back: [
+      "🀄 ĐÀN (ダン)",
       "✨ ひく — chơi (đàn, nhạc cụ dây/phím); はじく — bật, búng",
       "・Ví dụ: ピアノを弾く（ピアノをひく）: chơi piano",
       "📌 弾く（ひく）: chơi nhạc cụ; 弾く（はじく）: bật, búng ra",
@@ -292,6 +301,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "描",
     back: [
+      "🀄 MIÊU (ビョウ)",
       "✨ えがく・かく — vẽ, mô tả, miêu tả",
       "・Ví dụ: 絵を描く（えをえがく）: vẽ tranh",
       "📌 描く（えがく）: vẽ / mô tả trong văn học; 描く（かく）: vẽ (thông thường)",
@@ -321,6 +331,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "砕",
     back: [
+      "🀄 TÁI (サイ)",
       "✨ くだく・くだける — nghiền nát, đập vỡ",
       "・Ví dụ: 石を砕く（いしをくだく）: đập vỡ đá",
       "📌 砕く（くだく）: làm vỡ thành nhiều mảnh; 砕ける（くだける）: tự vỡ ra",
@@ -350,6 +361,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "脱",
     back: [
+      "🀄 THOÁT (ダツ)",
       "✨ ぬぐ — cởi (quần áo); だっする — thoát khỏi",
       "・Ví dụ: 靴を脱ぐ（くつをぬぐ）: cởi giày",
       "📌 脱ぐ（ぬぐ）: cởi quần áo, giày; 脱する（だっする）: thoát ra",
@@ -379,6 +391,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "稼",
     back: [
+      "🀄 GIÁ (カ)",
       "✨ かせぐ — kiếm tiền, kiếm sống",
       "・Ví dụ: お金を稼ぐ（おかねをかせぐ）: kiếm tiền",
       "📌 稼ぐ（かせぐ）: làm việc để kiếm thu nhập",
@@ -408,6 +421,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "脅",
     back: [
+      "🀄 HIẾP (キョウ)",
       "✨ おどす・おびやかす — đe dọa, uy hiếp",
       "・Ví dụ: 人を脅す（ひとをおどす）: đe dọa người",
       "📌 脅す（おどす）: đe dọa; 脅かす（おびやかす）: uy hiếp, gây nguy hiểm",
@@ -437,6 +451,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "励",
     back: [
+      "🀄 LỰC (レイ)",
       "✨ はげます・はげむ — khuyến khích, động viên / nỗ lực",
       "・Ví dụ: 友達を励ます（ともだちをはげます）: động viên bạn",
       "📌 励ます（はげます）: khuyến khích người khác; 励む（はげむ）: tự nỗ lực",
@@ -466,6 +481,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "拝",
     back: [
+      "🀄 BÁI (ハイ)",
       "✨ おがむ — lễ bái, chắp tay cầu nguyện",
       "・Ví dụ: 神社で拝む（じんじゃでおがむ）: cầu nguyện ở đền",
       "📌 拝む（おがむ）: chắp tay lễ bái; dùng trong kính ngữ 拝〜",
@@ -495,6 +511,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "抱",
     back: [
+      "🀄 BÀO (ホウ)",
       "✨ だく・いだく — ôm, ôm ấp; ấp ủ (cảm xúc)",
       "・Ví dụ: 赤ちゃんを抱く（あかちゃんをだく）: ôm em bé",
       "📌 抱く（だく）: ôm; 抱く（いだく）: ấp ủ (hy vọng, nỗi sợ)",
@@ -524,6 +541,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "怠",
     back: [
+      "🀄 ĐÃI (タイ)",
       "✨ おこたる・なまける — lười biếng, bỏ bê",
       "・Ví dụ: 勉強を怠る（べんきょうをおこたる）: bỏ bê việc học",
       "📌 怠る（おこたる）: sao nhãng, không làm đầy đủ; 怠ける（なまける）: lười biếng",
@@ -553,6 +571,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "膨",
     back: [
+      "🀄 PHÀNH (ボウ)",
       "✨ ふくらむ・ふくれる — phồng lên, nở ra",
       "・Ví dụ: 風船が膨らむ（ふうせんがふくらむ）: bong bóng phồng lên",
       "📌 膨らむ（ふくらむ）: phồng dần; 膨れる（ふくれる）: phồng lên (cũng dùng khi tức giận)",

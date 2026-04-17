@@ -1,11 +1,11 @@
-import { cards } from "@/app/kanji/n1/page3/flash-card/cards";
+import { cards } from "@/app/kanji/n1/page4/flash-card/cards";
 import { FlashCard } from "@/shared/component/flash-card/flash-card";
 
 export default function Page() {
   return (
     <main>
       <h1 className="text-2xl font-bold text-center mt-8">
-        Flash Card Kanji N1 - Bài 3: 動詞Bレベル (1)～(3)
+        Flash Card Kanji N1 - Bài 4: 動詞Bレベル (4)～(6)
       </h1>
       <FlashCard cards={cards} />
     </main>

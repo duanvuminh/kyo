@@ -1,74 +1,44 @@
-# Danh sách kanji N1 page 10
+import FlashCardLink from "@/shared/component/flash-card-link";
 
-| Kanji | Hán Việt | Ý nghĩa ngắn gọn |
-| :---: | :------: | :--------------- |
-| 伏 | PHỤC | Phục, cúi xuống |
-| 碁 | KÌ | Cờ vây |
-| 俗 | TỤC | Thông tục, tục lệ |
-| 漠 | MẠC | Mênh mông, hoang mạc |
-| 邪 | TÀ | Tà ác |
-| 晶 | TINH | Tinh thể, sáng |
-| 墨 | MẶC | Mực |
-| 鎮 | TRẤN | Trấn áp, yên ổn |
-| 洞 | ĐỖNG | Hang, hốc |
-| 履 | LÍ | Đi giày, trải qua |
-| 劣 | LIỆT | Kém, yếu |
-| 那 | NA | Cái đó, nào |
-| 殴 | ẨU | Đánh, tấn công |
-| 娠 | THẦN | Mang thai |
-| 奉 | PHỤNG | Phụng sự, dâng hiến |
-| 憂 | ƯU | Buồn phiền, lo lắng |
-| 朴 | PHÁC | Đơn giản, mộc mạc |
-| 亭 | ĐÌNH | Quán trọ, đình |
-| 淳 | THUẦN | Thuần khiết, trong sáng |
-| 怪 | QUÁI | Kỳ lạ, quái dị |
-| 鳩 | CƯU | Chim bồ câu |
-| 酔 | TÚY | Say rượu |
-| 惜 | TÍCH | Tiếc nuối |
-| 穫 | HOẠCH | Thu hoạch |
-| 佳 | GIAI | Tốt đẹp |
-| 潤 | NHUẬN | Nước, làm ẩm |
-| 悼 | ĐIỆU | Tang thương, thương tiếc |
-| 乏 | PHẠP | Thiếu thốn |
-| 該 | CAI | Liên quan, nêu ra |
-| 赴 | PHÓ | Đi đến, tới |
-| 桑 | TANG | Cây dâu |
-| 桂 | QUẾ | Cây quế |
-| 髄 | TỦY | Tủy, cốt tủy |
-| 虎 | HỔ | Con hổ |
-| 盆 | BỒN | Chậu, bồn |
-| 晋 | TẤN | Tiến lên, triều Tấn |
-| 穂 | TUỆ | Bông lúa |
-| 壮 | TRÁNG | Mạnh mẽ, hùng tráng |
-| 堤 | ĐÊ | Đê, bờ kè |
-| 飢 | CƠ | Đói khát |
-| 傍 | BÀNG | Bên cạnh |
-| 疫 | DỊCH | Dịch bệnh |
-| 累 | LUY | Chồng chất |
-| 痴 | SI | Ngu dốt, mê muội |
-| 搬 | BÀN | Chuyển, vận chuyển |
-| 晃 | HOẢNG | Sáng, rực rỡ |
-| 癒 | DŨ | Chữa lành, an ủi |
-| 桐 | ĐỒNG | Cây kịch (桐) |
-| 寸 | THỐN | Đơn vị đo chiều dài |
-| 郭 | QUÁCH | Thành quách |
-| 尿 | NIỆU | Nước tiểu |
-| 凶 | HUNG | Hung ác, xấu |
-| 吐 | THỔ | Nôn, thổ ra |
-| 宴 | YẾN | Yến tiệc |
-| 鷹 | ƯNG | Chim ưng |
-| 賓 | TÂN | Khách quý |
-| 虜 | LỖ | Tù binh |
-| 陶 | ĐÀO | Gốm sứ |
-| 鐘 | CHUNG | Chuông |
-| 憾 | HÁM | Hối tiếc |
-| 猪 | TRƯ | Lợn rừng |
-| 紘 | HOÀNH | Rộng lớn |
-| 磁 | TỪ | Từ trường, nam châm |
-| 弥 | DI | Trải rộng, đầy đủ |
-| 昆 | CÔN | Côn trùng |
-| 粗 | THÔ | Thô, chưa tinh chế |
-| 訂 | ĐÍNH | Sửa chữa, hiệu đính |
-| 芽 | NHA | Mầm cây |
-| 庄 | TRANG | Làng, trang trại |
-| 傘 | TÁN | Cái dù |
+## 名詞 (4)自然 (5)植物・食物 (6)建造物・形状
+
+### (4) 自然 — Thiên nhiên
+
+| Kanji | Hán Việt | Cách đọc           | Nghĩa                        | Từ vựng ví dụ                        |
+| :---- | :------- | :----------------- | :--------------------------- | :----------------------------------- |
+| 潮     | TRIỀU   | しお・うしお        | thủy triều, làn sóng         | 潮（しお）、満潮（まんちょう）         |
+| 滝     | LANG    | たき                | thác nước                    | 滝（たき）、滝つぼ（たきつぼ）         |
+| 霞     | HÀ      | かすみ              | sương mù, khói sương         | 霞（かすみ）、霞がかかる               |
+| 沼     | CHIỂU   | ぬま                | đầm lầy, ao tù               | 沼（ぬま）、沼地（ぬまち）             |
+| 洞     | ĐỖNG    | ほら・どう          | hang động                    | 洞窟（どうくつ）、洞穴（ほらあな）     |
+| 堤     | ĐÊ      | つつみ              | đê, bờ kè                    | 堤（つつみ）、堤防（ていぼう）         |
+| 穂     | TUỆ     | ほ                  | bông lúa                     | 穂（ほ）、稲穂（いなほ）               |
+| 芽     | NHA     | め                  | mầm cây, chồi non            | 芽（め）、芽吹く（めぶく）             |
+
+### (5) 植物・食物 — Thực vật, thực phẩm
+
+| Kanji | Hán Việt | Cách đọc           | Nghĩa                        | Từ vựng ví dụ                        |
+| :---- | :------- | :----------------- | :--------------------------- | :----------------------------------- |
+| 桑     | TANG    | くわ                | cây dâu                      | 桑（くわ）、桑の実（くわのみ）         |
+| 桐     | ĐỒNG    | きり                | cây paulownia (cây kịch)     | 桐（きり）、桐箪笥（きりだんす）       |
+| 栗     | LẬT     | くり                | hạt dẻ                       | 栗（くり）、栗ご飯（くりごはん）       |
+| 梅     | MAI     | うめ                | cây mơ, quả mơ               | 梅（うめ）、梅干し（うめぼし）         |
+| 菊     | CÚC     | きく                | hoa cúc                      | 菊（きく）、菊の花（きくのはな）       |
+| 萩     | THẤU    | はぎ                | cây đẹp (hoa hagi/bush clover)| 萩（はぎ）、秋の萩                   |
+| 豆     | ĐẬU     | まめ                | hạt đậu                      | 豆（まめ）、大豆（だいず）             |
+| 糧     | LƯƠNG   | かて・りょう        | lương thực, thức ăn          | 糧（かて）、食糧（しょくりょう）       |
+
+### (6) 建造物・形状 — Công trình, hình dạng
+
+| Kanji | Hán Việt | Cách đọc           | Nghĩa                        | Từ vựng ví dụ                        |
+| :---- | :------- | :----------------- | :--------------------------- | :----------------------------------- |
+| 廊     | LANG    | ろうか              | hành lang, dãy nhà           | 廊下（ろうか）、回廊（かいろう）       |
+| 壇     | ĐÀN     | だん・たん          | bục, đài, bàn thờ            | 壇（だん）、演壇（えんだん）           |
+| 棟     | ĐỐNG    | むね・とう          | ngôi nhà, mái nhà, khoa      | 棟（むね）、一棟（いっとう）           |
+| 亭     | ĐÌNH    | ていしゃ・ちん      | đình, quán trọ               | 亭（てい）、料亭（りょうてい）         |
+| 郭     | QUÁCH   | くるわ・かく        | thành quách, vòng thành      | 城郭（じょうかく）、外郭（がいかく）   |
+| 垣     | VIÊN    | かき                | hàng rào, tường vách         | 垣根（かきね）、生け垣（いけがき）     |
+| 斜     | TÀ      | なな・しゃ          | nghiêng, xiên                | 斜め（ななめ）、斜面（しゃめん）       |
+| 軸     | TRỤC    | じく                | trục, trục xoay              | 軸（じく）、地軸（ちじく）             |
+
+<FlashCardLink href="/kanji/n1/page10/flash-card" />
