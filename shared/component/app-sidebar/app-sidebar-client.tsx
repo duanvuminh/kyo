@@ -1,13 +1,13 @@
 "use client";
 
-import { AppSidebarUI } from "@/shared/component/app-sidebar/app-sidebar-ui";
+import { SidebarFooterMenu } from "@/shared/component/app-sidebar/sidebar-footer-menu";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function AppSidebarClient() {
   const { data: session, status } = useSession();
 
   return (
-    <AppSidebarUI
+    <SidebarFooterMenu
       email={session?.user?.email ?? null}
       isLoading={status === "loading"}
       onLogin={() => signIn("google")}

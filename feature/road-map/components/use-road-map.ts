@@ -1,5 +1,5 @@
-import { BASE_META, RoadmapStatus } from "@/feature/road-map/model/road-map";
 import { STORAGE_KEY } from "@/feature/road-map/components/constants";
+import { BASE_META, RoadmapStatus } from "@/feature/road-map/model/road-map";
 import { useState } from "react";
 
 function loadInitialStatuses(): Record<string, RoadmapStatus> {
@@ -35,7 +35,7 @@ export function useRoadMap() {
   const [statuses, setStatuses] = useState<Record<string, RoadmapStatus>>(() =>
     loadInitialStatuses(),
   );
-  const [selectedId, setSelectedId] = useState<string | null>("start");
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   const handleSetStatus = (id: string, status: RoadmapStatus) => {
     setStatuses((prev) => {

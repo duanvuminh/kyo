@@ -1,4 +1,4 @@
-import AppSidebarClient from "@/shared/component/app-sidebar/app-sidebar-client";
+import { AppSidebarServer } from "@/shared/component/app-sidebar/app-sidebar-server";
 import { KBreadCrumb } from "@/shared/component/bread-crumb/bread-crumb";
 import { SidebarProvider, SidebarTrigger } from "@/shared/component/ui/sidebar";
 import { Toaster } from "@/shared/component/ui/sonner";
@@ -23,7 +23,7 @@ export default async function RootLayout({
         <body>
           <SessionProvider>
             <SidebarProvider defaultOpen={false}>
-              <AppSidebarClient />
+              <AppSidebarServer />
               <main className="w-full">
                 <div className="sticky top-0 flex items-center z-1 m-1 gap-2">
                   <SidebarTrigger />
