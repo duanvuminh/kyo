@@ -7,11 +7,7 @@ import {
 import Link from "next/link";
 
 const items = [
-  { title: "Từ vựng", url: "/words" },
-  { title: "Ngữ pháp", url: "/grammar" },
-  { title: "Kanji", url: "/kanji" },
-  { title: "Đọc", url: "/reading" },
-  { title: "Nghe", url: "/listening" },
+  { title: "Road map n1", url: "/road-map-n1" },
   { title: "Học qua video", url: "/short/newest" },
   { title: "Học qua truyện tranh", url: "/manga/newest" },
 ];
