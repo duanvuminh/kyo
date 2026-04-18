@@ -686,6 +686,45 @@ export const BASE_META: RoadmapNodeMeta[] = [
     y: 700,
     href: "/listening/n1/newest",
   },
+  {
+    id: "main-reading",
+    label: "Đọc hiểu",
+    description: "Luyện tập đọc hiểu N1",
+    status: "todo",
+    main: true,
+    x: 462,
+    y: 900,
+  },
+  {
+    id: "reading-1",
+    label: "Bài 1",
+    description: "Luyện tập 1 - Đọc hiểu",
+    status: "todo",
+    main: false,
+    x: 886,
+    y: 850,
+    href: "/reading/n1/practice01",
+  },
+  {
+    id: "reading-2",
+    label: "Bài 2",
+    description: "Luyện tập 2 - Đọc hiểu",
+    status: "todo",
+    main: false,
+    x: 886,
+    y: 950,
+    href: "/reading/n1/practice02",
+  },
+  {
+    id: "reading-3",
+    label: "Bài 3",
+    description: "Luyện tập 3 - Đọc hiểu",
+    status: "todo",
+    main: false,
+    x: 886,
+    y: 1050,
+    href: "/reading/n1/practice03",
+  },
 ];
 
 export const BASE_EDGES: Edge[] = [
@@ -774,5 +813,25 @@ export const BASE_EDGES: Edge[] = [
     id: "edge-listening-1",
     source: "main-listening",
     target: "listening-1",
+  },
+  {
+    id: "edge-main-reading",
+    source: "main-listening",
+    target: "main-reading",
+  },
+  {
+    id: "edge-reading-1",
+    source: "main-reading",
+    target: "reading-1",
+  },
+  {
+    id: "edge-reading-1-2",
+    source: "reading-1",
+    target: "reading-2",
+  },
+  {
+    id: "edge-reading-2-3",
+    source: "reading-2",
+    target: "reading-3",
   },
 ];

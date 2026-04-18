@@ -8,7 +8,7 @@ export default async function Layout({
   return (
     <>
       {children}
-      <ReadingN1Paging totalPages={55} />
+      <ReadingN1Paging totalPages={3} />
     </>
   );
 }
