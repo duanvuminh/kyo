@@ -676,6 +676,16 @@ export const BASE_META: RoadmapNodeMeta[] = [
     x: 462,
     y: 700,
   },
+  {
+    id: "listening-1",
+    label: "Luyện tập",
+    description: "Nghe hiểu N1 - Luyện tập liên tục",
+    status: "todo",
+    main: false,
+    x: 886,
+    y: 700,
+    href: "/listening/n1/newest",
+  },
 ];
 
 export const BASE_EDGES: Edge[] = [
@@ -759,5 +769,10 @@ export const BASE_EDGES: Edge[] = [
     id: "edge-main-listening",
     source: "main-kanji",
     target: "main-listening",
+  },
+  {
+    id: "edge-listening-1",
+    source: "main-listening",
+    target: "listening-1",
   },
 ];
