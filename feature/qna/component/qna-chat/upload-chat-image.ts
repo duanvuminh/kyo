@@ -1,4 +1,4 @@
-import { uploadChatImageToStorage } from "@/shared/api/chat-image";
+import { uploadChatImageToStorage } from "@/shared/actions/chat-image";
 import { AppError, ErrorCode, ErrorMessage } from "@/shared/types/models/error";
 
 export interface UploadResult {

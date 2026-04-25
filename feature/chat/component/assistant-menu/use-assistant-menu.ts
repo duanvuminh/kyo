@@ -1,4 +1,4 @@
-import { checkWord } from "@/shared/api/check";
+import { checkWord } from "@/shared/actions/check";
 import { PracticeStorage } from "@/shared/service/storage";
 import { useChat } from "@ai-sdk/react";
 import { useEffect, useRef, useState } from "react";

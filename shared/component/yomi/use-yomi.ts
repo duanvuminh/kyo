@@ -1,4 +1,4 @@
-import { getFurigana } from "@/shared/api/furigana";
+import { getFurigana } from "@/shared/actions/furigana";
 import { useEffect, useState } from "react";
 
 export function useYomi(text: string) {

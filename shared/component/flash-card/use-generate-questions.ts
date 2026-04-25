@@ -1,5 +1,5 @@
 "use client";
-import { generateQuestions as generateQuestionsApi } from "@/shared/api/generate-questions";
+import { generateQuestions as generateQuestionsApi } from "@/shared/actions/generate-questions";
 import { AppError, ErrorCode, ErrorMessage } from "@/shared/types/models/error";
 import { Question } from "@/shared/types/models/question";
 import { useCallback, useState } from "react";
