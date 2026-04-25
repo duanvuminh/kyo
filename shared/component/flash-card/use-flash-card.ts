@@ -1,5 +1,5 @@
 import { shuffle } from "@/core/utils/utils";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { FlashCardItem } from "./flash-card";
 
 export function useFlashCard(cards: FlashCardItem[], cardsPerPage = 20) {
@@ -9,14 +9,16 @@ export function useFlashCard(cards: FlashCardItem[], cardsPerPage = 20) {
 
   const totalPages = Math.ceil(cards.length / cardsPerPage);
   const startIndex = page * cardsPerPage;
-  const pageCards = cards.slice(startIndex, startIndex + cardsPerPage);
-  const [currentCards, setCurrentCards] = useState(pageCards);
+  const currentCards = useMemo(() => {
+    const start = page * cardsPerPage;
+    return shuffle(cards.slice(start, start + cardsPerPage));
+  }, [cards, page, cardsPerPage]);
 
-  useEffect(() => {
-    setCurrentCards(shuffle(pageCards));
+  const [prevPage, setPrevPage] = useState(page);
+  if (prevPage !== page) {
+    setPrevPage(page);
     setIndex(0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [page]);
+  }
 
   const goToPage = (newPage: number) => { setPage(newPage); setShowBack(false); };
   const toggleShowBack = () => setShowBack((v) => !v);

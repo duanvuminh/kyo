@@ -3,7 +3,7 @@ import { MODE_MAP, PracticeCardMode } from "@/feature/practice/model/type";
 import { PracticeStorage } from "@/shared/service/storage";
 import { Question } from "@/shared/types/models/question";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 
 export function usePracticeCard(word: string, subPractice: Practice[]) {
   const searchParams = useSearchParams();
@@ -11,11 +11,7 @@ export function usePracticeCard(word: string, subPractice: Practice[]) {
 
   const [mode, setMode] = useState<PracticeCardMode>(modeFromUrl);
   const [practiceIndex, setPracticeIndex] = useState(0);
-  const [nextWord, setNextWord] = useState<string | undefined>(undefined);
-
-  useEffect(() => {
-    setNextWord(PracticeStorage.getNextWord(word));
-  }, [word]);
+  const nextWord = useMemo(() => PracticeStorage.getNextWord(word), [word]);
 
   const handleModeChange = (newMode: PracticeCardMode) => {
     if (mode === newMode) {
