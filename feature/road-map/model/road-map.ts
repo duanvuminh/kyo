@@ -1037,7 +1037,7 @@ export const BASE_EDGES: Edge[] = [
   { id: "e-kanji-30-31", source: "kanji-30", target: "kanji-31" },
   {
     id: "edge-main-listening",
-    source: "kanji-31",
+    source: "main-kanji",
     target: "main-listening",
   },
   {
