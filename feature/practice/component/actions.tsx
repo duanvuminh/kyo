@@ -17,21 +17,28 @@ export const Actions = ({
   word,
   onRemove,
 }: ActionsProps) => (
-  <div>
+  <div className="flex items-center gap-1">
     <ModeButton
       mode={mode}
       targetMode={PracticeCardMode.FLASH_CARD}
       onClick={handleModeChange}
       icon={Eye}
+      title="Flash card"
     />
     <ModeButton
       mode={mode}
       targetMode={PracticeCardMode.PRACTICE}
       onClick={handleModeChange}
       icon={Play}
+      title="Luyện tập"
     />
     <AudioPlayer text={word} />
-    <Button variant="ghost" className="text-muted" onClick={onRemove}>
+    <Button
+      variant="ghost"
+      className="text-muted-foreground hover:text-destructive"
+      onClick={onRemove}
+      title="Xoá khỏi danh sách"
+    >
       <Trash />
     </Button>
   </div>

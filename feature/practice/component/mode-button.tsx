@@ -8,6 +8,7 @@ interface ModeButtonProps {
   onClick: (mode: PracticeCardMode) => void;
   icon: React.ComponentType;
   className?: string;
+  title?: string;
 }
 
 export const ModeButton = ({
@@ -15,12 +16,14 @@ export const ModeButton = ({
   targetMode,
   onClick,
   icon: Icon,
-  className = "text-muted",
+  className = "text-muted-foreground",
+  title,
 }: ModeButtonProps) => (
   <Button
     variant="ghost"
     className={cn(className, { "text-primary": mode === targetMode })}
     onClick={() => onClick(targetMode)}
+    title={title}
   >
     <Icon />
   </Button>

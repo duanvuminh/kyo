@@ -23,5 +23,5 @@ const googleFree = createGoogleGenerativeAI({
 export const freeModel: AIModelConfig = {
   id: "gemini-flash-free",
   name: "Gemini 2.5 Flash Lite",
-  model: googleFree("gemini-2.5-flash-lite-preview-06-17"),
+  model: googleFree("gemini-2.5-flash-lite"),
 };

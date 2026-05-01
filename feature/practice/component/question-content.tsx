@@ -10,6 +10,8 @@ interface QuestionContentProps {
   question?: Question;
   onNextQuestion: () => void;
   practiceId: string;
+  currentIndex: number;
+  total: number;
 }
 
 const DiscordLink = ({ practiceId }: { practiceId: string }) => (
@@ -24,15 +26,21 @@ export const QuestionContent = ({
   question,
   onNextQuestion,
   practiceId,
+  currentIndex,
+  total,
 }: QuestionContentProps) => {
   return (
     <div className="flex flex-col gap-2">
+      {total > 0 && (
+        <p className="text-xs text-muted-foreground">
+          {currentIndex + 1} / {total}
+        </p>
+      )}
       {question ? (
         <QuestionDetail question={question} onNextQuestion={onNextQuestion} />
       ) : (
-        <p>Hiện tại chưa có dữ liệu</p>
+        <p className="text-sm text-muted-foreground">Hiện tại chưa có dữ liệu</p>
       )}
-
       <DiscordLink practiceId={practiceId} />
     </div>
   );

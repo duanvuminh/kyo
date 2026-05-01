@@ -13,6 +13,8 @@ interface ContentProps {
   word: string;
   question: Question | undefined;
   onNextQuestion: () => void;
+  practiceIndex: number;
+  practiceTotal: number;
 }
 
 export const PracticeCardContent = ({
@@ -21,6 +23,8 @@ export const PracticeCardContent = ({
   word,
   question,
   onNextQuestion,
+  practiceIndex,
+  practiceTotal,
 }: ContentProps) => {
   return (
     <CardContent className="flex-1 overflow-auto">
@@ -45,6 +49,8 @@ export const PracticeCardContent = ({
                 question={question}
                 onNextQuestion={onNextQuestion}
                 practiceId={flashCard.id}
+                currentIndex={practiceIndex}
+                total={practiceTotal}
               />
             );
           default:

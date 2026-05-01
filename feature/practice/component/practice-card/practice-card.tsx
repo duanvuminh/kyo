@@ -4,6 +4,7 @@ import { NextWordButton } from "@/feature/practice/component/next-word-button";
 import { PracticeCardContent } from "@/feature/practice/component/practice-card-content";
 import { usePracticeCard } from "@/feature/practice/component/practice-card/use-practice-card";
 import { Practice } from "@/feature/practice/model/practice";
+import { PracticeStorage } from "@/shared/service/storage";
 import {
   Card,
   CardAction,
@@ -19,12 +20,17 @@ interface PracticeCardProps {
 }
 
 export const KPracticeCard = ({ word, flashCard, practice }: PracticeCardProps) => {
-  const { mode, question, handleModeChange, handleNextQuestion, nextWord, removeWordsToPractice } =
+  const { mode, practiceIndex, question, handleModeChange, handleNextQuestion, nextWord, removeWordsToPractice } =
     usePracticeCard(word, practice);
 
   const handleRemove = () => {
     removeWordsToPractice(word);
-    toast("Đã xóa khỏi danh sách luyện tập");
+    toast("Đã xóa khỏi danh sách luyện tập", {
+      action: {
+        label: "Hoàn tác",
+        onClick: () => PracticeStorage.addToPracticeList(word),
+      },
+    });
   };
 
   return (
@@ -47,6 +53,8 @@ export const KPracticeCard = ({ word, flashCard, practice }: PracticeCardProps) 
         word={word}
         question={question}
         onNextQuestion={handleNextQuestion}
+        practiceIndex={practiceIndex}
+        practiceTotal={practice.length}
       />
     </Card>
   );
