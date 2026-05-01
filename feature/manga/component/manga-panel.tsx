@@ -36,6 +36,7 @@ const KMangaPanel = ({ panel }: { panel: MangaPanel }) => {
       <PopoverContent
         className="text-sm whitespace-pre-line w-auto max-w-xs"
         onOpenAutoFocus={(e) => e.preventDefault()}
+        collisionPadding={8}
       >
         {tooltip?.text}
       </PopoverContent>

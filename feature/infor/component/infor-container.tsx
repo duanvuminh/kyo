@@ -8,8 +8,8 @@ import { liteClient as algoliasearch } from "algoliasearch/lite";
 import { Hits, InstantSearch } from "react-instantsearch";
 
 const searchClient = algoliasearch(
-  "LASDRVLH1N",
-  "b2691eab1b0ba50424fe0c55b5838669"
+  "VEIBP8X14V",
+  "a518226ca660ae8a0f9d4ac094965932"
 );
 
 function Hit({ hit }: { hit: Infor }) {

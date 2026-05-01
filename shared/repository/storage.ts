@@ -5,6 +5,7 @@ export class PracticeStorageRepository {
   private static readonly STORAGE_KEY = "kyo_keywords";
 
   static getAll(): PracticeStorageItemDto[] {
+    if (typeof window === "undefined") return [];
     try {
       const data = localStorage.getItem(this.STORAGE_KEY);
       return data ? JSON.parse(data) : [];
@@ -125,6 +126,7 @@ export class MemoStorageRepository {
   private static readonly STORAGE_KEY = "kyo_memo";
 
   static getMemo(): string | null {
+    if (typeof window === "undefined") return null;
     try {
       const data = localStorage.getItem(this.STORAGE_KEY);
       return data;

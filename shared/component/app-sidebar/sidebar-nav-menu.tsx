@@ -13,7 +13,7 @@ const items = [
 ];
 const others = [
   { title: "Nhắn tin", url: "/qa" },
-  { title: "Thủ tục", url: "/infor" },
+  { title: "Tra cứu thủ tục", url: "/infor" },
   { title: "Memo", url: "/memo" },
 ];
 

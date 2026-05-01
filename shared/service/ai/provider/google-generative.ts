@@ -15,13 +15,13 @@ export const defaultModel: AIModelConfig = {
   model: google("gemini-2.0-flash-lite-001"),
 };
 
-// Gemini 1.5 Flash - dùng API key free từ AI Studio
+// Gemini 2.5 Flash Lite - dùng API key free từ AI Studio
 const googleFree = createGoogleGenerativeAI({
   apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY_FREE,
 });
 
 export const freeModel: AIModelConfig = {
   id: "gemini-flash-free",
-  name: "Gemini 2.0 Flash",
-  model: googleFree("gemini-2.0-flash"),
+  name: "Gemini 2.5 Flash Lite",
+  model: googleFree("gemini-2.5-flash-lite-preview-06-17"),
 };

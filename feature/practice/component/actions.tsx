@@ -1,7 +1,6 @@
 import { ModeButton } from "@/feature/practice/component/mode-button";
 import { PracticeCardMode } from "@/feature/practice/model/type";
 import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
-import { PracticeAdd } from "@/shared/component/practice-add";
 import { Button } from "@/shared/component/ui/button";
 import { Eye, Play, Trash } from "lucide-react";
 
@@ -32,7 +31,6 @@ export const Actions = ({
       icon={Play}
     />
     <AudioPlayer text={word} />
-    <PracticeAdd word={word} />
     <Button variant="ghost" className="text-muted" onClick={onRemove}>
       <Trash />
     </Button>
