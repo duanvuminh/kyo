@@ -39,5 +39,5 @@ export function SvgFromUrl({ url }: { url: string }) {
       });
   }, [url]);
 
-  return <div ref={containerRef} />;
+  return <div ref={containerRef} className="size-[109px]" />;
 }
