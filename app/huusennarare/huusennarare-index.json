@@ -110,5 +110,981 @@
     "on": "カン・ジツ",
     "keywords": ["毌", "貫", "慣", "実", "串", "患", "貫通", "突貫", "習慣", "慣性", "果実", "事実", "串焼き", "患者", "疾患"],
     "url": "http://huusennarare.cocolog-nifty.com/blog/2013/07/post-a242.html"
+  },
+  {
+    "folder": "ka-natsu",
+    "title": "夏・廈・榎・嗄・寡",
+    "hanViet": "HẠ・HẠ・HẠ・SA・QUẢ",
+    "on": "カ・サ",
+    "keywords": ["夏", "廈", "榎", "嗄", "寡", "夏至", "春夏秋冬", "大廈", "えのき", "寡黙", "寡婦", "多寡", "嗄声"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2016/05/post-85bf.html"
+  },
+  {
+    "folder": "ka-kari",
+    "title": "叚・仮・蝦・暇・霞・瑕",
+    "hanViet": "GIẢ・GIẢ・HÀ・HẠ・HÀ・HÀ",
+    "on": "カ",
+    "keywords": ["叚", "仮", "蝦", "暇", "霞", "瑕", "仮面", "仮説", "仮病", "蝦夷", "休暇", "閑暇", "霞ヶ関", "瑕疵"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2015/09/post-3ac4.html"
+  },
+  {
+    "folder": "ka-ie",
+    "title": "家・嫁・稼",
+    "hanViet": "GIA・GIÁ・GIÁ",
+    "on": "カ・ケ",
+    "keywords": ["家", "嫁", "稼", "国家", "家屋", "家計", "武家", "家元", "花嫁", "許嫁", "稼業", "稼働", "出稼ぎ"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/03/post-8b09.html"
+  },
+  {
+    "folder": "ka-bakeru",
+    "title": "化・花・華・貨・靴・訛・囮",
+    "hanViet": "HÓA・HOA・HOA・HÓA・HÓA・OA・OA",
+    "on": "カ・ケ",
+    "keywords": ["化", "花", "華", "貨", "靴", "訛", "囮", "変化", "化粧", "花嫁", "花火", "中華", "貨物", "貨幣", "長靴", "靴下", "おとり"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-afdf.html"
+  },
+  {
+    "folder": "ka-kuwaeru",
+    "title": "加・賀・架・駕・袈・伽・枷・嘉・茄",
+    "hanViet": "GIA・HẠ・GIÁ・GIÁ・KẾ・GIÀ・GIÀ・GIA・GIÀ",
+    "on": "カ・ガ・ケ",
+    "keywords": ["加", "賀", "架", "駕", "袈", "伽", "枷", "嘉", "茄", "増加", "参加", "年賀", "十字架", "凌駕", "袈裟", "御伽話", "嘉祥", "茄子"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-56da.html"
+  },
+  {
+    "folder": "shu-nushi",
+    "title": "主・柱・注・駐・住・往",
+    "hanViet": "CHỦ・TRỤ・CHÚ・TRÚ・TRÚ・VÃNG",
+    "on": "シュ・チュウ・ジュウ・オウ",
+    "keywords": ["主", "柱", "注", "駐", "住", "往", "主従", "電柱", "注意", "注射", "駐車", "住民", "往復"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2012/12/post-1879.html"
+  },
+  {
+    "folder": "ko-takumi",
+    "title": "工・功・巧・攻・肛・項・貢・虹・江・紅・空・控・腔",
+    "hanViet": "CÔNG・CÔNG・XẢO・CÔNG・GIANG・HẠNG・CỐNG・HỒNG・GIANG・HỒNG・KHÔNG・KHỐNG・XOANG",
+    "on": "コウ・ク・クウ",
+    "keywords": ["工", "功", "巧", "攻", "項", "貢", "虹", "江", "紅", "空", "工場", "成功", "巧妙", "攻撃", "項目", "虹彩", "紅葉"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2012/12/post-8ebc.html"
+  },
+  {
+    "folder": "yo-agaru",
+    "title": "昜・陽・場・湯・揚・腸・傷・瘍・楊",
+    "hanViet": "DƯƠNG・DƯƠNG・TRƯỜNG・THANG・DƯƠNG・TRƯỜNG・THƯƠNG・DƯƠNG・DƯƠNG",
+    "on": "ヨウ・ジョウ・トウ・チョウ・ショウ",
+    "keywords": ["昜", "陽", "場", "湯", "揚", "腸", "傷", "瘍", "楊", "太陽", "工場", "胃腸", "揚げる", "傷", "腫瘍", "楊枝"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2012/12/post-bf3d.html"
+  },
+  {
+    "folder": "sho-chiisai",
+    "title": "小・少・抄・砂・沙・妙・秒・省・肖・宵・消・梢・削・硝・劣",
+    "hanViet": "TIỂU・THIỂU・SAO・SA・SA・DIỆU・MIỂU・TỈNH・TIÊU・TIÊU・TIÊU・TIÊU・TUẾ・TIÊU・LIỆT",
+    "on": "ショウ・サ・ミョウ・ビョウ・セイ・サク・レツ",
+    "keywords": ["小", "少", "砂", "妙", "秒", "省", "消", "削", "劣", "小数", "少年", "砂漠", "微妙", "反省", "消火", "削減", "優劣"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/01/post-311f.html"
+  },
+  {
+    "folder": "sa-hidari",
+    "title": "左・佐・差・嵯・蹉・磋・尋",
+    "hanViet": "TẢ・TẢ・SAI・SA・SA・SA・TẦM",
+    "on": "サ・ジン",
+    "keywords": ["左", "佐", "差", "嵯", "尋", "左右", "補佐", "差額", "交差", "左遷", "尋問", "切磋琢磨"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/01/post-33a4.html"
+  },
+  {
+    "folder": "i-kakomu",
+    "title": "韋・囲・衛・違・偉・緯・葦",
+    "hanViet": "VI・VI・VỆ・VI・VĨ・VĨ・VI",
+    "on": "イ・エイ",
+    "keywords": ["韋", "囲", "衛", "違", "偉", "緯", "葦", "包囲", "防衛", "衛生", "衛星", "違反", "偉大", "緯度", "範囲"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/01/post-3444.html"
+  },
+  {
+    "folder": "baku-kureru",
+    "title": "莫・暮・漠・幕・膜・墓・模・慕・募",
+    "hanViet": "MẠC・MỘ・MẠC・MẠC・MẠC・MỘ・MÔ・MỘ・MỘ",
+    "on": "バク・ボ・マク・モ",
+    "keywords": ["莫", "暮", "漠", "幕", "膜", "墓", "模", "慕", "募", "砂漠", "幕府", "墓地", "模型", "模範", "募集", "慕情"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/01/post-4738.html"
+  },
+  {
+    "folder": "ko-onore",
+    "title": "己・起・記・紀・忌・改・杞",
+    "hanViet": "KỶ・KHỞI・KÝ・KỶ・KỴ・CẢI・KỶ",
+    "on": "コ・キ・カイ",
+    "keywords": ["己", "起", "記", "紀", "忌", "改", "杞", "自己", "起源", "記憶", "日記", "世紀", "紀元", "改善", "杞憂"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/02/post-4cf2.html"
+  },
+  {
+    "folder": "hai-kubaru",
+    "title": "配・妃",
+    "hanViet": "PHỐI・PHI",
+    "on": "ハイ・ヒ",
+    "keywords": ["配", "妃", "配達", "配当", "支配", "配偶者", "心配", "年配", "軍配", "楊貴妃"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/02/post-ae5b.html"
+  },
+  {
+    "folder": "so-kasaneru",
+    "title": "曾・増・層・憎・贈・僧・噌",
+    "hanViet": "TĂNG・TĂNG・TẦNG・TĂNG・TẶNG・TĂNG・TĂNG",
+    "on": "ソウ・ゾウ",
+    "keywords": ["曾", "増", "層", "憎", "贈", "僧", "噌", "未曾有", "増加", "高層", "憎悪", "寄贈", "贈答", "高僧", "味噌"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/02/post-b4f4.html"
+  },
+  {
+    "folder": "i-koromo",
+    "title": "衣・依・哀",
+    "hanViet": "Y・Y・AI",
+    "on": "イ・エ・アイ",
+    "keywords": ["衣", "依", "哀", "衣服", "衣食住", "衣替え", "依存", "依頼", "悲哀", "哀悼", "喜怒哀楽"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/02/post-c570.html"
+  },
+  {
+    "folder": "shin-tatsu",
+    "title": "辰・蜃・振・震・唇・娠・賑・辱",
+    "hanViet": "THẦN・THẦN・CHẤN・CHẤN・THẦN・THẦN・THỊNH・NHỤC",
+    "on": "シン・ジョク",
+    "keywords": ["辰", "蜃", "振", "震", "唇", "娠", "賑", "辱", "蜃気楼", "振興", "地震", "妊娠", "恥辱", "乾燥"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/02/post-d8ec.html"
+  },
+  {
+    "folder": "yanagi-bunrui",
+    "title": "柳・楊（ヤナギの分類）",
+    "hanViet": "LIỄU・DƯƠNG",
+    "on": "リュウ・ヨウ",
+    "keywords": ["柳", "楊", "シダレヤナギ", "ケショウヤナギ", "楊枝", "柳川"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/02/post-f896.html"
+  },
+  {
+    "folder": "bai-kai",
+    "title": "貝・敗・唄・買・売・負・読・続",
+    "hanViet": "BÀO・BẠI・BÀI・MÃI・MÃI・PHỤ・ĐỌC・TỤC",
+    "on": "バイ・ハイ・フ・ドク・ゾク",
+    "keywords": ["貝", "敗", "唄", "買", "売", "負", "読", "続", "敗戦", "買収", "商売", "販売", "負担", "読書", "継続"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-0444.html"
+  },
+  {
+    "folder": "so-ayatsuru",
+    "title": "喿・操・繰・燥・藻",
+    "hanViet": "TÁO・THAO・SÁO・TÁO・TÁO",
+    "on": "ソウ",
+    "keywords": ["喿", "操", "繰", "燥", "藻", "体操", "操縦", "操作", "貞操", "繰り返す", "乾燥", "焦燥", "海藻"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-59b1.html"
+  },
+  {
+    "folder": "ken-tsurugi",
+    "title": "僉・剣・険・検・験・倹・瞼",
+    "hanViet": "TIÊM・KIẾM・HIỂM・KIỂM・NGHIỆM・KIỆM・KIỂM",
+    "on": "セン・ケン",
+    "keywords": ["僉", "剣", "険", "検", "験", "倹", "瞼", "剣道", "危険", "保険", "検査", "実験", "試験", "倹約"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-6191.html"
+  },
+  {
+    "folder": "mi-mada",
+    "title": "未・妹・昧・味・魅",
+    "hanViet": "VỊ・MUỘI・MỖI・VỊ・MỊ",
+    "on": "ミ・マイ・アイ",
+    "keywords": ["未", "妹", "昧", "味", "魅", "未来", "未熟", "姉妹", "曖昧", "三昧", "趣味", "魅力", "魅惑"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-7ae7.html"
+  },
+  {
+    "folder": "zo-katachi",
+    "title": "象・像",
+    "hanViet": "TƯỢNG・TƯỢNG",
+    "on": "ゾウ・ショウ",
+    "keywords": ["象", "像", "気象", "現象", "抽象", "対象", "象形", "象牙", "銅像", "映像", "想像", "肖像"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-86e4.html"
+  },
+  {
+    "folder": "ri-sato",
+    "title": "里・理・鯉・裏・埋・厘",
+    "hanViet": "LÝ・LÝ・LÝ・LÝ・MAI・LY",
+    "on": "リ・マイ・リン",
+    "keywords": ["里", "理", "鯉", "裏", "埋", "厘", "理解", "理想", "理由", "裏切り", "埋蔵", "埋没"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-9f09.html"
+  },
+  {
+    "folder": "shin-mousu",
+    "title": "申・伸・神・紳・電・榊",
+    "hanViet": "THÂN・THÂN・THẦN・THÂN・ĐIỆN・THẦN",
+    "on": "シン・ジン・デン",
+    "keywords": ["申", "伸", "神", "紳", "電", "榊", "申告", "申請", "伸縮", "神秘", "神社", "紳士", "電車", "発電"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-a227.html"
+  },
+  {
+    "folder": "cho-kizashi",
+    "title": "兆・逃・眺・挑・跳・桃",
+    "hanViet": "TRIỆU・ĐÀO・THIỂU・KHIÊU・KHIÊU・ĐÀO",
+    "on": "チョウ・トウ",
+    "keywords": ["兆", "逃", "眺", "挑", "跳", "桃", "兆候", "前兆", "吉兆", "逃亡", "逃避", "眺望", "挑戦", "挑発", "跳躍", "桃源郷"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/03/post-f88d.html"
+  },
+  {
+    "folder": "boku-uranau",
+    "title": "卜・朴・仆・訃・赴",
+    "hanViet": "BỐC・PHÁC・BỘC・PHÓ・PHÓ",
+    "on": "ボク・フ",
+    "keywords": ["卜", "朴", "仆", "訃", "赴", "卜占", "卜相", "素朴", "質朴", "訃報", "訃音", "赴任"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-0eb6.html"
+  },
+  {
+    "folder": "ko-majiwaru",
+    "title": "爻・交・学・教・覚・肴・校・較",
+    "hanViet": "HÀO・GIAO・HỌC・GIÁO・GIÁC・HÀO・HIỆU・HIỆU",
+    "on": "コウ・ガク・キョウ・カク",
+    "keywords": ["爻", "交", "学", "教", "覚", "肴", "校", "較", "交通", "交代", "学校", "学問", "教育", "教授", "覚悟", "発覚", "酒肴", "校正", "比較"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-3e78.html"
+  },
+  {
+    "folder": "shuku-iwau",
+    "title": "祝・呪",
+    "hanViet": "CHÚC・CHÚ",
+    "on": "シュク・シュウ・ジュ",
+    "keywords": ["祝", "呪", "祝賀", "祝宴", "祝言", "祝儀", "祝辞", "祝詞", "呪文", "呪術", "呪詛"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-4f14.html"
+  },
+  {
+    "folder": "ma-asa",
+    "title": "麻・摩・磨・魔",
+    "hanViet": "MA・MA・MA・MA",
+    "on": "マ",
+    "keywords": ["麻", "摩", "磨", "魔", "麻酔", "麻薬", "麻痺", "胡麻", "摩擦", "摩天楼", "按摩", "研磨", "切磋琢磨", "悪魔", "魔術", "睡魔"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-5e30.html"
+  },
+  {
+    "folder": "retsu-naraberu",
+    "title": "列・例・烈・裂",
+    "hanViet": "LIỆT・LỆ・LIỆT・LIỆT",
+    "on": "レツ・レイ",
+    "keywords": ["列", "例", "烈", "裂", "列車", "行列", "序列", "例会", "例外", "先例", "比例", "猛烈", "熱烈", "破裂", "分裂", "亀裂"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-6f84.html"
+  },
+  {
+    "folder": "han-nakaba",
+    "title": "八・半・判・伴・絆・畔",
+    "hanViet": "BÁT・BÁN・PHÁN・BẠN・BẠNG・BẦN",
+    "on": "ハチ・ハン・バン",
+    "keywords": ["八", "半", "判", "伴", "絆", "畔", "半分", "半月", "裁判", "判決", "伴奏", "同伴", "絆創膏", "湖畔", "河畔"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-7bfb.html"
+  },
+  {
+    "folder": "kei-tate",
+    "title": "巠・径・経・軽・茎・頸・脛",
+    "hanViet": "KINH・KÍNH・KINH・KHINH・KINH・KÍNH・KÍNH",
+    "on": "ケイ・キョウ",
+    "keywords": ["巠", "径", "経", "軽", "茎", "頸", "脛", "直径", "半径", "経済", "経験", "経緯", "軽快", "軽視", "読経"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-88c3.html"
+  },
+  {
+    "folder": "byo-nae",
+    "title": "苗・猫・描・錨",
+    "hanViet": "MIÊU・MIÊU・MIÊU・MIÊU",
+    "on": "ビョウ・ミョウ",
+    "keywords": ["苗", "猫", "描", "錨", "種苗", "早苗", "苗代", "野良猫", "猫背", "描写", "素描", "点描", "投錨"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-aba8.html"
+  },
+  {
+    "folder": "kyo-ani",
+    "title": "兄・況・竟・境・鏡・競",
+    "hanViet": "HUYNH・HUỐNG・CÁNH・CẢNH・KÍNH・CẠNH",
+    "on": "キョウ・ケイ",
+    "keywords": ["兄", "況", "竟", "境", "鏡", "競", "兄弟", "状況", "不況", "境界", "国境", "環境", "望遠鏡", "眼鏡", "競争", "競馬"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-ca9f.html"
+  },
+  {
+    "folder": "shin-karai",
+    "title": "辛・新・薪・親・辞",
+    "hanViet": "TÂN・TÂN・TÂN・THÂN・TỪ",
+    "on": "シン・ジ",
+    "keywords": ["辛", "新", "薪", "親", "辞", "辛抱", "辛酸", "辛口", "新聞", "新鮮", "薪水", "両親", "親切", "辞書", "辞任"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-e091.html"
+  },
+  {
+    "folder": "chiku-yashinau",
+    "title": "畜・蓄",
+    "hanViet": "SÚC・TÍCH",
+    "on": "チク",
+    "keywords": ["畜", "蓄", "家畜", "畜産", "畜生", "貯蓄", "蓄積", "備蓄", "含蓄", "蘊蓄"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/04/post-ee73.html"
+  },
+  {
+    "folder": "shiki-nori",
+    "title": "式・試・拭",
+    "hanViet": "THỨC・THÍ・THỨC",
+    "on": "シキ・ショク・シ",
+    "keywords": ["式", "試", "拭", "卒業式", "正式", "様式", "化学式", "試験", "試練", "試用", "払拭", "清拭"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-178a.html"
+  },
+  {
+    "folder": "shi-tomeru",
+    "title": "止・祉・歯・企・此・柴",
+    "hanViet": "CHỈ・CHỈ・XỈ・XƯỚNG・TỬ・SÀI",
+    "on": "シ・キ・サイ",
+    "keywords": ["止", "祉", "歯", "企", "此", "柴", "停止", "中止", "止血", "福祉", "企業", "企画", "歯科", "虫歯", "柴刈り"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-296c.html"
+  },
+  {
+    "folder": "kyu-oyobu",
+    "title": "及・汲・級・吸・扱・急",
+    "hanViet": "CẬP・CẬP・CẤP・HẤP・CẬP・CẤP",
+    "on": "キュウ・ソウ",
+    "keywords": ["及", "汲", "級", "吸", "扱", "急", "波及", "言及", "追及", "級友", "上級", "吸収", "呼吸", "緊急", "急行", "応急"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-42d7.html"
+  },
+  {
+    "folder": "fuku-yutaka",
+    "title": "畐・福・副・幅・富・蝠",
+    "hanViet": "PHÚC・PHÚC・PHÓ・PHÚC・PHÚ・PHÚC",
+    "on": "フク・フ",
+    "keywords": ["畐", "福", "副", "幅", "富", "蝠", "幸福", "福祉", "副作用", "副業", "大幅", "富裕", "富豪", "蝙蝠"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-456a.html"
+  },
+  {
+    "folder": "hyo-omote",
+    "title": "表・俵",
+    "hanViet": "BIỂU・PHIẾU",
+    "on": "ヒョウ",
+    "keywords": ["表", "俵", "発表", "代表", "表現", "表示", "俵", "砂俵"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-5012.html"
+  },
+  {
+    "folder": "fu-hinai",
+    "title": "不・杯・丕・胚・否",
+    "hanViet": "BẤT・BÔI・PHI・BÀO・PHỦ",
+    "on": "フ・ブ・ハイ・ヒ",
+    "keywords": ["不", "杯", "丕", "胚", "否", "不安", "不思議", "乾杯", "否定", "拒否", "貧困", "不便"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-887a.html"
+  },
+  {
+    "folder": "kyo-miyako",
+    "title": "京・鯨・涼・景・影・憬",
+    "hanViet": "KINH・KÌNH・LƯƠNG・CẢNH・ẢNH・CẢNH",
+    "on": "キョウ・ケイ・ゲイ・リョウ・エイ",
+    "keywords": ["京", "鯨", "涼", "景", "影", "憬", "東京", "鯨", "涼しい", "風景", "景色", "背景", "影響", "憬れる"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-952b.html"
+  },
+  {
+    "folder": "fun-wakeru",
+    "title": "八・分・粉・紛・貧・頒・盆",
+    "hanViet": "BÁT・PHÂN・PHẤN・PHÂN・BẦN・BAN・BỒN",
+    "on": "ハチ・フン・ブン・ヒン・ビン・ハン・ボン",
+    "keywords": ["八", "分", "粉", "紛", "貧", "頒", "盆", "分析", "花粉", "紛争", "貧困", "頒布", "盆地", "お盆"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-9b12.html"
+  },
+  {
+    "folder": "chin-ware",
+    "title": "朕・勝・謄・騰・滕・藤",
+    "hanViet": "TRẪM・THẮNG・ĐẰNG・ĐẰNG・ĐẰNG・ĐẰNG",
+    "on": "チン・ショウ・トウ",
+    "keywords": ["朕", "勝", "謄", "騰", "藤", "勝利", "勝敗", "沸騰", "高騰", "謄本", "謄写", "藤", "伊藤"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-bb76.html"
+  },
+  {
+    "folder": "fu-uku",
+    "title": "孚・浮・俘・孵",
+    "hanViet": "PHÙ・PHÙ・PHÙ・PHÙ",
+    "on": "フ",
+    "keywords": ["孚", "浮", "俘", "孵", "浮遊", "浮上", "浮力", "浮世", "浮気", "孵化", "俘虜"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-bca6.html"
+  },
+  {
+    "folder": "ko-furui",
+    "title": "古・固・個・箇・故・枯・苦・居・裾・据・鋸・錮・胡・湖",
+    "hanViet": "CỔ・CỐ・CÁ・CÁ・CỐ・CỐ・KHỔ・CƯ・CƯ・CƯ・CƯ・CỐ・HỒ・HỒ",
+    "on": "コ・ク・キョ・カ",
+    "keywords": ["古", "固", "個", "故", "苦", "居", "湖", "古典", "頑固", "個人", "個性", "事故", "故郷", "苦労", "苦痛", "居住", "湖"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-d13f.html"
+  },
+  {
+    "folder": "kei-uyamau",
+    "title": "敬・警・驚",
+    "hanViet": "KÍNH・CẢNH・KINH",
+    "on": "ケイ・キョウ",
+    "keywords": ["敬", "警", "驚", "敬語", "敬礼", "警察", "警官", "警護", "警鐘", "驚異", "驚愕"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-d4f2.html"
+  },
+  {
+    "folder": "sho-mesu",
+    "title": "召・招・昭・照・紹・沼・詔・超",
+    "hanViet": "CHIÊU・CHIÊU・CHIÊU・CHIÊU・THIỆU・CHIỂU・CHIẾU・SIÊU",
+    "on": "ショウ・チョウ",
+    "keywords": ["召", "招", "昭", "照", "紹", "沼", "詔", "超", "招待", "紹介", "昭和", "照明", "参照", "超越", "超人"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-0d6e.html"
+  },
+  {
+    "folder": "shun-matataku",
+    "title": "舜・瞬",
+    "hanViet": "THUẤN・THUẤN",
+    "on": "シュン",
+    "keywords": ["舜", "瞬", "瞬間", "一瞬", "瞬息", "またたく"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-3025.html"
+  },
+  {
+    "folder": "kyu-magaru",
+    "title": "九・究・軌・仇・鳩・旭",
+    "hanViet": "CỬU・CỨU・QUỸ・CỪU・CỬU・CỬU",
+    "on": "キュウ・ク・キ・キョク",
+    "keywords": ["九", "究", "軌", "仇", "鳩", "旭", "研究", "究極", "軌跡", "軌道", "鳩", "旭日", "九州"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-34a9.html"
+  },
+  {
+    "folder": "go-itsu",
+    "title": "五・伍・吾・語・悟",
+    "hanViet": "NGŨ・NGŨ・NGÔ・NGỮ・NGỘ",
+    "on": "ゴ",
+    "keywords": ["五", "伍", "吾", "語", "悟", "言語", "国語", "語源", "五感", "悟る", "吾々"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-3c5e.html"
+  },
+  {
+    "folder": "shu-toru",
+    "title": "取・最・趣・撮",
+    "hanViet": "THỦ・TỐI・THÚ・TOÁT",
+    "on": "シュ・サイ・サツ",
+    "keywords": ["取", "最", "趣", "撮", "取材", "取得", "最高", "最後", "趣味", "趣旨", "撮影"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-5372.html"
+  },
+  {
+    "folder": "ta-hebi",
+    "title": "它・也・蛇・地・池・他・馳・舵",
+    "hanViet": "TÁ・DÃ・XÀ・ĐỊA・TRÌH・THA・TRÌ・ĐÀ",
+    "on": "タ・ヤ・ダ・ジャ・チ",
+    "keywords": ["它", "也", "蛇", "地", "池", "他", "馳", "舵", "蛇行", "蛇足", "地球", "他人", "蛇口", "舵"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-737e.html"
+  },
+  {
+    "folder": "kei-tazusaeru",
+    "title": "携・攜",
+    "hanViet": "HẠT・HẠT",
+    "on": "ケイ",
+    "keywords": ["携", "携帯", "携行", "連携", "たずさえる", "たずさわる"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-7a38.html"
+  },
+  {
+    "folder": "kyo-tomoni",
+    "title": "共・供・恭・洪・巷・港",
+    "hanViet": "CỘNG・CUNG・CUNG・HỒNG・HẠNG・CẢNG",
+    "on": "キョウ・コウ",
+    "keywords": ["共", "供", "恭", "洪", "巷", "港", "公共", "子供", "供物", "恭順", "洪水", "港", "空港"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-8394.html"
+  },
+  {
+    "folder": "go-au",
+    "title": "合・答・拾・給・塔",
+    "hanViet": "HỢP・ĐÁP・THẬP・CẤP・THÁP",
+    "on": "ゴウ・トウ・ジュウ・キュウ",
+    "keywords": ["合", "答", "拾", "給", "塔", "総合", "解答", "返答", "拾う", "給料", "補給", "金字塔"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-83c6.html"
+  },
+  {
+    "folder": "tai-kawaru",
+    "title": "代・貸・袋・黛",
+    "hanViet": "ĐẠI・ĐẠI・ĐẠI・ĐẠI",
+    "on": "タイ・ダイ",
+    "keywords": ["代", "貸", "袋", "黛", "代表", "交代", "時代", "賃貸", "袋", "手袋", "代謝"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-9fae.html"
+  },
+  {
+    "folder": "ko-hokoru",
+    "title": "夸・誇・跨・袴",
+    "hanViet": "KHỐ・KHỐ・KHỐ・KHỐ",
+    "on": "コ",
+    "keywords": ["夸", "誇", "跨", "袴", "誇示", "誇張", "誇大", "誇る", "跨線橋", "袴"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-ab87.html"
+  },
+  {
+    "folder": "kin-kinjiru",
+    "title": "禁・襟",
+    "hanViet": "CẤM・CẤM",
+    "on": "キン",
+    "keywords": ["禁", "襟", "禁止", "禁煙", "解禁", "軟禁", "禁固", "襟", "開襟"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-ac08.html"
+  },
+  {
+    "folder": "sho-nao",
+    "title": "尚・堂・常・掌・党・当・賞・償",
+    "hanViet": "THƯỢNG・ĐƯỜNG・THƯỜNG・CHƯỞNG・ĐẢNG・ĐÁNG・THƯỞNG・THƯỜNG",
+    "on": "ショウ・ドウ・ジョウ・トウ",
+    "keywords": ["尚", "堂", "常", "掌", "党", "当", "賞", "償", "食堂", "常識", "政党", "入賞", "賠償", "掌握", "高尚"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/06/post-aeac.html"
+  },
+  {
+    "folder": "shichi-kiru",
+    "title": "七・切・窃・叱",
+    "hanViet": "THẤT・THIẾT・THIẾT・SẤT",
+    "on": "シチ・セツ・シツ",
+    "keywords": ["七", "切", "窃", "叱", "大切", "親切", "切断", "窃盗", "窃取", "叱責", "叱咤", "叱る"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2017/04/post-b4dc.html"
+  },
+  {
+    "folder": "sa-tsukuru",
+    "title": "乍・作・昨・酢・詐・窄・搾",
+    "hanViet": "TÁC・TÁC・TÍCH・THỐ・TRÁ・SÁCH・SÁCH",
+    "on": "サ・サク・ス",
+    "keywords": ["乍", "作", "昨", "酢", "詐", "窄", "搾", "作品", "農作", "動作", "昨日", "昨年", "詐欺", "詐称", "搾取", "搾乳"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-c6b9.html"
+  },
+  {
+    "folder": "sen-susumeru",
+    "title": "廌・薦",
+    "hanViet": "TRÃI・TIẾN",
+    "on": "タイ・セン",
+    "keywords": ["廌", "薦", "推薦", "薦挙", "薦める"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/05/post-e853.html"
+  },
+  {
+    "folder": "nen-nenjiru",
+    "title": "念・捻・稔・唸",
+    "hanViet": "NIỆM・NIỆM・NHIỆM・NIỆM",
+    "on": "ネン",
+    "keywords": ["念", "捻", "稔", "唸", "記念", "概念", "念力", "捻挫", "捻転", "捻出", "稔る", "豊稔", "唸る"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2017/08/post-f7be.html"
+  },
+  {
+    "folder": "bo-akeru",
+    "title": "卯・貿・昴",
+    "hanViet": "MÃO・MẬU・MÃO",
+    "on": "ボウ",
+    "keywords": ["卯", "貿", "昴", "貿易", "卯月", "すばる"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/07/post-30cc.html"
+  },
+  {
+    "folder": "hi-kawa",
+    "title": "皮・彼・被・披・波・破・疲・婆",
+    "hanViet": "BÌ・BỈ・BỊ・PHI・BA・PHÁ・BỊ・BÀ",
+    "on": "ヒ・ハ・バ",
+    "keywords": ["皮", "彼", "被", "披", "波", "破", "疲", "婆", "皮膚", "皮革", "皮肉", "彼岸", "彼女", "被害", "披露", "波浪", "電波", "破壊", "難破", "疲労", "老婆"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/07/post-346c.html"
+  },
+  {
+    "folder": "ga-ware",
+    "title": "我・義・議・儀・犠・蛾・餓",
+    "hanViet": "NGÃ・NGHĨA・NGHỊ・NGHI・HY・NGÃ・NGÃ",
+    "on": "ガ・ギ",
+    "keywords": ["我", "義", "議", "儀", "犠", "蛾", "餓", "我慢", "自我", "正義", "意義", "会議", "議論", "儀式", "犠牲", "飢餓", "餓死"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/07/post-373d.html"
+  },
+  {
+    "folder": "heki-sakeru",
+    "title": "辟・壁・璧・避・癖・僻",
+    "hanViet": "TỊCH・BÍCH・BÍCH・TỴ・TỊCH・TỊCH",
+    "on": "ヘキ・ヒ",
+    "keywords": ["辟", "壁", "璧", "避", "癖", "僻", "壁画", "岸壁", "完璧", "双璧", "避難", "避暑", "回避", "悪癖", "潔癖", "僻地"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/07/post-6f7f.html"
+  },
+  {
+    "folder": "ga-kiba",
+    "title": "牙・芽・雅・邪・冴",
+    "hanViet": "NGA・NGA・NHÃ・TÀ・NGÃ",
+    "on": "ガ・ジャ・ゴ",
+    "keywords": ["牙", "芽", "雅", "邪", "冴", "象牙", "発芽", "麦芽", "新芽", "優雅", "雅楽", "邪悪", "邪魔", "風邪", "冴える"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/07/post-cd6e.html"
+  },
+  {
+    "folder": "soku-nori",
+    "title": "則・側・測",
+    "hanViet": "TẮC・TRẮC・TRẮC",
+    "on": "ソク",
+    "keywords": ["則", "側", "測", "規則", "鉄則", "法則", "側面", "外側", "測量", "予測", "臆測"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-0e16.html"
+  },
+  {
+    "folder": "kon-ima",
+    "title": "今・吟・貪・琴・含",
+    "hanViet": "KIM・NGÂM・THAM・CẦM・HÀM",
+    "on": "コン・キン・ギン・ドン・ガン",
+    "keywords": ["今", "吟", "貪", "琴", "含", "今月", "今日", "今年", "吟味", "詩吟", "貪欲", "木琴", "琴線", "含蓄", "包含"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-0f8c.html"
+  },
+  {
+    "folder": "sen-kawa",
+    "title": "川・順・巡・訓・災",
+    "hanViet": "XUYÊN・THUẬN・TUẦN・HUẤN・TAI",
+    "on": "セン・ジュン・クン・サイ",
+    "keywords": ["川", "順", "巡", "訓", "災", "河川", "順序", "順位", "巡礼", "巡査", "訓練", "教訓", "災害", "防災"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-1374.html"
+  },
+  {
+    "folder": "so-houki",
+    "title": "帚・掃・侵・浸・寝・帰・婦",
+    "hanViet": "TẦU・TẦU・XÂM・TẨM・TẨM・QUY・PHU",
+    "on": "ソウ・シン・キ・フ",
+    "keywords": ["帚", "掃", "侵", "浸", "寝", "帰", "婦", "掃除", "掃討", "侵入", "侵略", "浸水", "浸透", "寝室", "帰郷", "帰宅", "夫婦"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-2c1b.html"
+  },
+  {
+    "folder": "so-katsu",
+    "title": "且・組・助・査・祖・租・粗・阻・狙",
+    "hanViet": "THỬ・TỔ・TRỢ・TRA・TỔ・TÔ・THÔ・TRỞ・THƯ",
+    "on": "ソ・ジョ・サ",
+    "keywords": ["且", "組", "助", "査", "祖", "租", "粗", "阻", "狙", "組織", "援助", "検査", "先祖", "租税", "粗食", "阻止", "狙撃"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-3901.html"
+  },
+  {
+    "folder": "sei-tadashii",
+    "title": "正・征・政・整・証・症・定・錠",
+    "hanViet": "CHÍNH・CHINH・CHÍNH・CHỈNH・CHỨNG・CHỨNG・ĐỊNH・ĐỊNH",
+    "on": "セイ・ショウ・テイ・ジョウ",
+    "keywords": ["正", "征", "政", "整", "証", "症", "定", "錠", "正解", "征服", "政治", "整理", "証拠", "症状", "決定", "安定", "錠剤"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-6035.html"
+  },
+  {
+    "folder": "gyo-sakana",
+    "title": "魚・漁",
+    "hanViet": "NGƯ・NGƯ",
+    "on": "ギョ・リョウ",
+    "keywords": ["魚", "漁", "魚類", "鮮魚", "金魚", "人魚", "木魚", "漁業", "漁師", "漁夫之利"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-a53a.html"
+  },
+  {
+    "folder": "sei-aoi",
+    "title": "青・晴・清・静・精・情・請",
+    "hanViet": "THANH・TÌNH・THANH・TĨNH・TINH・TÌNH・THỈNH",
+    "on": "セイ・ショウ・ジョウ・シン",
+    "keywords": ["青", "晴", "清", "静", "精", "情", "請", "青年", "快晴", "清潔", "静脈", "精力", "感情", "情報", "請求", "要請"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-a9df.html"
+  },
+  {
+    "folder": "ken-agata",
+    "title": "県・懸",
+    "hanViet": "HUYỆN・HUYỀN",
+    "on": "ケン",
+    "keywords": ["県", "懸", "都道府県", "廃藩置県", "懸念", "一所懸命", "懸賞"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-e558.html"
+  },
+  {
+    "folder": "sei-ikiru",
+    "title": "生・性・牲・姓・星・醒・甥・産",
+    "hanViet": "SINH・TÍNH・SINH・TÍNH・TINH・TỈNH・SINH・SẢN",
+    "on": "セイ・ショウ・サン",
+    "keywords": ["生", "性", "牲", "姓", "星", "醒", "甥", "産", "生物", "生産", "一生", "性質", "性格", "犠牲", "姓名", "百姓", "星雲", "惑星", "覚醒", "出産", "財産"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/08/post-f9ff.html"
+  },
+  {
+    "folder": "ki-sono",
+    "title": "其・箕・期・基・旗・棋・碁・欺",
+    "hanViet": "KỲ・KỲ・KỲ・CƠ・KỲ・KỲ・KỲ・KHI",
+    "on": "キ・ゴ・ギ",
+    "keywords": ["其", "箕", "期", "基", "旗", "棋", "碁", "欺", "期末", "一期一会", "基礎", "基本", "基準", "国旗", "将棋", "囲碁", "詐欺", "欺瞞"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/09/post-a55c.html"
+  },
+  {
+    "folder": "gu-oroka",
+    "title": "禺・偶・隅・遇・寓・愚",
+    "hanViet": "NGU・NGẪU・NGU・NGỘ・NGỤ・NGU",
+    "on": "グ・グウ",
+    "keywords": ["禺", "偶", "隅", "遇", "寓", "愚", "偶然", "偶数", "偶像", "片隅", "遭遇", "待遇", "千載一遇", "寓話", "愚痴", "愚劣"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/09/post-cdcb.html"
+  },
+  {
+    "folder": "tou-itaru",
+    "title": "至・到・倒",
+    "hanViet": "CHÍ・ĐÁO・ĐẢO",
+    "on": "シ・トウ",
+    "keywords": ["至", "到", "倒", "至上", "至急", "冬至", "到達", "到来", "周到", "未到", "倒産", "転倒", "倒置", "卒倒"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-0a31.html"
+  },
+  {
+    "folder": "nou-nayamu",
+    "title": "脳・悩・瑙",
+    "hanViet": "NÃO・NÃO・NÃO",
+    "on": "ノウ",
+    "keywords": ["脳", "悩", "瑙", "大脳", "首脳", "頭脳", "苦悩", "煩悩", "悩殺", "瑪瑙"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-1aa7.html"
+  },
+  {
+    "folder": "ryu-nagare",
+    "title": "流・硫・琉",
+    "hanViet": "LƯU・LƯU・LƯU",
+    "on": "リュウ・ル",
+    "keywords": ["流", "硫", "琉", "清流", "漂流", "流行", "風流", "流布", "硫黄", "硫酸", "硫化水素", "琉球", "琉璃"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-2136.html"
+  },
+  {
+    "folder": "men-manugare",
+    "title": "免・晩・挽・娩・勉",
+    "hanViet": "MIỄN・VÃN・VÃN・MIỄN・MIỄN",
+    "on": "メン・バン・ベン",
+    "keywords": ["免", "晩", "挽", "娩", "勉", "免許", "免除", "免職", "今晩", "晩年", "晩婚", "挽回", "挽歌", "分娩", "勉強", "勉学"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-7c2e.html"
+  },
+  {
+    "folder": "eki-mata",
+    "title": "亦・夜・腋・液・跡",
+    "hanViet": "DIỆC・DẠ・DỊCH・DỊCH・TÍCH",
+    "on": "エキ・ヤ・セキ",
+    "keywords": ["亦", "夜", "腋", "液", "跡", "深夜", "夜景", "通夜", "腋臭", "液体", "血液", "体液", "液晶", "軌跡", "奇跡", "史跡", "痕跡"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-ae98.html"
+  },
+  {
+    "folder": "yo-amaru",
+    "title": "余・除・徐・途・塗・叙・斜・茶",
+    "hanViet": "DƯ・TRỪ・TỪ・ĐỒ・ĐỒ・TỰ・TÀ・TRÀ",
+    "on": "ヨ・ジョ・ト・シャ・チャ・サ",
+    "keywords": ["余", "除", "徐", "途", "塗", "叙", "斜", "茶", "余裕", "余分", "除去", "除外", "除夜", "徐行", "途中", "前途", "塗装", "叙述", "叙情", "傾斜", "茶道", "紅茶"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-bad1.html"
+  },
+  {
+    "folder": "chu-naka",
+    "title": "中・仲・忠・衷・沖",
+    "hanViet": "TRUNG・TRỌNG・TRUNG・TRUNG・XUNG",
+    "on": "チュウ・ジュウ",
+    "keywords": ["中", "仲", "忠", "衷", "沖", "中心", "集中", "仲間", "仲裁", "仲介", "忠誠", "忠告", "衷心", "苦衷", "折衷", "沖縄"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-bcd1.html"
+  },
+  {
+    "folder": "choku-naoru",
+    "title": "直・植・殖・値・置・徳・聴",
+    "hanViet": "TRỰC・THỰC・THỰC・TRỊ・TRÍ・ĐỨC・THÍNH",
+    "on": "チョク・ジキ・ショク・チ・トク・チョウ",
+    "keywords": ["直", "植", "殖", "値", "置", "徳", "聴", "直接", "直球", "植物", "植民", "繁殖", "価値", "値段", "放置", "設置", "道徳", "聴覚", "傾聴"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-c35d.html"
+  },
+  {
+    "folder": "you-koshi",
+    "title": "要・腰",
+    "hanViet": "YẾU・YẾU",
+    "on": "ヨウ",
+    "keywords": ["要", "腰", "重要", "必要", "要求", "要点", "要約", "腰痛", "腰骨"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/10/post-feb7.html"
+  },
+  {
+    "folder": "sho-akira",
+    "title": "章・彰・障・商",
+    "hanViet": "CHƯƠNG・CHƯƠNG・CHƯỚNG・THƯƠNG",
+    "on": "ショウ",
+    "keywords": ["章", "彰", "障", "商", "文章", "楽章", "紋章", "勲章", "表彰", "顕彰", "障害", "障壁", "故障", "商業", "商品", "商談"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-194f.html"
+  },
+  {
+    "folder": "kyo-mune",
+    "title": "凶・兇・匈・胸",
+    "hanViet": "HUNG・HUNG・HUNG・HUNG",
+    "on": "キョウ",
+    "keywords": ["凶", "兇", "匈", "胸", "吉凶", "凶悪", "元凶", "凶器", "匈奴", "胸部", "胸囲", "胸中"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-2861.html"
+  },
+  {
+    "folder": "to-tsuchi",
+    "title": "土・社・吐・徒・杜",
+    "hanViet": "THỔ・XÃ・THỔ・ĐỒ・ĐỖ",
+    "on": "ト・ド・シャ",
+    "keywords": ["土", "社", "吐", "徒", "杜", "土砂", "土地", "社会", "神社", "会社", "嘔吐", "生徒", "徒歩", "徒労", "杜撰"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-30a7.html"
+  },
+  {
+    "folder": "shu-tsuku",
+    "title": "就・蹴・鷲",
+    "hanViet": "TỰU・THÚC・TỰU",
+    "on": "シュウ・ジュ",
+    "keywords": ["就", "蹴", "鷲", "就職", "就寝", "成就", "就任", "一蹴", "蹴球"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-582e.html"
+  },
+  {
+    "folder": "gaku-manabu",
+    "title": "学・覚・教",
+    "hanViet": "HỌC・GIÁC・GIÁO",
+    "on": "ガク・カク・キョウ",
+    "keywords": ["学", "覚", "教", "学校", "学習", "大学", "学問", "感覚", "覚悟", "覚醒", "教育", "教師", "宗教"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-5dc8.html"
+  },
+  {
+    "folder": "shin-fukai",
+    "title": "深・探",
+    "hanViet": "THÂM・THÁM",
+    "on": "シン・タン",
+    "keywords": ["深", "探", "水深", "深刻", "深山", "深夜", "探検", "探偵", "探究", "探訪"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-612e.html"
+  },
+  {
+    "folder": "sho-toko",
+    "title": "爿・状・床・壮・荘・装・将・奨・醤",
+    "hanViet": "TƯƠNG・TRẠNG・SÀNG・TRÁNG・TRANG・TƯỞNG・TƯƠNG",
+    "on": "ショウ・ジョウ・ソウ",
+    "keywords": ["爿", "状", "床", "壮", "荘", "装", "将", "奨", "醤", "状況", "形状", "床屋", "壮大", "衣装", "将軍", "将来", "奨励", "醤油"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-b050.html"
+  },
+  {
+    "folder": "sha-iru",
+    "title": "射・謝",
+    "hanViet": "XẠ・TẠ",
+    "on": "シャ",
+    "keywords": ["射", "謝", "注射", "放射線", "反射", "射撃", "感謝", "謝罪", "謝礼"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/11/post-cc04.html"
+  },
+  {
+    "folder": "ju-to",
+    "title": "十・什・汁・針",
+    "hanViet": "THẬP・TẬP・TRẤP・CHÂM",
+    "on": "ジュウ・シン",
+    "keywords": ["十", "什", "汁", "針", "味噌汁", "果汁", "方針", "十分", "十字路", "針"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-4b00.html"
+  },
+  {
+    "folder": "kan-hosu",
+    "title": "干・刊・幹・肝・汗・竿・軒",
+    "hanViet": "CAN・SAN・CAN・CAN・HÃN・CAO・HIÊN",
+    "on": "カン・ケン",
+    "keywords": ["干", "刊", "幹", "肝", "汗", "竿", "軒", "干渉", "週刊", "月刊", "幹部", "幹線", "肝臓", "汗", "軒"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-6d7c.html"
+  },
+  {
+    "folder": "hi-kuraberu",
+    "title": "比・批・陛・庇・屁",
+    "hanViet": "TỶ・PHÊ・BỆ・TỲ・THÍ",
+    "on": "ヒ・ヘイ",
+    "keywords": ["比", "批", "陛", "庇", "屁", "比較", "比重", "比率", "比例", "批判", "批評", "陛下", "庇護"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-7a4d.html"
+  },
+  {
+    "folder": "sho-akiraka",
+    "title": "昌・晶・唱・娼・菖",
+    "hanViet": "XƯƠNG・TINH・XƯỚNG・XƯỚNG・XƯƠNG",
+    "on": "ショウ",
+    "keywords": ["昌", "晶", "唱", "娼", "菖", "結晶", "液晶", "合唱", "独唱", "唱歌", "菖蒲"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-7a99.html"
+  },
+  {
+    "folder": "hoku-kita",
+    "title": "北・背",
+    "hanViet": "BẮC・BỐI",
+    "on": "ホク・ハイ",
+    "keywords": ["北", "背", "東北", "北極", "敗北", "背中", "背信", "背丈"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-8032.html"
+  },
+  {
+    "folder": "yo-hitsuji",
+    "title": "羊・詳・祥・翔・善・繕・膳",
+    "hanViet": "DƯƠNG・TƯỜNG・TƯỜNG・TƯỜNG・THIỆN・THIỆN・THIỆN",
+    "on": "ヨウ・ショウ・ゼン",
+    "keywords": ["羊", "詳", "祥", "翔", "善", "繕", "膳", "詳細", "吉祥", "善悪", "改善", "慈善", "修繕"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-8814.html"
+  },
+  {
+    "folder": "go-uma",
+    "title": "午・杵・許・卸・御",
+    "hanViet": "NGỌ・CHỬ・HỨA・TẢ・NGỰ",
+    "on": "ゴ・ショ・キョ・シャ・ギョ",
+    "keywords": ["午", "杵", "許", "卸", "御", "正午", "午前", "午後", "許可", "特許", "卸売", "制御"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-9629.html"
+  },
+  {
+    "folder": "go-ayamaru",
+    "title": "呉・娯・誤",
+    "hanViet": "NGÔ・NGU・NGỘ",
+    "on": "ゴ",
+    "keywords": ["呉", "娯", "誤", "呉音", "娯楽", "誤解", "誤字", "誤認", "錯誤"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-b278.html"
+  },
+  {
+    "folder": "ju-tate",
+    "title": "从・従・縦",
+    "hanViet": "TÒNG・TÙNG・TUNG",
+    "on": "ジュウ",
+    "keywords": ["从", "従", "縦", "従来", "従順", "服従", "縦断", "縦横"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-b91e.html"
+  },
+  {
+    "folder": "han-soru",
+    "title": "反・坂・阪・板・飯・版・販・返",
+    "hanViet": "PHẢN・PHẢN・PHẢN・BẢN・PHẠN・BẢN・PHÁN・PHẢN",
+    "on": "ハン・ヘン",
+    "keywords": ["反", "坂", "阪", "板", "飯", "版", "販", "返", "反対", "坂道", "黒板", "ご飯", "出版", "販売", "返事"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2013/12/post-bab3.html"
+  },
+  {
+    "folder": "mei-na",
+    "title": "名・銘・酩",
+    "hanViet": "DANH・MINH・MINH",
+    "on": "メイ・ミョウ",
+    "keywords": ["名", "銘", "酩", "名前", "有名", "地名", "人名", "銘柄", "銘酒", "酩酊"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-1ee5.html"
+  },
+  {
+    "folder": "ko-iku",
+    "title": "行・衡・桁",
+    "hanViet": "HÀNH・HÀNH・HÀNH",
+    "on": "コウ・ギョウ",
+    "keywords": ["行", "衡", "桁", "旅行", "行動", "行進", "均衡", "平衡", "桁違い"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-23c2.html"
+  },
+  {
+    "folder": "cho-machi",
+    "title": "丁・釘・町・頂・庁・灯・打・訂・亭・停",
+    "hanViet": "ĐINH・ĐINH・ĐINH・ĐỈNH・SẢNH・ĐĂNG・ĐẢ・ĐÍNH・ĐÌNH・ĐÌNH",
+    "on": "チョウ・テイ・トウ・ダ",
+    "keywords": ["丁", "釘", "町", "頂", "庁", "灯", "打", "訂", "亭", "停", "山頂", "官庁", "停電", "訂正", "灯台"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-2bea.html"
+  },
+  {
+    "folder": "seki-yu",
+    "title": "夕・汐",
+    "hanViet": "TỊCH・TỊCH",
+    "on": "セキ",
+    "keywords": ["夕", "汐", "夕方", "夕飯", "夕映え", "一朝一夕", "汐"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-469a.html"
+  },
+  {
+    "folder": "ba-uma",
+    "title": "馬・瑪・罵",
+    "hanViet": "MÃ・MÃ・MÃ",
+    "on": "バ・メ",
+    "keywords": ["馬", "瑪", "罵", "乗馬", "競馬", "瑪瑙", "罵倒", "罵声"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-51f5.html"
+  },
+  {
+    "folder": "ko-ki",
+    "title": "黄・横・広・鉱・拡",
+    "hanViet": "HOÀNG・HOÀNH・QUẢNG・KHOÁNG・KHOÁNG",
+    "on": "コウ・オウ・カク",
+    "keywords": ["黄", "横", "広", "鉱", "拡", "黄色", "横断", "広告", "鉱山", "拡大", "拡散"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-5414.html"
+  },
+  {
+    "folder": "cho-nagai",
+    "title": "長・帳・張・脹・漲",
+    "hanViet": "TRƯỞNG・TRƯỚNG・TRƯƠNG・TRƯỚNG・TRƯỚNG",
+    "on": "チョウ",
+    "keywords": ["長", "帳", "張", "脹", "漲", "成長", "通帳", "緊張", "主張", "拡張", "膨脹"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-70e1.html"
+  },
+  {
+    "folder": "ko-oyake",
+    "title": "公・松・訟・頌・翁",
+    "hanViet": "CÔNG・TÙNG・TỤNG・TỤNG・ÔNG",
+    "on": "コウ・ショウ・オウ",
+    "keywords": ["公", "松", "訟", "頌", "翁", "公平", "公園", "公告", "訴訟", "松林"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-8870.html"
+  },
+  {
+    "folder": "setsu-fushi",
+    "title": "卩・即・節・色・絶",
+    "hanViet": "TIẾT・TỨC・TIẾT・SẮC・TUYỆT",
+    "on": "セツ・ソク・ショク・ゼツ",
+    "keywords": ["卩", "即", "節", "色", "絶", "即座", "即時", "節約", "季節", "景色", "特色", "絶妙", "絶望"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-9c00.html"
+  },
+  {
+    "folder": "ko-kamae",
+    "title": "冓・構・講・購・溝",
+    "hanViet": "CẤU・CẤU・GIẢNG・CẤU・CẤU",
+    "on": "コウ",
+    "keywords": ["冓", "構", "講", "購", "溝", "構造", "機構", "講演", "講座", "講義", "購入", "購読", "溝"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-a296.html"
+  },
+  {
+    "folder": "cho-asa",
+    "title": "朝・潮・嘲・廟",
+    "hanViet": "TRIỀU・TRIỀU・TRIỀU・MIẾU",
+    "on": "チョウ・ビョウ",
+    "keywords": ["朝", "潮", "嘲", "廟", "朝食", "潮流", "朝代", "嘲笑", "嘲弄"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-b0fe.html"
+  },
+  {
+    "folder": "ko-wataru",
+    "title": "亢・航・抗・坑・杭",
+    "hanViet": "CANG・HÀNG・KHÁNG・KHÁNG・CANG",
+    "on": "コウ",
+    "keywords": ["亢", "航", "抗", "坑", "杭", "航空", "航海", "抗議", "抵抗", "炭坑", "坑道"],
+    "url": "http://huusennarare.cocolog-nifty.com/blog/2014/01/post-ebfe.html"
   }
 ]
