@@ -420,7 +420,8 @@
     "itsu"
   ],
   "華": [
-    "ka-hana"
+    "ka-hana",
+    "ka-bakeru"
   ],
   "樺": [
     "ka-hana"
@@ -894,7 +895,8 @@
     "ou-osameru"
   ],
   "往": [
-    "ou-osameru"
+    "ou-osameru",
+    "shu-nushi"
   ],
   "皇": [
     "ou-osameru"
@@ -981,13 +983,16 @@
     "u-nagai"
   ],
   "誇": [
-    "u-nagai"
+    "u-nagai",
+    "ko-hokoru"
   ],
   "跨": [
-    "u-nagai"
+    "u-nagai",
+    "ko-hokoru"
   ],
   "袴": [
-    "u-nagai"
+    "u-nagai",
+    "ko-hokoru"
   ],
   "云": [
     "un-kumo"
@@ -1003,5 +1008,2083 @@
   ],
   "魂": [
     "un-kumo"
+  ],
+  "生": [
+    "sei-ikiru"
+  ],
+  "性": [
+    "sei-ikiru"
+  ],
+  "牲": [
+    "sei-ikiru"
+  ],
+  "姓": [
+    "sei-ikiru"
+  ],
+  "星": [
+    "sei-ikiru"
+  ],
+  "醒": [
+    "sei-ikiru"
+  ],
+  "甥": [
+    "sei-ikiru"
+  ],
+  "産": [
+    "sei-ikiru"
+  ],
+  "臽": [
+    "kan-ochiru"
+  ],
+  "陥": [
+    "kan-ochiru"
+  ],
+  "睘": [
+    "kan-maru"
+  ],
+  "環": [
+    "kan-maru"
+  ],
+  "還": [
+    "kan-maru"
+  ],
+  "巻": [
+    "kan-maku"
+  ],
+  "圏": [
+    "kan-maku"
+  ],
+  "捲": [
+    "kan-maku"
+  ],
+  "倦": [
+    "kan-maku"
+  ],
+  "蜷": [
+    "kan-maku"
+  ],
+  "券": [
+    "kan-maku"
+  ],
+  "拳": [
+    "kan-maku"
+  ],
+  "監": [
+    "kan-miru"
+  ],
+  "艦": [
+    "kan-miru"
+  ],
+  "鑑": [
+    "kan-miru"
+  ],
+  "檻": [
+    "kan-miru"
+  ],
+  "濫": [
+    "kan-miru"
+  ],
+  "藍": [
+    "kan-miru"
+  ],
+  "覧": [
+    "kan-miru"
+  ],
+  "塩": [
+    "kan-miru"
+  ],
+  "柬": [
+    "kan-erabu"
+  ],
+  "揀": [
+    "kan-erabu"
+  ],
+  "諌": [
+    "kan-erabu"
+  ],
+  "練": [
+    "kan-erabu"
+  ],
+  "煉": [
+    "kan-erabu"
+  ],
+  "錬": [
+    "kan-erabu"
+  ],
+  "鰊": [
+    "kan-erabu"
+  ],
+  "咸": [
+    "kan-toji"
+  ],
+  "感": [
+    "kan-toji"
+  ],
+  "憾": [
+    "kan-toji"
+  ],
+  "緘": [
+    "kan-toji"
+  ],
+  "減": [
+    "kan-toji"
+  ],
+  "鹹": [
+    "kan-toji"
+  ],
+  "鍼": [
+    "kan-toji"
+  ],
+  "漢": [
+    "kan-otoko"
+  ],
+  "難": [
+    "kan-otoko"
+  ],
+  "嘆": [
+    "kan-otoko"
+  ],
+  "灘": [
+    "kan-otoko"
+  ],
+  "儺": [
+    "kan-otoko"
+  ],
+  "間": [
+    "kan-aida"
+  ],
+  "簡": [
+    "kan-aida"
+  ],
+  "閑": [
+    "kan-aida"
+  ],
+  "奐": [
+    "kan-sakaeru"
+  ],
+  "喚": [
+    "kan-sakaeru"
+  ],
+  "換": [
+    "kan-sakaeru"
+  ],
+  "渙": [
+    "kan-sakaeru"
+  ],
+  "丱": [
+    "kan-agamaki"
+  ],
+  "関": [
+    "kan-agamaki"
+  ],
+  "官": [
+    "kan-yakujin"
+  ],
+  "館": [
+    "kan-yakujin"
+  ],
+  "管": [
+    "kan-yakujin"
+  ],
+  "棺": [
+    "kan-yakujin"
+  ],
+  "菅": [
+    "kan-yakujin"
+  ],
+  "遣": [
+    "kan-yakujin"
+  ],
+  "甘": [
+    "kan-amai"
+  ],
+  "柑": [
+    "kan-amai"
+  ],
+  "紺": [
+    "kan-amai"
+  ],
+  "酣": [
+    "kan-amai"
+  ],
+  "箝": [
+    "kan-amai"
+  ],
+  "敢": [
+    "kan-amai"
+  ],
+  "厳": [
+    "kan-amai"
+  ],
+  "雚": [
+    "kan-soroeru"
+  ],
+  "勧": [
+    "kan-soroeru"
+  ],
+  "歓": [
+    "kan-soroeru"
+  ],
+  "権": [
+    "kan-soroeru"
+  ],
+  "観": [
+    "kan-soroeru"
+  ],
+  "灌": [
+    "kan-soroeru"
+  ],
+  "毌": [
+    "kan-tsuranuku"
+  ],
+  "貫": [
+    "kan-tsuranuku"
+  ],
+  "慣": [
+    "kan-tsuranuku"
+  ],
+  "実": [
+    "kan-tsuranuku"
+  ],
+  "串": [
+    "kan-tsuranuku"
+  ],
+  "患": [
+    "kan-tsuranuku"
+  ],
+  "夏": [
+    "ka-natsu"
+  ],
+  "廈": [
+    "ka-natsu"
+  ],
+  "榎": [
+    "ka-natsu"
+  ],
+  "嗄": [
+    "ka-natsu"
+  ],
+  "寡": [
+    "ka-natsu"
+  ],
+  "叚": [
+    "ka-kari"
+  ],
+  "仮": [
+    "ka-kari"
+  ],
+  "蝦": [
+    "ka-kari"
+  ],
+  "暇": [
+    "ka-kari"
+  ],
+  "霞": [
+    "ka-kari"
+  ],
+  "瑕": [
+    "ka-kari"
+  ],
+  "家": [
+    "ka-ie"
+  ],
+  "嫁": [
+    "ka-ie"
+  ],
+  "稼": [
+    "ka-ie"
+  ],
+  "化": [
+    "ka-bakeru"
+  ],
+  "花": [
+    "ka-bakeru"
+  ],
+  "貨": [
+    "ka-bakeru"
+  ],
+  "靴": [
+    "ka-bakeru"
+  ],
+  "訛": [
+    "ka-bakeru"
+  ],
+  "囮": [
+    "ka-bakeru"
+  ],
+  "加": [
+    "ka-kuwaeru"
+  ],
+  "賀": [
+    "ka-kuwaeru"
+  ],
+  "架": [
+    "ka-kuwaeru"
+  ],
+  "駕": [
+    "ka-kuwaeru"
+  ],
+  "袈": [
+    "ka-kuwaeru"
+  ],
+  "伽": [
+    "ka-kuwaeru"
+  ],
+  "枷": [
+    "ka-kuwaeru"
+  ],
+  "嘉": [
+    "ka-kuwaeru"
+  ],
+  "茄": [
+    "ka-kuwaeru"
+  ],
+  "主": [
+    "shu-nushi"
+  ],
+  "柱": [
+    "shu-nushi"
+  ],
+  "注": [
+    "shu-nushi"
+  ],
+  "駐": [
+    "shu-nushi"
+  ],
+  "住": [
+    "shu-nushi"
+  ],
+  "工": [
+    "ko-takumi"
+  ],
+  "功": [
+    "ko-takumi"
+  ],
+  "巧": [
+    "ko-takumi"
+  ],
+  "攻": [
+    "ko-takumi"
+  ],
+  "項": [
+    "ko-takumi"
+  ],
+  "貢": [
+    "ko-takumi"
+  ],
+  "虹": [
+    "ko-takumi"
+  ],
+  "江": [
+    "ko-takumi"
+  ],
+  "紅": [
+    "ko-takumi"
+  ],
+  "空": [
+    "ko-takumi"
+  ],
+  "昜": [
+    "yo-agaru"
+  ],
+  "陽": [
+    "yo-agaru"
+  ],
+  "場": [
+    "yo-agaru"
+  ],
+  "湯": [
+    "yo-agaru"
+  ],
+  "揚": [
+    "yo-agaru"
+  ],
+  "腸": [
+    "yo-agaru"
+  ],
+  "傷": [
+    "yo-agaru"
+  ],
+  "瘍": [
+    "yo-agaru"
+  ],
+  "楊": [
+    "yo-agaru",
+    "yanagi-bunrui"
+  ],
+  "小": [
+    "sho-chiisai"
+  ],
+  "少": [
+    "sho-chiisai"
+  ],
+  "砂": [
+    "sho-chiisai"
+  ],
+  "妙": [
+    "sho-chiisai"
+  ],
+  "秒": [
+    "sho-chiisai"
+  ],
+  "省": [
+    "sho-chiisai"
+  ],
+  "消": [
+    "sho-chiisai"
+  ],
+  "削": [
+    "sho-chiisai"
+  ],
+  "劣": [
+    "sho-chiisai"
+  ],
+  "左": [
+    "sa-hidari"
+  ],
+  "佐": [
+    "sa-hidari"
+  ],
+  "差": [
+    "sa-hidari"
+  ],
+  "嵯": [
+    "sa-hidari"
+  ],
+  "尋": [
+    "sa-hidari"
+  ],
+  "韋": [
+    "i-kakomu"
+  ],
+  "囲": [
+    "i-kakomu"
+  ],
+  "衛": [
+    "i-kakomu"
+  ],
+  "違": [
+    "i-kakomu"
+  ],
+  "偉": [
+    "i-kakomu"
+  ],
+  "緯": [
+    "i-kakomu"
+  ],
+  "葦": [
+    "i-kakomu"
+  ],
+  "莫": [
+    "baku-kureru"
+  ],
+  "暮": [
+    "baku-kureru"
+  ],
+  "漠": [
+    "baku-kureru"
+  ],
+  "幕": [
+    "baku-kureru"
+  ],
+  "膜": [
+    "baku-kureru"
+  ],
+  "墓": [
+    "baku-kureru"
+  ],
+  "模": [
+    "baku-kureru"
+  ],
+  "慕": [
+    "baku-kureru"
+  ],
+  "募": [
+    "baku-kureru"
+  ],
+  "己": [
+    "ko-onore"
+  ],
+  "起": [
+    "ko-onore"
+  ],
+  "記": [
+    "ko-onore"
+  ],
+  "紀": [
+    "ko-onore"
+  ],
+  "忌": [
+    "ko-onore"
+  ],
+  "改": [
+    "ko-onore"
+  ],
+  "杞": [
+    "ko-onore"
+  ],
+  "配": [
+    "hai-kubaru"
+  ],
+  "妃": [
+    "hai-kubaru"
+  ],
+  "曾": [
+    "so-kasaneru"
+  ],
+  "増": [
+    "so-kasaneru"
+  ],
+  "層": [
+    "so-kasaneru"
+  ],
+  "憎": [
+    "so-kasaneru"
+  ],
+  "贈": [
+    "so-kasaneru"
+  ],
+  "僧": [
+    "so-kasaneru"
+  ],
+  "噌": [
+    "so-kasaneru"
+  ],
+  "衣": [
+    "i-koromo"
+  ],
+  "依": [
+    "i-koromo"
+  ],
+  "哀": [
+    "i-koromo"
+  ],
+  "辰": [
+    "shin-tatsu"
+  ],
+  "蜃": [
+    "shin-tatsu"
+  ],
+  "振": [
+    "shin-tatsu"
+  ],
+  "震": [
+    "shin-tatsu"
+  ],
+  "唇": [
+    "shin-tatsu"
+  ],
+  "娠": [
+    "shin-tatsu"
+  ],
+  "賑": [
+    "shin-tatsu"
+  ],
+  "辱": [
+    "shin-tatsu"
+  ],
+  "柳": [
+    "yanagi-bunrui"
+  ],
+  "貝": [
+    "bai-kai"
+  ],
+  "敗": [
+    "bai-kai"
+  ],
+  "唄": [
+    "bai-kai"
+  ],
+  "買": [
+    "bai-kai"
+  ],
+  "売": [
+    "bai-kai"
+  ],
+  "負": [
+    "bai-kai"
+  ],
+  "読": [
+    "bai-kai"
+  ],
+  "続": [
+    "bai-kai"
+  ],
+  "喿": [
+    "so-ayatsuru"
+  ],
+  "操": [
+    "so-ayatsuru"
+  ],
+  "繰": [
+    "so-ayatsuru"
+  ],
+  "燥": [
+    "so-ayatsuru"
+  ],
+  "藻": [
+    "so-ayatsuru"
+  ],
+  "僉": [
+    "ken-tsurugi"
+  ],
+  "剣": [
+    "ken-tsurugi"
+  ],
+  "険": [
+    "ken-tsurugi"
+  ],
+  "検": [
+    "ken-tsurugi"
+  ],
+  "験": [
+    "ken-tsurugi"
+  ],
+  "倹": [
+    "ken-tsurugi"
+  ],
+  "瞼": [
+    "ken-tsurugi"
+  ],
+  "未": [
+    "mi-mada"
+  ],
+  "妹": [
+    "mi-mada"
+  ],
+  "昧": [
+    "mi-mada"
+  ],
+  "味": [
+    "mi-mada"
+  ],
+  "魅": [
+    "mi-mada"
+  ],
+  "象": [
+    "zo-katachi"
+  ],
+  "像": [
+    "zo-katachi"
+  ],
+  "里": [
+    "ri-sato"
+  ],
+  "理": [
+    "ri-sato"
+  ],
+  "鯉": [
+    "ri-sato"
+  ],
+  "裏": [
+    "ri-sato"
+  ],
+  "埋": [
+    "ri-sato"
+  ],
+  "厘": [
+    "ri-sato"
+  ],
+  "申": [
+    "shin-mousu"
+  ],
+  "伸": [
+    "shin-mousu"
+  ],
+  "神": [
+    "shin-mousu"
+  ],
+  "紳": [
+    "shin-mousu"
+  ],
+  "電": [
+    "shin-mousu"
+  ],
+  "榊": [
+    "shin-mousu"
+  ],
+  "兆": [
+    "cho-kizashi"
+  ],
+  "逃": [
+    "cho-kizashi"
+  ],
+  "眺": [
+    "cho-kizashi"
+  ],
+  "挑": [
+    "cho-kizashi"
+  ],
+  "跳": [
+    "cho-kizashi"
+  ],
+  "桃": [
+    "cho-kizashi"
+  ],
+  "卜": [
+    "boku-uranau"
+  ],
+  "朴": [
+    "boku-uranau"
+  ],
+  "仆": [
+    "boku-uranau"
+  ],
+  "訃": [
+    "boku-uranau"
+  ],
+  "赴": [
+    "boku-uranau"
+  ],
+  "爻": [
+    "ko-majiwaru"
+  ],
+  "交": [
+    "ko-majiwaru"
+  ],
+  "学": [
+    "ko-majiwaru",
+    "gaku-manabu"
+  ],
+  "教": [
+    "ko-majiwaru",
+    "gaku-manabu"
+  ],
+  "覚": [
+    "ko-majiwaru",
+    "gaku-manabu"
+  ],
+  "肴": [
+    "ko-majiwaru"
+  ],
+  "校": [
+    "ko-majiwaru"
+  ],
+  "較": [
+    "ko-majiwaru"
+  ],
+  "祝": [
+    "shuku-iwau"
+  ],
+  "呪": [
+    "shuku-iwau"
+  ],
+  "麻": [
+    "ma-asa"
+  ],
+  "摩": [
+    "ma-asa"
+  ],
+  "磨": [
+    "ma-asa"
+  ],
+  "魔": [
+    "ma-asa"
+  ],
+  "列": [
+    "retsu-naraberu"
+  ],
+  "例": [
+    "retsu-naraberu"
+  ],
+  "烈": [
+    "retsu-naraberu"
+  ],
+  "裂": [
+    "retsu-naraberu"
+  ],
+  "八": [
+    "han-nakaba",
+    "fun-wakeru"
+  ],
+  "半": [
+    "han-nakaba"
+  ],
+  "判": [
+    "han-nakaba"
+  ],
+  "伴": [
+    "han-nakaba"
+  ],
+  "絆": [
+    "han-nakaba"
+  ],
+  "畔": [
+    "han-nakaba"
+  ],
+  "巠": [
+    "kei-tate"
+  ],
+  "径": [
+    "kei-tate"
+  ],
+  "経": [
+    "kei-tate"
+  ],
+  "軽": [
+    "kei-tate"
+  ],
+  "茎": [
+    "kei-tate"
+  ],
+  "頸": [
+    "kei-tate"
+  ],
+  "脛": [
+    "kei-tate"
+  ],
+  "苗": [
+    "byo-nae"
+  ],
+  "猫": [
+    "byo-nae"
+  ],
+  "描": [
+    "byo-nae"
+  ],
+  "錨": [
+    "byo-nae"
+  ],
+  "兄": [
+    "kyo-ani"
+  ],
+  "況": [
+    "kyo-ani"
+  ],
+  "竟": [
+    "kyo-ani"
+  ],
+  "境": [
+    "kyo-ani"
+  ],
+  "鏡": [
+    "kyo-ani"
+  ],
+  "競": [
+    "kyo-ani"
+  ],
+  "辛": [
+    "shin-karai"
+  ],
+  "新": [
+    "shin-karai"
+  ],
+  "薪": [
+    "shin-karai"
+  ],
+  "親": [
+    "shin-karai"
+  ],
+  "辞": [
+    "shin-karai"
+  ],
+  "畜": [
+    "chiku-yashinau"
+  ],
+  "蓄": [
+    "chiku-yashinau"
+  ],
+  "式": [
+    "shiki-nori"
+  ],
+  "試": [
+    "shiki-nori"
+  ],
+  "拭": [
+    "shiki-nori"
+  ],
+  "止": [
+    "shi-tomeru"
+  ],
+  "祉": [
+    "shi-tomeru"
+  ],
+  "歯": [
+    "shi-tomeru"
+  ],
+  "企": [
+    "shi-tomeru"
+  ],
+  "此": [
+    "shi-tomeru"
+  ],
+  "柴": [
+    "shi-tomeru"
+  ],
+  "及": [
+    "kyu-oyobu"
+  ],
+  "汲": [
+    "kyu-oyobu"
+  ],
+  "級": [
+    "kyu-oyobu"
+  ],
+  "吸": [
+    "kyu-oyobu"
+  ],
+  "扱": [
+    "kyu-oyobu"
+  ],
+  "急": [
+    "kyu-oyobu"
+  ],
+  "畐": [
+    "fuku-yutaka"
+  ],
+  "福": [
+    "fuku-yutaka"
+  ],
+  "副": [
+    "fuku-yutaka"
+  ],
+  "幅": [
+    "fuku-yutaka"
+  ],
+  "富": [
+    "fuku-yutaka"
+  ],
+  "蝠": [
+    "fuku-yutaka"
+  ],
+  "表": [
+    "hyo-omote"
+  ],
+  "俵": [
+    "hyo-omote"
+  ],
+  "不": [
+    "fu-hinai"
+  ],
+  "杯": [
+    "fu-hinai"
+  ],
+  "丕": [
+    "fu-hinai"
+  ],
+  "胚": [
+    "fu-hinai"
+  ],
+  "否": [
+    "fu-hinai"
+  ],
+  "京": [
+    "kyo-miyako"
+  ],
+  "鯨": [
+    "kyo-miyako"
+  ],
+  "涼": [
+    "kyo-miyako"
+  ],
+  "景": [
+    "kyo-miyako"
+  ],
+  "影": [
+    "kyo-miyako"
+  ],
+  "憬": [
+    "kyo-miyako"
+  ],
+  "分": [
+    "fun-wakeru"
+  ],
+  "粉": [
+    "fun-wakeru"
+  ],
+  "紛": [
+    "fun-wakeru"
+  ],
+  "貧": [
+    "fun-wakeru"
+  ],
+  "頒": [
+    "fun-wakeru"
+  ],
+  "盆": [
+    "fun-wakeru"
+  ],
+  "朕": [
+    "chin-ware"
+  ],
+  "勝": [
+    "chin-ware"
+  ],
+  "謄": [
+    "chin-ware"
+  ],
+  "騰": [
+    "chin-ware"
+  ],
+  "藤": [
+    "chin-ware"
+  ],
+  "孚": [
+    "fu-uku"
+  ],
+  "浮": [
+    "fu-uku"
+  ],
+  "俘": [
+    "fu-uku"
+  ],
+  "孵": [
+    "fu-uku"
+  ],
+  "古": [
+    "ko-furui"
+  ],
+  "固": [
+    "ko-furui"
+  ],
+  "個": [
+    "ko-furui"
+  ],
+  "故": [
+    "ko-furui"
+  ],
+  "苦": [
+    "ko-furui"
+  ],
+  "居": [
+    "ko-furui"
+  ],
+  "湖": [
+    "ko-furui"
+  ],
+  "敬": [
+    "kei-uyamau"
+  ],
+  "警": [
+    "kei-uyamau"
+  ],
+  "驚": [
+    "kei-uyamau"
+  ],
+  "召": [
+    "sho-mesu"
+  ],
+  "招": [
+    "sho-mesu"
+  ],
+  "昭": [
+    "sho-mesu"
+  ],
+  "照": [
+    "sho-mesu"
+  ],
+  "紹": [
+    "sho-mesu"
+  ],
+  "沼": [
+    "sho-mesu"
+  ],
+  "詔": [
+    "sho-mesu"
+  ],
+  "超": [
+    "sho-mesu"
+  ],
+  "舜": [
+    "shun-matataku"
+  ],
+  "瞬": [
+    "shun-matataku"
+  ],
+  "九": [
+    "kyu-magaru"
+  ],
+  "究": [
+    "kyu-magaru"
+  ],
+  "軌": [
+    "kyu-magaru"
+  ],
+  "仇": [
+    "kyu-magaru"
+  ],
+  "鳩": [
+    "kyu-magaru"
+  ],
+  "旭": [
+    "kyu-magaru"
+  ],
+  "五": [
+    "go-itsu"
+  ],
+  "伍": [
+    "go-itsu"
+  ],
+  "吾": [
+    "go-itsu"
+  ],
+  "語": [
+    "go-itsu"
+  ],
+  "悟": [
+    "go-itsu"
+  ],
+  "取": [
+    "shu-toru"
+  ],
+  "最": [
+    "shu-toru"
+  ],
+  "趣": [
+    "shu-toru"
+  ],
+  "撮": [
+    "shu-toru"
+  ],
+  "它": [
+    "ta-hebi"
+  ],
+  "也": [
+    "ta-hebi"
+  ],
+  "蛇": [
+    "ta-hebi"
+  ],
+  "地": [
+    "ta-hebi"
+  ],
+  "池": [
+    "ta-hebi"
+  ],
+  "他": [
+    "ta-hebi"
+  ],
+  "馳": [
+    "ta-hebi"
+  ],
+  "舵": [
+    "ta-hebi"
+  ],
+  "携": [
+    "kei-tazusaeru"
+  ],
+  "共": [
+    "kyo-tomoni"
+  ],
+  "供": [
+    "kyo-tomoni"
+  ],
+  "恭": [
+    "kyo-tomoni"
+  ],
+  "洪": [
+    "kyo-tomoni"
+  ],
+  "巷": [
+    "kyo-tomoni"
+  ],
+  "港": [
+    "kyo-tomoni"
+  ],
+  "合": [
+    "go-au"
+  ],
+  "答": [
+    "go-au"
+  ],
+  "拾": [
+    "go-au"
+  ],
+  "給": [
+    "go-au"
+  ],
+  "塔": [
+    "go-au"
+  ],
+  "代": [
+    "tai-kawaru"
+  ],
+  "貸": [
+    "tai-kawaru"
+  ],
+  "袋": [
+    "tai-kawaru"
+  ],
+  "黛": [
+    "tai-kawaru"
+  ],
+  "夸": [
+    "ko-hokoru"
+  ],
+  "禁": [
+    "kin-kinjiru"
+  ],
+  "襟": [
+    "kin-kinjiru"
+  ],
+  "尚": [
+    "sho-nao"
+  ],
+  "堂": [
+    "sho-nao"
+  ],
+  "常": [
+    "sho-nao"
+  ],
+  "掌": [
+    "sho-nao"
+  ],
+  "党": [
+    "sho-nao"
+  ],
+  "当": [
+    "sho-nao"
+  ],
+  "賞": [
+    "sho-nao"
+  ],
+  "償": [
+    "sho-nao"
+  ],
+  "七": [
+    "shichi-kiru"
+  ],
+  "切": [
+    "shichi-kiru"
+  ],
+  "窃": [
+    "shichi-kiru"
+  ],
+  "叱": [
+    "shichi-kiru"
+  ],
+  "乍": [
+    "sa-tsukuru"
+  ],
+  "作": [
+    "sa-tsukuru"
+  ],
+  "昨": [
+    "sa-tsukuru"
+  ],
+  "酢": [
+    "sa-tsukuru"
+  ],
+  "詐": [
+    "sa-tsukuru"
+  ],
+  "窄": [
+    "sa-tsukuru"
+  ],
+  "搾": [
+    "sa-tsukuru"
+  ],
+  "廌": [
+    "sen-susumeru"
+  ],
+  "薦": [
+    "sen-susumeru"
+  ],
+  "念": [
+    "nen-nenjiru"
+  ],
+  "捻": [
+    "nen-nenjiru"
+  ],
+  "稔": [
+    "nen-nenjiru"
+  ],
+  "唸": [
+    "nen-nenjiru"
+  ],
+  "卯": [
+    "bo-akeru"
+  ],
+  "貿": [
+    "bo-akeru"
+  ],
+  "昴": [
+    "bo-akeru"
+  ],
+  "皮": [
+    "hi-kawa"
+  ],
+  "彼": [
+    "hi-kawa"
+  ],
+  "被": [
+    "hi-kawa"
+  ],
+  "披": [
+    "hi-kawa"
+  ],
+  "波": [
+    "hi-kawa"
+  ],
+  "破": [
+    "hi-kawa"
+  ],
+  "疲": [
+    "hi-kawa"
+  ],
+  "婆": [
+    "hi-kawa"
+  ],
+  "我": [
+    "ga-ware"
+  ],
+  "義": [
+    "ga-ware"
+  ],
+  "議": [
+    "ga-ware"
+  ],
+  "儀": [
+    "ga-ware"
+  ],
+  "犠": [
+    "ga-ware"
+  ],
+  "蛾": [
+    "ga-ware"
+  ],
+  "餓": [
+    "ga-ware"
+  ],
+  "辟": [
+    "heki-sakeru"
+  ],
+  "壁": [
+    "heki-sakeru"
+  ],
+  "璧": [
+    "heki-sakeru"
+  ],
+  "避": [
+    "heki-sakeru"
+  ],
+  "癖": [
+    "heki-sakeru"
+  ],
+  "僻": [
+    "heki-sakeru"
+  ],
+  "牙": [
+    "ga-kiba"
+  ],
+  "芽": [
+    "ga-kiba"
+  ],
+  "雅": [
+    "ga-kiba"
+  ],
+  "邪": [
+    "ga-kiba"
+  ],
+  "冴": [
+    "ga-kiba"
+  ],
+  "則": [
+    "soku-nori"
+  ],
+  "側": [
+    "soku-nori"
+  ],
+  "測": [
+    "soku-nori"
+  ],
+  "今": [
+    "kon-ima"
+  ],
+  "吟": [
+    "kon-ima"
+  ],
+  "貪": [
+    "kon-ima"
+  ],
+  "琴": [
+    "kon-ima"
+  ],
+  "含": [
+    "kon-ima"
+  ],
+  "川": [
+    "sen-kawa"
+  ],
+  "順": [
+    "sen-kawa"
+  ],
+  "巡": [
+    "sen-kawa"
+  ],
+  "訓": [
+    "sen-kawa"
+  ],
+  "災": [
+    "sen-kawa"
+  ],
+  "帚": [
+    "so-houki"
+  ],
+  "掃": [
+    "so-houki"
+  ],
+  "侵": [
+    "so-houki"
+  ],
+  "浸": [
+    "so-houki"
+  ],
+  "寝": [
+    "so-houki"
+  ],
+  "帰": [
+    "so-houki"
+  ],
+  "婦": [
+    "so-houki"
+  ],
+  "且": [
+    "so-katsu"
+  ],
+  "組": [
+    "so-katsu"
+  ],
+  "助": [
+    "so-katsu"
+  ],
+  "査": [
+    "so-katsu"
+  ],
+  "祖": [
+    "so-katsu"
+  ],
+  "租": [
+    "so-katsu"
+  ],
+  "粗": [
+    "so-katsu"
+  ],
+  "阻": [
+    "so-katsu"
+  ],
+  "狙": [
+    "so-katsu"
+  ],
+  "正": [
+    "sei-tadashii"
+  ],
+  "征": [
+    "sei-tadashii"
+  ],
+  "政": [
+    "sei-tadashii"
+  ],
+  "整": [
+    "sei-tadashii"
+  ],
+  "証": [
+    "sei-tadashii"
+  ],
+  "症": [
+    "sei-tadashii"
+  ],
+  "定": [
+    "sei-tadashii"
+  ],
+  "錠": [
+    "sei-tadashii"
+  ],
+  "魚": [
+    "gyo-sakana"
+  ],
+  "漁": [
+    "gyo-sakana"
+  ],
+  "青": [
+    "sei-aoi"
+  ],
+  "晴": [
+    "sei-aoi"
+  ],
+  "清": [
+    "sei-aoi"
+  ],
+  "静": [
+    "sei-aoi"
+  ],
+  "精": [
+    "sei-aoi"
+  ],
+  "情": [
+    "sei-aoi"
+  ],
+  "請": [
+    "sei-aoi"
+  ],
+  "県": [
+    "ken-agata"
+  ],
+  "懸": [
+    "ken-agata"
+  ],
+  "其": [
+    "ki-sono"
+  ],
+  "箕": [
+    "ki-sono"
+  ],
+  "期": [
+    "ki-sono"
+  ],
+  "基": [
+    "ki-sono"
+  ],
+  "旗": [
+    "ki-sono"
+  ],
+  "棋": [
+    "ki-sono"
+  ],
+  "碁": [
+    "ki-sono"
+  ],
+  "欺": [
+    "ki-sono"
+  ],
+  "禺": [
+    "gu-oroka"
+  ],
+  "偶": [
+    "gu-oroka"
+  ],
+  "隅": [
+    "gu-oroka"
+  ],
+  "遇": [
+    "gu-oroka"
+  ],
+  "寓": [
+    "gu-oroka"
+  ],
+  "愚": [
+    "gu-oroka"
+  ],
+  "至": [
+    "tou-itaru"
+  ],
+  "到": [
+    "tou-itaru"
+  ],
+  "倒": [
+    "tou-itaru"
+  ],
+  "脳": [
+    "nou-nayamu"
+  ],
+  "悩": [
+    "nou-nayamu"
+  ],
+  "瑙": [
+    "nou-nayamu"
+  ],
+  "流": [
+    "ryu-nagare"
+  ],
+  "硫": [
+    "ryu-nagare"
+  ],
+  "琉": [
+    "ryu-nagare"
+  ],
+  "免": [
+    "men-manugare"
+  ],
+  "晩": [
+    "men-manugare"
+  ],
+  "挽": [
+    "men-manugare"
+  ],
+  "娩": [
+    "men-manugare"
+  ],
+  "勉": [
+    "men-manugare"
+  ],
+  "亦": [
+    "eki-mata"
+  ],
+  "夜": [
+    "eki-mata"
+  ],
+  "腋": [
+    "eki-mata"
+  ],
+  "液": [
+    "eki-mata"
+  ],
+  "跡": [
+    "eki-mata"
+  ],
+  "余": [
+    "yo-amaru"
+  ],
+  "除": [
+    "yo-amaru"
+  ],
+  "徐": [
+    "yo-amaru"
+  ],
+  "途": [
+    "yo-amaru"
+  ],
+  "塗": [
+    "yo-amaru"
+  ],
+  "叙": [
+    "yo-amaru"
+  ],
+  "斜": [
+    "yo-amaru"
+  ],
+  "茶": [
+    "yo-amaru"
+  ],
+  "中": [
+    "chu-naka"
+  ],
+  "仲": [
+    "chu-naka"
+  ],
+  "忠": [
+    "chu-naka"
+  ],
+  "衷": [
+    "chu-naka"
+  ],
+  "沖": [
+    "chu-naka"
+  ],
+  "直": [
+    "choku-naoru"
+  ],
+  "植": [
+    "choku-naoru"
+  ],
+  "殖": [
+    "choku-naoru"
+  ],
+  "値": [
+    "choku-naoru"
+  ],
+  "置": [
+    "choku-naoru"
+  ],
+  "徳": [
+    "choku-naoru"
+  ],
+  "聴": [
+    "choku-naoru"
+  ],
+  "要": [
+    "you-koshi"
+  ],
+  "腰": [
+    "you-koshi"
+  ],
+  "章": [
+    "sho-akira"
+  ],
+  "彰": [
+    "sho-akira"
+  ],
+  "障": [
+    "sho-akira"
+  ],
+  "商": [
+    "sho-akira"
+  ],
+  "凶": [
+    "kyo-mune"
+  ],
+  "兇": [
+    "kyo-mune"
+  ],
+  "匈": [
+    "kyo-mune"
+  ],
+  "胸": [
+    "kyo-mune"
+  ],
+  "土": [
+    "to-tsuchi"
+  ],
+  "社": [
+    "to-tsuchi"
+  ],
+  "吐": [
+    "to-tsuchi"
+  ],
+  "徒": [
+    "to-tsuchi"
+  ],
+  "杜": [
+    "to-tsuchi"
+  ],
+  "就": [
+    "shu-tsuku"
+  ],
+  "蹴": [
+    "shu-tsuku"
+  ],
+  "鷲": [
+    "shu-tsuku"
+  ],
+  "深": [
+    "shin-fukai"
+  ],
+  "探": [
+    "shin-fukai"
+  ],
+  "爿": [
+    "sho-toko"
+  ],
+  "状": [
+    "sho-toko"
+  ],
+  "床": [
+    "sho-toko"
+  ],
+  "壮": [
+    "sho-toko"
+  ],
+  "荘": [
+    "sho-toko"
+  ],
+  "装": [
+    "sho-toko"
+  ],
+  "将": [
+    "sho-toko"
+  ],
+  "奨": [
+    "sho-toko"
+  ],
+  "醤": [
+    "sho-toko"
+  ],
+  "射": [
+    "sha-iru"
+  ],
+  "謝": [
+    "sha-iru"
+  ],
+  "十": [
+    "ju-to"
+  ],
+  "什": [
+    "ju-to"
+  ],
+  "汁": [
+    "ju-to"
+  ],
+  "針": [
+    "ju-to"
+  ],
+  "干": [
+    "kan-hosu"
+  ],
+  "刊": [
+    "kan-hosu"
+  ],
+  "幹": [
+    "kan-hosu"
+  ],
+  "肝": [
+    "kan-hosu"
+  ],
+  "汗": [
+    "kan-hosu"
+  ],
+  "竿": [
+    "kan-hosu"
+  ],
+  "軒": [
+    "kan-hosu"
+  ],
+  "比": [
+    "hi-kuraberu"
+  ],
+  "批": [
+    "hi-kuraberu"
+  ],
+  "陛": [
+    "hi-kuraberu"
+  ],
+  "庇": [
+    "hi-kuraberu"
+  ],
+  "屁": [
+    "hi-kuraberu"
+  ],
+  "昌": [
+    "sho-akiraka"
+  ],
+  "晶": [
+    "sho-akiraka"
+  ],
+  "唱": [
+    "sho-akiraka"
+  ],
+  "娼": [
+    "sho-akiraka"
+  ],
+  "菖": [
+    "sho-akiraka"
+  ],
+  "北": [
+    "hoku-kita"
+  ],
+  "背": [
+    "hoku-kita"
+  ],
+  "羊": [
+    "yo-hitsuji"
+  ],
+  "詳": [
+    "yo-hitsuji"
+  ],
+  "祥": [
+    "yo-hitsuji"
+  ],
+  "翔": [
+    "yo-hitsuji"
+  ],
+  "善": [
+    "yo-hitsuji"
+  ],
+  "繕": [
+    "yo-hitsuji"
+  ],
+  "膳": [
+    "yo-hitsuji"
+  ],
+  "午": [
+    "go-uma"
+  ],
+  "杵": [
+    "go-uma"
+  ],
+  "許": [
+    "go-uma"
+  ],
+  "卸": [
+    "go-uma"
+  ],
+  "御": [
+    "go-uma"
+  ],
+  "呉": [
+    "go-ayamaru"
+  ],
+  "娯": [
+    "go-ayamaru"
+  ],
+  "誤": [
+    "go-ayamaru"
+  ],
+  "从": [
+    "ju-tate"
+  ],
+  "従": [
+    "ju-tate"
+  ],
+  "縦": [
+    "ju-tate"
+  ],
+  "反": [
+    "han-soru"
+  ],
+  "坂": [
+    "han-soru"
+  ],
+  "阪": [
+    "han-soru"
+  ],
+  "板": [
+    "han-soru"
+  ],
+  "飯": [
+    "han-soru"
+  ],
+  "版": [
+    "han-soru"
+  ],
+  "販": [
+    "han-soru"
+  ],
+  "返": [
+    "han-soru"
+  ],
+  "名": [
+    "mei-na"
+  ],
+  "銘": [
+    "mei-na"
+  ],
+  "酩": [
+    "mei-na"
+  ],
+  "行": [
+    "ko-iku"
+  ],
+  "衡": [
+    "ko-iku"
+  ],
+  "桁": [
+    "ko-iku"
+  ],
+  "丁": [
+    "cho-machi"
+  ],
+  "釘": [
+    "cho-machi"
+  ],
+  "町": [
+    "cho-machi"
+  ],
+  "頂": [
+    "cho-machi"
+  ],
+  "庁": [
+    "cho-machi"
+  ],
+  "灯": [
+    "cho-machi"
+  ],
+  "打": [
+    "cho-machi"
+  ],
+  "訂": [
+    "cho-machi"
+  ],
+  "亭": [
+    "cho-machi"
+  ],
+  "停": [
+    "cho-machi"
+  ],
+  "夕": [
+    "seki-yu"
+  ],
+  "汐": [
+    "seki-yu"
+  ],
+  "馬": [
+    "ba-uma"
+  ],
+  "瑪": [
+    "ba-uma"
+  ],
+  "罵": [
+    "ba-uma"
+  ],
+  "黄": [
+    "ko-ki"
+  ],
+  "横": [
+    "ko-ki"
+  ],
+  "広": [
+    "ko-ki"
+  ],
+  "鉱": [
+    "ko-ki"
+  ],
+  "拡": [
+    "ko-ki"
+  ],
+  "長": [
+    "cho-nagai"
+  ],
+  "帳": [
+    "cho-nagai"
+  ],
+  "張": [
+    "cho-nagai"
+  ],
+  "脹": [
+    "cho-nagai"
+  ],
+  "漲": [
+    "cho-nagai"
+  ],
+  "公": [
+    "ko-oyake"
+  ],
+  "松": [
+    "ko-oyake"
+  ],
+  "訟": [
+    "ko-oyake"
+  ],
+  "頌": [
+    "ko-oyake"
+  ],
+  "翁": [
+    "ko-oyake"
+  ],
+  "卩": [
+    "setsu-fushi"
+  ],
+  "即": [
+    "setsu-fushi"
+  ],
+  "節": [
+    "setsu-fushi"
+  ],
+  "色": [
+    "setsu-fushi"
+  ],
+  "絶": [
+    "setsu-fushi"
+  ],
+  "冓": [
+    "ko-kamae"
+  ],
+  "構": [
+    "ko-kamae"
+  ],
+  "講": [
+    "ko-kamae"
+  ],
+  "購": [
+    "ko-kamae"
+  ],
+  "溝": [
+    "ko-kamae"
+  ],
+  "朝": [
+    "cho-asa"
+  ],
+  "潮": [
+    "cho-asa"
+  ],
+  "嘲": [
+    "cho-asa"
+  ],
+  "廟": [
+    "cho-asa"
+  ],
+  "亢": [
+    "ko-wataru"
+  ],
+  "航": [
+    "ko-wataru"
+  ],
+  "抗": [
+    "ko-wataru"
+  ],
+  "坑": [
+    "ko-wataru"
+  ],
+  "杭": [
+    "ko-wataru"
   ]
 }
