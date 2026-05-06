@@ -20,7 +20,7 @@ export function Chat({ assistantText }: { assistantText?: string }) {
 
   return (
     <div className="flex min-h-screen flex-col">
-      <div className={cn(messages.length > 0 || cached ? "flex-1" : "")}>
+      <div className={cn("pb-48", messages.length > 0 || cached ? "flex-1" : "")}>
         {assistantText && (
           <AssistantMenu command={assistantText} append={sendMessage} />
         )}
@@ -64,8 +64,8 @@ function MessageList({ messages }: { messages: UIMessage[] }) {
     .find((m) => m.role === "user");
   const referenceSlug = lastUserMessage
     ? findHuusennarareSlug(
-        lastUserMessage.parts.find((p) => p.type === "text")?.text.trim() ?? "",
-      )
+      lastUserMessage.parts.find((p) => p.type === "text")?.text.trim() ?? "",
+    )
     : undefined;
 
   return (
