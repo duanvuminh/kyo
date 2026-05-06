@@ -32,7 +32,7 @@ export function KSheet({
       <SheetContent side="bottom" className="h-dvh overflow-auto">
         <SheetDescription />
         <SheetHeader>
-          <SheetTitle>{title}</SheetTitle>
+          <SheetTitle className="text-left">{title}</SheetTitle>
         </SheetHeader>
         {children}
       </SheetContent>

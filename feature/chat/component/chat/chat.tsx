@@ -5,6 +5,7 @@ import { AssistantMenu } from "@/feature/chat/component/assistant-menu/assistant
 import { ChatContainer } from "@/feature/chat/component/chat-container";
 import { ChatInput } from "@/feature/chat/component/chat-input";
 import { useSyncEditMessageFromChat } from "@/feature/chat/component/chat/use-sync-edit-message-from-chat";
+import { TypingIndicator } from "@/feature/chat/component/typing-indicator";
 import { WordHistoryItem } from "@/feature/chat/component/word-history";
 import { findHuusennarareSlug } from "@/shared/lib/huusennarare-index";
 import { useChat } from "@ai-sdk/react";
@@ -18,6 +19,9 @@ export function Chat({ assistantText }: { assistantText?: string }) {
   const [cached, setCached] = useState<WordHistoryItem | null>(null);
   useSyncEditMessageFromChat(messages);
 
+  // Show loading skeleton when last message is from user (waiting for AI)
+  const isWaitingForResponse = messages.length > 0 && messages[messages.length - 1]?.role === "user";
+
   return (
     <div className="flex min-h-screen flex-col">
       <div className={cn("pb-48", messages.length > 0 || cached ? "flex-1" : "")}>
@@ -27,7 +31,16 @@ export function Chat({ assistantText }: { assistantText?: string }) {
         {cached ? (
           <CachedMessage cached={cached} />
         ) : (
-          <MessageList messages={messages} />
+          <>
+            <MessageList messages={messages} />
+            {isWaitingForResponse && (
+              <div className="p-2">
+                <ChatContainer isUser={false}>
+                  <TypingIndicator />
+                </ChatContainer>
+              </div>
+            )}
+          </>
         )}
       </div>
       <ChatInput
