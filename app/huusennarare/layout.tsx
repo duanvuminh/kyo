@@ -1,3 +1,4 @@
+import { HuusennarareEditButton } from "@/feature/update-content/component/huusennarare-edit-button";
 import { MdxWrapperStyle } from "@/shared/component/mdx-wrapper-style";
 import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 
@@ -9,6 +10,7 @@ export default async function Layout({
   return (
     <>
       <MdxWrapperStyle>{children}</MdxWrapperStyle>
+      <HuusennarareEditButton />
       <QuickSearchBySelectText />
     </>
   );

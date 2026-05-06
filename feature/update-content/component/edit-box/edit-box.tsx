@@ -6,6 +6,7 @@ import { useFormStatus } from "react-dom";
 
 interface EditBoxProps {
   submitAction: (formData: FormData) => void | Promise<void>;
+  initialItem?: BaseItem;
 }
 
 interface EditBoxContentProps {
@@ -34,8 +35,8 @@ function EditBoxContent({
   );
 }
 
-export function EditBox({ submitAction }: EditBoxProps) {
-  const { item, value, handleChange, handleSubmit } = useEditBox();
+export function EditBox({ submitAction, initialItem }: EditBoxProps) {
+  const { item, value, handleChange, handleSubmit } = useEditBox(initialItem);
 
   return (
     <form action={submitAction}>

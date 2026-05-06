@@ -14,6 +14,7 @@ import {
   instructionCompareContent,
   promptCompareContent,
 } from "@/shared/service/ai/instructions";
+import { updateHuusennarareViaGithub } from "@/shared/service/github";
 import { WordDTO } from "@/shared/types/dto/word";
 import { BaseItem, KWord, Source } from "@/shared/types/models/word";
 import { KWordType } from "@/shared/types/models/word-type";
@@ -89,6 +90,11 @@ export const createWordsContent = async (item: BaseItem) => {
 };
 
 export const updateWordsContent = async (item: BaseItem) => {
+  if (item.source === Source.HUUSENNARARE) {
+    await updateHuusennarareViaGithub(item);
+    return;
+  }
+
   if (item.source === Source.FIREBASE) {
     await _handleFirebaseUpdate(item);
     return;

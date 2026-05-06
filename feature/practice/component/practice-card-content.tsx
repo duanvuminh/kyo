@@ -17,6 +17,44 @@ interface ContentProps {
   practiceTotal: number;
 }
 
+function renderPracticeContent({
+  mode,
+  flashCard,
+  word,
+  question,
+  onNextQuestion,
+  practiceIndex,
+  practiceTotal,
+}: ContentProps) {
+  switch (mode) {
+    case PracticeCardMode.FLASH_CARD:
+      return (
+        <FlashContent
+          item={{
+            source: Source.DISCORD,
+            content: flashCard.content,
+            documentId: flashCard.id,
+            words: word,
+          }}
+        />
+      );
+    case PracticeCardMode.WRITE:
+      return <Write text={word} />;
+    case PracticeCardMode.PRACTICE:
+      return (
+        <QuestionContent
+          question={question}
+          onNextQuestion={onNextQuestion}
+          practiceId={flashCard.id}
+          currentIndex={practiceIndex}
+          total={practiceTotal}
+        />
+      );
+    default:
+      return <Write text={word} />;
+  }
+}
+
 export const PracticeCardContent = ({
   mode,
   flashCard,
@@ -28,35 +66,15 @@ export const PracticeCardContent = ({
 }: ContentProps) => {
   return (
     <CardContent className="flex-1 overflow-auto">
-      {(() => {
-        switch (mode) {
-          case PracticeCardMode.FLASH_CARD:
-            return (
-              <FlashContent
-                item={{
-                  source: Source.DISCORD,
-                  content: flashCard.content,
-                  documentId: flashCard.id,
-                  words: word,
-                }}
-              />
-            );
-          case PracticeCardMode.WRITE:
-            return <Write text={word} />;
-          case PracticeCardMode.PRACTICE:
-            return (
-              <QuestionContent
-                question={question}
-                onNextQuestion={onNextQuestion}
-                practiceId={flashCard.id}
-                currentIndex={practiceIndex}
-                total={practiceTotal}
-              />
-            );
-          default:
-            return <Write text={word} />;
-        }
-      })()}
+      {renderPracticeContent({
+        mode,
+        flashCard,
+        word,
+        question,
+        onNextQuestion,
+        practiceIndex,
+        practiceTotal,
+      })}
     </CardContent>
   );
 };

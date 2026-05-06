@@ -4,7 +4,9 @@ export function useAudioPlayer(text: string) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handlePlayAudio = () => {
-    if (!window.speechSynthesis) return;
+    if (!window.speechSynthesis) {
+      return;
+    }
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.lang = "ja-JP";

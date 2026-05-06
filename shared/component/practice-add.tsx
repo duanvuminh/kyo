@@ -11,7 +11,9 @@ export const PracticeAdd = ({ word }: { word?: string }) => {
   const isExist = word ?? words;
   const add = () => {
     const key = word ?? words;
-    if (!key) return;
+    if (!key) {
+      return;
+    }
     try {
       PracticeStorage.addToPracticeList(key);
       toast.success("Đã thêm vào danh sách luyện tập");
