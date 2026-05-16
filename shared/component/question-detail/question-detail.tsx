@@ -1,11 +1,11 @@
 "use client";
 
+import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
 import { AnswerItem } from "@/shared/component/question-detail/answer-item";
 import { QuestionAttachments } from "@/shared/component/question-detail/question-attachments";
 import { useQuestionDetail } from "@/shared/component/question-detail/use-question-detail";
-import { AudioPlayer } from "@/shared/component/audio-player/audio-player";
 import { Button } from "@/shared/component/ui/button";
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 import Markdown from "react-markdown";
 
 export const QuestionDetail = ({ question, onNextQuestion }: { question: Question; onNextQuestion?: () => void }) => {

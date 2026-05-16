@@ -1,5 +1,5 @@
 import { uploadChatImageToStorage } from "@/shared/actions/chat-image";
-import { AppError, ErrorCode, ErrorMessage } from "@/shared/types/models/error";
+import { AppError, ErrorCode, ErrorMessage } from "@/shared/type/models/error";
 
 export interface UploadResult {
   success: boolean;

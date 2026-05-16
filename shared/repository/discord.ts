@@ -1,6 +1,6 @@
 import { fetchCacheConfig } from "@/shared/config/cache";
-import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
-import { AppError, ErrorCode } from "@/shared/types/models/error";
+import { DiscordMessageDTO } from "@/shared/type/dto/discord-message";
+import { AppError, ErrorCode } from "@/shared/type/models/error";
 
 const discordBaseUrl = "https://discord.com/api/v10";
 

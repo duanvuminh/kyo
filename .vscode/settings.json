@@ -4,8 +4,9 @@
     "source.organizeImports": "always",
     "source.fixAll": "always"
   },
-  "typescript.preferences.importModuleSpecifier": "non-relative",
-  "typescript.suggest.autoImports": true,
-  "typescript.suggest.includeAutomaticOptionalChainCompletions": true,
+  "js/ts.preferences.importModuleSpecifier": "non-relative",
+  "js/ts.suggest.autoImports": true,
+  "js/ts.suggest.includeAutomaticOptionalChainCompletions": true,
+  "js/ts.updateImportsOnFileMove.enabled": "always",
   "eslint.useFlatConfig": true
 }

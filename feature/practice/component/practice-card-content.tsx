@@ -4,8 +4,8 @@ import { Practice } from "@/feature/practice/model/practice";
 import { PracticeCardMode } from "@/feature/practice/model/type";
 import { CardContent } from "@/shared/component/ui/card";
 import { Write } from "@/shared/component/write";
-import { Question } from "@/shared/types/models/question";
-import { Source } from "@/shared/types/models/word";
+import { Question } from "@/shared/type/models/question";
+import { Source } from "@/shared/type/models/word";
 
 interface ContentProps {
   mode: PracticeCardMode;

@@ -1,5 +1,5 @@
 import { Practice } from "@/feature/practice/model/practice";
-import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
+import { DiscordMessageDTO } from "@/shared/type/dto/discord-message";
 import matter from "gray-matter";
 
 export class Question {
@@ -11,7 +11,7 @@ export class Question {
     public attachments?: string[],
     public yomi?: string,
     public memo?: string[]
-  ) {}
+  ) { }
 
   static fromPractice(dto: Practice | undefined): Question | undefined {
     if (!dto) {

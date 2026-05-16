@@ -1,6 +1,6 @@
-import { useAppDispatch } from "@/shared/stores/hook";
-import { updateEditMessage } from "@/shared/stores/slice-message";
-import { Source } from "@/shared/types/models/word";
+import { useAppDispatch } from "@/shared/store/hook";
+import { updateEditMessage } from "@/shared/store/slice-message";
+import { Source } from "@/shared/type/models/word";
 import { UIMessage } from "ai";
 import { useEffect } from "react";
 

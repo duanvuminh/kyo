@@ -1,5 +1,5 @@
 import { fetchCacheConfig } from "@/shared/config/cache";
-import { SlackHistoryResponseDTO } from "@/shared/types/dto/slack-message";
+import { SlackHistoryResponseDTO } from "@/shared/type/dto/slack-message";
 
 const emptyResponse: SlackHistoryResponseDTO = {
   ok: false,

@@ -1,7 +1,7 @@
 "use client";
 import { useEditBox } from "@/feature/update-content/component/edit-box/use-edit-box";
 import { EditBoxUI } from "@/shared/component/edit-box-ui/eidit-box-ui";
-import { BaseItem } from "@/shared/types/models/word";
+import { BaseItem } from "@/shared/type/models/word";
 import { useFormStatus } from "react-dom";
 
 interface EditBoxProps {

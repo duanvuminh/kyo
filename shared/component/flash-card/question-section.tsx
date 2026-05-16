@@ -2,7 +2,7 @@
 import { useGenerateQuestions } from "@/shared/component/flash-card/use-generate-questions";
 import { QuestionDetail } from "@/shared/component/question-detail/question-detail";
 import { Button } from "@/shared/component/ui/button";
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 
 interface QuestionSectionProps {
   questions?: Question[];

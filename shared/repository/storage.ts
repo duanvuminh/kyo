@@ -1,5 +1,5 @@
-import { PracticeStorageItemDto } from "@/shared/types/dto/practice-storage-item";
-import { AppError, ErrorCode } from "@/shared/types/models/error";
+import { PracticeStorageItemDto } from "@/shared/type/dto/practice-storage-item";
+import { AppError, ErrorCode } from "@/shared/type/models/error";
 
 export class PracticeStorageRepository {
   private static readonly STORAGE_KEY = "kyo_keywords";

@@ -1,4 +1,4 @@
-import { SlackMessageDTO } from "@/shared/types/dto/slack-message";
+import { SlackMessageDTO } from "@/shared/type/dto/slack-message";
 import matter from "gray-matter";
 
 /**

@@ -8,6 +8,8 @@ export enum ErrorCode {
   UNAUTHENTICATED,
   VALIDATION,
   CHAT_IMAGE_UPLOAD,
+  ABLY_TOKEN_ERROR,
+  ABLY_KEY_INVALID,
   UNKNOWN,
 }
 
@@ -23,6 +25,8 @@ export const ErrorMessage: Record<ErrorCode, string> = {
   [ErrorCode.UNAUTHENTICATED]: "Vui lòng đăng nhập để thực hiện hành động này",
   [ErrorCode.VALIDATION]: "Dữ liệu không hợp lệ, vui lòng kiểm tra lại",
   [ErrorCode.CHAT_IMAGE_UPLOAD]: "Không thể tải ảnh lên, vui lòng thử lại",
+  [ErrorCode.ABLY_TOKEN_ERROR]: "Lỗi khởi tạo Ably token",
+  [ErrorCode.ABLY_KEY_INVALID]: "Ably key không hợp lệ",
   [ErrorCode.UNKNOWN]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
 };
 

@@ -1,4 +1,4 @@
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 import Hls from "hls.js";
 import { useEffect, useRef } from "react";
 

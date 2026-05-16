@@ -1,4 +1,4 @@
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 
 export interface ListeningPage {
   listeningList: Question[];

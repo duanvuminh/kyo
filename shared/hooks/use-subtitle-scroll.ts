@@ -1,4 +1,4 @@
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 import { useEffect, useRef } from "react";
 
 export function useSubtitleScroll(subtitles: Sub[], currentTime: number) {

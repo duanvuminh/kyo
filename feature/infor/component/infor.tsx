@@ -1,8 +1,8 @@
 import { Infor } from "@/feature/infor/model/infor";
 import { UpdateContentLink } from "@/shared/component/update-content-link";
-import { useAppDispatch } from "@/shared/stores/hook";
-import { updateEditMessage } from "@/shared/stores/slice-message";
-import { BaseItem, Source } from "@/shared/types/models/word";
+import { useAppDispatch } from "@/shared/store/hook";
+import { updateEditMessage } from "@/shared/store/slice-message";
+import { BaseItem, Source } from "@/shared/type/models/word";
 import Markdown from "react-markdown";
 
 export const KInfor = ({ infor }: { infor: Infor }) => {

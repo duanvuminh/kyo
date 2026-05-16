@@ -1,4 +1,4 @@
-import { BaseItem } from "@/shared/types/models/word";
+import { BaseItem } from "@/shared/type/models/word";
 import { algoliasearch } from "algoliasearch";
 
 const searchClient = algoliasearch(

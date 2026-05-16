@@ -1,7 +1,7 @@
 "use server";
 import { db, storage } from "@/shared/lib/firebase-admin";
 import { getUserMail } from "@/shared/service/auth";
-import { AppError, ErrorCode } from "@/shared/types/models/error";
+import { AppError, ErrorCode } from "@/shared/type/models/error";
 
 const MAX_IMAGES = 20;
 const COUNTER_DOC = "chat-image-counter";

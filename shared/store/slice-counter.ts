@@ -1,5 +1,5 @@
-import { createAppSlice } from "@/shared/stores/create-app-slice";
-import { AppThunk } from "@/shared/stores/store";
+import { createAppSlice } from "@/shared/store/create-app-slice";
+import { AppThunk } from "@/shared/store/store";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 export interface CounterSliceState {
@@ -59,9 +59,9 @@ export const { selectCount, selectStatus } = counterSlice.selectors;
 
 export const incrementIfOdd =
   (amount: number): AppThunk =>
-  (dispatch, getState) => {
-    const currentValue = selectCount(getState());
-    if (currentValue % 2 === 1 || currentValue % 2 === -1) {
-      dispatch(incrementByAmount(amount));
-    }
-  };
+    (dispatch, getState) => {
+      const currentValue = selectCount(getState());
+      if (currentValue % 2 === 1 || currentValue % 2 === -1) {
+        dispatch(incrementByAmount(amount));
+      }
+    };

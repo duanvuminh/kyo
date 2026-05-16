@@ -2,7 +2,7 @@ import { KFile } from "@/feature/short/model/short";
 import FacebookVideoEmbed from "@/shared/component/facebook-video";
 import HlsPlayer from "@/shared/component/hls-player/hls-player";
 import YouTubePlayer from "@/shared/component/youtube-player/youtube-player";
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 import Image from "next/image";
 
 function ImageViewer({ file }: { file: KFile }) {

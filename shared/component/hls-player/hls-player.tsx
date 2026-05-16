@@ -1,11 +1,11 @@
 "use client";
 
 import { cn } from "@/core/utils/utils";
-import { useHlsPlayer } from "@/shared/component/hls-player/use-hls-player";
 import { SubtitleList } from "@/shared/component/hls-player/subtitle-list";
+import { useHlsPlayer } from "@/shared/component/hls-player/use-hls-player";
 import { useSubtitleDisplay } from "@/shared/component/hls-player/use-subtitle-display";
 import { useSubtitleScroll } from "@/shared/hooks/use-subtitle-scroll";
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 
 type HlsPlayerProps = {
   src: string;

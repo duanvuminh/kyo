@@ -53,8 +53,8 @@ kyo/
 | **Client API** | `shared/api/`                              | Fetch wrapper cho client, throw `AppError`    |
 | **Service**    | `shared/service/`, `feature/*/service/`    | Business logic                                |
 | **Repository** | `shared/repository/`                       | External API calls (Slack, Discord, Firebase) |
-| **Model**      | `shared/types/models/`, `feature/*/model/` | Domain entities                               |
-| **DTO**        | `shared/types/dto/`                        | Data transfer objects                         |
+| **Model**      | `shared/type/models/`, `feature/*/model/` | Domain entities                               |
+| **DTO**        | `shared/type/dto/`                        | Data transfer objects                         |
 
 ### Error Handling
 

@@ -1,4 +1,4 @@
-import { ErrorCode } from "@/shared/types/models/error";
+import { ErrorCode } from "@/shared/type/models/error";
 
 export interface ApiResponse<T = unknown> {
   data?: T;

@@ -8,7 +8,7 @@ import {
   getListMessageFromSlack,
   getListReplyFromSlack,
 } from "@/shared/repository/slack";
-import { SlackMessageDTO } from "@/shared/types/dto/slack-message";
+import { SlackMessageDTO } from "@/shared/type/dto/slack-message";
 
 const limit = 5;
 const defaultPage = "newest";

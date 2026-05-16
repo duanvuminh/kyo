@@ -1,7 +1,7 @@
 import { ListeningPage } from "@/feature/listening/model/listening";
 import { mapDatas } from "@/shared/lib/data-convert";
 import { getListMessageFromDisCord } from "@/shared/repository/discord";
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 
 const limit = 10;
 const defaultPage = "newest";

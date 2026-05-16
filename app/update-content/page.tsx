@@ -1,7 +1,7 @@
 import { EditBox } from "@/feature/update-content/component/edit-box/edit-box";
-import { submitUpdateContent } from "@/shared/actions/update-content";
+import { submitUpdateContent, submitUpdateGrammar } from "@/shared/actions/update-content";
 import { CenterMessage } from "@/shared/component/center-message";
-import { getHuusennarareEditItem } from "@/shared/lib/update-content";
+import { getGrammarEditItem, getHuusennarareEditItem } from "@/shared/lib/update-content";
 import { checkAuthenticated } from "@/shared/service/auth";
 
 interface UpdateContentPageProps {
@@ -34,6 +34,16 @@ export default async function Page({ searchParams }: UpdateContentPageProps) {
     }
 
     return <EditBox submitAction={submitUpdateContent} initialItem={initialItem} />;
+  }
+
+  if (params.kind === "grammar" && params.slug) {
+    const initialItem = await getGrammarEditItem(params.slug);
+
+    if (!initialItem) {
+      return <CenterMessage>Không tìm thấy file grammar/n1/{params.slug}/flash-card/cards.ts</CenterMessage>;
+    }
+
+    return <EditBox submitAction={submitUpdateGrammar} initialItem={initialItem} />;
   }
 
   return <EditBox submitAction={submitUpdateContent} />;

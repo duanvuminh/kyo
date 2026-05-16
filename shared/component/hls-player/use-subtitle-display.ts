@@ -1,4 +1,4 @@
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 import { RefObject, useEffect, useState } from "react";
 
 export function useSubtitleDisplay(

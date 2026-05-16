@@ -1,5 +1,5 @@
-import { AppError, ErrorCode } from "@/shared/types/models/error";
-import { BaseItem } from "@/shared/types/models/word";
+import { AppError, ErrorCode } from "@/shared/type/models/error";
+import { BaseItem } from "@/shared/type/models/word";
 import path from "node:path";
 
 type RepoConfig = {
@@ -173,15 +173,19 @@ async function createEditCommitAndPr({
     targetPath,
     content,
     cfg,
+    branchPrefix = "edit",
+    prBody,
 }: {
     slug: string;
     targetPath: string;
     content: string;
     cfg: RepoConfig;
+    branchPrefix?: string;
+    prBody?: string;
 }) {
     const timestamp = new Date().toISOString().replace(/[-:TZ.]/g, "").slice(0, 12);
-    const branch = `edit/huusennarare-${slug}-${timestamp}`;
-    const commitMessage = `update huusennarare: ${slug}`;
+    const branch = `${branchPrefix}/${slug}-${timestamp}`;
+    const commitMessage = `update: ${slug}`;
 
     const baseSha = await getBaseBranchSha(cfg);
     await createBranch(cfg, branch, baseSha);
@@ -202,7 +206,7 @@ async function createEditCommitAndPr({
         base: cfg.baseBranch,
         head: branch,
         title: commitMessage,
-        body: `Auto-generated from /update-content for ${slug}.`,
+        body: prBody ?? `Auto-generated from /update-content for ${slug}.`,
         token: cfg.token,
     });
 }
@@ -219,8 +223,40 @@ export async function updateHuusennarareViaGithub(item: BaseItem) {
     }
 
     try {
-        await createEditCommitAndPr({ slug, targetPath, content, cfg });
+        await createEditCommitAndPr({
+            slug,
+            targetPath,
+            content,
+            cfg,
+            branchPrefix: "edit/huusennarare",
+            prBody: `Auto-generated from /update-content for ${slug}.`,
+        });
     } catch (error) {
         console.error("Failed to auto-create PR:", (error as Error).message);
+    }
+}
+
+export async function updateGrammarViaGithub(slug: string, content: string) {
+    const targetPath = path.join("app", "grammar", "n1", slug, "flash-card", "cards.ts");
+
+    const cfg = getRepoConfig();
+    if (!cfg) {
+        console.error(
+            "Missing GitHub config. Required: GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO",
+        );
+        return;
+    }
+
+    try {
+        await createEditCommitAndPr({
+            slug,
+            targetPath,
+            content,
+            cfg,
+            branchPrefix: "edit/grammar",
+            prBody: `Auto-generated grammar update for ${slug}.`,
+        });
+    } catch (error) {
+        console.error("Failed to auto-create grammar PR:", (error as Error).message);
     }
 }

@@ -1,4 +1,4 @@
-import { PracticeStorageItemDto } from "@/shared/types/dto/practice-storage-item";
+import { PracticeStorageItemDto } from "@/shared/type/dto/practice-storage-item";
 
 export class PracticeStorageItem {
   constructor(
@@ -6,7 +6,7 @@ export class PracticeStorageItem {
     public keyword: string,
     public timestamp: number,
     public metadata?: Record<string, string>
-  ) {}
+  ) { }
 
   static fromDTO(dto: PracticeStorageItemDto): PracticeStorageItem {
     return new PracticeStorageItem(

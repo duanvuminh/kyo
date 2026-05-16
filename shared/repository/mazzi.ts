@@ -1,4 +1,4 @@
-import { DictionaryResponseDTO } from "@/shared/types/dto/mazzi-dictionary";
+import { DictionaryResponseDTO } from "@/shared/type/dto/mazzi-dictionary";
 
 export const getWordFromExternalService = async (
   word: string

@@ -15,9 +15,9 @@ import {
   promptCompareContent,
 } from "@/shared/service/ai/instructions";
 import { updateHuusennarareViaGithub } from "@/shared/service/github";
-import { WordDTO } from "@/shared/types/dto/word";
-import { BaseItem, KWord, Source } from "@/shared/types/models/word";
-import { KWordType } from "@/shared/types/models/word-type";
+import { WordDTO } from "@/shared/type/dto/word";
+import { BaseItem, KWord, Source } from "@/shared/type/models/word";
+import { KWordType } from "@/shared/type/models/word-type";
 import Fuse from "fuse.js";
 import { z } from "zod";
 

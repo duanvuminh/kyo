@@ -1,6 +1,6 @@
 import { parseVTT, splitVTT } from "@/shared/lib/videos";
-import { SlackMessageDTO } from "@/shared/types/dto/slack-message";
-import { Sub } from "@/shared/types/models/sub";
+import { SlackMessageDTO } from "@/shared/type/dto/slack-message";
+import { Sub } from "@/shared/type/models/sub";
 import matter from "gray-matter";
 import { KFile, Short, ShortType } from "./short";
 

@@ -1,6 +1,6 @@
 "use server";
 import { searchWord } from "@/shared/service/dictionary";
-import { KWordType } from "@/shared/types/models/word-type";
+import { KWordType } from "@/shared/type/models/word-type";
 
 export async function checkWord(words: string): Promise<boolean> {
   const result = await searchWord(words);

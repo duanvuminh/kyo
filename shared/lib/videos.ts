@@ -1,5 +1,5 @@
 import { timeStringToSeconds } from "@/core/utils/utils";
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 
 export const videoMarketUrl = (videoId: string): string => {
   const suffix = videoId.includes("2Y") ? "002999H01" : "001999H01";

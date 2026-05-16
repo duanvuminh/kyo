@@ -1,8 +1,8 @@
 import { stripUndefined } from "@/core/utils/utils";
 import { mapDocs } from "@/shared/lib/data-convert";
 import { db } from "@/shared/lib/firebase-admin";
-import { WordDTO } from "@/shared/types/dto/word";
-import { KWordType } from "@/shared/types/models/word-type";
+import { WordDTO } from "@/shared/type/dto/word";
+import { KWordType } from "@/shared/type/models/word-type";
 
 export const getWordById = async (
   word: string,

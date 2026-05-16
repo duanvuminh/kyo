@@ -1,6 +1,6 @@
-import { counterSlice } from "@/shared/stores/slice-counter";
-import { messageSlice } from "@/shared/stores/slice-message";
-import { quotesApiSlice } from "@/shared/stores/slice-quotes";
+import { counterSlice } from "@/shared/store/slice-counter";
+import { messageSlice } from "@/shared/store/slice-message";
+import { quotesApiSlice } from "@/shared/store/slice-quotes";
 import { combineSlices, configureStore, type Action, type ThunkAction } from "@reduxjs/toolkit";
 
 const rootReducer = combineSlices(counterSlice, messageSlice, quotesApiSlice);

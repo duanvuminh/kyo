@@ -1,4 +1,4 @@
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 import { z } from "zod";
 
 export const questionSchema = z.object({

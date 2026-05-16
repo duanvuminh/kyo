@@ -1,7 +1,7 @@
 import { MeaningSection } from "@/shared/component/flash-card/meaning-section";
 import { QuestionSection } from "@/shared/component/flash-card/question-section";
 import { UsageSection } from "@/shared/component/flash-card/usage-section";
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 
 export function FlashCardBack({
   back,

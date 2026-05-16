@@ -1,5 +1,5 @@
 import { MemoStorageRepository } from "@/shared/repository/storage";
-import { BaseItem, Source } from "@/shared/types/models/word";
+import { BaseItem, Source } from "@/shared/type/models/word";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 

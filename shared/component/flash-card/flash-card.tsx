@@ -6,7 +6,7 @@ import { FlashCardFront } from "@/shared/component/flash-card/flash-card-front";
 import { FlashCardPagination } from "@/shared/component/flash-card/flash-card-pagination";
 import { useFlashCard } from "@/shared/component/flash-card/use-flash-card";
 import { Card, CardContent } from "@/shared/component/ui/card";
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 
 export interface FlashCardItem {
   front: string;

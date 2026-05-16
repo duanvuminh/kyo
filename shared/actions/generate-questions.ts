@@ -5,7 +5,7 @@ import {
   instructionGenerateGrammarQuestions,
   promptGenerateGrammarQuestions,
 } from "@/shared/service/ai/instructions";
-import { Question } from "@/shared/types/models/question";
+import { Question } from "@/shared/type/models/question";
 
 export async function generateQuestions({
   grammarPoint,

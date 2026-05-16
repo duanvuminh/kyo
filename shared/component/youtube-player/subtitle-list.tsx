@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/shared/component/ui/button";
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 import { Fragment, RefObject } from "react";
 
 interface SubtitleListProps {

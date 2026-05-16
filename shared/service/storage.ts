@@ -1,5 +1,5 @@
 import { PracticeStorageRepository } from "@/shared/repository/storage";
-import { PracticeStorageItem } from "@/shared/types/models/practice-storage-item";
+import { PracticeStorageItem } from "@/shared/type/models/practice-storage-item";
 
 export class PracticeStorage {
   static removeFromPracticeList(word: string) {

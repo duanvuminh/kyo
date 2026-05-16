@@ -2,7 +2,7 @@
 
 import { Skeleton } from "@/shared/component//ui/skeleton";
 import HlsPlayer from "@/shared/component/hls-player/hls-player";
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 import { useInView } from "react-intersection-observer";
 
 type Props = {

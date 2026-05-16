@@ -7,9 +7,9 @@ import {
   instructionWord,
 } from "@/shared/service/ai/instructions";
 import { createWordsContent, searchWord } from "@/shared/service/dictionary";
-import { AppError, ErrorCode } from "@/shared/types/models/error";
-import { KWord } from "@/shared/types/models/word";
-import { KWordType } from "@/shared/types/models/word-type";
+import { AppError, ErrorCode } from "@/shared/type/models/error";
+import { KWord } from "@/shared/type/models/word";
+import { KWordType } from "@/shared/type/models/word-type";
 import { ModelMessage, StreamTextResult, ToolSet } from "ai";
 
 function getSystemInstruction(word: KWord, message: string): string {

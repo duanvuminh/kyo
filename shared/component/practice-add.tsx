@@ -1,8 +1,8 @@
 import { Button } from "@/shared/component/ui/button";
 import { PracticeStorage } from "@/shared/service/storage";
-import { useAppSelector } from "@/shared/stores/hook";
-import { selectMessage } from "@/shared/stores/slice-message";
-import { AppError, ErrorCode } from "@/shared/types/models/error";
+import { useAppSelector } from "@/shared/store/hook";
+import { selectMessage } from "@/shared/store/slice-message";
+import { AppError, ErrorCode } from "@/shared/type/models/error";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 

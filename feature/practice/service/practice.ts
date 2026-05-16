@@ -16,9 +16,9 @@ import {
   promptGenerateGrammarQuestions,
   promptGenerateVocabQuestions,
 } from "@/shared/service/ai/instructions";
-import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
-import { KWord } from "@/shared/types/models/word";
-import { KWordType } from "@/shared/types/models/word-type";
+import { DiscordMessageDTO } from "@/shared/type/dto/discord-message";
+import { KWord } from "@/shared/type/models/word";
+import { KWordType } from "@/shared/type/models/word-type";
 
 const _channelId = "1386090536753958952";
 

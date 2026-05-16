@@ -3,8 +3,8 @@ import {
   instructionPracticeWord,
 } from "@/shared/service/ai/instructions";
 import { AIModelConfig } from "@/shared/service/ai/provider/google-generative";
-import { KWord } from "@/shared/types/models/word";
-import { KWordType } from "@/shared/types/models/word-type";
+import { KWord } from "@/shared/type/models/word";
+import { KWordType } from "@/shared/type/models/word-type";
 import {
   generateText as aiGenerateText,
   ModelMessage,
@@ -17,7 +17,7 @@ import {
 import { z } from "zod";
 
 export class AIService {
-  constructor(private config: AIModelConfig) {}
+  constructor(private config: AIModelConfig) { }
 
   get model() {
     return this.config.model;

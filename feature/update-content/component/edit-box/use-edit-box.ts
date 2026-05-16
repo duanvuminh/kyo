@@ -1,6 +1,6 @@
-import { useAppSelector } from "@/shared/stores/hook";
-import { selectMessage } from "@/shared/stores/slice-message";
-import { BaseItem, Source } from "@/shared/types/models/word";
+import { useAppSelector } from "@/shared/store/hook";
+import { selectMessage } from "@/shared/store/slice-message";
+import { BaseItem, Source } from "@/shared/type/models/word";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 

@@ -1,4 +1,4 @@
-import { DiscordMessageDTO } from "@/shared/types/dto/discord-message";
+import { DiscordMessageDTO } from "@/shared/type/dto/discord-message";
 import matter from "gray-matter";
 
 export interface MangaPanel {
@@ -10,7 +10,7 @@ export class Manga {
     public id: string,
     public title: string,
     public panels: MangaPanel[],
-  ) {}
+  ) { }
 
   static fromDTO(
     data: DiscordMessageDTO,

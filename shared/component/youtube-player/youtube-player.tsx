@@ -4,7 +4,7 @@ import { YouTubeSubtitleList } from "@/shared/component/youtube-player/subtitle-
 import { useYouTubeSubtitleDisplay } from "@/shared/component/youtube-player/use-subtitle-display";
 import { useYouTubePlayer } from "@/shared/component/youtube-player/use-youtube-player";
 import { useSubtitleScroll } from "@/shared/hooks/use-subtitle-scroll";
-import { Sub } from "@/shared/types/models/sub";
+import { Sub } from "@/shared/type/models/sub";
 import { useMemo } from "react";
 
 type YouTubePlayerProps = {

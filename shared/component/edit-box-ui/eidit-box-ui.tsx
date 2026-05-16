@@ -4,7 +4,7 @@ import { Empty } from "@/shared/component/edit-box-ui/empty";
 import { PreviewTab } from "@/shared/component/edit-box-ui/preview_tab";
 import { TabControls } from "@/shared/component/edit-box-ui/tab-controls";
 import { Tabs } from "@/shared/component/ui/tabs";
-import { BaseItem, Source } from "@/shared/types/models/word";
+import { BaseItem, Source } from "@/shared/type/models/word";
 import { ChangeEvent } from "react";
 
 interface EditBoxUIProps {

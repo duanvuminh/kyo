@@ -1,5 +1,5 @@
-import { SlackMessageDTO } from "@/shared/types/dto/slack-message";
-import { Sub } from "@/shared/types/models/sub";
+import { SlackMessageDTO } from "@/shared/type/dto/slack-message";
+import { Sub } from "@/shared/type/models/sub";
 import { mapShortFromDTO } from "./short-mapper";
 
 export enum ShortType {

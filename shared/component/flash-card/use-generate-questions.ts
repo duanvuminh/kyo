@@ -1,7 +1,7 @@
 "use client";
 import { generateQuestions as generateQuestionsApi } from "@/shared/actions/generate-questions";
-import { AppError, ErrorCode, ErrorMessage } from "@/shared/types/models/error";
-import { Question } from "@/shared/types/models/question";
+import { AppError, ErrorCode, ErrorMessage } from "@/shared/type/models/error";
+import { Question } from "@/shared/type/models/question";
 import { useCallback, useState } from "react";
 
 interface GenerateQuestionsParams {
