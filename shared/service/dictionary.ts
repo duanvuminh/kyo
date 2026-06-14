@@ -60,7 +60,7 @@ export async function searchWord(word: string): Promise<KWord> {
     return KWord.fromDTO(grammars[0]);
   }
 
-  const wordFromInternet = await getWordFromExternalService(word);
+  const wordFromInternet = await getWordFromExternalService(word, word.length === 1 ? "kanji" : "word");
   const externalWord = wordFromInternet?.data?.[0]?.word;
   if (externalWord) {
     return _createWordResult(word, externalWord);
