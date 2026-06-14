@@ -8,14 +8,12 @@ export interface AIModelConfig {
   maxOutputTokens?: number;
 }
 
-// Gemini 2.0 Flash Lite - model rẻ nhất của Google
 export const defaultModel: AIModelConfig = {
   id: "gemini-flash-lite",
-  name: "Gemini 2.0 Flash Lite",
-  model: google("gemini-2.0-flash-lite-001"),
+  name: "Gemini 2.0 Flash",
+  model: google("gemini-2.0-flash"),
 };
 
-// Gemini 2.5 Flash Lite - dùng API key free từ AI Studio
 const googleFree = createGoogleGenerativeAI({
   apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY_FREE,
 });
