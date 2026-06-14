@@ -9,9 +9,9 @@ export interface AIModelConfig {
 }
 
 export const defaultModel: AIModelConfig = {
-  id: "gemini-flash-lite",
-  name: "Gemini 2.0 Flash",
-  model: google("gemini-2.0-flash"),
+  id: "gemini-flash",
+  name: "Gemini 2.5 Flash",
+  model: google("gemini-2.5-flash"),
 };
 
 const googleFree = createGoogleGenerativeAI({
