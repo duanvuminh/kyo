@@ -4,6 +4,19 @@ export interface DictionaryResponseDTO {
   data: DictionaryEntry[] | null;
 }
 
+export interface KanjiResponseDTO {
+  status: number | null;
+  results: KanjiEntry[] | null;
+}
+
+export interface KanjiEntry {
+  kanji: string | null;
+  mean: string | null;
+  on: string | null;
+  kun: string | null;
+  stroke_count: string | null;
+}
+
 interface DictionaryEntry {
   phonetic: string | null;
   synsets: string | null;
