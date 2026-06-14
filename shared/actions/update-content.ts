@@ -34,7 +34,7 @@ export async function submitUpdateGrammar(formData: FormData) {
 
     const item: BaseItem = JSON.parse(itemJson);
 
-    if (!item.documentId) {
+    if (!item.documentId || !item.content) {
         throw new AppError(ErrorCode.VALIDATION);
     }
 

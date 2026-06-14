@@ -1,5 +1,4 @@
-import { ShortType } from "@/feature/short/type/short.domain";
-import type { Short, ShortPage } from "@/feature/short/type/short.domain";
+import { ShortType, type Short, type ShortPage } from "@/feature/short/type/short.domain";
 
 export type ShortViewModel = ShortPage;
 

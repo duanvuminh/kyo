@@ -8,6 +8,7 @@ export enum Source {
   ALGOLIA = "algolia",
   HUUSENNARARE = "huusennarare",
   STORAGE = "storage",
+  GRAMMAR = "grammar",
 }
 export interface BaseItem {
   source: Source;
