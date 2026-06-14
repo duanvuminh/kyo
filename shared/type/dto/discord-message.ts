@@ -1,4 +1,4 @@
-export interface DiscordAttachmentDTO {
+export interface DiscordAttachmentEntity {
   id: string;
   filename: string;
   content_type?: string;
@@ -11,9 +11,9 @@ export interface DiscordAttachmentDTO {
   description?: string;
 }
 
-export interface DiscordMessageDTO {
+export interface DiscordMessageEntity {
   content: string;
   type: number;
   id: string;
-  attachments?: DiscordAttachmentDTO[];
+  attachments?: DiscordAttachmentEntity[];
 }

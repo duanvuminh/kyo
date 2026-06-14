@@ -1,5 +1,4 @@
-import { Practice } from "@/feature/practice/model/practice";
-import { DiscordMessageDTO } from "@/shared/type/dto/discord-message";
+import type { Practice } from "@/feature/practice/model/practice";
 import matter from "gray-matter";
 
 export class Question {
@@ -26,16 +25,5 @@ export class Question {
       dto.attachments ?? [],
       parsed.data.yomi
     );
-  }
-  static fromDTO(data: DiscordMessageDTO): Question {
-    const parsed = matter(data.content);
-    return {
-      id: data.id,
-      content: parsed.content,
-      answers: parsed.data.answers ?? [],
-      correctAnswer: parsed.data.correctAnswer ?? 0,
-      attachments: data.attachments?.map((item) => item.url) ?? [],
-      yomi: parsed.data.yomi,
-    };
   }
 }

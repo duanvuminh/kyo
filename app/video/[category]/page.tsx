@@ -1,5 +1,5 @@
 import { KVideo } from "@/feature/video/component/video";
-import { Video } from "@/feature/video/model/video";
+import type { Video } from "@/feature/video/type/video.domain";
 import { getVideos } from "@/feature/video/service/video";
 
 export default async function Page({

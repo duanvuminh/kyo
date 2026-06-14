@@ -1,4 +1,5 @@
-import { Practice } from "@/feature/practice/model/practice";
+import { discordMessageToPractice } from "@/feature/practice/mapper/practice.mapper";
+import type { Practice } from "@/feature/practice/model/practice";
 import { mapDatas } from "@/shared/lib/data-convert";
 import { questionSchema } from "@/shared/lib/question-mapper";
 import {
@@ -16,7 +17,7 @@ import {
   promptGenerateGrammarQuestions,
   promptGenerateVocabQuestions,
 } from "@/shared/service/ai/instructions";
-import { DiscordMessageDTO } from "@/shared/type/dto/discord-message";
+import type { DiscordMessageEntity } from "@/shared/type/dto/discord-message";
 import { KWord } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
 
@@ -39,9 +40,9 @@ export const getPractice = async (practice: Practice): Promise<Practice[]> => {
   const discordMessage = await getThreadMessages({
     threadId: practice.id,
   });
-  return mapDatas<DiscordMessageDTO, Practice>(
+  return mapDatas<DiscordMessageEntity, Practice>(
     discordMessage.filter((msg) => msg.type === 0),
-    Practice.fromDTO
+    discordMessageToPractice
   );
 };
 
@@ -52,7 +53,7 @@ const _getExistingFlashCard = async (
     channelId: _channelId,
     messageId: practiceId,
   });
-  return discordMessage ? Practice.fromDTO(discordMessage) : null;
+  return discordMessage ? discordMessageToPractice(discordMessage) : null;
 };
 
 const _createNewFlashCard = async (
@@ -82,7 +83,7 @@ const _createNewFlashCard = async (
     wordData.type
   );
 
-  return Practice.fromDTO(discordMessage);
+  return discordMessageToPractice(discordMessage);
 };
 
 const _createPracticeQuestions = async (

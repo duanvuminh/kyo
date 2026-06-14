@@ -1,4 +1,4 @@
-import { Video } from "@/feature/video/model/video";
+import type { Video } from "@/feature/video/type/video.domain";
 import Image from "next/image";
 import Link from "next/link";
 

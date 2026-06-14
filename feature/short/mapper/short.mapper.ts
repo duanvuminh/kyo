@@ -1,13 +1,10 @@
+import type { KFile, Short, ShortType } from "@/feature/short/type/short.domain";
 import { parseVTT, splitVTT } from "@/shared/lib/videos";
-import { SlackMessageDTO } from "@/shared/type/dto/slack-message";
-import { Sub } from "@/shared/type/models/sub";
+import type { SlackMessageEntity } from "@/shared/type/dto/slack-message";
+import type { Sub } from "@/shared/type/models/sub";
 import matter from "gray-matter";
-import { KFile, Short, ShortType } from "./short";
 
-/**
- * Map SlackMessageDTO sang Short model
- */
-export function mapShortFromDTO(data: SlackMessageDTO): Short {
+export function slackMessageToShort(data: SlackMessageEntity): Short {
   const parsed = matter(data.text);
   const type = stringToShortType(parsed.data.type);
 
@@ -15,7 +12,7 @@ export function mapShortFromDTO(data: SlackMessageDTO): Short {
   let subInfo: { vi?: Sub[]; ja?: Sub[] } = {};
   let content = parsed.content.replaceAll("--&gt;", "-->");
 
-  if (type === ShortType.SUBTITLE) {
+  if (type === "subtitle") {
     subs = parseVTT(content);
     subInfo = splitVTT(content);
     content = "";
@@ -31,20 +28,18 @@ export function mapShortFromDTO(data: SlackMessageDTO): Short {
     subJa: subInfo.ja,
     subs,
     poster: parsed.data.poster,
-    relateShort: data.relatedMessages?.map(mapShortFromDTO),
+    relateShort: data.relatedMessages?.map(slackMessageToShort),
     hidden: parsed.data.hidden === true,
   };
 }
 
 function stringToShortType(value: string): ShortType {
-  if (Object.values(ShortType).includes(value as ShortType)) {
-    return value as ShortType;
-  }
-  return ShortType.OTHER;
+  const values = ["subtitle", "embed", "other"] as const;
+  return (values.find((v) => v === value) ?? "other") as ShortType;
 }
 
 function mapFiles(
-  data: SlackMessageDTO,
+  data: SlackMessageEntity,
   metadata: { externalFile?: string; title?: string }
 ): KFile[] | undefined {
   if (metadata.externalFile) {

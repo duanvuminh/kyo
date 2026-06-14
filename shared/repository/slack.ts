@@ -1,7 +1,7 @@
 import { fetchCacheConfig } from "@/shared/config/cache";
-import { SlackHistoryResponseDTO } from "@/shared/type/dto/slack-message";
+import { SlackHistoryEntity } from "@/shared/type/dto/slack-message";
 
-const emptyResponse: SlackHistoryResponseDTO = {
+const emptyResponse: SlackHistoryEntity = {
   ok: false,
   messages: [],
   has_more: false,
@@ -42,7 +42,7 @@ export const getListMessageFromSlack = async ({
     }
 
     const data = await res.json();
-    return data.ok ? (data as SlackHistoryResponseDTO) : emptyResponse;
+    return data.ok ? (data as SlackHistoryEntity) : emptyResponse;
   } catch {
     return emptyResponse;
   }
@@ -76,7 +76,7 @@ export const getListReplyFromSlack = async ({
     }
 
     const data = await res.json();
-    return data.ok ? (data as SlackHistoryResponseDTO) : emptyResponse;
+    return data.ok ? (data as SlackHistoryEntity) : emptyResponse;
   } catch {
     return emptyResponse;
   }

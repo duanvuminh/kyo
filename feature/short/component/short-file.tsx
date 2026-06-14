@@ -1,4 +1,4 @@
-import { KFile } from "@/feature/short/model/short";
+import { KFile } from "@/feature/short/type/short.domain";
 import FacebookVideoEmbed from "@/shared/component/facebook-video";
 import HlsPlayer from "@/shared/component/hls-player/hls-player";
 import YouTubePlayer from "@/shared/component/youtube-player/youtube-player";

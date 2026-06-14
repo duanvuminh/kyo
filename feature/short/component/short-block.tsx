@@ -3,7 +3,7 @@
 import { EpisodeList } from "@/feature/short/component/episode-list";
 import { ShortFileItem } from "@/feature/short/component/short-file-item";
 import { KShortTitleContent } from "@/feature/short/component/short-title-content";
-import { Short } from "@/feature/short/model/short";
+import { Short } from "@/feature/short/type/short.domain";
 import { useState } from "react";
 
 interface ShortBlockProps {

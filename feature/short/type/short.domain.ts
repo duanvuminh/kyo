@@ -1,6 +1,4 @@
-import { SlackMessageDTO } from "@/shared/type/dto/slack-message";
-import { Sub } from "@/shared/type/models/sub";
-import { mapShortFromDTO } from "./short-mapper";
+import type { Sub } from "@/shared/type/models/sub";
 
 export enum ShortType {
   SUBTITLE = "subtitle",
@@ -27,10 +25,6 @@ export interface Short {
   relateShort?: Short[];
   hidden?: boolean;
 }
-
-export const Short = {
-  fromDTO: (data: SlackMessageDTO): Short => mapShortFromDTO(data),
-};
 
 export interface ShortPage {
   shorts: Short[];

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSvgTooltip } from "@/feature/manga/component/useSvgTooltip";
-import { Manga, MangaPanel } from "@/feature/manga/model/manga";
+import type { Manga, MangaPanel } from "@/feature/manga/type/manga.domain";
 import {
   Popover,
   PopoverContent,

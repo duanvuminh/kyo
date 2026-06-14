@@ -1,4 +1,4 @@
-export interface SlackMessageDTO {
+export interface SlackMessageEntity {
   type: string;
   subtype?: string;
   text: string;
@@ -24,11 +24,12 @@ export interface SlackMessageDTO {
     mimetype: string;
     url_private: string;
   }[];
-  relatedMessages?: SlackMessageDTO[];
+  relatedMessages?: SlackMessageEntity[];
 }
-export interface SlackHistoryResponseDTO {
+
+export interface SlackHistoryEntity {
   ok: boolean;
-  messages: SlackMessageDTO[];
+  messages: SlackMessageEntity[];
   has_more: boolean;
   response_metadata?: {
     next_cursor?: string;

@@ -1,11 +1,11 @@
 import { ShortBlock } from "@/feature/short/component/short-block";
-import { ShortPage } from "@/feature/short/model/short";
+import { getShort } from "@/feature/short/service/short";
 import {
   displayData,
-  getShort,
   hasData,
   showNextPage,
-} from "@/feature/short/service/short";
+  type ShortViewModel,
+} from "@/feature/short/type/short.view-model";
 import { CenterMessage } from "@/shared/component/center-message";
 import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
 import Link from "next/link";
@@ -18,7 +18,7 @@ export default async function Page({
   params: Promise<{ page: string }>;
 }) {
   const { page } = await params;
-  const pageData: ShortPage = await getShort({ page });
+  const pageData: ShortViewModel = await getShort({ page });
 
   if (!hasData(pageData)) {
     return (

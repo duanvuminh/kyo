@@ -1,5 +1,5 @@
 import { fetchCacheConfig } from "@/shared/config/cache";
-import { DiscordMessageDTO } from "@/shared/type/dto/discord-message";
+import type { DiscordMessageEntity } from "@/shared/type/dto/discord-message";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 
 const discordBaseUrl = "https://discord.com/api/v10";
@@ -23,7 +23,7 @@ export const getListMessageFromDisCord = async ({
   channelId: string;
   before?: string;
   limit?: number;
-}): Promise<DiscordMessageDTO[]> => {
+}): Promise<DiscordMessageEntity[]> => {
   try {
     const params = buildMessageParams(before, limit);
     const res = await fetch(
@@ -38,7 +38,7 @@ export const getListMessageFromDisCord = async ({
       throw new AppError(ErrorCode.DISCORD);
     }
     const data = await res.json();
-    return data as DiscordMessageDTO[];
+    return data as DiscordMessageEntity[];
   } catch (e) {
     if (e instanceof AppError) {
       throw e;
@@ -54,7 +54,7 @@ export const getMessageFromDisCord = async ({
 }: {
   channelId: string;
   messageId: string;
-}): Promise<DiscordMessageDTO | null> => {
+}): Promise<DiscordMessageEntity | null> => {
   try {
     const res = await fetch(
       `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
@@ -67,7 +67,7 @@ export const getMessageFromDisCord = async ({
       },
     );
 
-    const data = (await res.json()) as DiscordMessageDTO;
+    const data = (await res.json()) as DiscordMessageEntity;
     return data;
   } catch (e) {
     const err = e instanceof Error ? e : new Error(String(e));
@@ -81,7 +81,7 @@ export const sendDiscordMessage = async ({
 }: {
   channelId: string;
   message: string;
-}): Promise<DiscordMessageDTO | null> => {
+}): Promise<DiscordMessageEntity | null> => {
   try {
     const res = await fetch(
       `${discordBaseUrl}/channels/${channelId}/messages`,
@@ -98,7 +98,7 @@ export const sendDiscordMessage = async ({
     );
 
     const data = await res.json();
-    return data as DiscordMessageDTO;
+    return data as DiscordMessageEntity;
   } catch {
     return null;
   }
@@ -136,7 +136,7 @@ export const getThreadMessages = async ({
     if (!Array.isArray(data)) {
       return [];
     }
-    return data as DiscordMessageDTO[];
+    return data as DiscordMessageEntity[];
   } catch {
     return [];
   }
@@ -177,7 +177,7 @@ export const sendMessageToThread = async ({
 }: {
   threadId: string;
   message: string;
-}): Promise<DiscordMessageDTO | null> => {
+}): Promise<DiscordMessageEntity | null> => {
   try {
     const res = await fetch(`${discordBaseUrl}/channels/${threadId}/messages`, {
       method: "POST",
@@ -189,7 +189,7 @@ export const sendMessageToThread = async ({
     });
 
     const data = await res.json();
-    return data as DiscordMessageDTO;
+    return data as DiscordMessageEntity;
   } catch {
     return null;
   }
@@ -203,7 +203,7 @@ export const updateDiscordMessage = async ({
   channelId: string;
   messageId: string;
   content?: string;
-}): Promise<DiscordMessageDTO | null> => {
+}): Promise<DiscordMessageEntity | null> => {
   try {
     const res = await fetch(
       `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
@@ -219,7 +219,7 @@ export const updateDiscordMessage = async ({
 
     const data = await res.json();
 
-    return data as DiscordMessageDTO;
+    return data as DiscordMessageEntity;
   } catch {
     return null;
   }

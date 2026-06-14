@@ -1,6 +1,6 @@
 "use client";
 
-import { Short } from "@/feature/short/model/short";
+import { Short } from "@/feature/short/type/short.domain";
 import { Button } from "@/shared/component/ui/button";
 
 interface EpisodeListProps {

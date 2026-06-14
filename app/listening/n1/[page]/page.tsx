@@ -14,7 +14,7 @@ export default async function Page({
   const pageData: ListeningViewModel = await getListening({ page, level: "n1" });
   const nextPage = getNextPageOrDefault(pageData);
   return hasData(pageData) ? (
-    <div className="p-2 prose mx-auto">z
+    <div className="p-2 prose mx-auto">
       {displayData(pageData).map((listening) => (
         <QuestionDetail key={listening.id} question={listening} />
       ))}

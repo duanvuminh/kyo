@@ -1,10 +1,7 @@
-import { Question } from "@/shared/type/models/question";
+import type { Question } from "@/shared/type/models/question";
+import type { ListeningPage } from "@/feature/listening/type/listening.domain";
 
-export interface ListeningViewModel {
-  listeningList: Question[];
-  nextPage?: string;
-  limit: number;
-}
+export type ListeningViewModel = ListeningPage;
 
 export function hasData(pageData: ListeningViewModel | undefined): boolean {
   return !!pageData && pageData.listeningList.length > 0;
@@ -16,7 +13,7 @@ export function displayData(pageData: ListeningViewModel | undefined): Question[
 
 export function showNextPage(pageData: ListeningViewModel | undefined): boolean {
   const data = displayData(pageData);
-  return data.length == pageData?.limit && data.length > 0;
+  return data.length === pageData?.limit && data.length > 0;
 }
 
 export function getNextPageOrDefault(

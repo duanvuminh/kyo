@@ -2,8 +2,8 @@
 
 import { hasYouTubeLink } from "@/core/utils/utils";
 import { ShortFileViewer } from "@/feature/short/component/short-file";
-import { KFile, Short } from "@/feature/short/model/short";
-import { isSubtitle } from "@/feature/short/service/short";
+import { KFile, Short } from "@/feature/short/type/short.domain";
+import { isSubtitle } from "@/feature/short/type/short.view-model";
 import LazyHlsPlayer from "@/shared/component/lazy-hls-player";
 
 interface ShortFileItemProps {

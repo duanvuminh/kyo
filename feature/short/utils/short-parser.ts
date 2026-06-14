@@ -1,15 +1,11 @@
-import { SlackMessageDTO } from "@/shared/type/dto/slack-message";
+import type { SlackMessageEntity } from "@/shared/type/dto/slack-message";
 import matter from "gray-matter";
 
-/**
- * Parse multiple metadata blocks từ text
- * Ví dụ: text có nhiều block ---\n...\n--- sẽ được tách thành nhiều items
- */
 export function parseMultipleMetadata(
   text: string,
-  baseItem: SlackMessageDTO
-): SlackMessageDTO[] {
-  const result: SlackMessageDTO[] = [];
+  baseItem: SlackMessageEntity
+): SlackMessageEntity[] {
+  const result: SlackMessageEntity[] = [];
   const regex = /---\n([\s\S]*?)\n---/g;
   let match;
   let index = 0;
@@ -43,19 +39,15 @@ function hasTitle(text: string): boolean {
   return matter(text).data?.title != null;
 }
 
-function pushIfExists(result: SlackMessageDTO[], item: SlackMessageDTO | null) {
+function pushIfExists(result: SlackMessageEntity[], item: SlackMessageEntity | null) {
   if (item) {
     result.push(item);
   }
 }
 
-/**
- * Parse threads thành danh sách related items
- * Gom các message không có title vào message trước đó
- */
-export function parseRelatedItems(threads: SlackMessageDTO[]): SlackMessageDTO[] {
-  const result: SlackMessageDTO[] = [];
-  let current: SlackMessageDTO | null = null;
+export function parseRelatedItems(threads: SlackMessageEntity[]): SlackMessageEntity[] {
+  const result: SlackMessageEntity[] = [];
+  let current: SlackMessageEntity | null = null;
 
   for (const item of threads) {
     const text = item.text ?? "";
@@ -80,10 +72,7 @@ export function parseRelatedItems(threads: SlackMessageDTO[]): SlackMessageDTO[]
   return result;
 }
 
-/**
- * Lấy nội dung từ threads cho đến khi gặp item có title mới
- */
-export function parseReplyContent(threads: SlackMessageDTO[]): string {
+export function parseReplyContent(threads: SlackMessageEntity[]): string {
   const result: string[] = [];
   for (let i = 0; i < threads.length; i++) {
     const item = threads[i];

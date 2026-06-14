@@ -1,52 +1,35 @@
-import { Manga, MangaPage } from "@/feature/manga/model/manga";
 import {
-  getListMessageFromDisCord,
-  getThreadMessages,
-} from "@/shared/repository/discord";
+  fetchMangaEntities,
+  type MangaEntity,
+} from "@/feature/manga/repository/manga";
+import type {
+  Manga,
+  MangaPage,
+  MangaPanel,
+} from "@/feature/manga/type/manga.domain";
+import matter from "gray-matter";
 
-const CHANNEL_ID = "1225629428420186122";
-const limit = 1;
-const defaultPage = "newest";
+function mapToManga({ message, threadMessages }: MangaEntity): Manga {
+  const parsed = matter(message.content);
+  const panels: MangaPanel[] = [...threadMessages]
+    .reverse()
+    .map((m) => ({ content: m.content }));
+  return {
+    id: message.id,
+    title: parsed.data.title,
+    panels,
+  };
+}
 
 export const getManga = async ({
   page,
 }: {
   page: string;
 }): Promise<MangaPage> => {
-  const data = await getListMessageFromDisCord({
-    channelId: CHANNEL_ID,
-    before: page == defaultPage ? undefined : page,
-    limit,
-  });
-
-  const mangaList = await Promise.all(
-    data.map(async (msg) => {
-      const threadMessages = await getThreadMessages({ threadId: msg.id });
-      return Manga.fromDTO(msg, threadMessages);
-    }),
-  );
-
+  const { entities, limit, nextPage } = await fetchMangaEntities({ page });
   return {
-    mangaList,
+    mangaList: entities.map(mapToManga),
     limit,
-    nextPage: data.length == limit ? data.at(-1)?.id : undefined,
+    nextPage,
   };
 };
-
-export function hasData(pageData: MangaPage | undefined): boolean {
-  return !!pageData && pageData.mangaList.length > 0;
-}
-
-export function displayData(pageData: MangaPage | undefined): Manga[] {
-  return pageData?.mangaList ?? [];
-}
-
-export function showNextPage(pageData: MangaPage | undefined): boolean {
-  const data = displayData(pageData);
-  return data.length == pageData?.limit && data.length > 0;
-}
-
-export function getNextPageOrDefault(pageData: MangaPage | undefined): string {
-  const data = displayData(pageData);
-  return data.at(-1)?.id ?? defaultPage;
-}
