@@ -13,7 +13,7 @@ export default async function Page({ params }: Props) {
   const flashCard = await getFlashCard(word);
   const practice = flashCard ? await getPractice(flashCard) : [];
   return (
-    <div className="max-w-2xl px-2 mx-auto">
+    <div className="max-w-2xl px-2">
       {flashCard && (
         <KPracticeCard word={word} flashCard={flashCard} practice={practice} />
       )}
