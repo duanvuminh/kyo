@@ -61,8 +61,10 @@ function ChatForm({ input, words, history, onInput, onSelectHistory, onSubmit }:
       }}
       className="sticky bottom-8 w-full prose p-2 mx-auto pt-20"
     >
-      <WordHistory history={history} onSelect={onSelectHistory} />
       <div className="relative">
+        <div className="absolute bottom-full left-0 right-0 pb-1">
+          <WordHistory history={history} onSelect={onSelectHistory} />
+        </div>
         <ChatTextArea
           value={input}
           placeholder="Hỏi bất kì điều gì"

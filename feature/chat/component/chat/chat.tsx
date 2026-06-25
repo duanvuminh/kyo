@@ -19,12 +19,17 @@ export function Chat({ assistantText }: { assistantText?: string }) {
   const [cached, setCached] = useState<WordHistoryItem | null>(null);
   useSyncEditMessageFromChat(messages);
 
-  // Show loading skeleton when last message is from user (waiting for AI)
-  const isWaitingForResponse = messages.length > 0 && messages[messages.length - 1]?.role === "user";
+  const hasContent = messages.length > 0 || cached !== null;
+  const isWaitingForResponse = messages.length > 0 && messages.at(-1)?.role === "user";
+
+  function handleSend(args: { text: string }) {
+    setCached(null);
+    sendMessage(args);
+  }
 
   return (
     <div className="flex min-h-screen flex-col">
-      <div className={cn("pb-48", messages.length > 0 || cached ? "flex-1" : "")}>
+      <div className={cn("pb-48", hasContent && "flex-1")}>
         {assistantText && (
           <AssistantMenu command={assistantText} append={sendMessage} />
         )}
@@ -45,11 +50,8 @@ export function Chat({ assistantText }: { assistantText?: string }) {
       </div>
       <ChatInput
         messages={messages}
-        sendMessage={(args) => {
-          setCached(null);
-          sendMessage(args);
-        }}
-        onSelectHistory={(item) => setCached(item)}
+        sendMessage={handleSend}
+        onSelectHistory={setCached}
       />
     </div>
   );
@@ -72,43 +74,48 @@ function CachedMessage({ cached }: { cached: WordHistoryItem }) {
 }
 
 function MessageList({ messages }: { messages: UIMessage[] }) {
-  const lastUserMessage = [...messages]
+  const lastUserText = [...messages]
     .reverse()
-    .find((m) => m.role === "user");
-  const referenceSlug = lastUserMessage
-    ? findHuusennarareSlug(
-      lastUserMessage.parts.find((p) => p.type === "text")?.text.trim() ?? "",
-    )
-    : undefined;
+    .find((m) => m.role === "user")
+    ?.parts.find((p) => p.type === "text")
+    ?.text.trim() ?? "";
+  const referenceSlug = lastUserText ? findHuusennarareSlug(lastUserText) : undefined;
 
   return (
     <>
       {messages.map((message, index) => (
-        <div key={message.id} className="p-2">
-          <ChatContainer isUser={message.role === "user"}>
-            {message.parts.map((part, i) => {
-              switch (part.type) {
-                case "text":
-                  return (
-                    <div key={`${message.id}-${i}`}>
-                      <Markdown>{part.text}</Markdown>
-                    </div>
-                  );
-              }
-            })}
-          </ChatContainer>
-          {message.role === "assistant" &&
-            index === messages.length - 1 &&
-            referenceSlug && (
-              <Link
-                href={`/huusennarare/${referenceSlug}`}
-                className="mt-1 text-sm text-secondary"
-              >
-                Xem thêm →
-              </Link>
-            )}
-        </div>
+        <MessageBubble
+          key={message.id}
+          message={message}
+          referenceSlug={index === messages.length - 1 ? referenceSlug : undefined}
+        />
       ))}
     </>
+  );
+}
+
+interface MessageBubbleProps {
+  message: UIMessage;
+  referenceSlug?: string;
+}
+
+function MessageBubble({ message, referenceSlug }: MessageBubbleProps) {
+  return (
+    <div className="p-2">
+      <ChatContainer isUser={message.role === "user"}>
+        {message.parts.map((part, i) =>
+          part.type === "text" ? (
+            <div key={i}>
+              <Markdown>{part.text}</Markdown>
+            </div>
+          ) : null
+        )}
+      </ChatContainer>
+      {message.role === "assistant" && referenceSlug && (
+        <Link href={`/huusennarare/${referenceSlug}`} className="mt-1 text-sm text-secondary">
+          Xem thêm →
+        </Link>
+      )}
+    </div>
   );
 }
