@@ -11,8 +11,6 @@ import {
   Output,
   Schema,
   streamText,
-  StreamTextResult,
-  ToolSet,
 } from "ai";
 import { z } from "zod";
 
@@ -33,7 +31,7 @@ export class AIService {
       system?: string;
       onFinish?: (result: { text: string }) => void;
     }
-  ): StreamTextResult<ToolSet, never> {
+  ) {
     return streamText({
       model: this.model,
       messages,

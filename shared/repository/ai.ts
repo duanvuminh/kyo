@@ -1,9 +1,8 @@
 import {
   LanguageModel,
   ModelMessage,
+  GenerateTextEndEvent,
   streamText,
-  StreamTextOnFinishCallback,
-  StreamTextResult,
   ToolSet,
 } from "ai";
 
@@ -20,8 +19,8 @@ export const askAi = ({
   system?: string;
   prompt?: string;
   maxOutputTokens?: number;
-  onFinish?: StreamTextOnFinishCallback<ToolSet>;
-}): StreamTextResult<ToolSet, never> | undefined => {
+  onFinish?: (event: GenerateTextEndEvent<ToolSet>) => void | Promise<void>;
+}) => {
   return streamText({
     model,
     system,

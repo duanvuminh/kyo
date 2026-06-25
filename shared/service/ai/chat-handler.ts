@@ -10,7 +10,7 @@ import { createWordsContent, searchWord } from "@/shared/service/dictionary";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 import { KWord } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
-import { ModelMessage, StreamTextResult, ToolSet } from "ai";
+import { ModelMessage } from "ai";
 
 function getSystemInstruction(word: KWord, message: string): string {
   switch (word.type) {
@@ -43,7 +43,7 @@ function createOnFinish(word: KWord) {
 export async function handleChatMessages(
   aiService: AIService,
   messages: ModelMessage[]
-): Promise<StreamTextResult<ToolSet, never> | string | undefined> {
+): Promise<ReturnType<AIService["chat"]> | string | undefined> {
   try {
     const message = trimLineBreak(
       getTextFromModelMessage(messages.at(-1)) ?? ""
