@@ -45,7 +45,6 @@ export const KPracticeCard = ({ word, flashCard, practice }: PracticeCardProps) 
           word={word}
           onRemove={handleRemove}
         />
-        <NextWordButton nextWord={nextWord} mode={mode} />
       </CardAction>
       <PracticeCardContent
         mode={mode}
@@ -56,6 +55,7 @@ export const KPracticeCard = ({ word, flashCard, practice }: PracticeCardProps) 
         practiceIndex={practiceIndex}
         practiceTotal={practice.length}
       />
+      <NextWordButton nextWord={nextWord} mode={mode} />
     </Card>
   );
 };

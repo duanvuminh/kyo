@@ -1,6 +1,5 @@
 import { PracticeCardMode } from "@/feature/practice/model/type";
-import { Button } from "@/shared/component/ui/button";
-import { ArrowBigRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 interface NextWordButtonProps {
@@ -10,18 +9,17 @@ interface NextWordButtonProps {
 
 export const NextWordButton = ({ nextWord, mode }: NextWordButtonProps) => {
   if (!nextWord) {
-    return <></>;
+    return null;
   }
   return (
-    <Button
-      asChild
-      variant="ghost"
-      className="text-muted"
-      aria-label="Next word"
-    >
-      <Link href={`/practice/${nextWord}?mode=${mode}`}>
-        <ArrowBigRight />
+    <div className="flex justify-end px-2 pb-2">
+      <Link
+        href={`/practice/${nextWord}?mode=${mode}`}
+        className="flex items-center gap-0.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+      >
+        {nextWord}
+        <ChevronRight className="size-4" />
       </Link>
-    </Button>
+    </div>
   );
 };

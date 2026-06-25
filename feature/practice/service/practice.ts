@@ -18,22 +18,23 @@ import {
   promptGenerateVocabQuestions,
 } from "@/shared/service/ai/instructions";
 import type { DiscordMessageEntity } from "@/shared/type/dto/discord-message";
-import { KWord } from "@/shared/type/models/word";
+import { KWord, Source } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
 
 const _channelId = "1386090536753958952";
 
 export const getFlashCard = async (word: string): Promise<Practice | null> => {
   const wordFromDictionary = await getWordById(word);
-  if (!wordFromDictionary) {
-    return null;
-  }
 
-  if (wordFromDictionary.practiceId) {
+  if (wordFromDictionary?.practiceId) {
     return _getExistingFlashCard(wordFromDictionary.practiceId);
   }
 
-  return _createNewFlashCard(word, KWord.fromDTO(wordFromDictionary));
+  const wordData = wordFromDictionary
+    ? KWord.fromDTO(wordFromDictionary)
+    : new KWord(word, word, Source.FIREBASE, KWordType.WORD);
+
+  return _createNewFlashCard(word, wordData);
 };
 
 export const getPractice = async (practice: Practice): Promise<Practice[]> => {
