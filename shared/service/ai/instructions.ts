@@ -7,7 +7,7 @@ $1 ($2)
 3. Cách viết/Nhớ
 
 Tổng quan (bạn đánh giá độ quan trọng, tần suất sử dụng)`;
-export const instructionGrammar = `Giải thích ngữ pháp, cách dùng tiếng nhật, so sánh ngữ pháp tương tự của từ sau`;
+export const instructionGrammar = `Giải thích bằng tiếng Việt về ngữ pháp, cách dùng tiếng nhật, so sánh ngữ pháp tương tự của từ sau`;
 export const instructionWord = `Nếu đây không phải câu hỏi thì hay giải thích ý nghĩa của từ tiếng nhật sau
 $1(cách phát âm)
 1. Ý nghĩa

@@ -25,9 +25,17 @@ const _channelId = "1386090536753958952";
 
 export const getFlashCard = async (word: string): Promise<Practice | null> => {
   const wordFromDictionary = await getWordById(word);
-
   if (wordFromDictionary?.practiceId) {
-    return _getExistingFlashCard(wordFromDictionary.practiceId);
+    try {
+      const existing = await _getExistingFlashCard(wordFromDictionary.practiceId);
+      if (existing?.content) {
+        return existing;
+      }
+      // existing is null → message bị xóa (404) → fall through để regenerate
+    } catch {
+      // Discord lỗi tạm thời (429, 5xx) → không regenerate, tránh drain AI quota
+      return null;
+    }
   }
 
   const wordData = wordFromDictionary
@@ -61,7 +69,12 @@ const _createNewFlashCard = async (
   word: string,
   wordData: KWord
 ): Promise<Practice | null> => {
-  const summary = await freeAiService().summaryWord(wordData);
+  let summary: string | undefined;
+  try {
+    summary = await freeAiService().summaryWord(wordData);
+  } catch {
+    return null;
+  }
   if (!summary) {
     return null;
   }
@@ -70,7 +83,7 @@ const _createNewFlashCard = async (
     channelId: _channelId,
     message: summary,
   });
-  if (!discordMessage) {
+  if (!discordMessage?.id) {
     return null;
   }
 

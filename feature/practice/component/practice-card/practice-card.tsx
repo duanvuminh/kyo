@@ -4,13 +4,13 @@ import { NextWordButton } from "@/feature/practice/component/next-word-button";
 import { PracticeCardContent } from "@/feature/practice/component/practice-card-content";
 import { usePracticeCard } from "@/feature/practice/component/practice-card/use-practice-card";
 import { Practice } from "@/feature/practice/model/practice";
-import { PracticeStorage } from "@/shared/service/storage";
 import {
   Card,
   CardAction,
   CardHeader,
   CardTitle,
 } from "@/shared/component/ui/card";
+import { PracticeStorage } from "@/shared/service/storage";
 import { toast } from "sonner";
 
 interface PracticeCardProps {

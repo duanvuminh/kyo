@@ -5,7 +5,7 @@ import { Button } from "@/shared/component/ui/button";
 import { Eye, Play, Trash } from "lucide-react";
 
 interface ActionsProps {
-  mode: PracticeCardMode;
+  mode?: PracticeCardMode;
   handleModeChange: (m: PracticeCardMode) => void;
   word: string;
   onRemove: () => void;

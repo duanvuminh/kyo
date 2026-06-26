@@ -3,7 +3,7 @@ import { PracticeCardMode } from "@/feature/practice/model/type";
 import { Button } from "@/shared/component/ui/button";
 
 interface ModeButtonProps {
-  mode: PracticeCardMode;
+  mode?: PracticeCardMode;
   targetMode: PracticeCardMode;
   onClick: (mode: PracticeCardMode) => void;
   icon: React.ComponentType;

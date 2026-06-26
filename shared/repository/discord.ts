@@ -67,6 +67,12 @@ export const getMessageFromDisCord = async ({
       },
     );
 
+    if (res.status === 404) {
+      return null;
+    }
+    if (!res.ok) {
+      throw new AppError(ErrorCode.DISCORD);
+    }
     const data = (await res.json()) as DiscordMessageEntity;
     return data;
   } catch (e) {

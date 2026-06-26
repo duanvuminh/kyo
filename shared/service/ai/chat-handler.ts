@@ -23,7 +23,7 @@ function getSystemInstruction(word: KWord, message: string): string {
     case KWordType.WORD:
       return instructionWord.replace("$1", message);
     default:
-      return "";
+      return instructionWord.replace("$1", message);
   }
 }
 
