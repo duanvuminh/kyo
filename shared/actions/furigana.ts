@@ -1,9 +1,7 @@
 "use server";
-import { getWordFromExternalService } from "@/shared/repository/mazzi";
+import { getPhonetic } from "@/shared/repository/external-dictionary";
 
 export async function getFurigana(text: string): Promise<string | undefined> {
-  const word = await getWordFromExternalService(text);
-  const data = word.data?.at(0)?.phonetic;
-  if (!data || text !== word.data?.at(0)?.word) { return undefined; }
-  return data;
+  const phonetic = await getPhonetic(text);
+  return phonetic ?? undefined;
 }

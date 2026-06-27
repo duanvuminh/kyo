@@ -8,7 +8,7 @@ import {
   getWordById,
   updateDocument,
 } from "@/shared/repository/firestore";
-import { getKanjiFromExternalService, getWordFromExternalService } from "@/shared/repository/mazzi";
+import { isJapaneseWord } from "@/shared/repository/external-dictionary";
 import { freeAiService } from "@/shared/service/ai/factory";
 import {
   instructionCompareContent,
@@ -49,13 +49,8 @@ function _createDefaultResult(word: string): KWord {
   };
 }
 
-async function _searchExternal(word: string): Promise<string | null> {
-  if (word.length === 1) {
-    const result = await getKanjiFromExternalService(word);
-    return result?.results?.[0]?.kanji ?? null;
-  }
-  const result = await getWordFromExternalService(word);
-  return result?.data?.[0]?.word ?? null;
+async function _searchExternal(word: string): Promise<boolean> {
+  return isJapaneseWord(word);
 }
 
 export async function searchWord(word: string): Promise<KWord> {
@@ -69,9 +64,9 @@ export async function searchWord(word: string): Promise<KWord> {
     return KWord.fromDTO(grammars[0]);
   }
 
-  const externalWord = await _searchExternal(word);
-  if (externalWord) {
-    return _createWordResult(word, externalWord);
+  const isJapanese = await _searchExternal(word);
+  if (isJapanese) {
+    return _createWordResult(word, word);
   }
 
   return _createDefaultResult(word);
