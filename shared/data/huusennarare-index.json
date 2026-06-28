@@ -1214,7 +1214,8 @@
     "kan-amai"
   ],
   "厳": [
-    "kan-amai"
+    "kan-amai",
+    "gan-dare"
   ],
   "雚": [
     "kan-soroeru"
@@ -3086,5 +3087,131 @@
   ],
   "杭": [
     "ko-wataru"
+  ],
+  "早": [
+    "so-hayai"
+  ],
+  "速": [
+    "so-hayai"
+  ],
+  "草": [
+    "so-hayai"
+  ],
+  "気": [
+    "ki-iki"
+  ],
+  "汽": [
+    "ki-iki"
+  ],
+  "厂": [
+    "gan-dare"
+  ],
+  "岩": [
+    "gan-dare"
+  ],
+  "岸": [
+    "gan-dare"
+  ],
+  "彦": [
+    "gan-dare"
+  ],
+  "顔": [
+    "gan-dare"
+  ],
+  "原": [
+    "gan-dare"
+  ],
+  "源": [
+    "gan-dare"
+  ],
+  "願": [
+    "gan-dare"
+  ],
+  "危": [
+    "gan-dare"
+  ],
+  "元": [
+    "gen-moto"
+  ],
+  "完": [
+    "gen-moto"
+  ],
+  "冠": [
+    "gen-moto"
+  ],
+  "玩": [
+    "gen-moto"
+  ],
+  "頑": [
+    "gen-moto"
+  ],
+  "院": [
+    "gen-moto"
+  ],
+  "求": [
+    "kyu-motomeru"
+  ],
+  "救": [
+    "kyu-motomeru"
+  ],
+  "球": [
+    "kyu-motomeru"
+  ],
+  "毬": [
+    "kyu-motomeru"
+  ],
+  "包": [
+    "ho-tsutsumu"
+  ],
+  "抱": [
+    "ho-tsutsumu"
+  ],
+  "砲": [
+    "ho-tsutsumu"
+  ],
+  "胞": [
+    "ho-tsutsumu"
+  ],
+  "飽": [
+    "ho-tsutsumu"
+  ],
+  "泡": [
+    "ho-tsutsumu"
+  ],
+  "林": [
+    "rin-hayashi"
+  ],
+  "淋": [
+    "rin-hayashi"
+  ],
+  "琳": [
+    "rin-hayashi"
+  ],
+  "霖": [
+    "rin-hayashi"
+  ],
+  "醂": [
+    "rin-hayashi"
+  ],
+  "森": [
+    "rin-hayashi"
+  ],
+  "同": [
+    "do-onaji"
+  ],
+  "筒": [
+    "do-onaji"
+  ],
+  "胴": [
+    "do-onaji"
+  ],
+  "銅": [
+    "do-onaji"
+  ],
+  "洞": [
+    "do-onaji"
+  ],
+  "桐": [
+    "do-onaji"
   ]
 }
