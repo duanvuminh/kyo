@@ -7,35 +7,58 @@ export function useFlashCard(cards: FlashCardItem[], cardsPerPage = 20) {
   const [index, setIndex] = useState(0);
   const [showBack, setShowBack] = useState(false);
 
-  const totalPages = Math.ceil(cards.length / cardsPerPage);
+  const totalPages = Math.max(1, Math.ceil(cards.length / cardsPerPage));
   const startIndex = page * cardsPerPage;
   const currentCards = useMemo(() => {
     const start = page * cardsPerPage;
     return shuffle(cards.slice(start, start + cardsPerPage));
   }, [cards, page, cardsPerPage]);
 
-  const [prevPage, setPrevPage] = useState(page);
-  if (prevPage !== page) {
-    setPrevPage(page);
+  const goToPage = (newPage: number) => {
+    setPage(newPage);
     setIndex(0);
-  }
+    setShowBack(false);
+  };
 
-  const goToPage = (newPage: number) => { setPage(newPage); setShowBack(false); };
   const toggleShowBack = () => setShowBack((v) => !v);
 
   const nextCard = () => {
-    if (index + 1 < currentCards.length) { setIndex(index + 1); }
-    else if (page + 1 < totalPages) { setPage(page + 1); }
-    else { setPage(0); }
+    if (index + 1 < currentCards.length) {
+      setIndex(index + 1);
+    } else if (page + 1 < totalPages) {
+      setPage(page + 1);
+      setIndex(0);
+    } else {
+      setPage(0);
+      setIndex(0);
+    }
     setShowBack(false);
   };
 
   const prevCard = () => {
-    if (index > 0) { setIndex(index - 1); }
-    else if (page > 0) { setPage(page - 1); }
-    else { setPage(totalPages - 1); }
+    if (index > 0) {
+      setIndex(index - 1);
+    } else if (page > 0) {
+      setPage(page - 1);
+      setIndex(0);
+    } else {
+      setPage(totalPages - 1);
+      setIndex(0);
+    }
     setShowBack(false);
   };
 
-  return { currentCards, currentCard: currentCards[index], index, page, totalPages, startIndex, showBack, goToPage, nextCard, prevCard, toggleShowBack };
+  return {
+    currentCards,
+    currentCard: currentCards[index] ?? currentCards[0],
+    index,
+    page,
+    totalPages,
+    startIndex,
+    showBack,
+    goToPage,
+    nextCard,
+    prevCard,
+    toggleShowBack,
+  };
 }
