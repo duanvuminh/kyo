@@ -8,5 +8,5 @@
   "js/ts.suggest.autoImports": true,
   "js/ts.suggest.includeAutomaticOptionalChainCompletions": true,
   "js/ts.updateImportsOnFileMove.enabled": "always",
-  "eslint.useFlatConfig": true
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
 }

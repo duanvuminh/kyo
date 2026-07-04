@@ -20,7 +20,7 @@ export default async function Page({
   const { page } = await params;
   const pageData: MangaViewModel = await getManga({ page });
   return hasData(pageData) ? (
-    <div className="p-2 prose mx-auto">
+    <div className="prose mx-auto w-full p-2">
       {displayData(pageData).map((manga) => (
         <KManga key={manga.id} manga={manga} />
       ))}
