@@ -27,13 +27,13 @@ export function RoadmapFlow({
         nodes={nodes}
         edges={BASE_EDGES}
         onNodesChange={onNodesChange}
-        onNodeDragStop={() => {
-          console.log(JSON.stringify(nodes.map((n) => ({ ...n.data, x: Math.round(n.position.x), y: Math.round(n.position.y) })), null, 2));
-        }}
+        // onNodeDragStop={() => {
+        //   console.log(JSON.stringify(nodes.map((n) => ({ ...n.data, x: Math.round(n.position.x), y: Math.round(n.position.y) })), null, 2));
+        // }}
+        nodesDraggable={false}
         fitView
         defaultEdgeOptions={DEFAULT_EDGE_OPTIONS}
         fitViewOptions={{ padding: 0.2 }}
-        nodesDraggable
         nodesConnectable={false}
         elementsSelectable={false}
         panOnDrag

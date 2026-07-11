@@ -10,19 +10,7 @@ import {
 } from "@/shared/component/ui/sidebar";
 import Link from "next/link";
 
-interface AppSidebarUIProps {
-  email: string | null;
-  onLogin: () => void;
-  onLogout: () => void;
-  isLoading: boolean;
-}
-
-export function AppSidebarUI({
-  email,
-  onLogin,
-  onLogout,
-  isLoading,
-}: AppSidebarUIProps) {
+export function AppSidebar() {
   return (
     <Sidebar>
       <SidebarHeader>
@@ -38,12 +26,7 @@ export function AppSidebarUI({
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarFooterMenu
-          email={email}
-          onLogin={onLogin}
-          onLogout={onLogout}
-          isLoading={isLoading}
-        />
+        <SidebarFooterMenu />
       </SidebarFooter>
     </Sidebar>
   );

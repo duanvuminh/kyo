@@ -17,7 +17,7 @@ export interface RoadmapNodeData extends RoadmapNodeMeta {
   status: RoadmapStatus;
 }
 
-export const BASE_META: RoadmapNodeMeta[] = [
+const WORDS_META: RoadmapNodeMeta[] = [
   {
     id: "main-words",
     label: "Từ vựng",
@@ -349,6 +349,9 @@ export const BASE_META: RoadmapNodeMeta[] = [
     y: -208,
     href: "/words/n1/page32",
   },
+];
+
+const GRAMMAR_META: RoadmapNodeMeta[] = [
   {
     id: "main-grammar",
     label: "Ngữ pháp",
@@ -558,6 +561,9 @@ export const BASE_META: RoadmapNodeMeta[] = [
     y: -46,
     href: "/grammar/n1/page20",
   },
+];
+
+const KANJI_META: RoadmapNodeMeta[] = [
   {
     id: "main-kanji",
     label: "Kanji",
@@ -877,6 +883,9 @@ export const BASE_META: RoadmapNodeMeta[] = [
     y: 650,
     href: "/kanji/n1/page31",
   },
+];
+
+const LISTENING_META: RoadmapNodeMeta[] = [
   {
     id: "main-listening",
     label: "Nghe hiểu",
@@ -896,6 +905,9 @@ export const BASE_META: RoadmapNodeMeta[] = [
     y: 700,
     href: "/listening/n1/newest",
   },
+];
+
+const READING_META: RoadmapNodeMeta[] = [
   {
     id: "main-reading",
     label: "Đọc hiểu",
@@ -937,132 +949,52 @@ export const BASE_META: RoadmapNodeMeta[] = [
   },
 ];
 
-export const BASE_EDGES: Edge[] = [
-  {
-    id: "edge-1",
-    source: "main-words",
-    target: "word-1",
-  },
-  { id: "e-word-2", source: "word-1", target: "word-2" },
-  { id: "e-word-3", source: "word-2", target: "word-3" },
-  { id: "e-word-4", source: "word-3", target: "word-4" },
-  { id: "e-word-5", source: "word-4", target: "word-5" },
-  { id: "e-word-6", source: "word-5", target: "word-6" },
-  { id: "e-word-7", source: "word-6", target: "word-7" },
-  { id: "e-word-8", source: "word-7", target: "word-8" },
-  { id: "e-word-9", source: "word-8", target: "word-9" },
-  { id: "e-word-10", source: "word-9", target: "word-10" },
-  { id: "e-word-11", source: "word-10", target: "word-11" },
-  { id: "e-word-12", source: "word-11", target: "word-12" },
-  { id: "e-word-13", source: "word-12", target: "word-13" },
-  { id: "e-word-14", source: "word-13", target: "word-14" },
-  { id: "e-word-15", source: "word-14", target: "word-15" },
-  { id: "e-word-16", source: "word-15", target: "word-16" },
-  { id: "e-word-17", source: "word-16", target: "word-17" },
-  { id: "e-word-18", source: "word-17", target: "word-18" },
-  { id: "e-word-19", source: "word-18", target: "word-19" },
-  { id: "e-word-20", source: "word-19", target: "word-20" },
-  { id: "e-word-21", source: "word-20", target: "word-21" },
-  { id: "e-word-22", source: "word-21", target: "word-22" },
-  { id: "e-word-23", source: "word-22", target: "word-23" },
-  { id: "e-word-24", source: "word-23", target: "word-24" },
-  { id: "e-word-25", source: "word-24", target: "word-25" },
-  { id: "e-word-26", source: "word-25", target: "word-26" },
-  { id: "e-word-27", source: "word-26", target: "word-27" },
-  { id: "e-word-28", source: "word-27", target: "word-28" },
-  { id: "e-word-29", source: "word-28", target: "word-29" },
-  { id: "e-word-30", source: "word-29", target: "word-30" },
-  { id: "e-word-31", source: "word-30", target: "word-31" },
-  { id: "e-word-32", source: "word-31", target: "word-32" },
-  {
-    id: "edge-main-1",
-    source: "main-words",
-    target: "main-grammar",
-  },
-  { id: "e-grammar-1", source: "main-grammar", target: "grammar-1" },
-  { id: "e-grammar-1-2", source: "grammar-1", target: "grammar-2" },
-  { id: "e-grammar-2-3", source: "grammar-2", target: "grammar-3" },
-  { id: "e-grammar-3-4", source: "grammar-3", target: "grammar-4" },
-  { id: "e-grammar-4-5", source: "grammar-4", target: "grammar-5" },
-  { id: "e-grammar-5-6", source: "grammar-5", target: "grammar-6" },
-  { id: "e-grammar-6-7", source: "grammar-6", target: "grammar-7" },
-  { id: "e-grammar-7-8", source: "grammar-7", target: "grammar-8" },
-  { id: "e-grammar-8-9", source: "grammar-8", target: "grammar-9" },
-  { id: "e-grammar-9-10", source: "grammar-9", target: "grammar-10" },
-  { id: "e-grammar-10-11", source: "grammar-10", target: "grammar-11" },
-  { id: "e-grammar-11-12", source: "grammar-11", target: "grammar-12" },
-  { id: "e-grammar-12-13", source: "grammar-12", target: "grammar-13" },
-  { id: "e-grammar-13-14", source: "grammar-13", target: "grammar-14" },
-  { id: "e-grammar-14-15", source: "grammar-14", target: "grammar-15" },
-  { id: "e-grammar-15-16", source: "grammar-15", target: "grammar-16" },
-  { id: "e-grammar-16-17", source: "grammar-16", target: "grammar-17" },
-  { id: "e-grammar-17-18", source: "grammar-17", target: "grammar-18" },
-  { id: "e-grammar-18-19", source: "grammar-18", target: "grammar-19" },
-  { id: "e-grammar-19-20", source: "grammar-19", target: "grammar-20" },
-  {
-    id: "edge-main-kanji",
-    source: "main-grammar",
-    target: "main-kanji",
-  },
-  { id: "e-kanji-1", source: "main-kanji", target: "kanji-1" },
-  { id: "e-kanji-1-2", source: "kanji-1", target: "kanji-2" },
-  { id: "e-kanji-2-3", source: "kanji-2", target: "kanji-3" },
-  { id: "e-kanji-3-4", source: "kanji-3", target: "kanji-4" },
-  { id: "e-kanji-4-5", source: "kanji-4", target: "kanji-5" },
-  { id: "e-kanji-5-6", source: "kanji-5", target: "kanji-6" },
-  { id: "e-kanji-6-7", source: "kanji-6", target: "kanji-7" },
-  { id: "e-kanji-7-8", source: "kanji-7", target: "kanji-8" },
-  { id: "e-kanji-8-9", source: "kanji-8", target: "kanji-9" },
-  { id: "e-kanji-9-10", source: "kanji-9", target: "kanji-10" },
-  { id: "e-kanji-10-11", source: "kanji-10", target: "kanji-11" },
-  { id: "e-kanji-11-12", source: "kanji-11", target: "kanji-12" },
-  { id: "e-kanji-12-13", source: "kanji-12", target: "kanji-13" },
-  { id: "e-kanji-13-14", source: "kanji-13", target: "kanji-14" },
-  { id: "e-kanji-14-15", source: "kanji-14", target: "kanji-15" },
-  { id: "e-kanji-15-16", source: "kanji-15", target: "kanji-16" },
-  { id: "e-kanji-16-17", source: "kanji-16", target: "kanji-17" },
-  { id: "e-kanji-17-18", source: "kanji-17", target: "kanji-18" },
-  { id: "e-kanji-18-19", source: "kanji-18", target: "kanji-19" },
-  { id: "e-kanji-19-20", source: "kanji-19", target: "kanji-20" },
-  { id: "e-kanji-20-21", source: "kanji-20", target: "kanji-21" },
-  { id: "e-kanji-21-22", source: "kanji-21", target: "kanji-22" },
-  { id: "e-kanji-22-23", source: "kanji-22", target: "kanji-23" },
-  { id: "e-kanji-23-24", source: "kanji-23", target: "kanji-24" },
-  { id: "e-kanji-24-25", source: "kanji-24", target: "kanji-25" },
-  { id: "e-kanji-25-26", source: "kanji-25", target: "kanji-26" },
-  { id: "e-kanji-26-27", source: "kanji-26", target: "kanji-27" },
-  { id: "e-kanji-27-28", source: "kanji-27", target: "kanji-28" },
-  { id: "e-kanji-28-29", source: "kanji-28", target: "kanji-29" },
-  { id: "e-kanji-29-30", source: "kanji-29", target: "kanji-30" },
-  { id: "e-kanji-30-31", source: "kanji-30", target: "kanji-31" },
-  {
-    id: "edge-main-listening",
-    source: "main-kanji",
-    target: "main-listening",
-  },
-  {
-    id: "edge-listening-1",
-    source: "main-listening",
-    target: "listening-1",
-  },
-  {
-    id: "edge-main-reading",
-    source: "main-listening",
-    target: "main-reading",
-  },
-  {
-    id: "edge-reading-1",
-    source: "main-reading",
-    target: "reading-1",
-  },
-  {
-    id: "edge-reading-1-2",
-    source: "reading-1",
-    target: "reading-2",
-  },
-  {
-    id: "edge-reading-2-3",
-    source: "reading-2",
-    target: "reading-3",
-  },
+export const BASE_META: RoadmapNodeMeta[] = [
+  ...WORDS_META,
+  ...GRAMMAR_META,
+  ...KANJI_META,
+  ...LISTENING_META,
+  ...READING_META,
 ];
+
+function numberedIds(prefix: string, count: number): string[] {
+  return Array.from({ length: count }, (_, i) => `${prefix}-${i + 1}`);
+}
+
+function chainEdges(ids: string[]): Edge[] {
+  return ids.slice(1).map((target, i) => ({
+    id: `e-${ids[i]}-${target}`,
+    source: ids[i],
+    target,
+  }));
+}
+
+const WORD_CHAIN_IDS = ["main-words", ...numberedIds("word", 32)];
+const GRAMMAR_CHAIN_IDS = ["main-grammar", ...numberedIds("grammar", 20)];
+const KANJI_CHAIN_IDS = ["main-kanji", ...numberedIds("kanji", 31)];
+const LISTENING_CHAIN_IDS = ["main-listening", "listening-1"];
+const READING_CHAIN_IDS = ["main-reading", ...numberedIds("reading", 3)];
+const MAIN_HUB_CHAIN_IDS = [
+  "main-words",
+  "main-grammar",
+  "main-kanji",
+  "main-listening",
+  "main-reading",
+];
+
+export const BASE_EDGES: Edge[] = [
+  ...chainEdges(WORD_CHAIN_IDS),
+  ...chainEdges(GRAMMAR_CHAIN_IDS),
+  ...chainEdges(KANJI_CHAIN_IDS),
+  ...chainEdges(LISTENING_CHAIN_IDS),
+  ...chainEdges(READING_CHAIN_IDS),
+  ...chainEdges(MAIN_HUB_CHAIN_IDS),
+];
+
+export const MAIN_CHILDREN_IDS: Record<string, string[]> = {
+  "main-words": WORD_CHAIN_IDS.slice(1),
+  "main-grammar": GRAMMAR_CHAIN_IDS.slice(1),
+  "main-kanji": KANJI_CHAIN_IDS.slice(1),
+  "main-listening": LISTENING_CHAIN_IDS.slice(1),
+  "main-reading": READING_CHAIN_IDS.slice(1),
+};

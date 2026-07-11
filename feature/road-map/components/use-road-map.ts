@@ -1,6 +1,7 @@
 import { STORAGE_KEY } from "@/feature/road-map/components/constants";
+import { withDerivedMainStatuses } from "@/feature/road-map/components/utils";
 import { BASE_META, RoadmapStatus } from "@/feature/road-map/model/road-map";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 function loadInitialStatuses(): Record<string, RoadmapStatus> {
   const initial: Record<string, RoadmapStatus> = {};
@@ -32,13 +33,15 @@ function loadInitialStatuses(): Record<string, RoadmapStatus> {
 }
 
 export function useRoadMap() {
-  const [statuses, setStatuses] = useState<Record<string, RoadmapStatus>>(() =>
+  const [rawStatuses, setRawStatuses] = useState<Record<string, RoadmapStatus>>(() =>
     loadInitialStatuses(),
   );
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
+  const statuses = useMemo(() => withDerivedMainStatuses(rawStatuses), [rawStatuses]);
+
   const handleSetStatus = (id: string, status: RoadmapStatus) => {
-    setStatuses((prev) => {
+    setRawStatuses((prev) => {
       const next = { ...prev, [id]: status };
       if (typeof window !== "undefined") {
         window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));

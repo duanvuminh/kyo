@@ -1,4 +1,27 @@
-import { RoadmapStatus } from "@/feature/road-map/model/road-map";
+import { MAIN_CHILDREN_IDS, RoadmapStatus } from "@/feature/road-map/model/road-map";
+
+export function deriveMainStatus(childStatuses: RoadmapStatus[]): RoadmapStatus {
+  if (childStatuses.length === 0) {
+    return "todo";
+  }
+  if (childStatuses.every((s) => s === "done")) {
+    return "done";
+  }
+  if (childStatuses.some((s) => s !== "todo")) {
+    return "doing";
+  }
+  return "todo";
+}
+
+export function withDerivedMainStatuses(
+  statuses: Record<string, RoadmapStatus>,
+): Record<string, RoadmapStatus> {
+  const next = { ...statuses };
+  Object.entries(MAIN_CHILDREN_IDS).forEach(([mainId, childIds]) => {
+    next[mainId] = deriveMainStatus(childIds.map((id) => statuses[id] ?? "todo"));
+  });
+  return next;
+}
 
 export function getStatusLabel(status: RoadmapStatus): string {
   if (status === "done") {
