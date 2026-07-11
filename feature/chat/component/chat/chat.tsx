@@ -7,7 +7,7 @@ import { ChatInput } from "@/feature/chat/component/chat-input";
 import { useSyncEditMessageFromChat } from "@/feature/chat/component/chat/use-sync-edit-message-from-chat";
 import { TypingIndicator } from "@/feature/chat/component/typing-indicator";
 import { WordHistoryItem } from "@/feature/chat/component/word-history";
-import { findHuusennarareSlug } from "@/shared/lib/huusennarare-index";
+import { findHuusennarareUrl } from "@/shared/lib/huusennarare-index";
 import { useChat } from "@ai-sdk/react";
 import { UIMessage } from "ai";
 import Link from "next/link";
@@ -58,14 +58,19 @@ export function Chat({ assistantText }: { assistantText?: string }) {
 }
 
 function CachedMessage({ cached }: { cached: WordHistoryItem }) {
-  const slug = findHuusennarareSlug(cached.words);
+  const url = findHuusennarareUrl(cached.words);
   return (
     <div className="p-2">
       <ChatContainer isUser={false}>
         <Markdown>{cached.content ?? ""}</Markdown>
       </ChatContainer>
-      {slug && (
-        <Link href={`/huusennarare/${slug}`} className="mt-1 text-sm text-secondary">
+      {url && (
+        <Link
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 text-sm text-secondary"
+        >
           Xem thêm →
         </Link>
       )}
@@ -79,7 +84,7 @@ function MessageList({ messages }: { messages: UIMessage[] }) {
     .find((m) => m.role === "user")
     ?.parts.find((p) => p.type === "text")
     ?.text.trim() ?? "";
-  const referenceSlug = lastUserText ? findHuusennarareSlug(lastUserText) : undefined;
+  const referenceUrl = lastUserText ? findHuusennarareUrl(lastUserText) : undefined;
 
   return (
     <>
@@ -87,7 +92,7 @@ function MessageList({ messages }: { messages: UIMessage[] }) {
         <MessageBubble
           key={message.id}
           message={message}
-          referenceSlug={index === messages.length - 1 ? referenceSlug : undefined}
+          referenceUrl={index === messages.length - 1 ? referenceUrl : undefined}
         />
       ))}
     </>
@@ -96,10 +101,10 @@ function MessageList({ messages }: { messages: UIMessage[] }) {
 
 interface MessageBubbleProps {
   message: UIMessage;
-  referenceSlug?: string;
+  referenceUrl?: string;
 }
 
-function MessageBubble({ message, referenceSlug }: MessageBubbleProps) {
+function MessageBubble({ message, referenceUrl }: MessageBubbleProps) {
   return (
     <div className="p-2">
       <ChatContainer isUser={message.role === "user"}>
@@ -111,8 +116,13 @@ function MessageBubble({ message, referenceSlug }: MessageBubbleProps) {
           ) : null
         )}
       </ChatContainer>
-      {message.role === "assistant" && referenceSlug && (
-        <Link href={`/huusennarare/${referenceSlug}`} className="mt-1 text-sm text-secondary">
+      {message.role === "assistant" && referenceUrl && (
+        <Link
+          href={referenceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 text-sm text-secondary"
+        >
           Xem thêm →
         </Link>
       )}
