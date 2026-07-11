@@ -26,7 +26,8 @@ const eslintConfig = defineConfig([
         },
       ],
       "@typescript-eslint/no-deprecated": "warn",
-      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-unused-vars": "error",
+      "@typescript-eslint/no-explicit-any": "error",
       // Disable because official Redux pattern uses ref during render for lazy store initialization
       "react-hooks/refs": "off",
 
@@ -39,6 +40,9 @@ const eslintConfig = defineConfig([
       "max-depth": ["error", 3],
       "no-duplicate-imports": "error",
       "curly": ["error", "all"],
+      "no-restricted-imports": ["error", {
+        "patterns": ["./*", "../*"]
+      }],
     },
   },
   globalIgnores([".next/**", "out/**", "build/**", "next-env.d.ts", "shared/component/ui/**"]),

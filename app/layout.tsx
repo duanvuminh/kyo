@@ -5,7 +5,7 @@ import { Toaster } from "@/shared/component/ui/sonner";
 import { StoreProvider } from "@/shared/providers/store-provider";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
-import "./globals.css";
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "Kyo",

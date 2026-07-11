@@ -7,7 +7,7 @@ import { selectMessage } from "@/shared/store/slice-message";
 import { UIMessage } from "ai";
 import { Send } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import { WordHistory, WordHistoryItem, useWordHistory } from "./word-history";
+import { WordHistory, WordHistoryItem, useWordHistory } from "@/feature/chat/component/word-history";
 
 interface ChatInputProps {
   messages: UIMessage[];

@@ -12,7 +12,9 @@ async function _fetchJisho(keyword: string, timeoutMs = 8000): Promise<{ data: J
     const res = await fetch(`${_JISHO_URL}?keyword=${encodeURIComponent(keyword)}`, {
       signal: controller.signal,
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      return null;
+    }
     return await res.json();
   } catch {
     return null;
@@ -29,6 +31,8 @@ export const isJapaneseWord = async (word: string): Promise<boolean> => {
 export const getPhonetic = async (word: string): Promise<string | null> => {
   const result = await _fetchJisho(word);
   const entry = result?.data?.[0];
-  if (!entry) return null;
+  if (!entry) {
+    return null;
+  }
   return entry.japanese?.[0]?.reading ?? null;
 };
