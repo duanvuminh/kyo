@@ -10,16 +10,21 @@ function _matchVTTTimeLine(line: string) {
   return line.match(/^(\d{2}:\d{2}:\d{2}[.,]\d{3})\s*-->\s*(\d{2}:\d{2}:\d{2}[.,]\d{3})$/);
 }
 
+const JAPANESE_CHAR = /[぀-ヿ㐀-鿿ｦ-ﾟ]/;
+
 function isViLine(line: string) { return line.startsWith("vn:") || line.startsWith("vi:"); }
 function parseViLine(line: string) { return line.replace(/^vn:/, "").replace(/^vi:/, "").trim(); }
 function parseJaLine(line: string) { return line.replace(/^ja:/, "").trim(); }
+// No explicit vi:/ja: prefix -> classify by script so raw bilingual scripts (JP line, then VI line) work unedited
+function isJaLine(line: string) { return line.startsWith("ja:") || JAPANESE_CHAR.test(line); }
 
 function parseSubLines(lines: string[], startIndex: number) {
   const jaLines: string[] = [], viLines: string[] = [];
   let i = startIndex;
   while (i < lines.length && lines[i]) {
     if (isViLine(lines[i])) { viLines.push(parseViLine(lines[i])); }
-    else { jaLines.push(parseJaLine(lines[i])); }
+    else if (isJaLine(lines[i])) { jaLines.push(parseJaLine(lines[i])); }
+    else { viLines.push(lines[i]); }
     i++;
   }
   return { jaLines, viLines, nextIndex: i };

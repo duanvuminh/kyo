@@ -16,16 +16,24 @@ type YouTubePlayer = {
   pauseVideo(): void;
 };
 
+let youtubeAPIPromise: Promise<void> | null = null;
+
+// Shared across all mounted players: the iframe_api script only calls
+// window.onYouTubeIframeAPIReady once, so a second mount overwriting it
+// would leave the first mount's player waiting forever.
 function loadYouTubeAPI() {
   if (window.YT?.Player) {
     return Promise.resolve();
   }
-  return new Promise<void>((resolve) => {
-    const tag = document.createElement("script");
-    tag.src = "https://www.youtube.com/iframe_api";
-    document.body.appendChild(tag);
-    window.onYouTubeIframeAPIReady = () => resolve();
-  });
+  if (!youtubeAPIPromise) {
+    youtubeAPIPromise = new Promise<void>((resolve) => {
+      window.onYouTubeIframeAPIReady = () => resolve();
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
+      document.body.appendChild(tag);
+    });
+  }
+  return youtubeAPIPromise;
 }
 
 function createPlayerEffect(

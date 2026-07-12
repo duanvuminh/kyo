@@ -32,7 +32,14 @@ export function ShortFileItem({ file, short, index }: ShortFileItemProps) {
 
   if (subtitleMode && isYoutube) {
     return (
-      <ShortFileViewer key={index} file={file} poster={short.poster} subs={short.subs} />
+      <ShortFileViewer
+        key={index}
+        file={file}
+        poster={short.poster}
+        subs={short.subs}
+        subVi={short.subVi}
+        subJa={short.subJa}
+      />
     );
   }
 

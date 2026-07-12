@@ -29,7 +29,15 @@ function FileLink({ file }: { file: KFile }) {
   );
 }
 
-export function ShortFileViewer({ file, poster, subs }: { file: KFile; poster?: string; subs?: Sub[] }) {
+interface ShortFileViewerProps {
+  file: KFile;
+  poster?: string;
+  subs?: Sub[];
+  subVi?: Sub[];
+  subJa?: Sub[];
+}
+
+export function ShortFileViewer({ file, poster, subs, subVi, subJa }: ShortFileViewerProps) {
   switch (file.source.kind) {
     case "image":
       return <ImageViewer file={file} />;
@@ -38,7 +46,7 @@ export function ShortFileViewer({ file, poster, subs }: { file: KFile; poster?: 
     case "facebook":
       return <FacebookVideoEmbed videoUrl={file.url} />;
     case "youtube":
-      return <YouTubePlayer videoId={file.source.videoId} subs={subs} />;
+      return <YouTubePlayer videoId={file.source.videoId} subs={subs} subVi={subVi} subJa={subJa} />;
     case "video":
       return <VideoViewer file={file} poster={poster} />;
     case "file":
