@@ -1,4 +1,5 @@
 import type { KFile, Short, ShortType } from "@/feature/short/type/short.domain";
+import { resolveFileKind } from "@/shared/lib/file-kind";
 import { parseVTT, splitVTT } from "@/shared/lib/videos";
 import type { SlackMessageEntity } from "@/shared/type/dto/slack-message";
 import type { Sub } from "@/shared/type/models/sub";
@@ -34,7 +35,7 @@ export function slackMessageToShort(data: SlackMessageEntity): Short {
 }
 
 function stringToShortType(value: string): ShortType {
-  const values = ["subtitle", "embed", "other"] as const;
+  const values = ["subtitle", "other"] as const;
   return (values.find((v) => v === value) ?? "other") as ShortType;
 }
 
@@ -43,11 +44,13 @@ function mapFiles(
   metadata: { externalFile?: string; title?: string }
 ): KFile[] | undefined {
   if (metadata.externalFile) {
+    const mimetype = "video/*";
     return [
       {
         name: metadata.title ?? "",
         url: metadata.externalFile,
-        mimetype: "video/*",
+        mimetype,
+        source: resolveFileKind(metadata.externalFile, mimetype),
       },
     ];
   }
@@ -56,5 +59,6 @@ function mapFiles(
     name: item.name,
     url: `/api/file?url=${encodeURIComponent(item.url_private)}`,
     mimetype: item.mimetype,
+    source: resolveFileKind(item.url_private, item.mimetype),
   }));
 }

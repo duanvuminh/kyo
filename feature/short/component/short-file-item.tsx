@@ -1,6 +1,5 @@
 "use client";
 
-import { hasYouTubeLink } from "@/core/utils/utils";
 import { ShortFileViewer } from "@/feature/short/component/short-file";
 import { KFile, Short } from "@/feature/short/type/short.domain";
 import { isSubtitle } from "@/feature/short/type/short.view-model";
@@ -13,15 +12,14 @@ interface ShortFileItemProps {
 }
 
 export function ShortFileItem({ file, short, index }: ShortFileItemProps) {
-  const url = file.url.replace(/[<>]/g, "");
-  const isYoutube = hasYouTubeLink(url);
+  const isYoutube = file.source.kind === "youtube";
   const subtitleMode = isSubtitle(short);
 
   if (subtitleMode && !isYoutube) {
     return (
       <LazyHlsPlayer
         key={index}
-        src={url}
+        src={file.url}
         subs={short.subs}
         subVi={short.subVi}
         subJa={short.subJa}
@@ -34,14 +32,9 @@ export function ShortFileItem({ file, short, index }: ShortFileItemProps) {
 
   if (subtitleMode && isYoutube) {
     return (
-      <ShortFileViewer
-        key={index}
-        file={{ ...file, url }}
-        poster={short.poster}
-        subs={short.subs}
-      />
+      <ShortFileViewer key={index} file={file} poster={short.poster} subs={short.subs} />
     );
   }
 
-  return <ShortFileViewer key={index} file={{ ...file, url }} poster={short.poster} />;
+  return <ShortFileViewer key={index} file={file} poster={short.poster} />;
 }

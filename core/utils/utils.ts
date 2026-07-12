@@ -53,13 +53,6 @@ export function stripUndefined<T extends Record<string, unknown>>(
   ) as Partial<{ [K in keyof T]: Exclude<T[K], undefined> }>;
 }
 
-export function hasYouTubeLink(str?: string): boolean {
-  if (!str) {
-    return false;
-  }
-  return /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\//.test(str);
-}
-
 export function shuffle<T>(array: T[]): T[] {
   const newArray = [...array];
   for (let i = newArray.length - 1; i > 0; i--) {

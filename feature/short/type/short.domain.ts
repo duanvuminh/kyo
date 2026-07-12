@@ -1,8 +1,8 @@
+import type { FileKind } from "@/shared/lib/file-kind";
 import type { Sub } from "@/shared/type/models/sub";
 
 export enum ShortType {
   SUBTITLE = "subtitle",
-  EMBED = "embed",
   OTHER = "other",
 }
 
@@ -10,6 +10,7 @@ export interface KFile {
   name: string;
   url: string;
   mimetype: string;
+  source: FileKind;
 }
 
 export interface Short {

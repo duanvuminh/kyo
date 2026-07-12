@@ -30,20 +30,18 @@ function FileLink({ file }: { file: KFile }) {
 }
 
 export function ShortFileViewer({ file, poster, subs }: { file: KFile; poster?: string; subs?: Sub[] }) {
-  if (file.mimetype.startsWith("image/")) {
-    return <ImageViewer file={file} />;
+  switch (file.source.kind) {
+    case "image":
+      return <ImageViewer file={file} />;
+    case "pdf":
+      return <PdfViewer file={file} />;
+    case "facebook":
+      return <FacebookVideoEmbed videoUrl={file.url} />;
+    case "youtube":
+      return <YouTubePlayer videoId={file.source.videoId} subs={subs} />;
+    case "video":
+      return <VideoViewer file={file} poster={poster} />;
+    case "file":
+      return <FileLink file={file} />;
   }
-  if (file.mimetype === "application/pdf") {
-    return <PdfViewer file={file} />;
-  }
-  if (file.url.startsWith("https://www.facebook.com/")) {
-    return <FacebookVideoEmbed videoUrl={file.url} />;
-  }
-  if (file.url.startsWith("https://www.youtube.com/")) {
-    return <YouTubePlayer videoId={file.url.split("v=")[1]} subs={subs} />;
-  }
-  if (file.mimetype.startsWith("video/")) {
-    return <VideoViewer file={file} poster={poster} />;
-  }
-  return <FileLink file={file} />;
 }
