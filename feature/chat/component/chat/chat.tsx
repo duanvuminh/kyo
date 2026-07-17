@@ -13,6 +13,7 @@ import { UIMessage } from "ai";
 import Link from "next/link";
 import { useState } from "react";
 import Markdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 export function Chat({ assistantText }: { assistantText?: string }) {
   const { messages, sendMessage } = useChat();
@@ -62,7 +63,7 @@ function CachedMessage({ cached }: { cached: WordHistoryItem }) {
   return (
     <div className="p-2">
       <ChatContainer isUser={false}>
-        <Markdown>{cached.content ?? ""}</Markdown>
+        <Markdown remarkPlugins={[remarkGfm]}>{cached.content ?? ""}</Markdown>
       </ChatContainer>
       {url && (
         <Link
@@ -111,7 +112,7 @@ function MessageBubble({ message, referenceUrl }: MessageBubbleProps) {
         {message.parts.map((part, i) =>
           part.type === "text" ? (
             <div key={i}>
-              <Markdown>{part.text}</Markdown>
+              <Markdown remarkPlugins={[remarkGfm]}>{part.text}</Markdown>
             </div>
           ) : null
         )}

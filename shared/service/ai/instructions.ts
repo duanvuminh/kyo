@@ -1,4 +1,6 @@
-export const instructionKanji = `Giải thích kanji tiếng nhật theo format dưới đây
+export const instructionKanji = `Luôn trả lời bằng tiếng Việt, kể cả khi input hoàn toàn là tiếng Nhật.
+
+Giải thích kanji tiếng nhật theo format dưới đây
 
 $1 ($2)
 
@@ -7,7 +9,9 @@ $1 ($2)
 3. Cách viết/Nhớ
 
 Tổng quan (bạn đánh giá độ quan trọng, tần suất sử dụng)`;
-export const instructionClassifyWord = `Phân loại input tiếng Nhật sau vào 1 trong 3 loại (type), rồi trả lời theo type đó.
+export const instructionClassifyWord = `Luôn trả lời (field content) bằng tiếng Việt, kể cả khi input hoàn toàn là tiếng Nhật hoặc là yêu cầu so sánh nhiều cụm tiếng Nhật với nhau.
+
+Phân loại input tiếng Nhật sau vào 1 trong 3 loại (type), rồi trả lời theo type đó.
 
 QUAN TRỌNG về normalizedWord: KHÔNG quy các dạng chia động từ/tính từ về dạng từ điển gốc (辞書形) — 食べる, 食べられる, 食べた, 食べます là các từ/dạng KHÁC NHAU, giữ nguyên như input, KHÔNG gộp chung. normalizedWord chỉ dùng để sửa lỗi gõ sai/gõ thiếu/gõ thừa hoặc bỏ ký hiệu trang trí không phải một phần của từ, ví dụ:
 - "食べら" (gõ thiếu/sai chính tả) → sửa về đúng chính tả người dùng có khả năng đang muốn gõ

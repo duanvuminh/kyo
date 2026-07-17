@@ -8,8 +8,8 @@ interface ChatContainerProps {
 
 export function ChatContainer({ isUser, children }: ChatContainerProps) {
   return isUser ? (
-    <Card className="ml-10 mr-1 px-5 py-1">{children}</Card>
+    <Card className="ml-10 mr-1 px-5 py-1 prose max-w-none">{children}</Card>
   ) : (
-    children
+    <div className="prose max-w-none">{children}</div>
   );
 }
