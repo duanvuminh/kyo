@@ -1,6 +1,5 @@
 "use server";
-import { classifyWord } from "@/shared/service/ai/classify-word";
-import { searchWord } from "@/shared/service/dictionary";
+import { classifyAndPersistWord, searchWord } from "@/shared/service/dictionary";
 import { KWordType } from "@/shared/type/models/word-type";
 
 export async function checkWord(words: string): Promise<boolean> {
@@ -9,6 +8,6 @@ export async function checkWord(words: string): Promise<boolean> {
     return true;
   }
 
-  const classified = await classifyWord(words);
+  const classified = await classifyAndPersistWord(word, words);
   return classified.type !== KWordType.OTHER;
 }

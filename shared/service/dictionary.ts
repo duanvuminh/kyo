@@ -6,6 +6,7 @@ import {
   getWordById,
   updateDocument,
 } from "@/shared/repository/firestore";
+import { ClassifiedWord, classifyWord } from "@/shared/service/ai/classify-word";
 import { freeAiService } from "@/shared/service/ai/factory";
 import {
   instructionCompareContent,
@@ -47,6 +48,32 @@ export async function searchWord(word: string): Promise<KWord> {
   }
 
   return _createWordResult(word);
+}
+
+export async function classifyAndPersistWord(
+  word: KWord,
+  message: string
+): Promise<ClassifiedWord> {
+  const classified = await classifyWord(message);
+
+  if (classified.type === KWordType.OTHER) {
+    return classified;
+  }
+
+  const existing = await getWordById(classified.normalizedWord);
+  if (existing?.content) {
+    return { ...classified, content: existing.content };
+  }
+
+  createWordsContent({
+    words: classified.normalizedWord,
+    source: word.source,
+    documentId: classified.normalizedWord,
+    content: classified.content,
+    type: classified.type,
+  });
+
+  return classified;
 }
 
 export const createWordsContent = async (item: BaseItem) => {

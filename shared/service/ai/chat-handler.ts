@@ -1,10 +1,12 @@
 import { trimLineBreak } from "@/core/utils/utils";
 import { getTextFromModelMessage } from "@/shared/lib/chat";
 import { AIService } from "@/shared/service/ai/ai";
-import { getWordById } from "@/shared/repository/firestore";
-import { classifyWord } from "@/shared/service/ai/classify-word";
 import { instructionKanji } from "@/shared/service/ai/instructions";
-import { createWordsContent, searchWord } from "@/shared/service/dictionary";
+import {
+  classifyAndPersistWord,
+  createWordsContent,
+  searchWord,
+} from "@/shared/service/dictionary";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 import { KWord } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
@@ -37,25 +39,7 @@ async function _handleClassifiable(
   word: KWord,
   message: string
 ): Promise<string> {
-  const classified = await classifyWord(message);
-
-  if (classified.type === KWordType.OTHER) {
-    return classified.content;
-  }
-
-  const existing = await getWordById(classified.normalizedWord);
-  if (existing?.content) {
-    return existing.content;
-  }
-
-  createWordsContent({
-    words: classified.normalizedWord,
-    source: word.source,
-    documentId: classified.normalizedWord,
-    content: classified.content,
-    type: classified.type,
-  });
-
+  const classified = await classifyAndPersistWord(word, message);
   return classified.content;
 }
 
