@@ -2,55 +2,38 @@ import { isDev } from "@/shared/config/env";
 import { algoliaUpdate } from "@/shared/repository/algolia";
 import { updateDiscordMessage } from "@/shared/repository/discord";
 import {
-  addWords,
   createDocument,
-  getAllGrammar,
   getWordById,
   updateDocument,
 } from "@/shared/repository/firestore";
-import { isJapaneseWord } from "@/shared/repository/external-dictionary";
 import { freeAiService } from "@/shared/service/ai/factory";
 import {
   instructionCompareContent,
   promptCompareContent,
 } from "@/shared/service/ai/instructions";
 import { updateHuusennarareViaGithub } from "@/shared/service/github";
-import { WordDTO } from "@/shared/type/dto/word";
 import { BaseItem, KWord, Source } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
-import Fuse from "fuse.js";
 import { z } from "zod";
 
-function _createWordResult(word: string, searchWord: string): KWord {
-  const isExactMatch = word === searchWord;
-  if (isExactMatch) {
-    addWords({
-      words: searchWord,
-      type: "word",
-      hantu: null,
-      content: null,
-      practiceId: null,
-    });
-  }
+const _KANJI_REGEX = /^[一-龯]$/;
+
+function _createKanjiResult(word: string): KWord {
   return {
-    words: isExactMatch ? word : searchWord,
-    documentId: isExactMatch ? word : searchWord,
+    words: word,
+    documentId: word,
+    source: Source.FIREBASE,
+    type: KWordType.KANJI,
+  };
+}
+
+function _createWordResult(word: string): KWord {
+  return {
+    words: word,
+    documentId: word,
     source: Source.FIREBASE,
     type: KWordType.WORD,
   };
-}
-
-function _createDefaultResult(word: string): KWord {
-  return {
-    words: word,
-    source: Source.FIREBASE,
-    documentId: word,
-    type: KWordType.OTHER,
-  };
-}
-
-async function _searchExternal(word: string): Promise<boolean> {
-  return isJapaneseWord(word);
 }
 
 export async function searchWord(word: string): Promise<KWord> {
@@ -59,27 +42,11 @@ export async function searchWord(word: string): Promise<KWord> {
     return KWord.fromDTO(wordFromDictionary);
   }
 
-  const grammars = await searchGrammar(word);
-  if (grammars.length > 0) {
-    return KWord.fromDTO(grammars[0]);
+  if (_KANJI_REGEX.test(word)) {
+    return _createKanjiResult(word);
   }
 
-  const isJapanese = await _searchExternal(word);
-  if (isJapanese) {
-    return _createWordResult(word, word);
-  }
-
-  return _createDefaultResult(word);
-}
-
-export async function searchGrammar(value: string): Promise<WordDTO[]> {
-  const allGrammar: WordDTO[] = await getAllGrammar();
-  const fuse = new Fuse<WordDTO>(allGrammar, {
-    keys: ["words"],
-    threshold: 0.6,
-  });
-
-  return fuse.search(value).map((result) => result.item);
+  return _createWordResult(word);
 }
 
 export const createWordsContent = async (item: BaseItem) => {
@@ -89,7 +56,7 @@ export const createWordsContent = async (item: BaseItem) => {
   if (!item.words || !item.content) {
     return;
   }
-  createDocument(item.words, { content: item.content });
+  createDocument(item.words, { content: item.content, type: item.type });
 };
 
 export const updateWordsContent = async (item: BaseItem) => {

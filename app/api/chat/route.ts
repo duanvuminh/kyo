@@ -1,7 +1,7 @@
 import { protectApi } from "@/core/utils/api-protection";
 import { createTextStreamResponse } from "@/core/utils/stream-response";
 import { handleChatMessages } from "@/shared/service/ai/chat-handler";
-import { aiService } from "@/shared/service/ai/factory";
+import { freeAiService } from "@/shared/service/ai/factory";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 import { convertToModelMessages, createUIMessageStreamResponse, toUIMessageStream, UIMessage } from "ai";
 
@@ -19,7 +19,7 @@ export async function POST(req: Request) {
   }
 
   const result = await handleChatMessages(
-    aiService(),
+    freeAiService(),
     await convertToModelMessages(messages)
   );
 

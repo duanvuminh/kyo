@@ -31,7 +31,6 @@
     "clsx": "^2.1.1",
     "firebase-admin": "^14.1.0",
     "furigana": "^0.19.3",
-    "fuse.js": "^7.4.2",
     "gray-matter": "^4.0.3",
     "hls.js": "^1.6.16",
     "install": "^0.13.0",

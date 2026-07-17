@@ -1,6 +1,6 @@
 "use server";
 import { mapToQuestions, questionSchema } from "@/shared/lib/question-mapper";
-import { aiService } from "@/shared/service/ai/factory";
+import { freeAiService } from "@/shared/service/ai/factory";
 import {
   instructionGenerateGrammarQuestions,
   promptGenerateGrammarQuestions,
@@ -14,7 +14,7 @@ export async function generateQuestions({
   grammarPoint: string;
   front: string;
 }): Promise<Question[]> {
-  const result = await aiService().generateObject({
+  const result = await freeAiService().generateObject({
     schema: questionSchema,
     prompt: promptGenerateGrammarQuestions(front, grammarPoint),
     system: instructionGenerateGrammarQuestions,

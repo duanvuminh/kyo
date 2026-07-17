@@ -1,4 +1,4 @@
-import { createGoogleGenerativeAI, google } from "@ai-sdk/google";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { LanguageModel } from "ai";
 
 export interface AIModelConfig {
@@ -7,12 +7,6 @@ export interface AIModelConfig {
   model: LanguageModel;
   maxOutputTokens?: number;
 }
-
-export const defaultModel: AIModelConfig = {
-  id: "gemini-flash",
-  name: "Gemini 2.5 Flash",
-  model: google("gemini-2.5-flash"),
-};
 
 const googleFree = createGoogleGenerativeAI({
   apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY_FREE,

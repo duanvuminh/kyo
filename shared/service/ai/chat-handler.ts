@@ -1,43 +1,62 @@
 import { trimLineBreak } from "@/core/utils/utils";
 import { getTextFromModelMessage } from "@/shared/lib/chat";
 import { AIService } from "@/shared/service/ai/ai";
-import {
-  instructionGrammar,
-  instructionKanji,
-  instructionWord,
-} from "@/shared/service/ai/instructions";
+import { getWordById } from "@/shared/repository/firestore";
+import { classifyWord } from "@/shared/service/ai/classify-word";
+import { instructionKanji } from "@/shared/service/ai/instructions";
 import { createWordsContent, searchWord } from "@/shared/service/dictionary";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 import { KWord } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
 import { ModelMessage } from "ai";
 
-function getSystemInstruction(word: KWord, message: string): string {
-  switch (word.type) {
-    case KWordType.KANJI:
-      return instructionKanji
-        .replace("$1", word.words)
-        .replace("$2", word.hantu ?? "");
-    case KWordType.GRAMMAR:
-      return instructionGrammar;
-    case KWordType.WORD:
-      return instructionWord.replace("$1", message);
-    default:
-      return instructionWord.replace("$1", message);
-  }
-}
-
 function createOnFinish(word: KWord) {
   return ({ text }: { text: string }) => {
-    if (word.type !== KWordType.OTHER && word.words !== "") {
-      createWordsContent({
-        words: word.words,
-        source: word.source,
-        documentId: word.words,
-        content: text,
-      });
-    }
+    createWordsContent({
+      words: word.words,
+      source: word.source,
+      documentId: word.words,
+      content: text,
+      type: word.type,
+    });
   };
+}
+
+function _handleKanji(
+  aiService: AIService,
+  messages: ModelMessage[],
+  word: KWord
+) {
+  const system = instructionKanji
+    .replace("$1", word.words)
+    .replace("$2", word.hantu ?? "");
+  return aiService.chat(messages, { system, onFinish: createOnFinish(word) });
+}
+
+async function _handleClassifiable(
+  word: KWord,
+  message: string
+): Promise<string> {
+  const classified = await classifyWord(message);
+
+  if (classified.type === KWordType.OTHER) {
+    return classified.content;
+  }
+
+  const existing = await getWordById(classified.normalizedWord);
+  if (existing?.content) {
+    return existing.content;
+  }
+
+  createWordsContent({
+    words: classified.normalizedWord,
+    source: word.source,
+    documentId: classified.normalizedWord,
+    content: classified.content,
+    type: classified.type,
+  });
+
+  return classified.content;
 }
 
 export async function handleChatMessages(
@@ -54,10 +73,11 @@ export async function handleChatMessages(
       return word.content;
     }
 
-    const system = getSystemInstruction(word, message);
-    const onFinish = createOnFinish(word);
+    if (word.type === KWordType.KANJI) {
+      return _handleKanji(aiService, messages, word);
+    }
 
-    return await aiService.chat(messages, { system, onFinish });
+    return await _handleClassifiable(word, message);
   } catch (error) {
     if (error instanceof AppError) {
       throw error;

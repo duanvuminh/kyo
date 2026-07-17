@@ -1,5 +1,4 @@
 import { stripUndefined } from "@/core/utils/utils";
-import { mapDocs } from "@/shared/lib/data-convert";
 import { db } from "@/shared/lib/firebase-admin";
 import { WordDTO } from "@/shared/type/dto/word";
 import { KWordType } from "@/shared/type/models/word-type";
@@ -16,11 +15,6 @@ export const getWordById = async (
   return WordDTO.fromFirestore(snapshot.data()!);
 };
 
-export const addWords = (wordDTO: WordDTO): void => {
-  const docRef = db.collection("dictionary").doc(wordDTO.words);
-  docRef.set({ ...wordDTO });
-};
-
 export const updateDocument = (
   words: string,
   { content, practiceId }: { content?: string; practiceId?: string },
@@ -31,16 +25,22 @@ export const updateDocument = (
 
 export const createDocument = (
   words: string,
-  { content, practiceId }: { content?: string; practiceId?: string },
+  {
+    content,
+    practiceId,
+    type,
+  }: { content?: string; practiceId?: string; type?: KWordType },
 ): void => {
   const docRef = db.collection("dictionary").doc(words);
-  docRef.set({
-    content,
-    practiceId: practiceId ?? null,
-    words,
-    type: words.length === 1 ? KWordType.KANJI : KWordType.WORD,
-    hantu: null,
-  });
+  docRef.set(
+    stripUndefined({
+      content,
+      practiceId,
+      words,
+      type: type ?? (words.length === 1 ? KWordType.KANJI : KWordType.WORD),
+    }),
+    { merge: true },
+  );
 };
 
 export const upsertDocument = (
@@ -55,15 +55,4 @@ export const upsertDocument = (
       createDocument(words, payload);
     }
   });
-};
-
-export const getAllGrammar = async (): Promise<WordDTO[]> => {
-  "use cache";
-  const query = db.collection("dictionary").where("type", "==", "grammar");
-  const snapshot = await query.get();
-  if (snapshot.empty) {
-    return [];
-  }
-  const result = mapDocs(snapshot, (doc) => WordDTO.fromFirestore(doc.data()));
-  return result;
 };

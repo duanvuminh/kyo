@@ -16,6 +16,7 @@ export interface BaseItem {
   documentId: string;
   words: string;
   content?: string;
+  type?: KWordType;
 }
 
 const stringToKWordType: Record<string, KWordType> = {
