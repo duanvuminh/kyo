@@ -194,6 +194,10 @@ export const sendMessageToThread = async ({
       body: JSON.stringify({ content: message }),
     });
 
+    if (!res.ok) {
+      return null;
+    }
+
     const data = await res.json();
     return data as DiscordMessageEntity;
   } catch {
@@ -223,10 +227,38 @@ export const updateDiscordMessage = async ({
       },
     );
 
+    if (!res.ok) {
+      return null;
+    }
+
     const data = await res.json();
 
     return data as DiscordMessageEntity;
   } catch {
     return null;
+  }
+};
+
+export const deleteDiscordMessage = async ({
+  channelId,
+  messageId,
+}: {
+  channelId: string;
+  messageId: string;
+}): Promise<boolean> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
+        },
+      },
+    );
+
+    return res.ok;
+  } catch {
+    return false;
   }
 };

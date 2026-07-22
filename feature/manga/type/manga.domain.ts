@@ -1,4 +1,6 @@
 export interface MangaPanel {
+  id: string;
+  index: number;
   content: string;
 }
 
