@@ -6,7 +6,7 @@ import {
   getWordById,
   updateDocument,
 } from "@/shared/repository/firestore";
-import { ClassifiedWord, classifyWord } from "@/shared/service/ai/classify-word";
+import { isKanjiWord } from "@/shared/lib/kanji";
 import { freeAiService } from "@/shared/service/ai/factory";
 import {
   instructionCompareContent,
@@ -16,8 +16,6 @@ import { updateHuusennarareViaGithub } from "@/shared/service/github";
 import { BaseItem, KWord, Source } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
 import { z } from "zod";
-
-const _KANJI_REGEX = /^[一-龯]$/;
 
 function _createKanjiResult(word: string): KWord {
   return {
@@ -43,37 +41,11 @@ export async function searchWord(word: string): Promise<KWord> {
     return KWord.fromDTO(wordFromDictionary);
   }
 
-  if (_KANJI_REGEX.test(word)) {
+  if (isKanjiWord(word)) {
     return _createKanjiResult(word);
   }
 
   return _createWordResult(word);
-}
-
-export async function classifyAndPersistWord(
-  word: KWord,
-  message: string
-): Promise<ClassifiedWord> {
-  const classified = await classifyWord(message);
-
-  if (classified.type === KWordType.OTHER) {
-    return classified;
-  }
-
-  const existing = await getWordById(classified.normalizedWord);
-  if (existing?.content) {
-    return { ...classified, content: existing.content };
-  }
-
-  createWordsContent({
-    words: classified.normalizedWord,
-    source: word.source,
-    documentId: classified.normalizedWord,
-    content: classified.content,
-    type: classified.type,
-  });
-
-  return classified;
 }
 
 export const createWordsContent = async (item: BaseItem) => {

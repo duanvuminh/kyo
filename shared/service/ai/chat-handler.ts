@@ -1,12 +1,9 @@
 import { trimLineBreak } from "@/core/utils/utils";
 import { getTextFromModelMessage } from "@/shared/lib/chat";
 import { AIService } from "@/shared/service/ai/ai";
+import { classifyWord } from "@/shared/service/ai/classify-word";
 import { instructionKanji } from "@/shared/service/ai/instructions";
-import {
-  classifyAndPersistWord,
-  createWordsContent,
-  searchWord,
-} from "@/shared/service/dictionary";
+import { createWordsContent, searchWord } from "@/shared/service/dictionary";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 import { KWord } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
@@ -35,11 +32,8 @@ function _handleKanji(
   return aiService.chat(messages, { system, onFinish: createOnFinish(word) });
 }
 
-async function _handleClassifiable(
-  word: KWord,
-  message: string
-): Promise<string> {
-  const classified = await classifyAndPersistWord(word, message);
+async function _handleClassifiable(message: string): Promise<string> {
+  const classified = await classifyWord(message);
   return classified.content;
 }
 
@@ -61,7 +55,7 @@ export async function handleChatMessages(
       return _handleKanji(aiService, messages, word);
     }
 
-    return await _handleClassifiable(word, message);
+    return await _handleClassifiable(message);
   } catch (error) {
     if (error instanceof AppError) {
       throw error;

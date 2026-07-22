@@ -1,3 +1,4 @@
+import { wordExists } from "@/shared/actions/check";
 import { PracticeAdd } from "@/shared/component/practice-add";
 import { Button } from "@/shared/component/ui/button";
 import { Textarea } from "@/shared/component/ui/textarea";
@@ -20,6 +21,7 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
   const [input, setInput] = useState("");
   const { history, addWord } = useWordHistory();
   const savedRef = useRef("");
+  const [canEdit, setCanEdit] = useState(false);
 
   useEffect(() => {
     if (message.words && message.content && message.words !== savedRef.current) {
@@ -28,11 +30,28 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
     }
   }, [message.words, message.content, addWord]);
 
+  useEffect(() => {
+    if (!message.words) {
+      setCanEdit(false);
+      return;
+    }
+    let cancelled = false;
+    wordExists(message.words).then((exists) => {
+      if (!cancelled) {
+        setCanEdit(exists);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [message.words]);
+
   return (
     <ChatForm
       input={input}
       words={message.words}
       history={history}
+      canEdit={canEdit}
       onInput={setInput}
       onSelectHistory={onSelectHistory}
       onSubmit={() => {
@@ -47,12 +66,13 @@ interface ChatFormProps {
   input: string;
   words: string;
   history: WordHistoryItem[];
+  canEdit: boolean;
   onInput: (v: string) => void;
   onSelectHistory: (item: WordHistoryItem) => void;
   onSubmit: () => void;
 }
 
-function ChatForm({ input, words, history, onInput, onSelectHistory, onSubmit }: ChatFormProps) {
+function ChatForm({ input, words, history, canEdit, onInput, onSelectHistory, onSubmit }: ChatFormProps) {
   return (
     <form
       onSubmit={(e) => {
@@ -82,7 +102,7 @@ function ChatForm({ input, words, history, onInput, onSelectHistory, onSubmit }:
       {words != "" && (
         <div className="flex p-2 items-center gap-2">
           <PracticeAdd />
-          <UpdateContentLink />
+          {canEdit && <UpdateContentLink />}
         </div>
       )}
     </form>

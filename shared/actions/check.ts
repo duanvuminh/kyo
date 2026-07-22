@@ -1,6 +1,12 @@
 "use server";
-import { classifyAndPersistWord, searchWord } from "@/shared/service/dictionary";
+import { classifyWord } from "@/shared/service/ai/classify-word";
+import { searchWord } from "@/shared/service/dictionary";
 import { KWordType } from "@/shared/type/models/word-type";
+
+export async function wordExists(words: string): Promise<boolean> {
+  const word = await searchWord(words);
+  return word.content != null;
+}
 
 export async function checkWord(words: string): Promise<boolean> {
   const word = await searchWord(words);
@@ -8,6 +14,6 @@ export async function checkWord(words: string): Promise<boolean> {
     return true;
   }
 
-  const classified = await classifyAndPersistWord(word, words);
+  const classified = await classifyWord(words);
   return classified.type !== KWordType.OTHER;
 }

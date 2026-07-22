@@ -19,7 +19,9 @@ interface PracticeCardProps {
   practice: Practice[];
 }
 
-export const KPracticeCard = ({ word, flashCard, practice }: PracticeCardProps) => {
+export const 
+
+  KPracticeCard = ({ word, flashCard, practice }: PracticeCardProps) => {
   const { mode, practiceIndex, question, handleModeChange, handleNextQuestion, nextWord, removeWordsToPractice } =
     usePracticeCard(word, practice);
 

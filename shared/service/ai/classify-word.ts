@@ -5,12 +5,11 @@ import { z } from "zod";
 
 const classifySchema = z.object({
   type: z.enum(["word", "grammar", "other"]),
-  normalizedWord: z.string().optional(),
   content: z.string(),
 });
 
 export type ClassifiedWord =
-  | { type: KWordType.WORD | KWordType.GRAMMAR; normalizedWord: string; content: string }
+  | { type: KWordType.WORD | KWordType.GRAMMAR; content: string }
   | { type: KWordType.OTHER; content: string };
 
 export async function classifyWord(message: string): Promise<ClassifiedWord> {
@@ -26,7 +25,6 @@ export async function classifyWord(message: string): Promise<ClassifiedWord> {
 
   return {
     type: result.type === "grammar" ? KWordType.GRAMMAR : KWordType.WORD,
-    normalizedWord: result.normalizedWord?.trim() || message,
     content: result.content,
   };
 }

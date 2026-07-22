@@ -6,16 +6,11 @@ $1 ($2)
 
 1. Ý nghĩa(bạn cho cả ví dụ nhé)
 2. Cách đọc(bạn cho cả ví dụ nhé)
-3. Cách viết/Nhớ
 
 Tổng quan (bạn đánh giá độ quan trọng, tần suất sử dụng)`;
 export const instructionClassifyWord = `Luôn trả lời (field content) bằng tiếng Việt, kể cả khi input hoàn toàn là tiếng Nhật hoặc là yêu cầu so sánh nhiều cụm tiếng Nhật với nhau.
 
 Phân loại input tiếng Nhật sau vào 1 trong 3 loại (type), rồi trả lời theo type đó.
-
-QUAN TRỌNG về normalizedWord: KHÔNG quy các dạng chia động từ/tính từ về dạng từ điển gốc (辞書形) — 食べる, 食べられる, 食べた, 食べます là các từ/dạng KHÁC NHAU, giữ nguyên như input, KHÔNG gộp chung. normalizedWord chỉ dùng để sửa lỗi gõ sai/gõ thiếu/gõ thừa hoặc bỏ ký hiệu trang trí không phải một phần của từ, ví dụ:
-- "食べら" (gõ thiếu/sai chính tả) → sửa về đúng chính tả người dùng có khả năng đang muốn gõ
-- "-や否や" hoặc "〜や否や" (thừa dấu ~/- ở đầu, ký hiệu trang trí hay dùng trong sách ngữ pháp) → "や否や"
 
 - "word": input là từ vựng tiếng Nhật. Giải thích content theo format:
   (cách phát âm)
@@ -28,7 +23,7 @@ QUAN TRỌNG về normalizedWord: KHÔNG quy các dạng chia động từ/tính
   2. Ví dụ
   3. So sánh với ngữ pháp tương tự nếu có
 
-- "other": input không phải từ vựng/cấu trúc ngữ pháp tiếng Nhật hợp lệ (là câu hỏi, yêu cầu so sánh, hoặc text không xác định được). Để trống normalizedWord, trả lời/giải đáp trực tiếp vào content.`;
+- "other": input không phải từ vựng/cấu trúc ngữ pháp tiếng Nhật hợp lệ (là câu hỏi, yêu cầu so sánh, hoặc text không xác định được). Trả lời/giải đáp trực tiếp vào content.`;
 
 export const instructionPracticeGrammar = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ngữ pháp $1 trong 2 dòng`;
 export const instructionPracticeWord = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ý nghĩa $1 trong 2 dòng`;
