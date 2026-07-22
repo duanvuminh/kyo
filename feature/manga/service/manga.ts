@@ -2,11 +2,13 @@ import { mapToManga, serializePanelToSvg } from "@/feature/manga/mapper/manga.ma
 import { fetchMangaEntities } from "@/feature/manga/repository/manga";
 import type { AddClickableAreaInput } from "@/feature/manga/schema/manga.schema";
 import type { MangaArea, MangaPage } from "@/feature/manga/type/manga.domain";
+import { discordThreadTag } from "@/shared/config/cache";
 import {
   deleteDiscordMessage,
   sendMessageToThread,
 } from "@/shared/repository/discord";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
+import { revalidateTag } from "next/cache";
 
 export const getManga = async ({
   page,
@@ -76,6 +78,8 @@ export const addClickableAreaToPanel = async ({
   }
 
   await deleteDiscordMessage({ channelId: threadId, messageId });
+
+  revalidateTag(discordThreadTag(threadId), "max");
 
   return {
     id: posted.id,

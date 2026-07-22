@@ -1,4 +1,8 @@
-import { fetchCacheConfig } from "@/shared/config/cache";
+import {
+  discordThreadTag,
+  fetchCacheConfig,
+  getFetchCacheConfig,
+} from "@/shared/config/cache";
 import type { DiscordMessageEntity } from "@/shared/type/dto/discord-message";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 
@@ -135,7 +139,7 @@ export const getThreadMessages = async ({
         headers: {
           Authorization: `Bot ${process.env.DISCORD_API_KEY}`,
         },
-        ...fetchCacheConfig,
+        ...getFetchCacheConfig([discordThreadTag(threadId)]),
       },
     );
     const data = await res.json();
