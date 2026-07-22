@@ -1,7 +1,18 @@
+export interface MangaArea {
+  title: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
 export interface MangaPanel {
   id: string;
   index: number;
-  content: string;
+  imageUrl: string;
+  viewBoxWidth: number;
+  viewBoxHeight: number;
+  areas: MangaArea[];
 }
 
 export interface Manga {

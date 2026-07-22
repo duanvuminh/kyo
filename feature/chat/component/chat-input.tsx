@@ -21,7 +21,7 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
   const [input, setInput] = useState("");
   const { history, addWord } = useWordHistory();
   const savedRef = useRef("");
-  const [canEdit, setCanEdit] = useState(false);
+  const [existsCheck, setExistsCheck] = useState<{ words: string; exists: boolean } | null>(null);
 
   useEffect(() => {
     if (message.words && message.content && message.words !== savedRef.current) {
@@ -32,19 +32,20 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
 
   useEffect(() => {
     if (!message.words) {
-      setCanEdit(false);
       return;
     }
     let cancelled = false;
     wordExists(message.words).then((exists) => {
       if (!cancelled) {
-        setCanEdit(exists);
+        setExistsCheck({ words: message.words, exists });
       }
     });
     return () => {
       cancelled = true;
     };
   }, [message.words]);
+
+  const canEdit = existsCheck?.words === message.words && existsCheck.exists;
 
   return (
     <ChatForm

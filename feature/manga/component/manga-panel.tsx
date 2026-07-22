@@ -56,12 +56,12 @@ const KMangaPanel = ({
   threadId: string;
   panel: MangaPanel;
 }) => {
-  const { tooltip, handleClick, close } = useSvgTooltip();
-  const [content, setContent] = useState(panel.content);
-  const [messageId, setMessageId] = useState(panel.id);
+  const { tooltip, showTooltip, close } = useSvgTooltip();
+  const [current, setCurrent] = useState(panel);
   const [isEditing, setIsEditing] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  if (!content) {
+  if (!current.imageUrl) {
     return null;
   }
 
@@ -70,13 +70,11 @@ const KMangaPanel = ({
       {isEditing ? (
         <KMangaPanelEditor
           threadId={threadId}
-          messageId={messageId}
-          index={panel.index}
-          content={content}
-          onSaved={(updated) => {
-            setContent(updated.content);
-            setMessageId(updated.id);
-          }}
+          messageId={current.id}
+          panel={current}
+          onSaved={(updated) =>
+            setCurrent((prev) => ({ ...prev, ...updated }))
+          }
           onClose={() => setIsEditing(false)}
         />
       ) : (
@@ -88,8 +86,39 @@ const KMangaPanel = ({
             }
           }}
         >
-          <div className="group relative w-full" onClick={handleClick}>
-            <div dangerouslySetInnerHTML={{ __html: content }} />
+          <div
+            ref={containerRef}
+            className="group relative w-full"
+            onClick={() => close()}
+          >
+            <svg
+              style={{ width: "100%" }}
+              viewBox={`0 0 ${current.viewBoxWidth} ${current.viewBoxHeight}`}
+            >
+              <image href={current.imageUrl} width={current.viewBoxWidth} />
+              {current.areas.map((area, i) => (
+                <a
+                  key={i}
+                  href="#"
+                  className="group/area"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    if (containerRef.current) {
+                      showTooltip(e, containerRef.current, area.title);
+                    }
+                  }}
+                >
+                  <rect
+                    x={area.x}
+                    y={area.y}
+                    width={area.width}
+                    height={area.height}
+                    className="fill-transparent group-hover/area:stroke-white group-hover/area:stroke-2 group-hover/area:opacity-20"
+                  />
+                </a>
+              ))}
+            </svg>
             {tooltip && (
               <PopoverTrigger
                 className="absolute size-0 p-0 border-0"
@@ -125,8 +154,7 @@ const KMangaPanel = ({
 interface KMangaPanelEditorProps {
   threadId: string;
   messageId: string;
-  index: number;
-  content: string;
+  panel: MangaPanel;
   onSaved: (panel: UpdatedPanel) => void;
   onClose: () => void;
 }
@@ -134,12 +162,11 @@ interface KMangaPanelEditorProps {
 function KMangaPanelEditor({
   threadId,
   messageId,
-  index,
-  content,
+  panel,
   onSaved,
   onClose,
 }: KMangaPanelEditorProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const svgRef = useRef<SVGSVGElement>(null);
   const startRef = useRef<{ x: number; y: number } | null>(null);
   const [drag, setDrag] = useState<Rect | null>(null);
   const [title, setTitle] = useState("");
@@ -153,29 +180,21 @@ function KMangaPanelEditor({
     setTitle("");
   };
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (showForm || pending) {
+  const handlePointerDown = (e: React.PointerEvent<SVGSVGElement>) => {
+    if (showForm || pending || !svgRef.current) {
       return;
     }
-    const svg = containerRef.current?.querySelector("svg");
-    if (!svg) {
-      return;
-    }
-    const point = toSvgPoint(svg, e.clientX, e.clientY);
+    const point = toSvgPoint(svgRef.current, e.clientX, e.clientY);
     startRef.current = point;
     setDrag({ x: point.x, y: point.y, width: 0, height: 0 });
-    containerRef.current?.setPointerCapture(e.pointerId);
+    svgRef.current.setPointerCapture(e.pointerId);
   };
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!startRef.current) {
+  const handlePointerMove = (e: React.PointerEvent<SVGSVGElement>) => {
+    if (!startRef.current || !svgRef.current) {
       return;
     }
-    const svg = containerRef.current?.querySelector("svg");
-    if (!svg) {
-      return;
-    }
-    const point = toSvgPoint(svg, e.clientX, e.clientY);
+    const point = toSvgPoint(svgRef.current, e.clientX, e.clientY);
     setDrag(normalizeRect(startRef.current, point));
   };
 
@@ -195,16 +214,25 @@ function KMangaPanelEditor({
       const updated = await addClickableArea({
         threadId,
         messageId,
-        index,
-        content,
-        title: title.trim(),
-        x: drag.x,
-        y: drag.y,
-        width: drag.width,
-        height: drag.height,
+        index: panel.index,
+        imageUrl: panel.imageUrl,
+        viewBoxWidth: panel.viewBoxWidth,
+        viewBoxHeight: panel.viewBoxHeight,
+        areas: panel.areas,
+        newArea: {
+          title: title.trim(),
+          x: drag.x,
+          y: drag.y,
+          width: drag.width,
+          height: drag.height,
+        },
       });
       onSaved(updated);
-      toast.success("Đã thêm vùng click");
+      toast.success(
+        updated.replacedCount > 0
+          ? `Đã thay thế ${updated.replacedCount} vùng trùng lặp`
+          : "Đã thêm vùng click"
+      );
       resetDrag();
     } catch (e) {
       const message =
@@ -214,10 +242,6 @@ function KMangaPanelEditor({
       setPending(false);
     }
   };
-
-  const svgViewBox = containerRef.current
-    ?.querySelector("svg")
-    ?.getAttribute("viewBox");
 
   return (
     <div className="flex flex-col gap-2">
@@ -229,30 +253,38 @@ function KMangaPanelEditor({
           <X className="size-4" />
         </Button>
       </div>
-      <div
-        ref={containerRef}
-        className="relative w-full touch-none cursor-crosshair select-none"
+      <svg
+        ref={svgRef}
+        style={{ width: "100%" }}
+        viewBox={`0 0 ${panel.viewBoxWidth} ${panel.viewBoxHeight}`}
+        className="touch-none cursor-crosshair select-none"
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
       >
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-        {drag && svgViewBox && (
-          <svg
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            viewBox={svgViewBox}
-          >
-            <rect
-              x={drag.x}
-              y={drag.y}
-              width={drag.width}
-              height={drag.height}
-              className="fill-primary/20 stroke-primary"
-              strokeWidth={4}
-            />
-          </svg>
+        <image href={panel.imageUrl} width={panel.viewBoxWidth} />
+        {panel.areas.map((area, i) => (
+          <rect
+            key={i}
+            x={area.x}
+            y={area.y}
+            width={area.width}
+            height={area.height}
+            className="fill-transparent stroke-white/50"
+            strokeWidth={1}
+          />
+        ))}
+        {drag && (
+          <rect
+            x={drag.x}
+            y={drag.y}
+            width={drag.width}
+            height={drag.height}
+            className="fill-primary/20 stroke-primary"
+            strokeWidth={4}
+          />
         )}
-      </div>
+      </svg>
       {showForm && (
         <div className="flex items-center gap-2">
           <Input
