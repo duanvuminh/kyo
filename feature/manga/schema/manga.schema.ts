@@ -20,3 +20,22 @@ export const addClickableAreaSchema = z.object({
 });
 
 export type AddClickableAreaInput = z.infer<typeof addClickableAreaSchema>;
+
+export const mangaImageSchema = z.object({
+  url: z.string().min(1),
+  width: z.number().positive(),
+  height: z.number().positive(),
+});
+
+export const createMangaSchema = z.object({
+  title: z.string().trim().min(1),
+  images: z.array(mangaImageSchema).min(1),
+});
+
+export type CreateMangaInput = z.infer<typeof createMangaSchema>;
+
+export const uploadMangaImageSchema = z.object({
+  base64: z.string().min(1),
+});
+
+export type UploadMangaImageInput = z.infer<typeof uploadMangaImageSchema>;

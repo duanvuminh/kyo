@@ -1,4 +1,5 @@
 import {
+  discordChannelTag,
   discordThreadTag,
   fetchCacheConfig,
   getFetchCacheConfig,
@@ -35,7 +36,7 @@ export const getListMessageFromDisCord = async ({
       {
         method: "GET",
         headers: { Authorization: `Bot ${process.env.DISCORD_API_KEY}` },
-        ...fetchCacheConfig,
+        ...getFetchCacheConfig([discordChannelTag(channelId)]),
       },
     );
     if (!res.ok) {
@@ -107,6 +108,10 @@ export const sendDiscordMessage = async ({
       },
     );
 
+    if (!res.ok) {
+      return null;
+    }
+
     const data = await res.json();
     return data as DiscordMessageEntity;
   } catch {
@@ -173,6 +178,10 @@ export const createThreadFromMessage = async ({
         body: JSON.stringify({ name }),
       },
     );
+
+    if (!res.ok) {
+      return null;
+    }
 
     const data = await res.json();
     return data as { id: string };

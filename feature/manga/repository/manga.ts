@@ -4,7 +4,7 @@ import {
   getThreadMessages,
 } from "@/shared/repository/discord";
 
-const CHANNEL_ID = "1225629428420186122";
+export const MANGA_CHANNEL_ID = "1225629428420186122";
 const limit = 1;
 const defaultPage = "newest";
 
@@ -19,7 +19,7 @@ export const fetchMangaEntities = async ({
   page: string;
 }): Promise<{ entities: MangaEntity[]; limit: number; nextPage?: string }> => {
   const messages = await getListMessageFromDisCord({
-    channelId: CHANNEL_ID,
+    channelId: MANGA_CHANNEL_ID,
     before: page === defaultPage ? undefined : page,
     limit,
   });

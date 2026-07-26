@@ -16,3 +16,7 @@ export function getFetchCacheConfig(tags: string[]) {
 export function discordThreadTag(threadId: string): string {
   return `discord-thread-${threadId}`;
 }
+
+export function discordChannelTag(channelId: string): string {
+  return `discord-channel-${channelId}`;
+}
