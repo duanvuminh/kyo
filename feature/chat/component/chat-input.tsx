@@ -16,12 +16,33 @@ interface ChatInputProps {
   onSelectHistory: (item: WordHistoryItem) => void;
 }
 
+function useWordExistsCheck(words: string): boolean {
+  const [existsCheck, setExistsCheck] = useState<{ words: string; exists: boolean } | null>(null);
+
+  useEffect(() => {
+    if (!words) {
+      return;
+    }
+    let cancelled = false;
+    wordExists(words).then((exists) => {
+      if (!cancelled) {
+        setExistsCheck({ words, exists });
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [words]);
+
+  return existsCheck?.words === words && existsCheck.exists;
+}
+
 export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
   const message = useAppSelector(selectMessage);
   const [input, setInput] = useState("");
   const { history, addWord } = useWordHistory();
   const savedRef = useRef("");
-  const [existsCheck, setExistsCheck] = useState<{ words: string; exists: boolean } | null>(null);
+  const canEdit = useWordExistsCheck(message.words);
 
   useEffect(() => {
     if (message.words && message.content && message.words !== savedRef.current) {
@@ -29,23 +50,6 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
       addWord({ words: message.words, content: message.content });
     }
   }, [message.words, message.content, addWord]);
-
-  useEffect(() => {
-    if (!message.words) {
-      return;
-    }
-    let cancelled = false;
-    wordExists(message.words).then((exists) => {
-      if (!cancelled) {
-        setExistsCheck({ words: message.words, exists });
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [message.words]);
-
-  const canEdit = existsCheck?.words === message.words && existsCheck.exists;
 
   return (
     <ChatForm

@@ -1,24 +1,20 @@
 import { mapToManga, serializePanelToSvg } from "@/feature/manga/mapper/manga.mapper";
 import {
+  createMangaEntry,
   fetchMangaEntities,
-  MANGA_CHANNEL_ID,
+  notifyNewMangaCreated,
+  postPanelMessage,
+  replacePanelMessage,
 } from "@/feature/manga/repository/manga";
 import type {
   AddClickableAreaInput,
   CreateMangaInput,
 } from "@/feature/manga/schema/manga.schema";
 import type { MangaArea, MangaPage } from "@/feature/manga/type/manga.domain";
-import { discordChannelTag, discordThreadTag } from "@/shared/config/cache";
-import { storage } from "@/shared/lib/firebase-admin";
-import {
-  createThreadFromMessage,
-  deleteDiscordMessage,
-  sendDiscordMessage,
-  sendMessageToThread,
-} from "@/shared/repository/discord";
 import { AppError, ErrorCode } from "@/shared/type/models/error";
 import matter from "gray-matter";
-import { revalidateTag } from "next/cache";
+
+export { uploadMangaImage } from "@/feature/manga/repository/manga";
 
 export const getManga = async ({
   page,
@@ -76,23 +72,15 @@ export const addClickableAreaToPanel = async ({
     viewBoxHeight,
     areas: nextAreas,
   });
-  // Đăng lại luôn rơi xuống cuối thread theo thời gian → ghi index vào frontmatter
-  // để mapper sắp xếp lại đúng vị trí gốc, không phụ thuộc thứ tự đăng trên Discord.
   const messageBody = `---\nindex: ${index}\n---\n${svg}`;
 
-  // Discord bot không thể PATCH tin nhắn do user đăng, chỉ tác giả mới sửa được
-  // → đăng tin nhắn mới rồi xoá tin nhắn cũ (đăng trước để tránh mất nội dung nếu xoá thất bại)
-  const posted = await sendMessageToThread({ threadId, message: messageBody });
-  if (!posted?.id) {
-    throw new AppError(ErrorCode.DISCORD);
+  const replaced = await replacePanelMessage(threadId, messageId, messageBody);
+  if (!replaced?.id) {
+    throw new AppError(ErrorCode.SLACK);
   }
 
-  await deleteDiscordMessage({ channelId: threadId, messageId });
-
-  revalidateTag(discordThreadTag(threadId), "max");
-
   return {
-    id: posted.id,
+    id: replaced.id,
     index,
     imageUrl,
     viewBoxWidth,
@@ -101,20 +89,6 @@ export const addClickableAreaToPanel = async ({
     replacedCount: areas.length - keptAreas.length,
   };
 };
-
-export async function uploadMangaImage(imageBase64: string): Promise<string> {
-  const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, "");
-  const buffer = Buffer.from(base64Data, "base64");
-
-  const fileName = `manga-images/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
-  const file = storage.file(fileName);
-  await file.save(buffer, {
-    metadata: { contentType: "image/jpeg" },
-    public: true,
-  });
-
-  return `https://storage.googleapis.com/${storage.name}/${fileName}`;
-}
 
 export interface CreatedManga {
   id: string;
@@ -125,24 +99,12 @@ export const createNewManga = async ({
   images,
 }: CreateMangaInput): Promise<CreatedManga> => {
   const topMessage = matter.stringify("", { title });
-  const posted = await sendDiscordMessage({
-    channelId: MANGA_CHANNEL_ID,
-    message: topMessage,
-  });
-  if (!posted?.id) {
-    throw new AppError(ErrorCode.DISCORD);
+  const created = await createMangaEntry(topMessage);
+  if (!created) {
+    throw new AppError(ErrorCode.SLACK);
   }
 
-  const thread = await createThreadFromMessage({
-    channelId: MANGA_CHANNEL_ID,
-    messageId: posted.id,
-    name: title.slice(0, 100),
-  });
-  if (!thread?.id) {
-    throw new AppError(ErrorCode.DISCORD);
-  }
-
-  // Đăng tuần tự (không Promise.all) để tránh bị Discord rate-limit
+  // Đăng tuần tự (không Promise.all) để tránh bị rate-limit
   for (let i = 0; i < images.length; i++) {
     const svg = serializePanelToSvg({
       imageUrl: images[i].url,
@@ -150,16 +112,13 @@ export const createNewManga = async ({
       viewBoxHeight: images[i].height,
       areas: [],
     });
-    const panelPosted = await sendMessageToThread({
-      threadId: thread.id,
-      message: `---\nindex: ${i}\n---\n${svg}`,
-    });
+    const panelPosted = await postPanelMessage(created.threadId, `---\nindex: ${i}\n---\n${svg}`);
     if (!panelPosted?.id) {
-      throw new AppError(ErrorCode.DISCORD);
+      throw new AppError(ErrorCode.SLACK);
     }
   }
 
-  revalidateTag(discordChannelTag(MANGA_CHANNEL_ID), "max");
+  notifyNewMangaCreated();
 
-  return { id: posted.id };
+  return { id: created.entryId };
 };

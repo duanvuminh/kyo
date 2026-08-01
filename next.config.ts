@@ -13,6 +13,11 @@ const nextConfig = withMDX({
   },
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
+    localPatterns: [
+      {
+        pathname: "/api/file",
+      },
+    ],
     remotePatterns: [
       {
         protocol: "https",

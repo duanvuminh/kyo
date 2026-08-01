@@ -1,6 +1,7 @@
 export enum ErrorCode {
   DUPLICATE_KEYWORD,
   DISCORD,
+  SLACK,
   VIDEOS_MARKET,
   STORAGE,
   AI_MODEL_ERROR,
@@ -17,6 +18,7 @@ export enum ErrorCode {
 export const ErrorMessage: Record<ErrorCode, string> = {
   [ErrorCode.DUPLICATE_KEYWORD]: "Từ khóa đã tồn tại",
   [ErrorCode.DISCORD]: "Lỗi kết nối Discord",
+  [ErrorCode.SLACK]: "Lỗi kết nối Slack",
   [ErrorCode.VIDEOS_MARKET]: "Không thể lấy dữ liệu video",
   [ErrorCode.STORAGE]: "Lỗi lưu trữ storage",
   [ErrorCode.AI_MODEL_ERROR]: "Vui lòng thử lại sau vài phút",

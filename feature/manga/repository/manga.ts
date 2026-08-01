@@ -1,16 +1,21 @@
-import type { DiscordMessageEntity } from "@/shared/type/dto/discord-message";
+import { discordChannelTag, discordThreadTag } from "@/shared/config/cache";
 import {
-  getListMessageFromDisCord,
-  getThreadMessages,
-} from "@/shared/repository/discord";
+  getListMessageFromSlack,
+  getListReplyFromSlack,
+  sendSlackMessage,
+  updateSlackMessage,
+  uploadSlackImage,
+} from "@/shared/repository/slack";
+import type { SlackMessageEntity } from "@/shared/type/dto/slack-message";
+import { revalidateTag } from "next/cache";
 
-export const MANGA_CHANNEL_ID = "1225629428420186122";
+export const MANGA_CHANNEL_ID = "C0BMBA82Q6N";
 const limit = 1;
 const defaultPage = "newest";
 
 export interface MangaEntity {
-  message: DiscordMessageEntity;
-  threadMessages: DiscordMessageEntity[];
+  message: SlackMessageEntity;
+  threadMessages: SlackMessageEntity[];
 }
 
 export const fetchMangaEntities = async ({
@@ -18,15 +23,20 @@ export const fetchMangaEntities = async ({
 }: {
   page: string;
 }): Promise<{ entities: MangaEntity[]; limit: number; nextPage?: string }> => {
-  const messages = await getListMessageFromDisCord({
+  const history = await getListMessageFromSlack({
     channelId: MANGA_CHANNEL_ID,
-    before: page === defaultPage ? undefined : page,
+    cursor: page === defaultPage ? undefined : page,
     limit,
   });
 
   const entities = await Promise.all(
-    messages.map(async (msg) => {
-      const threadMessages = await getThreadMessages({ threadId: msg.id });
+    history.messages.map(async (msg) => {
+      const replies = await getListReplyFromSlack({
+        channelId: MANGA_CHANNEL_ID,
+        ts: msg.ts,
+      });
+      // conversations.replies trả cả message gốc ở đầu mảng, bỏ ra để chỉ còn panel thật
+      const threadMessages = replies.messages.filter((m) => m.ts !== msg.ts);
       return { message: msg, threadMessages };
     }),
   );
@@ -34,6 +44,66 @@ export const fetchMangaEntities = async ({
   return {
     entities,
     limit,
-    nextPage: messages.length === limit ? messages.at(-1)?.id : undefined,
+    nextPage: history.has_more ? history.response_metadata?.next_cursor : undefined,
   };
 };
+
+// Slack không có bước "tạo thread" riêng như Discord — 1 message bất kỳ tự
+// trở thành thread cha ngay khi có reply dùng thread_ts = ts của nó.
+export const createMangaEntry = async (
+  content: string,
+): Promise<{ entryId: string; threadId: string } | null> => {
+  const posted = await sendSlackMessage({ channelId: MANGA_CHANNEL_ID, text: content });
+  return posted ? { entryId: posted.ts, threadId: posted.ts } : null;
+};
+
+export const postPanelMessage = async (
+  threadId: string,
+  content: string,
+): Promise<{ id: string } | null> => {
+  const posted = await sendSlackMessage({
+    channelId: MANGA_CHANNEL_ID,
+    text: content,
+    threadTs: threadId,
+  });
+  return posted ? { id: posted.ts } : null;
+};
+
+// Slack cho phép bot tự sửa tin nhắn của chính nó qua chat.update
+// → không cần workaround đăng mới + xoá cũ như Discord.
+export const replacePanelMessage = async (
+  threadId: string,
+  messageId: string,
+  content: string,
+): Promise<{ id: string } | null> => {
+  const updated = await updateSlackMessage({
+    channelId: MANGA_CHANNEL_ID,
+    ts: messageId,
+    text: content,
+  });
+  if (!updated) {
+    return null;
+  }
+
+  revalidateTag(discordThreadTag(threadId), "max");
+
+  return { id: messageId };
+};
+
+export const notifyNewMangaCreated = () => {
+  revalidateTag(discordChannelTag(MANGA_CHANNEL_ID), "max");
+};
+
+export async function uploadMangaImage(imageBase64: string): Promise<string | null> {
+  const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, "");
+  const buffer = Buffer.from(base64Data, "base64");
+  const filename = `manga-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
+
+  const urlPrivate = await uploadSlackImage({ buffer, filename });
+  if (!urlPrivate) {
+    return null;
+  }
+
+  // Slack file URL yêu cầu Bearer token mới fetch được → phải đi qua proxy có sẵn của app
+  return `/api/file?url=${encodeURIComponent(urlPrivate)}`;
+}

@@ -67,20 +67,21 @@ export function serializePanelToSvg({
 }
 
 export function mapToManga({ message, threadMessages }: MangaEntity): Manga {
-  const parsed = matter(message.content);
-  const panels: MangaPanel[] = [...threadMessages]
-    .reverse()
+  const parsed = matter(unescapeHtml(message.text));
+  // conversations.replies của Slack đã trả theo thứ tự thời gian tăng dần sẵn, không cần reverse như Discord.
+  const panels: MangaPanel[] = threadMessages
     .map((m, chronoIndex) => {
-      const panelParsed = matter(m.content);
+      // Slack tự HTML-escape < > khi post (dù đã tắt mrkdwn ở 1 số tin cũ) → unescape lại trước khi parse SVG
+      const panelParsed = matter(unescapeHtml(m.text));
       const index =
         typeof panelParsed.data.index === "number"
           ? panelParsed.data.index
           : chronoIndex;
-      return { id: m.id, index, ...parsePanelSvg(panelParsed.content) };
+      return { id: m.ts, index, ...parsePanelSvg(panelParsed.content) };
     })
     .sort((a, b) => a.index - b.index);
   return {
-    id: message.id,
+    id: message.ts,
     title: parsed.data.title,
     panels,
   };

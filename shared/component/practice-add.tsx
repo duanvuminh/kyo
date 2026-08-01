@@ -9,6 +9,12 @@ import { Source } from "@/shared/type/models/word";
 import { Plus } from "lucide-react";
 import { toast } from "sonner";
 
+function persistContentIfFromChat(word: string | undefined, key: string, content?: string) {
+  if (!word && content) {
+    saveWordContent({ source: Source.FIREBASE, documentId: key, words: key, content });
+  }
+}
+
 export const PracticeAdd = ({ word }: { word?: string }) => {
   const message = useAppSelector(selectMessage);
   const words = message.words;
@@ -24,14 +30,7 @@ export const PracticeAdd = ({ word }: { word?: string }) => {
     }
     try {
       PracticeStorage.addToPracticeList(key);
-      if (!word && message.content) {
-        saveWordContent({
-          source: Source.FIREBASE,
-          documentId: key,
-          words: key,
-          content: message.content,
-        });
-      }
+      persistContentIfFromChat(word, key, message.content);
       toast.success("Đã thêm vào danh sách luyện tập");
     } catch (e) {
       if (e instanceof AppError && e.code === ErrorCode.DUPLICATE_KEYWORD) {

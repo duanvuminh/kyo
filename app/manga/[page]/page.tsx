@@ -33,8 +33,15 @@ export default async function Page({
     </div>
   ) : (
     <CenterMessage>
-      Không tìm thấy bài viết cũ hơn.
-      <Link href="/manga/newest">↪︎Click để quay lại</Link>.
+      {page === "newest" ? "Chưa có manga nào." : "Không tìm thấy bài viết cũ hơn."}
+      <div>
+        <Link href="/manga/new">+ Tạo manga mới</Link>
+        {page !== "newest" && (
+          <>
+            {" "}· <Link href="/manga/newest">↪︎quay lại</Link>
+          </>
+        )}
+      </div>
     </CenterMessage>
   );
 }
