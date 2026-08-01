@@ -456,7 +456,7 @@ function KMangaPanelEditor({
     useAreaTitleForm({ threadId, messageId, panel, drag, onSaved, resetDrag, setPending });
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-3">
       <MangaEditorHeader onClose={onClose} />
       <MangaPanelEditorCanvas
         svgRef={svgRef}
@@ -467,13 +467,13 @@ function KMangaPanelEditor({
         onPointerUp={handlePointerUp}
       />
       {showForm && (
-        <MangaAreaTitleForm
-          title={title}
-          pending={pending}
-          onTitleChange={setTitle}
-          onSubmit={submit}
-          onCancel={cancel}
-        />
+          <MangaAreaTitleForm
+            title={title}
+            pending={pending}
+            onTitleChange={setTitle}
+            onSubmit={submit}
+            onCancel={cancel}
+          />
       )}
     </div>
   );
@@ -531,7 +531,7 @@ function MangaTitleEditForm({
   const [pending, setPending] = useState(false);
 
   return (
-    <div className="flex items-center gap-2 not-prose">
+    <div className="mb-4 flex items-center gap-2 not-prose">
       <Input value={draft} onChange={(e) => onDraftChange(e.target.value)} disabled={pending} />
       <Button
         type="button"
@@ -578,8 +578,8 @@ function MangaTitleHeading({ mangaId, title }: { mangaId: string; title: string 
   }
 
   return (
-    <div className="group flex items-center gap-2">
-      <h1>{current}</h1>
+    <div className="group mb-4 flex items-center gap-2">
+      <h1 className="m-0">{current}</h1>
       <Button
         type="button"
         variant="ghost"
@@ -598,7 +598,7 @@ export const KManga = ({ manga }: { manga: Manga }) => {
   return (
     <>
       <MangaTitleHeading mangaId={manga.id} title={manga.title} />
-      <div className="flex flex-col items-center gap-1 not-prose">
+      <div className="flex flex-col items-center gap-1 not-prose mb-8">
         {manga.panels.map((panel) => (
           <KMangaPanel key={panel.id} threadId={manga.id} panel={panel} />
         ))}
