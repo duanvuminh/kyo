@@ -1,6 +1,7 @@
 "use client";
 
 import { addClickableArea } from "@/feature/manga/actions/add-clickable-area";
+import { updateMangaTitleAction } from "@/feature/manga/actions/update-manga-title";
 import { useSvgTooltip } from "@/feature/manga/component/useSvgTooltip";
 import type { UpdatedPanel } from "@/feature/manga/service/manga";
 import type { Manga, MangaArea, MangaPanel } from "@/feature/manga/type/manga.domain";
@@ -478,10 +479,125 @@ function KMangaPanelEditor({
   );
 }
 
+async function saveMangaTitle({
+  entryId,
+  title,
+  onSaved,
+  onDone,
+  setPending,
+}: {
+  entryId: string;
+  title: string;
+  onSaved: (title: string) => void;
+  onDone: () => void;
+  setPending: (pending: boolean) => void;
+}) {
+  const trimmed = title.trim();
+  if (!trimmed) {
+    return;
+  }
+  setPending(true);
+  try {
+    await updateMangaTitleAction({ entryId, title: trimmed });
+    onSaved(trimmed);
+    toast.success("Đã lưu tiêu đề");
+    onDone();
+  } catch (e) {
+    const message =
+      e instanceof AppError ? e.customMessage : new AppError(ErrorCode.UNKNOWN).customMessage;
+    toast.error(message);
+  } finally {
+    setPending(false);
+  }
+}
+
+interface MangaTitleEditFormProps {
+  mangaId: string;
+  draft: string;
+  current: string;
+  onDraftChange: (v: string) => void;
+  onSaved: (title: string) => void;
+  onDone: () => void;
+}
+
+function MangaTitleEditForm({
+  mangaId,
+  draft,
+  current,
+  onDraftChange,
+  onSaved,
+  onDone,
+}: MangaTitleEditFormProps) {
+  const [pending, setPending] = useState(false);
+
+  return (
+    <div className="flex items-center gap-2 not-prose">
+      <Input value={draft} onChange={(e) => onDraftChange(e.target.value)} disabled={pending} />
+      <Button
+        type="button"
+        size="sm"
+        disabled={pending}
+        onClick={() =>
+          saveMangaTitle({ entryId: mangaId, title: draft, onSaved, onDone, setPending })
+        }
+      >
+        Lưu
+      </Button>
+      <Button
+        type="button"
+        size="sm"
+        variant="ghost"
+        disabled={pending}
+        onClick={() => {
+          onDraftChange(current);
+          onDone();
+        }}
+      >
+        Huỷ
+      </Button>
+    </div>
+  );
+}
+
+function MangaTitleHeading({ mangaId, title }: { mangaId: string; title: string }) {
+  const [current, setCurrent] = useState(title);
+  const [draft, setDraft] = useState(title);
+  const [isEditing, setIsEditing] = useState(false);
+
+  if (isEditing) {
+    return (
+      <MangaTitleEditForm
+        mangaId={mangaId}
+        draft={draft}
+        current={current}
+        onDraftChange={setDraft}
+        onSaved={setCurrent}
+        onDone={() => setIsEditing(false)}
+      />
+    );
+  }
+
+  return (
+    <div className="group flex items-center gap-2">
+      <h1>{current}</h1>
+      <Button
+        type="button"
+        variant="ghost"
+        size="icon"
+        aria-label="Sửa tiêu đề"
+        className="opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
+        onClick={() => setIsEditing(true)}
+      >
+        <Pencil className="size-4" />
+      </Button>
+    </div>
+  );
+}
+
 export const KManga = ({ manga }: { manga: Manga }) => {
   return (
     <>
-      <h1>{manga.title}</h1>
+      <MangaTitleHeading mangaId={manga.id} title={manga.title} />
       <div className="flex flex-col items-center gap-1 not-prose">
         {manga.panels.map((panel) => (
           <KMangaPanel key={panel.id} threadId={manga.id} panel={panel} />

@@ -5,6 +5,7 @@ import {
   notifyNewMangaCreated,
   postPanelMessage,
   replacePanelMessage,
+  updateMangaEntry,
 } from "@/feature/manga/repository/manga";
 import type {
   AddClickableAreaInput,
@@ -88,6 +89,14 @@ export const addClickableAreaToPanel = async ({
     areas: nextAreas,
     replacedCount: areas.length - keptAreas.length,
   };
+};
+
+export const updateMangaTitle = async (
+  entryId: string,
+  title: string
+): Promise<boolean> => {
+  const content = matter.stringify("", { title });
+  return updateMangaEntry(entryId, content);
 };
 
 export interface CreatedManga {

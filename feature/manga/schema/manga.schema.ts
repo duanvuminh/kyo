@@ -39,3 +39,10 @@ export const uploadMangaImageSchema = z.object({
 });
 
 export type UploadMangaImageInput = z.infer<typeof uploadMangaImageSchema>;
+
+export const updateMangaTitleSchema = z.object({
+  entryId: z.string().min(1),
+  title: z.string().trim().min(1),
+});
+
+export type UpdateMangaTitleInput = z.infer<typeof updateMangaTitleSchema>;

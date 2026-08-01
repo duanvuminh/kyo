@@ -90,6 +90,23 @@ export const replacePanelMessage = async (
   return { id: messageId };
 };
 
+export const updateMangaEntry = async (
+  entryId: string,
+  content: string,
+): Promise<boolean> => {
+  const updated = await updateSlackMessage({
+    channelId: MANGA_CHANNEL_ID,
+    ts: entryId,
+    text: content,
+  });
+
+  if (updated) {
+    revalidateTag(discordChannelTag(MANGA_CHANNEL_ID), "max");
+  }
+
+  return updated;
+};
+
 export const notifyNewMangaCreated = () => {
   revalidateTag(discordChannelTag(MANGA_CHANNEL_ID), "max");
 };
