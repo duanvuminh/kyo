@@ -30,8 +30,12 @@ async function addWord(
   setPending(true);
   try {
     // Sửa lỗi gõ sai/gõ thiếu trước khi dùng làm key, tránh 2 document cho cùng 1 từ
-    // (vd "ふたりつきり" → "ふたりきり"). Lỗi AI thì normalizeWordAction tự fallback về trimmed.
-    const key = await normalizeWordAction(trimmed);
+    // (vd "ふたりつきり" → "ふたりきり"). Lỗi AI thì normalizeWordAction tự fallback về trimmed, coi như hợp lệ.
+    const { normalized: key, type } = await normalizeWordAction(trimmed);
+    if (type === "other") {
+      toast.warning("Không phải từ vựng/ngữ pháp, không thể thêm vào luyện tập");
+      return;
+    }
     PracticeStorage.addToPracticeList(key);
     persistContentIfFromChat(word, key, content);
     toast.success("Đã thêm vào danh sách luyện tập");

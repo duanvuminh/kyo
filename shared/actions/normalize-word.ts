@@ -1,14 +1,15 @@
 "use server";
 
-import { normalizeWordViaAi } from "@/shared/service/ai/normalize-word";
+import { normalizeWordViaAi, type NormalizeResult } from "@/shared/service/ai/normalize-word";
 
-export async function normalizeWordAction(word: string): Promise<string> {
+export async function normalizeWordAction(word: string): Promise<NormalizeResult> {
   if (!word.trim()) {
-    return word;
+    return { normalized: word, type: "word" };
   }
   try {
     return await normalizeWordViaAi(word);
   } catch {
-    return word;
+    // Lỗi AI thì không chặn add, coi như hợp lệ và giữ nguyên chữ gốc
+    return { normalized: word, type: "word" };
   }
 }
