@@ -99,6 +99,7 @@ function ChatForm({ input, words, history, canEdit, onInput, onSelectHistory, on
           variant="ghost"
           size="icon"
           type="submit"
+          aria-label="Gửi"
           className="absolute flex right-1 bottom-1"
         >
           <Send />

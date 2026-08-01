@@ -149,6 +149,7 @@ function MangaEditButton({ onEdit }: { onEdit: () => void }) {
       type="button"
       variant="ghost"
       size="icon"
+      aria-label="Sửa panel"
       className="absolute top-1 right-1 bg-background/70 opacity-0 transition-opacity group-hover:opacity-100 focus-visible:opacity-100"
       onClick={(e) => {
         e.stopPropagation();
@@ -396,7 +397,7 @@ function MangaEditorHeader({ onClose }: { onClose: () => void }) {
       <p className="text-xs text-muted-foreground">
         Kéo từ điểm A đến điểm B trên ảnh để thêm vùng click
       </p>
-      <Button type="button" variant="ghost" size="icon" onClick={onClose}>
+      <Button type="button" variant="ghost" size="icon" aria-label="Đóng chỉnh sửa" onClick={onClose}>
         <X className="size-4" />
       </Button>
     </div>

@@ -56,6 +56,7 @@ export const PracticeAdd = ({ word }: { word?: string }) => {
     <Button
       type="button"
       variant="ghost"
+      aria-label="Thêm vào danh sách luyện tập"
       className="text-muted"
       onClick={() => {
         const raw = word ?? words;

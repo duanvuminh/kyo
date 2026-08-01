@@ -15,7 +15,7 @@ export function InputRow({ text, setText, isDisabled, imagePreview, fileInputRef
   return (
     <div className="flex gap-2">
       <input type="file" ref={fileInputRef} onChange={handleImageSelect} accept="image/*" className="hidden" />
-      <Button type="button" variant="ghost" size="icon" disabled={isDisabled} onClick={openFilePicker}>
+      <Button type="button" variant="ghost" size="icon" aria-label="Đính kèm ảnh" disabled={isDisabled} onClick={openFilePicker}>
         <ImagePlus className="h-4 w-4" />
       </Button>
       <input
@@ -26,7 +26,11 @@ export function InputRow({ text, setText, isDisabled, imagePreview, fileInputRef
         disabled={isDisabled}
         className="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
       />
-      <Button type="submit" disabled={isDisabled || (!text.trim() && !imagePreview)}>
+      <Button
+        type="submit"
+        aria-label="Gửi"
+        disabled={isDisabled || (!text.trim() && !imagePreview)}
+      >
         {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Send className="h-4 w-4" />}
       </Button>
     </div>
