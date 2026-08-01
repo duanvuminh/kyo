@@ -1,14 +1,15 @@
 import { discordMessageToPractice } from "@/feature/practice/mapper/practice.mapper";
 import type { Practice } from "@/feature/practice/model/practice";
+import {
+  createQuestionThread,
+  getFlashCardMessage,
+  getQuestionMessages,
+  postFlashCard,
+  postQuestionMessage,
+  updateQuestionMessage,
+} from "@/feature/practice/repository/practice";
 import { mapDatas } from "@/shared/lib/data-convert";
 import { questionSchema } from "@/shared/lib/question-mapper";
-import {
-  createThreadFromMessage,
-  getMessageFromDisCord,
-  getThreadMessages,
-  sendDiscordMessage,
-  sendMessageToThread,
-} from "@/shared/repository/discord";
 import { getWordById, upsertDocument } from "@/shared/repository/firestore";
 import { freeAiService } from "@/shared/service/ai/factory";
 import {
@@ -20,8 +21,7 @@ import {
 import type { DiscordMessageEntity } from "@/shared/type/dto/discord-message";
 import { KWord, Source } from "@/shared/type/models/word";
 import { KWordType } from "@/shared/type/models/word-type";
-
-const _channelId = "1386090536753958952";
+import matter from "gray-matter";
 
 export const getFlashCard = async (word: string): Promise<Practice | null> => {
   const wordFromDictionary = await getWordById(word);
@@ -46,22 +46,41 @@ export const getFlashCard = async (word: string): Promise<Practice | null> => {
 };
 
 export const getPractice = async (practice: Practice): Promise<Practice[]> => {
-  const discordMessage = await getThreadMessages({
-    threadId: practice.id,
-  });
+  const discordMessage = await getQuestionMessages(practice.id);
   return mapDatas<DiscordMessageEntity, Practice>(
     discordMessage.filter((msg) => msg.type === 0),
     discordMessageToPractice
   );
 };
 
+export const updateQuestion = async ({
+  threadId,
+  messageId,
+  content,
+  answers,
+  correctAnswer,
+  yomi,
+}: {
+  threadId: string;
+  messageId: string;
+  content: string;
+  answers: [string, string, string, string];
+  correctAnswer: number;
+  yomi?: string;
+}): Promise<boolean> => {
+  const body = matter.stringify(content, {
+    answers,
+    correctAnswer,
+    ...(yomi ? { yomi } : {}),
+  });
+
+  return updateQuestionMessage(threadId, messageId, body);
+};
+
 const _getExistingFlashCard = async (
   practiceId: string
 ): Promise<Practice | null> => {
-  const discordMessage = await getMessageFromDisCord({
-    channelId: _channelId,
-    messageId: practiceId,
-  });
+  const discordMessage = await getFlashCardMessage(practiceId);
   return discordMessage ? discordMessageToPractice(discordMessage) : null;
 };
 
@@ -79,10 +98,7 @@ const _createNewFlashCard = async (
     return null;
   }
 
-  const discordMessage = await sendDiscordMessage({
-    channelId: _channelId,
-    message: summary,
-  });
+  const discordMessage = await postFlashCard(summary);
   if (!discordMessage?.id) {
     return null;
   }
@@ -107,11 +123,7 @@ const _createPracticeQuestions = async (
   wordType?: KWordType
 ): Promise<void> => {
   // Tạo thread từ flashcard message
-  const thread = await createThreadFromMessage({
-    channelId: _channelId,
-    messageId,
-    name: `Practice: ${word}`,
-  });
+  const thread = await createQuestionThread(messageId, `Practice: ${word}`);
   if (!thread) {
     return;
   }
@@ -135,7 +147,7 @@ const _createPracticeQuestions = async (
   // Gửi từng question vào thread
   for (const q of result.questions) {
     const content = _formatQuestionToMarkdown(q);
-    await sendMessageToThread({ threadId: thread.id, message: content });
+    await postQuestionMessage(thread.id, content);
   }
 };
 

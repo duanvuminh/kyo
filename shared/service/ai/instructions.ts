@@ -25,6 +25,14 @@ Phân loại input tiếng Nhật sau vào 1 trong 3 loại (type), rồi trả 
 
 - "other": input không phải từ vựng/cấu trúc ngữ pháp tiếng Nhật hợp lệ (là câu hỏi, yêu cầu so sánh, hoặc text không xác định được). Trả lời/giải đáp trực tiếp vào content.`;
 
+export const instructionNormalizeWord = `Sửa lỗi gõ sai/gõ thiếu/gõ thừa tiếng Nhật trong input, hoặc bỏ ký hiệu trang trí không phải một phần của từ (ví dụ dấu ~/〜/- ở đầu hay dùng trong sách ngữ pháp).
+
+QUAN TRỌNG: KHÔNG quy các dạng chia động từ/tính từ về dạng từ điển gốc (辞書形) — 食べる, 食べられる, 食べた, 食べます là các từ/dạng KHÁC NHAU, giữ nguyên như input, KHÔNG gộp chung.
+
+Nếu input đã đúng chính tả rồi thì trả về y nguyên input, không đổi gì cả.
+
+Chỉ trả về đúng chuỗi kết quả (field normalized), không giải thích gì thêm.`;
+
 export const instructionPracticeGrammar = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ngữ pháp $1 trong 2 dòng`;
 export const instructionPracticeWord = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ý nghĩa $1 trong 2 dòng`;
 
