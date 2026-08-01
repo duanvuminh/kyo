@@ -31,7 +31,9 @@ export const fetchShortEntities = async ({
         return {
           ...item,
           text: content,
-          relatedMessages: relateds.length > 1 ? relateds : [],
+          // relateds giờ không còn tính message gốc (đã bỏ ở parseRelatedItems) nên chỉ cần >0
+          // là đã có ít nhất 1 tập khác thật sự ngoài short chính.
+          relatedMessages: relateds.length > 0 ? relateds : [],
         };
       }
       return item;

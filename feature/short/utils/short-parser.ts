@@ -26,6 +26,9 @@ export function parseMultipleMetadata(
           ...baseItem,
           text: fullBlock,
           ts: `${baseItem.ts}_${index}`,
+          // Map theo thứ tự 1 file : 1 block metadata, tránh mọi episode share chung cả mảng files
+          // (khiến bấm qua tập khác chỉ đổi tiêu đề, video vẫn giữ nguyên).
+          files: baseItem.files?.[index] ? [baseItem.files[index]] : undefined,
         });
         index++;
       }
@@ -49,7 +52,9 @@ export function parseRelatedItems(threads: SlackMessageEntity[]): SlackMessageEn
   const result: SlackMessageEntity[] = [];
   let current: SlackMessageEntity | null = null;
 
-  for (const item of threads) {
+  // threads[0] luôn là message gốc của thread (chính short hiện tại, conversations.replies của
+  // Slack trả kèm), không tính là 1 "episode" riêng — nếu không sẽ trùng lặp với short chính.
+  for (const item of threads.slice(1)) {
     const text = item.text ?? "";
     const multipleItems = parseMultipleMetadata(text, item);
 

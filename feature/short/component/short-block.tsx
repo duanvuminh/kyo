@@ -12,15 +12,17 @@ interface ShortBlockProps {
 
 export function ShortBlock({ short }: ShortBlockProps) {
   const relateShorts = short.relateShort ?? [];
+  // short chính luôn là "tập 1", các reply thật (đã bỏ trùng ở parseRelatedItems) là tập tiếp theo.
+  const episodes = relateShorts.length > 0 ? [short, ...relateShorts] : [];
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const currentShort = relateShorts.length > 0 ? relateShorts[selectedIndex] : short;
+  const currentShort = episodes.length > 0 ? episodes[selectedIndex] : short;
 
   return (
     <div key={currentShort.id}>
       <KShortTitleContent short={currentShort} />
-      {relateShorts.length > 0 && (
+      {episodes.length > 0 && (
         <EpisodeList
-          relateShort={relateShorts}
+          relateShort={episodes}
           selectedIndex={selectedIndex}
           onSelect={(_, idx) => setSelectedIndex(idx)}
         />

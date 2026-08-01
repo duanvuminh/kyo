@@ -39,18 +39,26 @@ function stringToShortType(value: string): ShortType {
   return (values.find((v) => v === value) ?? "other") as ShortType;
 }
 
+// Slack tự bọc URL trần bằng <url> hoặc <url|label> khi hiển thị trong text (không nhất quán,
+// tuỳ cách gõ/paste) — phải strip trước khi dùng làm src, nếu không URL sẽ chứa dấu < > gây lỗi.
+function extractUrl(raw: string): string {
+  const match = raw.match(/^<([^|>]+)(?:\|[^>]*)?>$/);
+  return match ? match[1] : raw;
+}
+
 function mapFiles(
   data: SlackMessageEntity,
   metadata: { externalFile?: string; title?: string }
 ): KFile[] | undefined {
   if (metadata.externalFile) {
     const mimetype = "video/*";
+    const url = extractUrl(metadata.externalFile);
     return [
       {
         name: metadata.title ?? "",
-        url: metadata.externalFile,
+        url,
         mimetype,
-        source: resolveFileKind(metadata.externalFile, mimetype),
+        source: resolveFileKind(url, mimetype),
       },
     ];
   }
