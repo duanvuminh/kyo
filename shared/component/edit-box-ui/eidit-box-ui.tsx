@@ -27,8 +27,7 @@ export function EditBoxUI({
   if (
     !item?.words &&
     item.source !== Source.ALGOLIA &&
-    item.source !== Source.STORAGE &&
-    item.source !== Source.HUUSENNARARE
+    item.source !== Source.STORAGE
   ) {
     return <Empty />;
   }

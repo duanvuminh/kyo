@@ -6,7 +6,6 @@ export enum Source {
   DISCORD = "discord",
   SLACK = "slack",
   ALGOLIA = "algolia",
-  HUUSENNARARE = "huusennarare",
   STORAGE = "storage",
   GRAMMAR = "grammar",
 }

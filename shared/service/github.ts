@@ -1,5 +1,3 @@
-import { AppError, ErrorCode } from "@/shared/type/models/error";
-import { BaseItem } from "@/shared/type/models/word";
 import path from "node:path";
 
 type RepoConfig = {
@@ -150,24 +148,6 @@ async function createPullRequest({
     );
 }
 
-function getValidatedHuusennararePayload(item: BaseItem): {
-    slug: string;
-    content: string;
-    targetPath: string;
-} {
-    const slug = item.documentId?.trim();
-    if (!slug || !item.content) {
-        throw new AppError(ErrorCode.VALIDATION);
-    }
-
-    if (!/^[a-z0-9-]+$/i.test(slug)) {
-        throw new AppError(ErrorCode.VALIDATION);
-    }
-
-    const targetPath = path.join("app", "huusennarare", slug, "page.mdx");
-    return { slug, content: item.content, targetPath };
-}
-
 async function createEditCommitAndPr({
     slug,
     targetPath,
@@ -209,31 +189,6 @@ async function createEditCommitAndPr({
         body: prBody ?? `Auto-generated from /update-content for ${slug}.`,
         token: cfg.token,
     });
-}
-
-export async function updateHuusennarareViaGithub(item: BaseItem) {
-    const { slug, content, targetPath } = getValidatedHuusennararePayload(item);
-
-    const cfg = getRepoConfig();
-    if (!cfg) {
-        console.error(
-            "Missing GitHub config. Required: GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO",
-        );
-        return;
-    }
-
-    try {
-        await createEditCommitAndPr({
-            slug,
-            targetPath,
-            content,
-            cfg,
-            branchPrefix: "edit/huusennarare",
-            prBody: `Auto-generated from /update-content for ${slug}.`,
-        });
-    } catch (error) {
-        console.error("Failed to auto-create PR:", (error as Error).message);
-    }
 }
 
 export async function updateGrammarViaGithub(slug: string, content: string) {

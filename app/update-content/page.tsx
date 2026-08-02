@@ -1,7 +1,7 @@
 import { EditBox } from "@/feature/update-content/component/edit-box/edit-box";
 import { submitUpdateContent, submitUpdateGrammar } from "@/shared/actions/update-content";
 import { CenterMessage } from "@/shared/component/center-message";
-import { getGrammarEditItem, getHuusennarareEditItem } from "@/shared/lib/update-content";
+import { getGrammarEditItem } from "@/shared/lib/update-content";
 import { checkAuthenticated } from "@/shared/service/auth";
 
 interface UpdateContentPageProps {
@@ -25,16 +25,6 @@ export default async function Page({ searchParams }: UpdateContentPageProps) {
   }
 
   const params = (await searchParams) ?? {};
-
-  if (params.kind === "huusennarare" && params.slug) {
-    const initialItem = await getHuusennarareEditItem(params.slug);
-
-    if (!initialItem) {
-      return <CenterMessage>Không tìm thấy file huusennarare/{params.slug}/page.mdx</CenterMessage>;
-    }
-
-    return <EditBox submitAction={submitUpdateContent} initialItem={initialItem} />;
-  }
 
   if (params.kind === "grammar" && params.slug) {
     const initialItem = await getGrammarEditItem(params.slug);

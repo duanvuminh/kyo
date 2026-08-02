@@ -20,7 +20,6 @@ export function useBreadcrumbs() {
 
 function _handleSegments(segments: string[], segment: string, idx: number) {
   switch (segment) {
-    case "huusennarare":
     case "practice":
       return undefined;
     case "short":
