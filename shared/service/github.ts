@@ -191,27 +191,22 @@ async function createEditCommitAndPr({
     });
 }
 
-export async function updateGrammarViaGithub(slug: string, content: string) {
+export async function updateGrammarViaGithub(slug: string, content: string): Promise<void> {
     const targetPath = path.join("app", "grammar", "n1", slug, "flash-card", "cards.ts");
 
     const cfg = getRepoConfig();
     if (!cfg) {
-        console.error(
+        throw new Error(
             "Missing GitHub config. Required: GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO",
         );
-        return;
     }
 
-    try {
-        await createEditCommitAndPr({
-            slug,
-            targetPath,
-            content,
-            cfg,
-            branchPrefix: "edit/grammar",
-            prBody: `Auto-generated grammar update for ${slug}.`,
-        });
-    } catch (error) {
-        console.error("Failed to auto-create grammar PR:", (error as Error).message);
-    }
+    await createEditCommitAndPr({
+        slug,
+        targetPath,
+        content,
+        cfg,
+        branchPrefix: "edit/grammar",
+        prBody: `Auto-generated grammar update for ${slug}.`,
+    });
 }

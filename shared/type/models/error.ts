@@ -11,6 +11,7 @@ export enum ErrorCode {
   CHAT_IMAGE_UPLOAD,
   ABLY_TOKEN_ERROR,
   ABLY_KEY_INVALID,
+  GITHUB,
   UNKNOWN,
 }
 
@@ -29,6 +30,7 @@ export const ErrorMessage: Record<ErrorCode, string> = {
   [ErrorCode.CHAT_IMAGE_UPLOAD]: "Không thể tải ảnh lên, vui lòng thử lại",
   [ErrorCode.ABLY_TOKEN_ERROR]: "Lỗi khởi tạo Ably token",
   [ErrorCode.ABLY_KEY_INVALID]: "Ably key không hợp lệ",
+  [ErrorCode.GITHUB]: "Không thể tạo Pull Request trên GitHub",
   [ErrorCode.UNKNOWN]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
 };
 

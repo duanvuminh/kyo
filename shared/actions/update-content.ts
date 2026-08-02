@@ -38,5 +38,9 @@ export async function submitUpdateGrammar(formData: FormData) {
         throw new AppError(ErrorCode.VALIDATION);
     }
 
-    await updateGrammarViaGithub(item.documentId, item.content);
+    try {
+        await updateGrammarViaGithub(item.documentId, item.content);
+    } catch (error) {
+        throw new AppError(ErrorCode.GITHUB, { cause: error as Error });
+    }
 }
