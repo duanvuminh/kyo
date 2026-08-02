@@ -7,9 +7,10 @@ import { toast } from "sonner";
 
 interface PracticeLinkProps {
   title?: string;
+  onNavigate?: () => void;
 }
 
-export function PracticeLink({ title }: PracticeLinkProps) {
+export function PracticeLink({ title, onNavigate }: PracticeLinkProps) {
   const router = useRouter();
 
   const handleClick = (e: React.MouseEvent) => {
@@ -20,6 +21,7 @@ export function PracticeLink({ title }: PracticeLinkProps) {
       toast("Không có bài tập nào");
       return;
     }
+    onNavigate?.();
     router.push(`/practice/${practice}`);
   };
 

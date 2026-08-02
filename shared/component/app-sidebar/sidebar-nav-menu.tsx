@@ -1,8 +1,11 @@
+"use client";
+
 import { PracticeLink } from "@/shared/component/practice-link";
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/shared/component/ui/sidebar";
 import Link from "next/link";
 
@@ -18,12 +21,19 @@ const others = [
 ];
 
 export function SidebarNavMenu() {
+  const { isMobile, setOpenMobile } = useSidebar();
+  const closeOnMobile = () => {
+    if (isMobile) {
+      setOpenMobile(false);
+    }
+  };
+
   return (
     <SidebarMenu>
       {items.map((item) => (
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton asChild>
-            <Link href={item.url}>
+            <Link href={item.url} onClick={closeOnMobile}>
               <span>{item.title}</span>
             </Link>
           </SidebarMenuButton>
@@ -31,13 +41,13 @@ export function SidebarNavMenu() {
       ))}
       <SidebarMenuItem>
         <SidebarMenuButton asChild>
-          <PracticeLink />
+          <PracticeLink onNavigate={closeOnMobile} />
         </SidebarMenuButton>
       </SidebarMenuItem>
       {others.map((item) => (
         <SidebarMenuItem key={item.title}>
           <SidebarMenuButton asChild>
-            <Link href={item.url} className="text-sidebar-foreground/50">
+            <Link href={item.url} className="text-sidebar-foreground/50" onClick={closeOnMobile}>
               <span>{item.title}</span>
             </Link>
           </SidebarMenuButton>
