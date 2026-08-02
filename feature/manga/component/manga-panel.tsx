@@ -322,7 +322,7 @@ function MangaAreaTitleForm({
         autoFocus
         value={title}
         onChange={(e) => onTitleChange(e.target.value)}
-        placeholder="Nghĩa / chú thích cho vùng này..."
+        placeholder="Nghĩa / chú thích cho vùng này... (gõ \n để xuống dòng)"
         disabled={pending}
       />
       <Button type="button" size="sm" disabled={pending || !title.trim()} onClick={onSubmit}>
