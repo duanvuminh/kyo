@@ -4,27 +4,40 @@ export const cards: FlashCardItem[] = [
   {
     front: "～が早いか",
     back: [
-      "✨ Ngay sau khi (phản ứng cực kì nhanh)",
-      "・Ví dụ: Vừa đến sân bay đã chạy ngay vào cửa hàng tiện lợi.",
-      "📌 Không thể hiện ý chí của tác giả. Thường chủ ngữ không phải bản thân.",
+      "✨ Ngay khi... thì lập tức...",
+      "・Hai hành động xảy ra gần như đồng thời, hành động sau xảy ra ngay lập tức.",
+      "📌 Thường dùng để thuật lại sự việc khách quan.",
+      "📌 Không dùng với ý chí, mệnh lệnh, yêu cầu hay thói quen.",
+      "📌 Chủ ngữ thường là ngôi 3 hoặc sự việc khách quan.",
     ],
     more: [
       "🧩 V辞書形 + が早いか",
-      "⚖️ ～や否や (không phân biệt chủ thể), ～なり (cùng chủ ngữ ngôi 3)",
+      "🎯 Sắc thái",
+      "・Khoảng cách thời gian gần như bằng 0.",
+      "・Người nói chỉ thuật lại sự việc, không nhấn mạnh ý chí.",
+      "⚖️ So sánh",
+      "・～や否や：Trang trọng hơn, không hạn chế chủ thể.",
+      "・～なり：Thường cùng chủ thể, hành động sau xảy ra ngay lập tức.",
       "📝 Ví dụ:",
+      "・ベルが鳴るが早いか、学生たちは教室を飛び出した。",
       "・空港に着くが早いか、コンビニに駆け込んだ。",
     ],
     questions: [
       {
         id: "1-1",
         content: "彼は家に帰る___、すぐにゲームを始めた。",
-        answers: ["が早いか", "てからというもの", "そばから", "にあって"],
+        answers: [
+          "が早いか",
+          "てからというもの",
+          "そばから",
+          "にあって",
+        ],
         correctAnswer: 0,
         memo: [
-          "が早いか: Ngay sau khi về nhà đã lập tức bắt đầu chơi game — phản ứng tức thì. (Đúng)",
-          "てからというもの: Diễn tả biến đổi kéo dài từ một mốc, không phải phản ứng tức thì.",
-          "そばから: Việc lặp đi lặp lại không mong muốn, không phù hợp ngữ cảnh này.",
-          "にあって: Diễn tả hoàn cảnh đặc biệt, không diễn tả thứ tự thời gian tức thì.",
+          "が早いか: Ngay khi về đến nhà đã lập tức bắt đầu chơi game — hai hành động xảy ra gần như đồng thời. (Đúng)",
+          "てからというもの: Diễn tả sự thay đổi hoặc trạng thái kéo dài từ một mốc thời gian, không diễn tả phản ứng tức thì.",
+          "そばから: Diễn tả việc vừa làm xong lại bị lặp hoặc bị phá hỏng nhiều lần, không phù hợp ngữ cảnh.",
+          "にあって: Diễn tả hoàn cảnh hoặc tình huống đặc biệt, không diễn tả trình tự thời gian.",
         ],
       },
       {
@@ -38,24 +51,29 @@ export const cards: FlashCardItem[] = [
         ],
         correctAnswer: 2,
         memo: [
-          "彼女は部屋に入るが早いか、泣き出した。: Hợp lệ — chủ ngữ ngôi 3, phản ứng tức thì.",
-          "ドアを開けるが早いか、犬が飛び出した。: Hợp lệ — ngay khi mở cửa chó đã chạy ra.",
-          "私は毎朝起きるが早いか、日記を書く。: Sai — không dùng cho ngôi 1 và thói quen hằng ngày. (Đúng)",
-          "子供はケーキを見るが早いか、手を伸ばした。: Hợp lệ — ngôi 3, phản ứng ngay khi nhìn thấy.",
+          "彼女は部屋に入るが早いか、泣き出した。: Đúng — hành động xảy ra ngay lập tức sau khi vào phòng.",
+          "ドアを開けるが早いか、犬が飛び出した。: Đúng — vừa mở cửa thì chó lao ra ngay.",
+          "私は毎朝起きるが早いか、日記を書く。: Sai — 「が早いか」không dùng để diễn tả thói quen lặp lại hoặc hành động có chủ ý của người nói. (Đúng)",
+          "子供はケーキを見るが早いか、手を伸ばした。: Đúng — vừa nhìn thấy bánh là lập tức đưa tay ra.",
         ],
       },
       {
         id: "1-3",
         content: "ベルが鳴る___、学生たちは教室を飛び出した。",
-        answers: ["や否や", "てからというもの", "にあっても", "そばから"],
+        answers: [
+          "や否や",
+          "てからというもの",
+          "にあっても",
+          "そばから",
+        ],
         correctAnswer: 0,
         memo: [
-          "や否や: Ngay khi chuông vừa reng thì học sinh ùa ra — đồng thời, không phân biệt chủ thể. (Đúng)",
-          "てからというもの: Biến đổi kéo dài, không phù hợp với hành động tức thì.",
-          "にあっても: Bất chấp hoàn cảnh, không phù hợp ngữ cảnh này.",
-          "そばから: Lặp lại không mong muốn, không phù hợp.",
+          "や否や: Đúng — 'ngay khi chuông vừa reo' thì học sinh lập tức chạy ra; cách dùng trang trọng hơn 「が早いか」.",
+          "てからというもの: Diễn tả sự thay đổi kéo dài sau một mốc thời gian, không phù hợp.",
+          "にあっても: Diễn tả 'ngay cả trong hoàn cảnh...', không phù hợp ngữ cảnh.",
+          "そばから: Diễn tả sự việc lặp đi lặp lại ngoài ý muốn, không phù hợp.",
         ],
-      },
+      }
     ],
   },
   {
@@ -75,7 +93,12 @@ export const cards: FlashCardItem[] = [
       {
         id: "1-4",
         content: "子供たちはプールに入る___、大声で騒ぎ始めた。",
-        answers: ["や否や", "てからというもの", "なり", "そばから"],
+        answers: [
+          "や否や",
+          "てからというもの",
+          "なり",
+          "そばから",
+        ],
         correctAnswer: 0,
         memo: [
           "や否や: Ngay khi vừa bước vào hồ đã ồn ào — đồng thời, không phân biệt chủ thể. (Đúng)",
@@ -87,7 +110,12 @@ export const cards: FlashCardItem[] = [
       {
         id: "1-5",
         content: "「～や否や」と同じ意味で、両方の主語が同じでなければならないものはどれか。",
-        answers: ["～が早いか", "～なり", "～てからというもの", "～にあって"],
+        answers: [
+          "～が早いか",
+          "～なり",
+          "～てからというもの",
+          "～にあって",
+        ],
         correctAnswer: 1,
         memo: [
           "～が早いか: Thường ngôi 3 nhưng không bắt buộc cùng chủ ngữ.",
@@ -95,7 +123,7 @@ export const cards: FlashCardItem[] = [
           "～てからというもの: Biến đổi kéo dài, không liên quan.",
           "～にあって: Hoàn cảnh đặc biệt, không liên quan.",
         ],
-      },
+      }
     ],
   },
   {
@@ -116,7 +144,12 @@ export const cards: FlashCardItem[] = [
       {
         id: "1-6",
         content: "彼女は電話を切る___、泣き崩れた。",
-        answers: ["なり", "や否や", "が早いか", "てからというもの"],
+        answers: [
+          "なり",
+          "や否や",
+          "が早いか",
+          "てからというもの",
+        ],
         correctAnswer: 0,
         memo: [
           "なり: Cắt máy ngay lập tức òa khóc — cùng chủ ngữ ngôi 3, hành động bất ngờ. (Đúng)",
@@ -141,7 +174,7 @@ export const cards: FlashCardItem[] = [
           "私は毎朝起きるなり、ジョギングをする。: Sai — không dùng ngôi 1, không dùng cho thói quen hằng ngày. (Đúng)",
           "彼は家に帰るなり、眠ってしまった。: Hợp lệ — ngôi 3, về nhà ngay lập tức ngủ.",
         ],
-      },
+      }
     ],
   },
   {
@@ -162,7 +195,12 @@ export const cards: FlashCardItem[] = [
       {
         id: "1-8",
         content: "掃除する___、子供たちがまた散らかしてしまう。",
-        answers: ["そばから", "が早いか", "や否や", "てからというもの"],
+        answers: [
+          "そばから",
+          "が早いか",
+          "や否や",
+          "てからというもの",
+        ],
         correctAnswer: 0,
         memo: [
           "そばから: Vừa dọn xong lại bị bừa bãi — việc tiêu cực lặp đi lặp lại. (Đúng)",
@@ -187,7 +225,7 @@ export const cards: FlashCardItem[] = [
           "春になる___、桜が咲く: Hiện tượng tự nhiên tốt đẹp, không phải lặp lại tiêu cực.",
           "試験に合格する___、留学の準備を始めた: Sự kiện một lần tích cực, không phù hợp そばから.",
         ],
-      },
+      }
     ],
   },
   {
@@ -207,7 +245,12 @@ export const cards: FlashCardItem[] = [
       {
         id: "1-10",
         content: "転職し___、生活リズムがすっかり変わった。",
-        answers: ["てからというもの", "が早いか", "そばから", "や否や"],
+        answers: [
+          "てからというもの",
+          "が早いか",
+          "そばから",
+          "や否や",
+        ],
         correctAnswer: 0,
         memo: [
           "てからというもの: Kể từ khi chuyển việc, nhịp sống thay đổi hẳn và tiếp diễn. (Đúng)",
@@ -232,7 +275,7 @@ export const cards: FlashCardItem[] = [
           "毎朝起きてからというもの、コーヒーを飲む。: Sai — thói quen hằng ngày, không phải biến đổi cụ thể. (Đúng)",
           "引っ越してからというもの、通勤時間が長くなった。: Hợp lệ — từ khi chuyển nhà, đi làm xa hơn.",
         ],
-      },
+      }
     ],
   },
   {
@@ -253,7 +296,12 @@ export const cards: FlashCardItem[] = [
       {
         id: "1-12",
         content: "非常事態___、リーダーは冷静な判断を下した。",
-        answers: ["にあっても", "が早いか", "てからというもの", "そばから"],
+        answers: [
+          "にあっても",
+          "が早いか",
+          "てからというもの",
+          "そばから",
+        ],
         correctAnswer: 0,
         memo: [
           "にあっても: Bất chấp tình trạng khẩn cấp, người lãnh đạo vẫn bình tĩnh — trái ngược. (Đúng)",
@@ -278,7 +326,7 @@ export const cards: FlashCardItem[] = [
           "どちらも同じ意味で使える: Sai — hai mẫu có sắc thái rõ ràng khác nhau.",
           "にあって は過去、にあっても は現在のみ: Sai — không phân biệt thì.",
         ],
-      },
+      }
     ],
-  },
+  }
 ];
