@@ -24,6 +24,26 @@ export function parseCardsSource(source: string): EditableCard[] {
   return raw.map(toEditableCard);
 }
 
+export function parseCardText(text: string): EditableCard {
+  const wrapped = `(${text.trim().replace(/,\s*$/, "")})`;
+  const sourceFile = ts.createSourceFile("card.ts", wrapped, ts.ScriptTarget.Latest, true);
+  const node = singleObjectLiteral(sourceFile);
+  if (!node) {
+    throw new Error("Nội dung dán vào phải là 1 card, ví dụ { front: ..., back: [...] }.");
+  }
+  return toEditableCard(evaluateExpression(node));
+}
+
+function singleObjectLiteral(sourceFile: ts.SourceFile): ts.ObjectLiteralExpression | undefined {
+  const statement = sourceFile.statements[0];
+  if (!statement || !ts.isExpressionStatement(statement)) {
+    return undefined;
+  }
+  const expr = statement.expression;
+  const inner = ts.isParenthesizedExpression(expr) ? expr.expression : expr;
+  return ts.isObjectLiteralExpression(inner) ? inner : undefined;
+}
+
 function findCardsArrayLiteral(
   sourceFile: ts.SourceFile
 ): ts.ArrayLiteralExpression | undefined {

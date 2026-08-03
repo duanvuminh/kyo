@@ -7,7 +7,7 @@ export function serializeCardsToSource(cards: EditableCard[]): string {
   return `import { FlashCardItem } from "@/shared/component/flash-card/flash-card";\n\nexport const cards: FlashCardItem[] = [\n${body}\n];\n`;
 }
 
-function serializeCard(card: EditableCard): string {
+export function serializeCard(card: EditableCard): string {
   const lines: string[] = [`${INDENT}{`];
   lines.push(`${INDENT.repeat(2)}front: ${quote(card.front)},`);
   lines.push(`${INDENT.repeat(2)}back: ${serializeStringArray(card.back, 2)},`);
