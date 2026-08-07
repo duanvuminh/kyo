@@ -137,16 +137,23 @@ export const cards: FlashCardItem[] = [
   {
     front: "～なり",
     back: [
-      "✨ Ngay sau khi (hành động bất ngờ, gây ngạc nhiên)",
-      "・Ví dụ: Tổ trưởng vừa vào phòng đã la hét to.",
-      "📌 Chủ ngữ ngôi 3. Cả 2 vế cùng chủ ngữ. Hành động bất ngờ.",
+      "✨ Ngay sau khi... thì lập tức...",
+      "・Hai hành động xảy ra gần như đồng thời, hành động sau xảy ra ngay lập tức.",
+      "📌 Thường dùng với chủ ngữ ngôi 3.",
+      "📌 Hai vế thường cùng chủ ngữ.",
+      "📌 Vế sau thường là hành động bất ngờ hoặc ngoài dự đoán.",
+      "📌 Không dùng với ý chí, mệnh lệnh, yêu cầu hay thói quen lặp lại.",
     ],
     more: [
       "🧩 V辞書形 + なり",
-      "⚖️ ～や否や (không phân biệt chủ thể), ～が早いか (không bắt buộc cùng chủ ngữ)",
-      "💬 Hành động vế sau thường bất ngờ, gây ngạc nhiên cho người viết.",
+      "⚖️ So sánh:",
+      "・～や否や: Khách quan hơn, không yêu cầu cùng chủ ngữ.",
+      "・～が早いか: Chỉ nhấn mạnh hai hành động xảy ra cực nhanh, không bắt buộc cùng chủ ngữ.",
+      "・～なり: Thường cùng chủ ngữ và vế sau thường là hành động bất ngờ hoặc ngoài dự đoán.",
+      "💬 Thường dùng để thuật lại một sự việc đã xảy ra.",
       "📝 Ví dụ:",
       "・部屋に入ってくるなり、大きな声で怒鳴った。",
+      "・彼は家へ帰るなり、ベッドに倒れ込んだ。",
     ],
     questions: [
       {
@@ -160,10 +167,10 @@ export const cards: FlashCardItem[] = [
         ],
         correctAnswer: 0,
         memo: [
-          "なり: Cắt máy ngay lập tức òa khóc — cùng chủ ngữ ngôi 3, hành động bất ngờ. (Đúng)",
-          "や否や: Cũng ngay sau khi, nhưng không yêu cầu cùng chủ ngữ.",
-          "が早いか: Không nhấn yếu tố ngạc nhiên, không bắt buộc cùng chủ ngữ.",
-          "てからというもの: Biến đổi kéo dài, không phải tức thì.",
+          "なり: Cắt máy xong lập tức òa khóc. Cùng chủ ngữ, hành động xảy ra ngay và mang tính bất ngờ. (Đúng)",
+          "や否や: Cũng diễn tả 'ngay sau khi', nhưng không yêu cầu cùng chủ ngữ.",
+          "が早いか: Nhấn mạnh hai hành động nối tiếp cực nhanh, không bắt buộc cùng chủ ngữ.",
+          "てからというもの: Diễn tả sự thay đổi kéo dài sau một mốc thời gian, không phải hành động xảy ra tức thì.",
         ],
       },
       {
@@ -177,10 +184,10 @@ export const cards: FlashCardItem[] = [
         ],
         correctAnswer: 2,
         memo: [
-          "上司は席に着くなり、書類に目を通した。: Hợp lệ — chủ ngữ ngôi 3, hành động bất ngờ.",
-          "ドアを開けるなり、冷たい風が入ってきた。: Hợp lệ — gió thổi vào ngay khi mở cửa.",
-          "私は毎朝起きるなり、ジョギングをする。: Sai — không dùng ngôi 1, không dùng cho thói quen hằng ngày. (Đúng)",
-          "彼は家に帰るなり、眠ってしまった。: Hợp lệ — ngôi 3, về nhà ngay lập tức ngủ.",
+          "上司は席に着くなり、書類に目を通した。: Đúng — Hai hành động xảy ra liên tiếp, cùng chủ ngữ.",
+          "ドアを開けるなり、冷たい風が入ってきた。: Đúng — Gió ùa vào ngay khi mở cửa, diễn tả sự việc xảy ra tức thì.",
+          "私は毎朝起きるなり、ジョギングをする。: Sai — ～なり không dùng cho thói quen hằng ngày, cũng hiếm dùng với ngôi 1. (Đúng)",
+          "彼は家に帰るなり、眠ってしまった。: Đúng — Về đến nhà lập tức ngủ, cùng chủ ngữ và hành động xảy ra ngay.",
         ],
       }
     ],
