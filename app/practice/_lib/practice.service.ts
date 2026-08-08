@@ -111,7 +111,7 @@ const _createNewFlashCard = async (
     return null;
   }
 
-  upsertDocument(word, { practiceId: discordMessage.id });
+  await upsertDocument(word, { practiceId: discordMessage.id });
 
   // Tạo practice questions trong background
   _createPracticeQuestions(

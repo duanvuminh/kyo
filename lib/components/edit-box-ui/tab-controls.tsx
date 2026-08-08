@@ -1,4 +1,4 @@
-import { TAB_VALUES } from "@/lib/constants";
+import { TAB_VALUES } from "@/lib/components/edit-box-ui/tab-values";
 import { Button } from "@/components/ui/button";
 import { TabsList, TabsTrigger } from "@/components/ui/tabs";
 

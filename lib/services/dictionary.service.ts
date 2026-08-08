@@ -58,7 +58,7 @@ export const createWordsContent = async (item: BaseItem) => {
   if (!item.words || !item.content) {
     return;
   }
-  createDocument(item.words, { content: item.content, type: item.type });
+  await createDocument(item.words, { content: item.content, type: item.type });
 };
 
 export const updateWordsContent = async (item: BaseItem) => {
@@ -109,12 +109,12 @@ const _handleFirebaseUpdate = async (item: BaseItem) => {
   }
 
   if (isDev) {
-    updateDocument(item.words, { content: item.content });
+    await updateDocument(item.words, { content: item.content });
     return;
   }
 
   if (await _shouldUpdateWithAi(item.words, item.content)) {
-    updateDocument(item.words, { content: item.content });
+    await updateDocument(item.words, { content: item.content });
   }
 };
 

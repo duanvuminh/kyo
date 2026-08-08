@@ -1,4 +1,4 @@
-import { TAB_VALUES } from "@/lib/constants";
+import { TAB_VALUES } from "@/lib/components/edit-box-ui/tab-values";
 import { EditTab } from "@/lib/components/edit-box-ui/edit-tab";
 import { Empty } from "@/lib/components/edit-box-ui/empty";
 import { PreviewTab } from "@/lib/components/edit-box-ui/preview_tab";

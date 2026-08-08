@@ -1,4 +1,4 @@
-import { TAB_VALUES } from "@/lib/constants";
+import { TAB_VALUES } from "@/lib/components/edit-box-ui/tab-values";
 import { TabsContent } from "@/components/ui/tabs";
 import { ChangeEvent } from "react";
 

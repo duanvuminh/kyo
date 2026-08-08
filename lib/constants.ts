@@ -20,8 +20,3 @@ export function discordThreadTag(threadId: string): string {
 export function discordChannelTag(channelId: string): string {
   return `discord-channel-${channelId}`;
 }
-
-export const TAB_VALUES = {
-  EDIT: "edit",
-  PREVIEW: "preview",
-} as const;

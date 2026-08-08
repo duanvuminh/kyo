@@ -1,6 +1,6 @@
 "use client";
 import { useEditBox } from "@/app/memo/_components/edit-box/use-edit-box";
-import { TAB_VALUES } from "@/lib/constants";
+import { TAB_VALUES } from "@/lib/components/edit-box-ui/tab-values";
 import { EditBoxUI } from "@/lib/components/edit-box-ui/eidit-box-ui";
 
 export function EditBox() {

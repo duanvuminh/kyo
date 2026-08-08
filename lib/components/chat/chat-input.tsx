@@ -1,40 +1,14 @@
-import { wordExists } from "@/app/actions/check.actions";
-import { PracticeAdd } from "@/lib/components/practice-add";
 import { WordHistory, WordHistoryItem, useWordHistory } from "@/lib/components/chat/word-history";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
-import { UpdateContentLink } from "@/lib/components/update-content-link";
 import { useAppSelector } from "@/lib/stores/hook";
 import { selectMessage } from "@/lib/stores/slice-message";
-import { UIMessage } from "ai";
 import { Send } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 
 interface ChatInputProps {
-  messages: UIMessage[];
   sendMessage: ({ text }: { text: string }) => void;
   onSelectHistory: (item: WordHistoryItem) => void;
-}
-
-function useWordExistsCheck(words: string): boolean {
-  const [existsCheck, setExistsCheck] = useState<{ words: string; exists: boolean } | null>(null);
-
-  useEffect(() => {
-    if (!words) {
-      return;
-    }
-    let cancelled = false;
-    wordExists(words).then((exists) => {
-      if (!cancelled) {
-        setExistsCheck({ words, exists });
-      }
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [words]);
-
-  return existsCheck?.words === words && existsCheck.exists;
 }
 
 export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
@@ -42,7 +16,6 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
   const [input, setInput] = useState("");
   const { history, addWord } = useWordHistory();
   const savedRef = useRef("");
-  const canEdit = useWordExistsCheck(message.words);
 
   useEffect(() => {
     if (message.words && message.content && message.words !== savedRef.current) {
@@ -54,9 +27,7 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
   return (
     <ChatForm
       input={input}
-      words={message.words}
       history={history}
-      canEdit={canEdit}
       onInput={setInput}
       onSelectHistory={onSelectHistory}
       onSubmit={() => {
@@ -69,15 +40,13 @@ export function ChatInput({ sendMessage, onSelectHistory }: ChatInputProps) {
 
 interface ChatFormProps {
   input: string;
-  words: string;
   history: WordHistoryItem[];
-  canEdit: boolean;
   onInput: (v: string) => void;
   onSelectHistory: (item: WordHistoryItem) => void;
   onSubmit: () => void;
 }
 
-function ChatForm({ input, words, history, canEdit, onInput, onSelectHistory, onSubmit }: ChatFormProps) {
+function ChatForm({ input, history, onInput, onSelectHistory, onSubmit }: ChatFormProps) {
   return (
     <form
       onSubmit={(e) => {
@@ -94,6 +63,7 @@ function ChatForm({ input, words, history, canEdit, onInput, onSelectHistory, on
           value={input}
           placeholder="Hỏi bất kì điều gì"
           onChange={(e) => onInput(e.currentTarget.value)}
+          onSubmit={onSubmit}
         />
         <Button
           variant="ghost"
@@ -105,12 +75,6 @@ function ChatForm({ input, words, history, canEdit, onInput, onSelectHistory, on
           <Send />
         </Button>
       </div>
-      {words != "" && (
-        <div className="flex p-2 items-center gap-2">
-          <PracticeAdd />
-          {canEdit && <UpdateContentLink />}
-        </div>
-      )}
     </form>
   );
 }
@@ -118,15 +82,23 @@ function ChatForm({ input, words, history, canEdit, onInput, onSelectHistory, on
 interface ChatTextAreaProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSubmit: () => void;
   placeholder?: string;
 }
 
-function ChatTextArea({ value, onChange, placeholder = "" }: ChatTextAreaProps) {
+function ChatTextArea({ value, onChange, onSubmit, placeholder = "" }: ChatTextAreaProps) {
   return (
     <Textarea
       value={value}
       placeholder={placeholder}
       onChange={onChange}
+      onKeyDown={(e) => {
+        // isComposing: đang gõ qua IME (vd. tiếng Nhật) → Enter dùng để chọn chữ, không submit
+        if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
+          e.preventDefault();
+          onSubmit();
+        }
+      }}
       rows={0}
       className="border p-2 w-full bg-primary-foreground"
     />

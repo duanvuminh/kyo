@@ -62,7 +62,10 @@ function setupAblyConnection(
   channelRef.current = channel;
 
   loadChatHistory(channel, setMessages, setIsLoadingHistory);
-  channel.subscribe("message", createMessageHandler(setMessages));
+  // subscribe() trả về promise resolve khi channel attach xong; nếu component unmount
+  // (React Strict Mode double-invoke effect ở dev) trước khi attach xong, close() bên dưới
+  // khiến promise này reject với "Connection closed" — không liên quan lỗi thật, bỏ qua.
+  channel.subscribe("message", createMessageHandler(setMessages)).catch(() => {});
 }
 
 function cleanupAblyConnection(

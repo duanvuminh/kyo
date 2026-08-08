@@ -7,7 +7,6 @@ function mapWordDocFromFirestore(doc: FirebaseFirestore.DocumentData): WordDTO {
     words: doc.words,
     type: doc.type,
     content: doc.content ?? null,
-    hantu: doc.hantu ?? null,
     practiceId: doc.practiceId ?? null,
   };
 }
@@ -24,24 +23,24 @@ export const getWordById = async (
   return mapWordDocFromFirestore(snapshot.data()!);
 };
 
-export const updateDocument = (
+export const updateDocument = async (
   words: string,
   { content, practiceId }: { content?: string; practiceId?: string },
-): void => {
+): Promise<void> => {
   const docRef = db.collection("dictionary").doc(words);
-  docRef.update(stripUndefined({ content, practiceId }));
+  await docRef.update(stripUndefined({ content, practiceId }));
 };
 
-export const createDocument = (
+export const createDocument = async (
   words: string,
   {
     content,
     practiceId,
     type,
   }: { content?: string; practiceId?: string; type?: KWordType },
-): void => {
+): Promise<void> => {
   const docRef = db.collection("dictionary").doc(words);
-  docRef.set(
+  await docRef.set(
     stripUndefined({
       content,
       practiceId,
@@ -52,16 +51,15 @@ export const createDocument = (
   );
 };
 
-export const upsertDocument = (
+export const upsertDocument = async (
   words: string,
   payload: { content?: string; practiceId?: string },
-): void => {
+): Promise<void> => {
   const docRef = db.collection("dictionary").doc(words);
-  docRef.get().then((docSnapshot) => {
-    if (docSnapshot.exists) {
-      updateDocument(words, payload);
-    } else {
-      createDocument(words, payload);
-    }
-  });
+  const docSnapshot = await docRef.get();
+  if (docSnapshot.exists) {
+    await updateDocument(words, payload);
+  } else {
+    await createDocument(words, payload);
+  }
 };

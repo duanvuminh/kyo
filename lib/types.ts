@@ -100,7 +100,6 @@ function mapStringToKWordType(str: string): KWordType {
 export interface WordDTO {
   words: string;
   type: string;
-  hantu: string | null;
   content: string | null;
   practiceId: string | null;
 }
@@ -110,7 +109,6 @@ export class KWord implements BaseItem {
   documentId: string;
   type: KWordType;
   content?: string;
-  hantu?: string;
   practiceId?: string;
 
   constructor(
@@ -137,7 +135,6 @@ export class KWord implements BaseItem {
       ...data,
       source: Source.FIREBASE,
       documentId: data.words,
-      hantu: data.hantu ?? undefined,
       content: data.content ?? undefined,
       type,
       practiceId: data.practiceId ?? undefined,
