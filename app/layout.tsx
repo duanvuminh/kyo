@@ -25,6 +25,7 @@ export const viewport: Viewport = {
 // iOS không tự tạo splash screen từ manifest như Android — phải khai báo riêng từng
 // độ phân giải thiết bị qua apple-touch-startup-image (ảnh tạo sẵn trong public/splash).
 const APPLE_SPLASH_SCREENS = [
+  { href: "/splash/iphone-se-1st-gen.png", media: "(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" },
   { href: "/splash/iphone-se-6-7-8.png", media: "(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" },
   { href: "/splash/iphone-6-7-8-plus.png", media: "(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" },
   { href: "/splash/iphone-x-xs-11pro-12mini-13mini.png", media: "(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" },
@@ -51,6 +52,11 @@ export default async function RootLayout({
     <StoreProvider>
       <html lang="en">
         <head>
+          {/* Next.js's appleWebApp metadata chỉ sinh "mobile-web-app-capable" (không có tiền tố
+              "apple-"), nhưng iOS Safari bắt buộc đúng tên "apple-mobile-web-app-capable" mới
+              chạy standalone mode — thiếu tag này thì mở từ Home Screen vẫn là tab Safari
+              thường, không có splash screen. */}
+          <meta name="apple-mobile-web-app-capable" content="yes" />
           {APPLE_SPLASH_SCREENS.map((screen) => (
             <link key={screen.href} rel="apple-touch-startup-image" href={screen.href} media={screen.media} />
           ))}
