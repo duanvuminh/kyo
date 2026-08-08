@@ -1,8 +1,8 @@
-import { getListening } from "@/feature/listening/service/listening";
-import { displayData, getNextPageOrDefault, hasData, ListeningViewModel, showNextPage } from "@/feature/listening/type/listening.view-model";
-import { CenterMessage } from "@/shared/component/center-message";
-import { QuestionDetail } from "@/shared/component/question-detail/question-detail";
-import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
+import { getListening } from "@/app/listening/_lib/listening.service";
+import { displayData, getNextPageOrDefault, hasData, ListeningViewModel, showNextPage } from "@/app/listening/_lib/listening.types";
+import { QuestionDetail } from "@/lib/components/question-detail/question-detail";
+import { QuickSearchBySelectText } from "@/lib/components/quick-search-by-select-text/quick-search-by-select-text";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export default async function Page({
@@ -12,8 +12,11 @@ export default async function Page({
 }) {
   const { page } = await params;
   const pageData: ListeningViewModel = await getListening({ page, level: "n1" });
+  if (!hasData(pageData)) {
+    notFound();
+  }
   const nextPage = getNextPageOrDefault(pageData);
-  return hasData(pageData) ? (
+  return (
     <div className="p-2 prose mx-auto">
       {displayData(pageData).map((listening) => (
         <QuestionDetail key={listening.id} question={listening} />
@@ -25,10 +28,5 @@ export default async function Page({
       )}
       <QuickSearchBySelectText />
     </div>
-  ) : (
-    <CenterMessage>
-      Không tìm thấy bài viết cũ hơn.
-      <Link href="/listening/n1/newest">↪︎Click để quay lại</Link>.
-    </CenterMessage>
   );
 }

@@ -1,0 +1,297 @@
+import {
+  discordChannelTag,
+  discordThreadTag,
+  fetchCacheConfig,
+  getFetchCacheConfig,
+} from "@/lib/constants";
+import { env } from "@/lib/env";
+import { AppError, ErrorCode } from "@/lib/types";
+
+export interface DiscordAttachmentEntity {
+  id: string;
+  filename: string;
+  content_type?: string;
+  size: number;
+  url: string;
+  proxy_url: string;
+  height?: number;
+  width?: number;
+  ephemeral?: boolean;
+  description?: string;
+}
+
+export interface DiscordMessageEntity {
+  content: string;
+  type: number;
+  id: string;
+  attachments?: DiscordAttachmentEntity[];
+}
+
+const discordBaseUrl = "https://discord.com/api/v10";
+
+function buildMessageParams(before?: string, limit?: number) {
+  const params = new URLSearchParams();
+  if (before) {
+    params.append("before", before);
+  }
+  if (limit) {
+    params.append("limit", `${limit}`);
+  }
+  return params;
+}
+
+export const getListMessageFromDisCord = async ({
+  channelId,
+  before,
+  limit,
+}: {
+  channelId: string;
+  before?: string;
+  limit?: number;
+}): Promise<DiscordMessageEntity[]> => {
+  try {
+    const params = buildMessageParams(before, limit);
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages?${params.toString()}`,
+      {
+        method: "GET",
+        headers: { Authorization: `Bot ${env.DISCORD_API_KEY}` },
+        ...getFetchCacheConfig([discordChannelTag(channelId)]),
+      },
+    );
+    if (!res.ok) {
+      throw new AppError(ErrorCode.DISCORD);
+    }
+    const data = await res.json();
+    return data as DiscordMessageEntity[];
+  } catch (e) {
+    if (e instanceof AppError) {
+      throw e;
+    }
+    const err = e instanceof Error ? e : new Error(String(e));
+    throw new AppError(ErrorCode.DISCORD, { cause: err });
+  }
+};
+
+export const getMessageFromDisCord = async ({
+  channelId,
+  messageId,
+}: {
+  channelId: string;
+  messageId: string;
+}): Promise<DiscordMessageEntity | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bot ${env.DISCORD_API_KEY}`,
+        },
+        ...fetchCacheConfig,
+      },
+    );
+
+    if (res.status === 404) {
+      return null;
+    }
+    if (!res.ok) {
+      throw new AppError(ErrorCode.DISCORD);
+    }
+    const data = (await res.json()) as DiscordMessageEntity;
+    return data;
+  } catch (e) {
+    const err = e instanceof Error ? e : new Error(String(e));
+    throw new AppError(ErrorCode.DISCORD, { cause: err });
+  }
+};
+
+export const sendDiscordMessage = async ({
+  channelId,
+  message,
+}: {
+  channelId: string;
+  message: string;
+}): Promise<DiscordMessageEntity | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bot ${env.DISCORD_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          content: message,
+        }),
+      },
+    );
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = await res.json();
+    return data as DiscordMessageEntity;
+  } catch {
+    return null;
+  }
+};
+
+export const getThreadMessages = async ({
+  threadId,
+  limit = 100,
+  before,
+}: {
+  threadId: string;
+  limit?: number;
+  before?: string;
+}) => {
+  try {
+    const params = new URLSearchParams();
+    if (limit) {
+      params.append("limit", `${limit}`);
+    }
+    if (before) {
+      params.append("before", before);
+    }
+
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,
+      {
+        method: "GET",
+        headers: {
+          Authorization: `Bot ${env.DISCORD_API_KEY}`,
+        },
+        ...getFetchCacheConfig([discordThreadTag(threadId)]),
+      },
+    );
+    const data = await res.json();
+    if (!Array.isArray(data)) {
+      return [];
+    }
+    return data as DiscordMessageEntity[];
+  } catch {
+    return [];
+  }
+};
+
+export const createThreadFromMessage = async ({
+  channelId,
+  messageId,
+  name,
+}: {
+  channelId: string;
+  messageId: string;
+  name: string;
+}): Promise<{ id: string } | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}/threads`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bot ${env.DISCORD_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name }),
+      },
+    );
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = await res.json();
+    return data as { id: string };
+  } catch {
+    return null;
+  }
+};
+
+export const sendMessageToThread = async ({
+  threadId,
+  message,
+}: {
+  threadId: string;
+  message: string;
+}): Promise<DiscordMessageEntity | null> => {
+  try {
+    const res = await fetch(`${discordBaseUrl}/channels/${threadId}/messages`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bot ${env.DISCORD_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: message }),
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = await res.json();
+    return data as DiscordMessageEntity;
+  } catch {
+    return null;
+  }
+};
+
+export const updateDiscordMessage = async ({
+  channelId,
+  messageId,
+  content,
+}: {
+  channelId: string;
+  messageId: string;
+  content?: string;
+}): Promise<DiscordMessageEntity | null> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "PATCH",
+        headers: {
+          Authorization: `Bot ${env.DISCORD_API_KEY}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ content }),
+      },
+    );
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const data = await res.json();
+
+    return data as DiscordMessageEntity;
+  } catch {
+    return null;
+  }
+};
+
+export const deleteDiscordMessage = async ({
+  channelId,
+  messageId,
+}: {
+  channelId: string;
+  messageId: string;
+}): Promise<boolean> => {
+  try {
+    const res = await fetch(
+      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bot ${env.DISCORD_API_KEY}`,
+        },
+      },
+    );
+
+    return res.ok;
+  } catch {
+    return false;
+  }
+};

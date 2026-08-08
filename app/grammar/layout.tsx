@@ -1,6 +1,6 @@
-import { GrammarEditButton } from "@/feature/grammar/component/grammar-edit-button";
-import { MdxWrapperStyle } from "@/shared/component/mdx-wrapper-style";
-import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
+import { GrammarEditButton } from "@/app/grammar/_components/grammar-edit-button";
+import { MdxWrapperStyle } from "@/lib/components/mdx-wrapper-style";
+import { QuickSearchBySelectText } from "@/lib/components/quick-search-by-select-text/quick-search-by-select-text";
 
 export default async function Layout({
   children,

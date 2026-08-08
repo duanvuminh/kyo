@@ -1,6 +1,6 @@
 "use client";
 
-import { EditBox } from "@/feature/memo/component/edit-box/edit-box";
+import { EditBox } from "@/app/memo/_components/edit-box/edit-box";
 
 export default function Page() {
   return <EditBox />;

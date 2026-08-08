@@ -1,5 +1,5 @@
 "use client";
-import { CenterMessage } from "@/shared/component/center-message";
+import { CenterMessage } from "@/lib/components/center-message";
 
 export default function Error({
   error,

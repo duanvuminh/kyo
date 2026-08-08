@@ -1,4 +1,4 @@
-import { ReadingN1Paging } from "@/feature/reading/component/paging";
+import { ReadingN1Paging } from "@/app/reading/_components/paging";
 
 export default async function Layout({
   children,

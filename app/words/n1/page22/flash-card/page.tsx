@@ -1,7 +1,7 @@
 import {
   FlashCard,
   FlashCardItem,
-} from "@/shared/component/flash-card/flash-card";
+} from "@/lib/components/flash-card/flash-card";
 
 const cards: FlashCardItem[] = [
   {

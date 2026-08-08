@@ -1,7 +1,7 @@
 "use client";
-import { Actions } from "@/feature/practice/component/actions";
-import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/shared/component/ui/card";
-import { Skeleton } from "@/shared/component/ui/skeleton";
+import { Actions } from "@/app/practice/_components/actions";
+import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import { useParams } from "next/navigation";
 
 export default function Loading() {

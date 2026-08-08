@@ -1,0 +1,36 @@
+"use client";
+
+import { Short } from "@/app/short/_lib/short.types";
+import { Button } from "@/components/ui/button";
+
+interface EpisodeListProps {
+  relateShort: Short[];
+  onSelect: (short: Short, index: number) => void;
+  selectedIndex?: number;
+}
+
+export function EpisodeList({
+  relateShort,
+  onSelect,
+  selectedIndex = 0,
+}: EpisodeListProps) {
+  if (!relateShort || relateShort.length === 0) {
+    return null;
+  }
+
+  return (
+    <div className="flex gap-2 mb-4 flex-wrap">
+      {relateShort.map((item, idx) => (
+        <Button
+          key={item.id}
+          variant={"ghost"}
+          className={idx === selectedIndex ? "" : "text-muted"}
+          onClick={() => onSelect(item, idx)}
+          size="sm"
+        >
+          {idx + 1}
+        </Button>
+      ))}
+    </div>
+  );
+}

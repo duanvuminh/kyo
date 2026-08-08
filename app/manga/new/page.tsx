@@ -1,4 +1,4 @@
-import { KCreateMangaForm } from "@/feature/manga/component/create-manga-form";
+import { KCreateMangaForm } from "@/app/manga/_components/create-manga-form";
 
 export default function Page() {
   return (

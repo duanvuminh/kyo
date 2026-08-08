@@ -1,4 +1,4 @@
-import { KanjiN1Paging } from "@/feature/kanji/component/paging";
+import { KanjiN1Paging } from "@/app/kanji/_components/paging";
 
 export default async function Layout({
   children,

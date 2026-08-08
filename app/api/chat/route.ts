@@ -1,8 +1,8 @@
-import { protectApi } from "@/core/utils/api-protection";
-import { createTextStreamResponse } from "@/core/utils/stream-response";
-import { handleChatMessages } from "@/shared/service/ai/chat-handler";
-import { freeAiService } from "@/shared/service/ai/factory";
-import { AppError, ErrorCode } from "@/shared/type/models/error";
+import { protectApi } from "@/lib/utils/api-protection";
+import { createTextStreamResponse } from "@/lib/utils/stream-response";
+import { handleChatMessages } from "@/lib/services/ai/chat-handler";
+import { freeAiService } from "@/lib/services/ai/factory";
+import { AppError, ErrorCode } from "@/lib/types";
 import { convertToModelMessages, createUIMessageStreamResponse, toUIMessageStream, UIMessage } from "ai";
 
 export const maxDuration = 30;

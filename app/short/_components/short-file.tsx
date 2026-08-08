@@ -1,0 +1,55 @@
+import { KFile } from "@/app/short/_lib/short.types";
+import FacebookVideoEmbed from "@/lib/components/facebook-video";
+import HlsPlayer from "@/lib/components/hls-player/hls-player";
+import YouTubePlayer from "@/lib/components/youtube-player/youtube-player";
+import { Sub } from "@/lib/types";
+import Image from "next/image";
+
+function ImageViewer({ file }: { file: KFile }) {
+  return (
+    <div className="relative h-50">
+      <Image src={file.url} alt={file.name} fill className="object-contain" />
+    </div>
+  );
+}
+
+function PdfViewer({ file }: { file: KFile }) {
+  return <iframe src={file.url} title={file.name} className="w-full h-96 border rounded my-2" />;
+}
+
+function VideoViewer({ file, poster }: { file: KFile; poster?: string }) {
+  return <HlsPlayer controls className="max-w-full max-h-96 rounded my-2" poster={poster} src={file.url} />;
+}
+
+function FileLink({ file }: { file: KFile }) {
+  return (
+    <a href={file.url} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline block">
+      📎 {file.name}
+    </a>
+  );
+}
+
+interface ShortFileViewerProps {
+  file: KFile;
+  poster?: string;
+  subs?: Sub[];
+  subVi?: Sub[];
+  subJa?: Sub[];
+}
+
+export function ShortFileViewer({ file, poster, subs, subVi, subJa }: ShortFileViewerProps) {
+  switch (file.source.kind) {
+    case "image":
+      return <ImageViewer file={file} />;
+    case "pdf":
+      return <PdfViewer file={file} />;
+    case "facebook":
+      return <FacebookVideoEmbed videoUrl={file.url} />;
+    case "youtube":
+      return <YouTubePlayer videoId={file.source.videoId} subs={subs} subVi={subVi} subJa={subJa} />;
+    case "video":
+      return <VideoViewer file={file} poster={poster} />;
+    case "file":
+      return <FileLink file={file} />;
+  }
+}

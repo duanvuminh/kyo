@@ -1,9 +1,9 @@
 import "@/app/globals.css";
-import { AppSidebar } from "@/shared/component/app-sidebar/app-sidebar";
-import { KBreadCrumb } from "@/shared/component/bread-crumb/bread-crumb";
-import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/shared/component/ui/sidebar";
-import { Toaster } from "@/shared/component/ui/sonner";
-import { StoreProvider } from "@/shared/providers/store-provider";
+import { AppSidebar } from "@/lib/components/app-sidebar/app-sidebar";
+import { KBreadCrumb } from "@/lib/components/bread-crumb/bread-crumb";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Toaster } from "@/components/ui/sonner";
+import { StoreProvider } from "@/lib/store-provider";
 import type { Metadata } from "next";
 import { SessionProvider } from "next-auth/react";
 

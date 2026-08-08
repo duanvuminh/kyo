@@ -1,0 +1,56 @@
+import { parseRelatedItems, parseReplyContent } from "@/app/short/_lib/short-parser.utils";
+import {
+  getListMessageFromSlack,
+  getListReplyFromSlack,
+  type SlackMessageEntity,
+} from "@/lib/repositories/slack";
+
+export type ShortEntity = SlackMessageEntity;
+
+const limit = 5;
+const defaultPage = "newest";
+const channelId = "C071E9YUDHU";
+
+export const fetchShortEntities = async ({
+  page,
+}: {
+  page: string;
+}): Promise<{ entities: ShortEntity[]; limit: number; nextPage?: string }> => {
+  const data = await getListMessageFromSlack({
+    channelId,
+    cursor: page === defaultPage ? undefined : page,
+    limit,
+  });
+
+  const entities = await Promise.all(
+    data.messages.map(async (item) => {
+      if (item.thread_ts) {
+        const threads = await getThreadMessages(channelId, item.thread_ts);
+        const content = parseReplyContent(threads);
+        const relateds = parseRelatedItems(threads);
+        return {
+          ...item,
+          text: content,
+          // relateds giờ không còn tính message gốc (đã bỏ ở parseRelatedItems) nên chỉ cần >0
+          // là đã có ít nhất 1 tập khác thật sự ngoài short chính.
+          relatedMessages: relateds.length > 0 ? relateds : [],
+        };
+      }
+      return item;
+    }),
+  );
+
+  return {
+    entities,
+    limit,
+    nextPage: data.response_metadata?.next_cursor,
+  };
+};
+
+async function getThreadMessages(
+  channelId: string,
+  ts: string,
+): Promise<SlackMessageEntity[]> {
+  const replies = await getListReplyFromSlack({ channelId, ts });
+  return replies.messages;
+}

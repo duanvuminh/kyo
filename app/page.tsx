@@ -1,5 +1,5 @@
-import { Chat } from "@/feature/chat/component/chat/chat";
-import { MdxWrapperStyle } from "@/shared/component/mdx-wrapper-style";
+import { Chat } from "@/lib/components/chat/chat";
+import { MdxWrapperStyle } from "@/lib/components/mdx-wrapper-style";
 
 export default function Page() {
   return (

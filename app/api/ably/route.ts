@@ -1,7 +1,8 @@
-import { protectApi } from "@/core/utils/api-protection";
-import { createAblyTokenRequest } from "@/feature/qna/services/ably";
-import { getUserMail } from "@/shared/service/auth";
-import { AppError, ErrorCode } from "@/shared/type/models/error";
+import { protectApi } from "@/lib/utils/api-protection";
+import { createAblyTokenRequest } from "@/lib/services/ably";
+import { getUserMail } from "@/lib/auth";
+import { env } from "@/lib/env";
+import { AppError, ErrorCode } from "@/lib/types";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
@@ -15,7 +16,7 @@ export async function GET(req: Request) {
     throw new AppError(ErrorCode.UNAUTHENTICATED);
   }
 
-  const apiKey = process.env.ABLY_API_KEY;
+  const apiKey = env.ABLY_API_KEY;
   if (!apiKey) {
     throw new AppError(ErrorCode.ABLY_KEY_INVALID);
   }

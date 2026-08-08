@@ -1,9 +1,9 @@
 "use client";
 
-import { ChatInput } from "@/feature/qna/component/qna-chat/chat-input";
-import { ChatMessages } from "@/feature/qna/component/qna-chat/chat-messages";
-import { useAblyChat } from "@/feature/qna/component/qna-chat/use-ably-chat";
-import { CenterMessage } from "@/shared/component/center-message";
+import { ChatInput } from "@/lib/components/qna-chat/chat-input";
+import { ChatMessages } from "@/lib/components/qna-chat/chat-messages";
+import { useAblyChat } from "@/lib/components/qna-chat/use-ably-chat";
+import { CenterMessage } from "@/lib/components/center-message";
 import { useSession } from "next-auth/react";
 
 function QnaChat({ email }: { email: string }) {

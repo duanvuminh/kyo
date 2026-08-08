@@ -1,5 +1,5 @@
 import { cards } from "@/app/kanji/n1/page15/flash-card/cards";
-import { FlashCard } from "@/shared/component/flash-card/flash-card";
+import { FlashCard } from "@/lib/components/flash-card/flash-card";
 
 export default function Page() {
   return (

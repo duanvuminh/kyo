@@ -1,12 +1,13 @@
-import { EditBox } from "@/feature/update-content/component/edit-box/edit-box";
-import { GrammarCardsEditor } from "@/feature/update-content/component/grammar-editor/grammar-cards-editor";
-import { parseCardsSource } from "@/feature/update-content/mapper/cards-parser";
-import type { EditableCard } from "@/feature/update-content/types/cards";
-import { submitUpdateContent, submitUpdateGrammar } from "@/shared/actions/update-content";
-import { CenterMessage } from "@/shared/component/center-message";
-import { getGrammarEditItem } from "@/shared/lib/update-content";
-import { checkAuthenticated } from "@/shared/service/auth";
-import type { BaseItem } from "@/shared/type/models/word";
+import { EditBox } from "@/app/update-content/_components/edit-box/edit-box";
+import { GrammarCardsEditor } from "@/app/update-content/_components/grammar-editor/grammar-cards-editor";
+import { parseCardsSource } from "@/app/update-content/_lib/update-content.service";
+import type { EditableCard } from "@/app/update-content/_lib/update-content.types";
+import { submitUpdateContent, submitUpdateGrammar } from "@/app/actions/update-content.actions";
+import { CenterMessage } from "@/lib/components/center-message";
+import { getGrammarEditItem } from "@/lib/repositories/local-content";
+import { checkAuthenticated } from "@/lib/auth";
+import type { BaseItem } from "@/lib/types";
+import { notFound } from "next/navigation";
 
 interface UpdateContentPageProps {
   searchParams?: Promise<{
@@ -49,7 +50,7 @@ export default async function Page({ searchParams }: UpdateContentPageProps) {
     const initialItem = await getGrammarEditItem(params.slug);
 
     if (!initialItem) {
-      return <CenterMessage>Không tìm thấy file grammar/n1/{params.slug}/flash-card/cards.ts</CenterMessage>;
+      notFound();
     }
 
     return <GrammarEditRoute slug={params.slug} item={initialItem} />;

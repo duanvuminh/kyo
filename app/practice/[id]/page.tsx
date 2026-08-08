@@ -1,5 +1,5 @@
-import { KPracticeCard } from "@/feature/practice/component/practice-card/practice-card";
-import { getFlashCard, getPractice } from "@/feature/practice/service/practice";
+import { KPracticeCard } from "@/app/practice/_components/practice-card/practice-card";
+import { getFlashCard, getPractice } from "@/app/practice/_lib/practice.service";
 
 interface Props {
   params: Promise<{

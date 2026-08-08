@@ -1,4 +1,4 @@
-import { FlashCardItem } from "@/shared/component/flash-card/flash-card";
+import { FlashCardItem } from "@/lib/components/flash-card/flash-card";
 
 export const cards: FlashCardItem[] = [
   {

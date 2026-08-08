@@ -1,13 +1,13 @@
-import { ShortBlock } from "@/feature/short/component/short-block";
-import { getShort } from "@/feature/short/service/short";
+import { ShortBlock } from "@/app/short/_components/short-block";
+import { getShort } from "@/app/short/_lib/short.service";
 import {
   displayData,
   hasData,
   showNextPage,
   type ShortViewModel,
-} from "@/feature/short/type/short.view-model";
-import { CenterMessage } from "@/shared/component/center-message";
-import { QuickSearchBySelectText } from "@/shared/component/quick-search-by-select-text/quick-search-by-select-text";
+} from "@/app/short/_lib/short.types";
+import { QuickSearchBySelectText } from "@/lib/components/quick-search-by-select-text/quick-search-by-select-text";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export const revalidate = 604800; // 1 week
@@ -21,12 +21,7 @@ export default async function Page({
   const pageData: ShortViewModel = await getShort({ page });
 
   if (!hasData(pageData)) {
-    return (
-      <CenterMessage>
-        Không tìm thấy bài viết.
-        <Link href="/short/newest">Click để quay lại</Link>.
-      </CenterMessage>
-    );
+    notFound();
   }
 
   return (

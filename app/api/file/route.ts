@@ -1,5 +1,5 @@
-import { buildProxyHeaders, fetchWithSlackAuth } from "@/shared/lib/proxy-fetch";
-import { AppError, ErrorCode } from "@/shared/type/models/error";
+import { buildProxyHeaders, fetchWithSlackAuth } from "@/lib/proxy-fetch";
+import { AppError, ErrorCode } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

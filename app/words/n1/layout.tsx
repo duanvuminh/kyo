@@ -1,4 +1,4 @@
-import { WordPaging } from "@/feature/word/component/paging";
+import { WordPaging } from "@/app/words/_components/paging";
 
 export default async function Layout({
   children,

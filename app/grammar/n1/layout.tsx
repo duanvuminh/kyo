@@ -1,4 +1,4 @@
-import { GrammarPaging } from "@/feature/grammar/component/paging";
+import { GrammarPaging } from "@/app/grammar/_components/paging";
 
 export default async function Layout({
   children,

@@ -1,0 +1,15 @@
+import { env } from "@/lib/env";
+import { cert, getApps, initializeApp } from "firebase-admin/app";
+import { getFirestore } from "firebase-admin/firestore";
+import { getStorage } from "firebase-admin/storage";
+
+const serviceAccount = JSON.parse(env.FIREBASE_ADMIN_PRIVATE_KEY);
+if (getApps().length === 0) {
+  initializeApp({
+    credential: cert(serviceAccount),
+    storageBucket: env.FIREBASE_STORAGE_BUCKET,
+  });
+}
+
+export const db = getFirestore();
+export const storage = getStorage().bucket();

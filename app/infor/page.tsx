@@ -1,5 +1,5 @@
-import { InforContainer } from "@/feature/infor/component/infor-container";
-import { MdxWrapperStyle } from "@/shared/component/mdx-wrapper-style";
+import { InforContainer } from "@/app/infor/_components/infor-container";
+import { MdxWrapperStyle } from "@/lib/components/mdx-wrapper-style";
 
 export default async function Page() {
   return (
