@@ -7,6 +7,7 @@ import {
   type ShortViewModel,
 } from "@/app/short/_lib/short.types";
 import { QuickSearchBySelectText } from "@/lib/components/quick-search-by-select-text/quick-search-by-select-text";
+import { isInvalidSlackCursor } from "@/lib/types";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
@@ -18,7 +19,15 @@ export default async function Page({
   params: Promise<{ page: string }>;
 }) {
   const { page } = await params;
-  const pageData: ShortViewModel = await getShort({ page });
+  let pageData: ShortViewModel;
+  try {
+    pageData = await getShort({ page });
+  } catch (error) {
+    if (isInvalidSlackCursor(error)) {
+      notFound();
+    }
+    throw error;
+  }
 
   if (!hasData(pageData)) {
     notFound();

@@ -47,6 +47,17 @@ export class AppError extends Error {
   }
 }
 
+/** Cursor phân trang Slack không hợp lệ (URL cũ/gõ tay) → nên coi là "không tìm thấy trang"
+ * (notFound), không phải lỗi hạ tầng thật. Dùng ở page.tsx của manga/short. */
+export function isInvalidSlackCursor(error: unknown): boolean {
+  return (
+    error instanceof AppError &&
+    error.code === ErrorCode.SLACK &&
+    error.cause instanceof Error &&
+    error.cause.message === "invalid_cursor"
+  );
+}
+
 /** State trả về từ Server Action dùng với useActionState — lỗi nghiệp vụ đi qua `message`,
  * KHÔNG throw (xem README mục "Xử lý lỗi"); lỗi hạ tầng vẫn throw như bình thường. */
 export interface ActionState<T = undefined> {
