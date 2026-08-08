@@ -52,6 +52,10 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#b91c1c",
+  // Đi cùng statusBarStyle: "black-translucent" — status bar trong suốt đè lên content,
+  // cần viewportFit: "cover" để content trải full màn hình (kể cả vùng notch), không bị
+  // hụt/để trống phía sau status bar.
+  viewportFit: "cover",
 };
 
 export default async function RootLayout({
@@ -67,7 +71,7 @@ export default async function RootLayout({
             <SidebarProvider defaultOpen={false}>
               <AppSidebar />
               <SidebarInset>
-                <div className="sticky top-0 flex items-center z-1 m-1 gap-2">
+                <div className="sticky top-0 flex items-center z-1 m-1 gap-2 pt-[env(safe-area-inset-top)]">
                   <SidebarTrigger />
                   <KBreadCrumb />
                 </div>
