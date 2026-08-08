@@ -5,7 +5,7 @@ import { uploadMangaImageAction } from "@/app/actions/upload-manga-image.actions
 import type { CreatedManga } from "@/app/manga/_lib/manga.service";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ActionState, AppError } from "@/lib/types";
+import { ActionState } from "@/lib/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, useActionState, useEffect, useState } from "react";
@@ -32,10 +32,7 @@ function resizeImage(img: HTMLImageElement): { base64: string; width: number; he
   canvas.width = width;
   canvas.height = height;
   const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    throw new Error("Không thể xử lý ảnh");
-  }
-  ctx.drawImage(img, 0, 0, width, height);
+  ctx?.drawImage(img, 0, 0, width, height);
 
   return { base64: canvas.toDataURL("image/jpeg", JPEG_QUALITY), width, height };
 }
@@ -46,16 +43,10 @@ function readAndResizeImage(file: File): Promise<{ base64: string; width: number
     reader.onload = () => {
       const img = new window.Image();
       img.onload = () => {
-        try {
-          resolve(resizeImage(img));
-        } catch (err) {
-          reject(err instanceof Error ? err : new Error("Không xử lý được ảnh"));
-        }
+        resolve(resizeImage(img));
       };
-      img.onerror = () => reject(new Error("Không đọc được ảnh"));
       img.src = reader.result as string;
     };
-    reader.onerror = () => reject(new Error("Không đọc được file"));
     reader.readAsDataURL(file);
   });
 }
@@ -75,16 +66,9 @@ async function handleImageSelect(
     return;
   }
   setUploadingCount(files.length);
-  try {
-    const uploaded = await Promise.all(files.map(uploadFile));
-    setImages((prev) => [...prev, ...uploaded]);
-  } catch (err) {
-    const message =
-      err instanceof AppError ? err.message : "Không upload được ảnh, thử lại";
-    toast.error(message);
-  } finally {
-    setUploadingCount(0);
-  }
+  const uploaded = await Promise.all(files.map(uploadFile));
+  setImages((prev) => [...prev, ...uploaded]);
+  setUploadingCount(0);
 }
 
 function extractImageFiles(clipboardData: DataTransfer | null): File[] {

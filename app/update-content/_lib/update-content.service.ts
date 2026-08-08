@@ -17,7 +17,7 @@ export function parseCardsSource(source: string): EditableCard[] {
   );
   const arrayLiteral = findCardsArrayLiteral(sourceFile);
   if (!arrayLiteral) {
-    throw new Error("Không tìm thấy khai báo cards trong file.");
+    throw new Error("cards array literal not found");
   }
 
   const raw = evaluateExpression(arrayLiteral) as JSONValue[];
@@ -29,7 +29,7 @@ export function parseCardText(text: string): EditableCard {
   const sourceFile = ts.createSourceFile("card.ts", wrapped, ts.ScriptTarget.Latest, true);
   const node = singleObjectLiteral(sourceFile);
   if (!node) {
-    throw new Error("Nội dung dán vào phải là 1 card, ví dụ { front: ..., back: [...] }.");
+    throw new Error("pasted content is not a single card object literal");
   }
   return toEditableCard(evaluateExpression(node));
 }
@@ -106,7 +106,7 @@ function evaluateExpression(node: ts.Expression): JSONValue {
     return evaluateObjectLiteral(node);
   }
 
-  throw new Error(`Không hỗ trợ cú pháp: ${ts.SyntaxKind[node.kind]}`);
+  throw new Error(`unsupported syntax kind: ${ts.SyntaxKind[node.kind]}`);
 }
 
 function evaluateObjectLiteral(

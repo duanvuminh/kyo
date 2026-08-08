@@ -6,24 +6,12 @@ import {
   displayData,
   getNextPageOrDefault,
   hasData,
-  showNextPage,
-  type MangaViewModel,
+  showNextPage
 } from "@/app/manga/_lib/manga.types";
 import { CenterContent } from "@/lib/components/center-content";
-import { isInvalidSlackCursor } from "@/lib/types";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-async function fetchMangaPage(page: string): Promise<MangaViewModel> {
-  try {
-    return await getManga({ page });
-  } catch (error) {
-    if (isInvalidSlackCursor(error)) {
-      notFound();
-    }
-    throw error;
-  }
-}
 
 export default async function Page({
   params,
@@ -31,7 +19,7 @@ export default async function Page({
   params: Promise<{ page: string }>;
 }) {
   const { page } = await params;
-  const pageData = await fetchMangaPage(page);
+  const pageData = await getManga({ page });
 
   if (!hasData(pageData)) {
     // "newest" rỗng là empty state hợp lệ (chưa có manga nào) — không phải 404;

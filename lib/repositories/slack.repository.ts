@@ -179,7 +179,7 @@ async function getSlackUploadUrl(
   return data as { upload_url: string; file_id: string };
 }
 
-async function completeSlackUpload(fileId: string, title: string): Promise<string> {
+async function _completeSlackUpload(fileId: string, title: string): Promise<string> {
   const res = await fetch("https://slack.com/api/files.completeUploadExternal", {
     method: "POST",
     headers: {
@@ -222,7 +222,7 @@ export const uploadSlackImage = async ({
     });
   }
 
-  return completeSlackUpload(uploadUrl.file_id, filename);
+  return _completeSlackUpload(uploadUrl.file_id, filename);
 };
 
 export const getListReplyFromSlack = async ({
