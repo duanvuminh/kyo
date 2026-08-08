@@ -1,4 +1,4 @@
-const CACHE_NAME = "kyo-shell-v3";
+const CACHE_NAME = "kyo-shell-v4";
 const SHELL_ASSETS = [
   "/",
   "/manifest.webmanifest",
@@ -25,11 +25,15 @@ self.addEventListener("activate", (event) => {
 });
 
 // Asset tĩnh (icon, JS/CSS build, font, ảnh proxy) — cache theo path cụ thể.
+// Riêng /manga: điều hướng bằng <Link> trong app là client-side navigation, Next.js chỉ
+// fetch RSC payload (không phải request mode "navigate") nên phải khớp theo path riêng,
+// không chỉ dựa vào isNavigation bên dưới.
 function isCacheableAsset(url) {
   return (
     url.pathname.startsWith("/_next/static/") ||
     url.pathname.startsWith("/icons/") ||
     url.pathname.startsWith("/splash/") ||
+    url.pathname.startsWith("/manga") ||
     url.pathname === "/api/file" ||
     /\.(png|jpg|jpeg|svg|webp|ico|woff2?)$/.test(url.pathname)
   );
