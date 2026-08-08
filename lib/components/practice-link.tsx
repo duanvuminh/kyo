@@ -1,7 +1,7 @@
 "use client";
 
 import { SidebarMenuButton } from "@/components/ui/sidebar";
-import { PracticeStorage } from "@/lib/services/storage";
+import { PracticeStorage } from "@/lib/services/storage.service";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 

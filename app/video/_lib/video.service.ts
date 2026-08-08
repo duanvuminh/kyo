@@ -1,5 +1,5 @@
 import type { Video } from "@/app/video/_lib/video.types";
-import { getVideosMarket, type VideoMarketEntity } from "@/lib/repositories/videos-market";
+import { getVideosMarket, type VideoMarketEntity } from "@/lib/repositories/videos-market.repository";
 import { videoMarketUrl } from "@/lib/utils/videos";
 
 function videoMarketToVideo(data: VideoMarketEntity): Video {

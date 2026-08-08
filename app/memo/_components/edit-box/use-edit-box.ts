@@ -1,4 +1,4 @@
-import { MemoStorageRepository } from "@/lib/repositories/storage";
+import { MemoStorageRepository } from "@/lib/repositories/storage.repository";
 import { BaseItem, Source } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";

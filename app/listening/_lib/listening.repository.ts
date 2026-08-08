@@ -1,8 +1,7 @@
-import { getListMessageFromDisCord, type DiscordMessageEntity } from "@/lib/repositories/discord";
+import { getListMessageFromDisCord, type DiscordMessageEntity } from "@/lib/repositories/discord.repository";
+import type { PaginatedFetch } from "@/lib/types";
 
-export type ListeningEntity = DiscordMessageEntity;
-
-const limit = 10;
+export const LISTENING_PAGE_LIMIT = 10;
 const defaultPage = "newest";
 
 const CHANNEL_IDS: Record<string, string> = {
@@ -16,17 +15,16 @@ export const fetchListeningEntities = async ({
 }: {
   page: string;
   level: string;
-}): Promise<{ entities: ListeningEntity[]; limit: number; nextPage?: string }> => {
+}): Promise<PaginatedFetch<DiscordMessageEntity>> => {
   const channelId = CHANNEL_IDS[level] ?? CHANNEL_IDS.default;
   const messages = await getListMessageFromDisCord({
     channelId,
     before: page === defaultPage ? undefined : page,
-    limit,
+    limit: LISTENING_PAGE_LIMIT,
   });
 
   return {
     entities: messages,
-    limit,
-    nextPage: messages.length === limit ? messages.at(-1)?.id : undefined,
+    nextPage: messages.length === LISTENING_PAGE_LIMIT ? messages.at(-1)?.id : undefined,
   };
 };

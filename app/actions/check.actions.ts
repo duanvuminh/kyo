@@ -1,6 +1,6 @@
 "use server";
 import { classifyWord } from "@/lib/services/ai/classify-word";
-import { searchWord } from "@/lib/services/dictionary";
+import { searchWord } from "@/lib/services/dictionary.service";
 import { KWordType } from "@/lib/types";
 
 export async function wordExists(words: string): Promise<boolean> {

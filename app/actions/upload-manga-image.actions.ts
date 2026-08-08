@@ -21,10 +21,5 @@ export async function uploadMangaImageAction(
     throw new AppError(ErrorCode.VALIDATION);
   }
 
-  const url = await uploadMangaImage(parsed.data.base64);
-  if (!url) {
-    throw new AppError(ErrorCode.SLACK);
-  }
-
-  return url;
+  return uploadMangaImage(parsed.data.base64);
 }

@@ -17,12 +17,12 @@ export async function addClickableArea(
 ): Promise<ActionState<UpdatedPanel>> {
   const isAuth = await checkAuthenticated();
   if (!isAuth) {
-    return { message: new AppError(ErrorCode.UNAUTHENTICATED).customMessage };
+    return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
   }
 
   const parsed = addClickableAreaSchema.safeParse(input);
   if (!parsed.success) {
-    return { message: new AppError(ErrorCode.VALIDATION).customMessage };
+    return { message: new AppError(ErrorCode.VALIDATION).message };
   }
 
   const updated = await addClickableAreaToPanel(parsed.data);

@@ -5,17 +5,23 @@ import { AssistantMenu } from "@/lib/components/chat/assistant-menu/assistant-me
 import type { AppendFn } from "@/lib/components/chat/assistant-menu/use-assistant-menu";
 import { ChatContainer } from "@/lib/components/chat/chat-container";
 import { ChatInput } from "@/lib/components/chat/chat-input";
-import { TypingIndicator } from "@/lib/components/chat/typing-indicator";
+import { TypingIndicator } from "@/lib/components/typing-indicator";
 import { useIsWordCommand } from "@/lib/components/chat/use-is-word-command";
 import { useSyncEditMessageFromChat } from "@/lib/components/chat/use-sync-edit-message-from-chat";
 import { WordHistoryItem } from "@/lib/components/chat/word-history";
-import { findHuusennarareUrl } from "@/lib/utils/huusennarare-index";
+import huusennarareIndex from "@/lib/data/huusennarare-index.json";
 import { useChat } from "@ai-sdk/react";
 import { UIMessage } from "ai";
 import Link from "next/link";
 import { useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+
+const kanjiIndex: Record<string, string> = huusennarareIndex;
+
+function findHuusennarareUrl(kanji: string): string | undefined {
+  return kanjiIndex[kanji];
+}
 
 function getLastUserText(messages: UIMessage[]): string {
   return (

@@ -6,11 +6,12 @@ import {
   updateSlackMessage,
   uploadSlackImage,
   type SlackMessageEntity,
-} from "@/lib/repositories/slack";
+} from "@/lib/repositories/slack.repository";
+import type { PaginatedFetch } from "@/lib/types";
 import { revalidateTag } from "next/cache";
 
 export const MANGA_CHANNEL_ID = "C0BMBA82Q6N";
-const limit = 1;
+export const MANGA_PAGE_LIMIT = 1;
 const defaultPage = "newest";
 
 export interface MangaEntity {
@@ -22,11 +23,11 @@ export const fetchMangaEntities = async ({
   page,
 }: {
   page: string;
-}): Promise<{ entities: MangaEntity[]; limit: number; nextPage?: string }> => {
+}): Promise<PaginatedFetch<MangaEntity>> => {
   const history = await getListMessageFromSlack({
     channelId: MANGA_CHANNEL_ID,
     cursor: page === defaultPage ? undefined : page,
-    limit,
+    limit: MANGA_PAGE_LIMIT,
   });
 
   const entities = await Promise.all(
@@ -43,7 +44,6 @@ export const fetchMangaEntities = async ({
 
   return {
     entities,
-    limit,
     nextPage: history.has_more ? history.response_metadata?.next_cursor : undefined,
   };
 };
@@ -52,21 +52,21 @@ export const fetchMangaEntities = async ({
 // trở thành thread cha ngay khi có reply dùng thread_ts = ts của nó.
 export const createMangaEntry = async (
   content: string,
-): Promise<{ entryId: string; threadId: string } | null> => {
+): Promise<{ entryId: string; threadId: string }> => {
   const posted = await sendSlackMessage({ channelId: MANGA_CHANNEL_ID, text: content });
-  return posted ? { entryId: posted.ts, threadId: posted.ts } : null;
+  return { entryId: posted.ts, threadId: posted.ts };
 };
 
 export const postPanelMessage = async (
   threadId: string,
   content: string,
-): Promise<{ id: string } | null> => {
+): Promise<{ id: string }> => {
   const posted = await sendSlackMessage({
     channelId: MANGA_CHANNEL_ID,
     text: content,
     threadTs: threadId,
   });
-  return posted ? { id: posted.ts } : null;
+  return { id: posted.ts };
 };
 
 // Slack cho phép bot tự sửa tin nhắn của chính nó qua chat.update
@@ -75,15 +75,12 @@ export const replacePanelMessage = async (
   threadId: string,
   messageId: string,
   content: string,
-): Promise<{ id: string } | null> => {
-  const updated = await updateSlackMessage({
+): Promise<{ id: string }> => {
+  await updateSlackMessage({
     channelId: MANGA_CHANNEL_ID,
     ts: messageId,
     text: content,
   });
-  if (!updated) {
-    return null;
-  }
 
   revalidateTag(discordThreadTag(threadId), "max");
 
@@ -93,33 +90,26 @@ export const replacePanelMessage = async (
 export const updateMangaEntry = async (
   entryId: string,
   content: string,
-): Promise<boolean> => {
-  const updated = await updateSlackMessage({
+): Promise<void> => {
+  await updateSlackMessage({
     channelId: MANGA_CHANNEL_ID,
     ts: entryId,
     text: content,
   });
 
-  if (updated) {
-    revalidateTag(discordChannelTag(MANGA_CHANNEL_ID), "max");
-  }
-
-  return updated;
+  revalidateTag(discordChannelTag(MANGA_CHANNEL_ID), "max");
 };
 
 export const notifyNewMangaCreated = () => {
   revalidateTag(discordChannelTag(MANGA_CHANNEL_ID), "max");
 };
 
-export async function uploadMangaImage(imageBase64: string): Promise<string | null> {
+export async function uploadMangaImage(imageBase64: string): Promise<string> {
   const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, "");
   const buffer = Buffer.from(base64Data, "base64");
   const filename = `manga-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
 
   const urlPrivate = await uploadSlackImage({ buffer, filename });
-  if (!urlPrivate) {
-    return null;
-  }
 
   // Slack file URL yêu cầu Bearer token mới fetch được → phải đi qua proxy có sẵn của app
   return `/api/file?url=${encodeURIComponent(urlPrivate)}`;

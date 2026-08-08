@@ -1,9 +1,31 @@
 "use server";
 
 import { checkAuthenticated } from "@/lib/auth";
-import { updateWordsContent } from "@/lib/services/dictionary";
-import { updateGrammarViaGithub } from "@/lib/services/github";
-import { ActionState, AppError, ErrorCode, BaseItem } from "@/lib/types";
+import { updateWordsContent } from "@/lib/services/dictionary.service";
+import { updateGrammarViaGithub } from "@/lib/services/github.service";
+import { ActionState, AppError, BaseItem, ErrorCode, KWordType, Source } from "@/lib/types";
+import { z } from "zod";
+
+const baseItemSchema = z.object({
+    source: z.enum(Source),
+    collection: z.string().optional(),
+    documentId: z.string().min(1),
+    words: z.string().min(1),
+    content: z.string().optional(),
+    type: z.enum(KWordType).optional(),
+});
+
+function parseItemJson(itemJson: FormDataEntryValue | null): BaseItem | null {
+    if (typeof itemJson !== "string") {
+        return null;
+    }
+    try {
+        const parsed = baseItemSchema.safeParse(JSON.parse(itemJson));
+        return parsed.success ? parsed.data : null;
+    } catch {
+        return null;
+    }
+}
 
 export async function submitUpdateContent(
     _prevState: ActionState,
@@ -11,15 +33,14 @@ export async function submitUpdateContent(
 ): Promise<ActionState> {
     const isAuth = await checkAuthenticated();
     if (!isAuth) {
-        return { message: new AppError(ErrorCode.UNAUTHENTICATED).customMessage };
+        return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
     }
 
-    const itemJson = formData.get("item");
-    if (!itemJson || typeof itemJson !== "string") {
-        return { message: new AppError(ErrorCode.VALIDATION).customMessage };
+    const item = parseItemJson(formData.get("item"));
+    if (!item) {
+        return { message: new AppError(ErrorCode.VALIDATION).message };
     }
 
-    const item: BaseItem = JSON.parse(itemJson);
     await updateWordsContent(item);
     return { data: undefined };
 }
@@ -30,18 +51,12 @@ export async function submitUpdateGrammar(
 ): Promise<ActionState> {
     const isAuth = await checkAuthenticated();
     if (!isAuth) {
-        return { message: new AppError(ErrorCode.UNAUTHENTICATED).customMessage };
+        return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
     }
 
-    const itemJson = formData.get("item");
-    if (!itemJson || typeof itemJson !== "string") {
-        return { message: new AppError(ErrorCode.VALIDATION).customMessage };
-    }
-
-    const item: BaseItem = JSON.parse(itemJson);
-
-    if (!item.documentId || !item.content) {
-        return { message: new AppError(ErrorCode.VALIDATION).customMessage };
+    const item = parseItemJson(formData.get("item"));
+    if (!item?.documentId || !item?.content) {
+        return { message: new AppError(ErrorCode.VALIDATION).message };
     }
 
     try {

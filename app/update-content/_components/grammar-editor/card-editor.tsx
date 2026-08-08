@@ -38,7 +38,7 @@ async function pasteCard(onReplace: (card: EditableCard) => void, setPending: (p
     onReplace(card);
     toast.success("Đã dán card");
   } catch (e) {
-    const message = e instanceof AppError ? e.customMessage : "Không đọc được nội dung clipboard";
+    const message = e instanceof AppError ? e.message : "Không đọc được nội dung clipboard";
     toast.error(message);
   } finally {
     setPending(false);

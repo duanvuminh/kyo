@@ -4,9 +4,9 @@ import { serializeCardsToSource } from "@/app/update-content/_lib/update-content
 import {
   submitGrammarCardsSchema,
   type SubmitGrammarCardsInput,
-} from "@/app/update-content/_lib/submit-grammar-cards.schema";
+} from "@/app/update-content/_lib/update-content.types";
 import { checkAuthenticated } from "@/lib/auth";
-import { updateGrammarViaGithub } from "@/lib/services/github";
+import { updateGrammarViaGithub } from "@/lib/services/github.service";
 import { ActionState, AppError, ErrorCode } from "@/lib/types";
 
 export async function submitGrammarCardsAction(
@@ -15,12 +15,12 @@ export async function submitGrammarCardsAction(
 ): Promise<ActionState<boolean>> {
   const isAuth = await checkAuthenticated();
   if (!isAuth) {
-    return { message: new AppError(ErrorCode.UNAUTHENTICATED).customMessage };
+    return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
   }
 
   const parsed = submitGrammarCardsSchema.safeParse(input);
   if (!parsed.success) {
-    return { message: new AppError(ErrorCode.VALIDATION).customMessage };
+    return { message: new AppError(ErrorCode.VALIDATION).message };
   }
 
   try {

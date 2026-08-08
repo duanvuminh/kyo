@@ -1,12 +1,11 @@
 import { isDev } from "@/lib/env";
-import { algoliaUpdate } from "@/lib/repositories/algolia";
-import { updateDiscordMessage } from "@/lib/repositories/discord";
+import { algoliaUpdate } from "@/lib/repositories/algolia.repository";
+import { updateDiscordMessage } from "@/lib/repositories/discord.repository";
 import {
   createDocument,
   getWordById,
   updateDocument,
-} from "@/lib/repositories/firestore";
-import { isKanjiWord } from "@/lib/utils/kanji";
+} from "@/lib/repositories/firestore.repository";
 import { freeAiService } from "@/lib/services/ai/factory";
 import {
   instructionCompareContent,
@@ -14,6 +13,12 @@ import {
 } from "@/lib/services/ai/instructions";
 import { BaseItem, KWord, KWordType, Source } from "@/lib/types";
 import { z } from "zod";
+
+const KANJI_REGEX = /^[一-龯]$/;
+
+function isKanjiWord(word: string): boolean {
+  return KANJI_REGEX.test(word);
+}
 
 function _createKanjiResult(word: string): KWord {
   return {
@@ -119,7 +124,7 @@ const _handleDiscordUpdate = async (item: BaseItem) => {
   }
 
   if (isDev) {
-    updateDiscordMessage({
+    await updateDiscordMessage({
       channelId: "1386090536753958952",
       messageId: item.documentId,
       content: item.content,
@@ -128,7 +133,7 @@ const _handleDiscordUpdate = async (item: BaseItem) => {
   }
 
   if (await _shouldUpdateWithAi(item.words, item.content)) {
-    updateDiscordMessage({
+    await updateDiscordMessage({
       channelId: "1386090536753958952",
       messageId: item.documentId,
       content: item.content,

@@ -14,12 +14,12 @@ export async function createManga(
 ): Promise<ActionState<CreatedManga>> {
   const isAuth = await checkAuthenticated();
   if (!isAuth) {
-    return { message: new AppError(ErrorCode.UNAUTHENTICATED).customMessage };
+    return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
   }
 
   const parsed = createMangaSchema.safeParse(input);
   if (!parsed.success) {
-    return { message: new AppError(ErrorCode.VALIDATION).customMessage };
+    return { message: new AppError(ErrorCode.VALIDATION).message };
   }
 
   const created = await createNewManga(parsed.data);

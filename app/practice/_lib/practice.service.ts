@@ -5,10 +5,10 @@ import {
   postFlashCard,
   postQuestionMessage,
   updateQuestionMessage,
-} from "@/app/practice/_lib/discord.repository";
+} from "@/app/practice/_lib/practice.repository";
 import { mapDatas } from "@/lib/utils/data-convert";
-import { questionSchema } from "@/lib/services/question";
-import { getWordById, upsertDocument } from "@/lib/repositories/firestore";
+import { questionSchema } from "@/lib/services/question.service";
+import { getWordById, upsertDocument } from "@/lib/repositories/firestore.repository";
 import { freeAiService } from "@/lib/services/ai/factory";
 import {
   instructionGenerateGrammarQuestions,
@@ -16,7 +16,7 @@ import {
   promptGenerateGrammarQuestions,
   promptGenerateVocabQuestions,
 } from "@/lib/services/ai/instructions";
-import type { DiscordMessageEntity } from "@/lib/repositories/discord";
+import type { DiscordMessageEntity } from "@/lib/repositories/discord.repository";
 import { KWord, KWordType, Practice, Source } from "@/lib/types";
 import matter from "gray-matter";
 
@@ -72,14 +72,14 @@ export const updateQuestion = async ({
   answers: [string, string, string, string];
   correctAnswer: number;
   yomi?: string;
-}): Promise<boolean> => {
+}): Promise<void> => {
   const body = matter.stringify(content, {
     answers,
     correctAnswer,
     ...(yomi ? { yomi } : {}),
   });
 
-  return updateQuestionMessage(threadId, messageId, body);
+  await updateQuestionMessage(threadId, messageId, body);
 };
 
 const _getExistingFlashCard = async (
@@ -103,8 +103,11 @@ const _createNewFlashCard = async (
     return null;
   }
 
-  const discordMessage = await postFlashCard(summary);
-  if (!discordMessage?.id) {
+  let discordMessage: DiscordMessageEntity;
+  try {
+    discordMessage = await postFlashCard(summary);
+  } catch {
+    // Discord lỗi tạm thời (429, 5xx) → không crash trang, tránh drain AI quota
     return null;
   }
 
@@ -127,32 +130,31 @@ const _createPracticeQuestions = async (
   flashCardContent: string,
   wordType?: KWordType
 ): Promise<void> => {
-  // Tạo thread từ flashcard message
-  const thread = await createQuestionThread(messageId, `Practice: ${word}`);
-  if (!thread) {
+  // Chạy nền, không ai await lời gọi hàm này → tự catch để tránh unhandled rejection,
+  // lỗi Discord/AI ở đây không nên crash flow chính (đã trả flashcard cho user rồi)
+  try {
+    const thread = await createQuestionThread(messageId, `Practice: ${word}`);
+
+    const isGrammar = wordType === KWordType.GRAMMAR;
+    const instruction = isGrammar
+      ? instructionGenerateGrammarQuestions
+      : instructionGenerateVocabQuestions;
+    const prompt = isGrammar
+      ? promptGenerateGrammarQuestions(flashCardContent, word)
+      : promptGenerateVocabQuestions(word, flashCardContent);
+
+    const result = await freeAiService().generateObject({
+      schema: questionSchema,
+      prompt,
+      system: instruction,
+    });
+
+    for (const q of result.questions) {
+      const content = _formatQuestionToMarkdown(q);
+      await postQuestionMessage(thread.id, content);
+    }
+  } catch {
     return;
-  }
-
-  // Chọn instruction và prompt phù hợp với loại từ
-  const isGrammar = wordType === KWordType.GRAMMAR;
-  const instruction = isGrammar
-    ? instructionGenerateGrammarQuestions
-    : instructionGenerateVocabQuestions;
-  const prompt = isGrammar
-    ? promptGenerateGrammarQuestions(flashCardContent, word)
-    : promptGenerateVocabQuestions(word, flashCardContent);
-
-  // Generate questions bằng AI
-  const result = await freeAiService().generateObject({
-    schema: questionSchema,
-    prompt,
-    system: instruction,
-  });
-
-  // Gửi từng question vào thread
-  for (const q of result.questions) {
-    const content = _formatQuestionToMarkdown(q);
-    await postQuestionMessage(thread.id, content);
   }
 };
 

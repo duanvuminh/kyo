@@ -13,7 +13,7 @@ export async function uploadChatImage(imagePreview: string): Promise<UploadResul
     return { success: true, url };
   } catch (error) {
     if (error instanceof AppError) {
-      return { success: false, error: error.customMessage };
+      return { success: false, error: error.message };
     }
     return { success: false, error: ErrorMessage[ErrorCode.UNKNOWN] };
   }

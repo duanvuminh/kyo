@@ -1,5 +1,5 @@
 "use server";
-import { mapToQuestions, questionSchema } from "@/lib/services/question";
+import { mapToQuestions, questionSchema } from "@/lib/services/question.service";
 import { freeAiService } from "@/lib/services/ai/factory";
 import {
   instructionGenerateGrammarQuestions,

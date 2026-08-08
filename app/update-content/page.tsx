@@ -3,8 +3,8 @@ import { GrammarCardsEditor } from "@/app/update-content/_components/grammar-edi
 import { parseCardsSource } from "@/app/update-content/_lib/update-content.service";
 import type { EditableCard } from "@/app/update-content/_lib/update-content.types";
 import { submitUpdateContent, submitUpdateGrammar } from "@/app/actions/update-content.actions";
-import { CenterMessage } from "@/lib/components/center-message";
-import { getGrammarEditItem } from "@/lib/repositories/local-content";
+import { CenterContent } from "@/lib/components/center-content";
+import { getGrammarEditItem } from "@/lib/repositories/local-content.repository";
 import { checkAuthenticated } from "@/lib/auth";
 import type { BaseItem } from "@/lib/types";
 import { notFound } from "next/navigation";
@@ -36,11 +36,11 @@ export default async function Page({ searchParams }: UpdateContentPageProps) {
 
   if (!isAuth) {
     return (
-      <CenterMessage>
+      <CenterContent>
         Bạn cần đăng nhập.
         <br />
         Menu → login
-      </CenterMessage>
+      </CenterContent>
     );
   }
 

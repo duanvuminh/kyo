@@ -1,5 +1,5 @@
 import { MODE_MAP, PracticeCardMode } from "@/app/practice/_lib/practice.types";
-import { PracticeStorage } from "@/lib/services/storage";
+import { PracticeStorage } from "@/lib/services/storage.service";
 import { Practice, Question } from "@/lib/types";
 import { useSearchParams } from "next/navigation";
 import { useSyncExternalStore, useState } from "react";

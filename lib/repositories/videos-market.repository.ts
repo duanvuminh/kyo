@@ -28,7 +28,11 @@ export const getVideosMarket = async ({ categoryTagIds, page }: { categoryTagIds
       headers: { Authorization: `Bearer ${env.VIDEO_MARKET}`, "Content-Type": "application/json" },
       body: JSON.stringify(buildSearchPayload(page, categoryTagIds)),
     });
-    if (!response.ok) { throw new AppError(ErrorCode.VIDEOS_MARKET); }
+    if (!response.ok) {
+      throw new AppError(ErrorCode.VIDEOS_MARKET, {
+        cause: new Error(`HTTP ${response.status} ${response.statusText}`),
+      });
+    }
     const jsonData = await response.json();
     return (jsonData.data?.searchTitles as VideoMarketEntity[]) ?? [];
   } catch (e) {

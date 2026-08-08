@@ -10,7 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PracticeStorage } from "@/lib/services/storage";
+import { PracticeStorage } from "@/lib/services/storage.service";
 import { toast } from "sonner";
 
 interface PracticeCardProps {

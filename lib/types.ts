@@ -20,19 +20,19 @@ export enum ErrorCode {
 /** Message hiển thị cho user theo ErrorCode */
 export const ErrorMessage: Record<ErrorCode, string> = {
   [ErrorCode.DUPLICATE_KEYWORD]: "Từ khóa đã tồn tại",
-  [ErrorCode.DISCORD]: "Lỗi kết nối Discord",
-  [ErrorCode.SLACK]: "Lỗi kết nối Slack",
+  [ErrorCode.DISCORD]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
+  [ErrorCode.SLACK]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.VIDEOS_MARKET]: "Không thể lấy dữ liệu video",
-  [ErrorCode.STORAGE]: "Lỗi lưu trữ storage",
+  [ErrorCode.STORAGE]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.AI_MODEL_ERROR]: "Vui lòng thử lại sau vài phút",
   [ErrorCode.AI_MODEL_ERROR_MAX_RETRIES_EXCEEDED]:
     "Vui lòng thử lại sau vài phút",
   [ErrorCode.UNAUTHENTICATED]: "Vui lòng đăng nhập để thực hiện hành động này",
   [ErrorCode.VALIDATION]: "Dữ liệu không hợp lệ, vui lòng kiểm tra lại",
   [ErrorCode.CHAT_IMAGE_UPLOAD]: "Không thể tải ảnh lên, vui lòng thử lại",
-  [ErrorCode.ABLY_TOKEN_ERROR]: "Lỗi khởi tạo Ably token",
-  [ErrorCode.ABLY_KEY_INVALID]: "Ably key không hợp lệ",
-  [ErrorCode.GITHUB]: "Không thể tạo Pull Request trên GitHub",
+  [ErrorCode.ABLY_TOKEN_ERROR]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
+  [ErrorCode.ABLY_KEY_INVALID]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
+  [ErrorCode.GITHUB]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.UNKNOWN]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
 };
 
@@ -43,18 +43,8 @@ export class AppError extends Error {
     /** Error gốc - CHỈ dùng để debug ở server, KHÔNG gửi về client */
     options?: { cause?: Error }
   ) {
-    super(options?.cause?.message, options);
+    super(ErrorMessage[code], options);
   }
-
-  /** Lấy message an toàn để hiển thị cho user */
-  get customMessage(): string {
-    return ErrorMessage[this.code];
-  }
-}
-
-export interface ApiResponse<T = unknown> {
-  data?: T;
-  error?: ErrorCode;
 }
 
 /** State trả về từ Server Action dùng với useActionState — lỗi nghiệp vụ đi qua `message`,
@@ -62,6 +52,13 @@ export interface ApiResponse<T = unknown> {
 export interface ActionState<T = undefined> {
   message?: string;
   data?: T;
+}
+
+/** Kết quả fetch phân trang từ repository — KHÔNG kèm `limit` vì đó là hằng số phía caller tự
+ * biết (đưa vào request), không phải data lấy được từ nguồn, không cần echo qua return value. */
+export interface PaginatedFetch<T> {
+  entities: T[];
+  nextPage?: string;
 }
 
 export enum KWordType {

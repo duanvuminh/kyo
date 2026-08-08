@@ -7,7 +7,7 @@ import {
   sendMessageToThread,
   updateDiscordMessage,
   type DiscordMessageEntity,
-} from "@/lib/repositories/discord";
+} from "@/lib/repositories/discord.repository";
 import { revalidateTag } from "next/cache";
 
 export const PRACTICE_CHANNEL_ID = "1386090536753958952";
@@ -26,7 +26,7 @@ export const getQuestionMessages = (
 
 export const postFlashCard = (
   content: string
-): Promise<DiscordMessageEntity | null> => {
+): Promise<DiscordMessageEntity> => {
   return sendDiscordMessage({ channelId: PRACTICE_CHANNEL_ID, message: content });
 };
 
@@ -41,7 +41,7 @@ export const createQuestionThread = (messageId: string, name: string) => {
 export const postQuestionMessage = (
   threadId: string,
   content: string
-): Promise<DiscordMessageEntity | null> => {
+): Promise<DiscordMessageEntity> => {
   return sendMessageToThread({ threadId, message: content });
 };
 
@@ -49,16 +49,12 @@ export const updateQuestionMessage = async (
   threadId: string,
   messageId: string,
   content: string
-): Promise<boolean> => {
-  const updated = await updateDiscordMessage({
+): Promise<void> => {
+  await updateDiscordMessage({
     channelId: threadId,
     messageId,
     content,
   });
 
-  if (updated) {
-    revalidateTag(discordThreadTag(threadId), "max");
-  }
-
-  return !!updated;
+  revalidateTag(discordThreadTag(threadId), "max");
 };

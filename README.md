@@ -103,6 +103,11 @@ app/
 │     │                              KHÔNG tách file mappers/ riêng, đây là chi tiết của service
 │     ├─ a.service.test.ts        → test colocate NGAY CẠNH file được test, không tách cây __tests__/
 │     ├─ slack.repository.ts      → chỉ gọi Slack; chứa type raw SlackMessage (hoặc import từ SDK)
+│     │                              (đặt tên theo NGUỒN ở đây vì chức năng A gộp ≥ 2 nguồn —
+│     │                              xem mục "Row từ external API" dưới; nếu A chỉ dùng ĐÚNG 1
+│     │                              nguồn, đặt tên theo CHỨC NĂNG — a.repository.ts — không phải
+│     │                              theo nguồn, vì nguồn dữ liệu có thể đổi sau này (vd. chuyển
+│     │                              từ Slack sang DB khác) mà tên chức năng thì không đổi)
 │     ├─ firebase.repository.ts   → chỉ gọi Firebase; chứa type raw FirebaseDoc
 │     ├─ discord.repository.ts    → chỉ gọi Discord; chứa type raw DiscordMessage
 │     ├─ a-store.ts               → state cục bộ CHỈ dùng trong pageA; dùng persist middleware
@@ -133,9 +138,20 @@ lib/                         → hạ tầng + state + logic dùng chung toàn a
 ├─ env.ts                   → validate process.env.* tập trung (vd. bằng zod) — không đọc
 │                              process.env.X rải rác ở nơi khác, kể cả trong lib/ hay _lib/
 ├─ constants.ts             → hằng số dùng chung ≥ 2 chức năng (vd. ITEMS_PER_PAGE, tên cookie)
-├─ stores/
-│  ├─ user-store.ts         → vd. current user, dùng ở nhiều route
-│  └─ cart-store.ts         → vd. giỏ hàng, dùng ở nhiều route
+├─ stores/                   → ví dụ dưới theo Redux Toolkit — nếu dùng Zustand thì mỗi domain
+│  │                            state là 1 file độc lập (vd. user-store.ts, cart-store.ts), KHÔNG
+│  │                            áp cấu trúc slice/store gộp dưới đây; chọn 1 trong 2 mô hình theo
+│  │                            thư viện đang dùng, không trộn lẫn 2 quy ước đặt tên
+│  ├─ store.ts               → DUY NHẤT 1 file gọi configureStore({ reducer: {...} }), gộp mọi
+│  │                            slice lại — đây mới là "cái store" thật, các slice bên dưới
+│  │                            không dùng độc lập được nếu tách rời file này
+│  ├─ hook.ts                → useAppSelector/useAppDispatch (bản có type) — bắt buộc phải có
+│  │                            vì Redux dùng chung 1 Context, không tự sinh hook riêng theo
+│  │                            từng domain như Zustand
+│  ├─ user.slice.ts          → 1 slice = 1 domain state (reducer + actions), vd. current user,
+│  │                            dùng ở nhiều route — được combine vào store.ts, không phải
+│  │                            đặt tên -store.ts vì tự nó không phải 1 store hoàn chỉnh
+│  └─ cart.slice.ts          → vd. giỏ hàng, dùng ở nhiều route — cùng dạng slice như trên
 ├─ services/
 │  └─ user.service.ts       → vd. getCurrentUser() — 2+ route cùng cần
 ├─ repositories/
@@ -235,6 +251,8 @@ Discord   ──raw response──►   1 repo riêng)             1 shape thố
 ```
 
 - **Mỗi external source có 1 repository riêng**: `slack.repository.ts`, `firebase.repository.ts`, `discord.repository.ts` trong `_lib/` — vì mỗi nguồn có cách gọi, auth, rate-limit, error shape khác nhau; gộp chung 1 file dễ rối khi 1 API đổi mà ảnh hưởng nhầm sang API khác.
+- **Đặt tên file theo NGUỒN chỉ áp dụng khi 1 chức năng gộp ≥ 2 nguồn** (như ví dụ trên — cần tên phân biệt được 3 file). **Trường hợp phổ biến hơn: 1 chức năng chỉ dùng đúng 1 nguồn** — lúc đó đặt tên theo CHỨC NĂNG (`a.repository.ts`), không theo nguồn (`slack.repository.ts`). Lý do: nguồn dữ liệu là chi tiết triển khai có thể đổi (chuyển từ Slack sang lưu DB chẳng hạn), còn chức năng thì không đổi tên theo đó — đặt tên theo nguồn khiến tên file sai ngay khi đổi nguồn dù logic/API của chức năng không đổi gì.
+- Quy tắc đặt tên theo nguồn vẫn đúng khi repository đã dọn ra `lib/repositories/` (dùng chung ≥ 2 chức năng) — ở tầng đó nó thật sự LÀ "client cho 1 nguồn cụ thể", không đại diện cho 1 chức năng nào — xem mục dùng chung bên dưới.
 - Type cho raw response (`SlackMessage`, `DiscordMessage`...) khai báo **ngay trong file repository tương ứng** (hoặc import từ SDK chính chủ nếu có, vd. `@slack/web-api` đã có sẵn type) — không gộp vào `a.types.ts` chung, vì đó là chi tiết riêng của từng nguồn, không phải domain model của chức năng A.
 - **Service là nơi duy nhất "biết" cả 3 nguồn tồn tại** — gọi cả 3 repository, normalize mỗi raw shape khác nhau thành 1 `DomainModelA` thống nhất (vd. cùng quy về `{ id, author, content, postedAt, source }`), rồi mới map tiếp thành ViewModel. `page.tsx` và `_components/` không bao giờ thấy `SlackMessage`/`DiscordMessage` — chỉ thấy `ViewModelA`.
 - Lợi ích: nếu sau này bớt/thêm 1 nguồn (vd. bỏ Discord), chỉ sửa Service + xoá 1 repository — `page.tsx`, `_components/`, và `ViewModelA` không đổi.

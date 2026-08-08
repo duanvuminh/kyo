@@ -14,18 +14,15 @@ export async function updateQuestionAction(
 ): Promise<ActionState<boolean>> {
   const isAuth = await checkAuthenticated();
   if (!isAuth) {
-    return { message: new AppError(ErrorCode.UNAUTHENTICATED).customMessage };
+    return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
   }
 
   const parsed = updateQuestionSchema.safeParse(input);
   if (!parsed.success) {
-    return { message: new AppError(ErrorCode.VALIDATION).customMessage };
+    return { message: new AppError(ErrorCode.VALIDATION).message };
   }
 
-  const updated = await updateQuestion(parsed.data);
-  if (!updated) {
-    throw new AppError(ErrorCode.DISCORD);
-  }
+  await updateQuestion(parsed.data);
 
   return { data: true };
 }

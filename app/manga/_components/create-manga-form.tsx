@@ -80,7 +80,7 @@ async function handleImageSelect(
     setImages((prev) => [...prev, ...uploaded]);
   } catch (err) {
     const message =
-      err instanceof AppError ? err.customMessage : "Không upload được ảnh, thử lại";
+      err instanceof AppError ? err.message : "Không upload được ảnh, thử lại";
     toast.error(message);
   } finally {
     setUploadingCount(0);
@@ -116,6 +116,31 @@ function MangaImagePreviewList({ images }: { images: UploadedImage[] }) {
         />
       ))}
     </div>
+  );
+}
+
+function MangaImagePicker({
+  busy,
+  uploadingCount,
+  onSelect,
+}: {
+  busy: boolean;
+  uploadingCount: number;
+  onSelect: (files: File[]) => void;
+}) {
+  return (
+    <>
+      <input
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={(e) => onSelect(Array.from(e.target.files ?? []))}
+        disabled={busy}
+      />
+      <p className="text-xs text-muted-foreground">
+        {uploadingCount > 0 ? `Đang upload ${uploadingCount} ảnh...` : "Hoặc dán ảnh trực tiếp (Ctrl+V)"}
+      </p>
+    </>
   );
 }
 
@@ -174,18 +199,11 @@ export function KCreateMangaForm() {
         placeholder="Tiêu đề manga"
         disabled={busy}
       />
-      <input
-        type="file"
-        accept="image/*"
-        multiple
-        onChange={(e) =>
-          handleImageSelect(Array.from(e.target.files ?? []), setUploadingCount, setImages)
-        }
-        disabled={busy}
+      <MangaImagePicker
+        busy={busy}
+        uploadingCount={uploadingCount}
+        onSelect={(files) => handleImageSelect(files, setUploadingCount, setImages)}
       />
-      <p className="text-xs text-muted-foreground">
-        {uploadingCount > 0 ? `Đang upload ${uploadingCount} ảnh...` : "Hoặc dán ảnh trực tiếp (Ctrl+V)"}
-      </p>
       <MangaImagePreviewList images={images} />
       <Button
         type="button"

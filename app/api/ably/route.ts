@@ -1,5 +1,5 @@
 import { protectApi } from "@/lib/utils/api-protection";
-import { createAblyTokenRequest } from "@/lib/services/ably";
+import { createAblyTokenRequest } from "@/lib/services/ably.service";
 import { getUserMail } from "@/lib/auth";
 import { env } from "@/lib/env";
 import { AppError, ErrorCode } from "@/lib/types";

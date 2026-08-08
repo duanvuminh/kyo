@@ -1,9 +1,9 @@
-import { CenterMessage } from "@/lib/components/center-message";
+import { CenterContent } from "@/lib/components/center-content";
 
 export const Empty = () => (
-  <CenterMessage>
+  <CenterContent>
     Nội dung hiện tại không tồn tại
     <br />
     Bạn hãy thử lại sau
-  </CenterMessage>
+  </CenterContent>
 );

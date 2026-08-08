@@ -1,6 +1,6 @@
-import { fetchListeningEntities } from "@/app/listening/_lib/discord.repository";
-import type { ListeningPage } from "@/app/listening/_lib/listening.types";
-import type { DiscordMessageEntity } from "@/lib/repositories/discord";
+import { fetchListeningEntities, LISTENING_PAGE_LIMIT } from "@/app/listening/_lib/listening.repository";
+import type { ListeningViewModel } from "@/app/listening/_lib/listening.types";
+import type { DiscordMessageEntity } from "@/lib/repositories/discord.repository";
 import { mapDatas } from "@/lib/utils/data-convert";
 import { Question } from "@/lib/types";
 import matter from "gray-matter";
@@ -23,11 +23,11 @@ export const getListening = async ({
 }: {
   page: string;
   level: string;
-}): Promise<ListeningPage> => {
-  const { entities, limit, nextPage } = await fetchListeningEntities({ page, level });
+}): Promise<ListeningViewModel> => {
+  const { entities, nextPage } = await fetchListeningEntities({ page, level });
   return {
     listeningList: mapDatas(entities, discordMessageToQuestion),
-    limit,
+    limit: LISTENING_PAGE_LIMIT,
     nextPage,
   };
 };

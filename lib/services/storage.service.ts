@@ -1,4 +1,4 @@
-import { PracticeStorageRepository } from "@/lib/repositories/storage";
+import { PracticeStorageRepository } from "@/lib/repositories/storage.repository";
 import { PracticeStorageItem } from "@/lib/types";
 
 export class PracticeStorage {

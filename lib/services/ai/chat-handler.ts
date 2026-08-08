@@ -1,11 +1,20 @@
 import { trimLineBreak } from "@/lib/utils/utils";
-import { getTextFromModelMessage } from "@/lib/utils/chat";
 import { AIService } from "@/lib/services/ai/ai";
 import { classifyWord } from "@/lib/services/ai/classify-word";
 import { instructionKanji } from "@/lib/services/ai/instructions";
-import { createWordsContent, searchWord } from "@/lib/services/dictionary";
+import { createWordsContent, searchWord } from "@/lib/services/dictionary.service";
 import { AppError, ErrorCode, KWord, KWordType } from "@/lib/types";
 import { ModelMessage } from "ai";
+
+function getTextFromModelMessage(msg?: ModelMessage): string | undefined {
+  if (!msg) {
+    return undefined;
+  }
+  if (Array.isArray(msg.content)) {
+    const t = msg.content.find((p) => p?.type === "text")?.text;
+    return typeof t === "string" ? t : undefined;
+  }
+}
 
 function createOnFinish(word: KWord) {
   return ({ text }: { text: string }) => {

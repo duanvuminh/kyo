@@ -1,14 +1,19 @@
 import { normalizeWordAction } from "@/app/actions/normalize-word.actions";
 import { saveWordContent } from "@/app/actions/practice.actions";
 import { Button } from "@/components/ui/button";
-import { normalizeWordText } from "@/lib/utils/normalize-word";
-import { PracticeStorage } from "@/lib/services/storage";
+import { PracticeStorage } from "@/lib/services/storage.service";
 import { useAppSelector } from "@/lib/stores/hook";
 import { selectMessage } from "@/lib/stores/slice-message";
 import { AppError, ErrorCode, Source } from "@/lib/types";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+
+const DECORATIVE_PREFIX_REGEX = /^[〜～-]+/;
+
+function normalizeWordText(word: string): string {
+  return word.trim().replace(DECORATIVE_PREFIX_REGEX, "").trim();
+}
 
 function persistContentIfFromChat(word: string | undefined, key: string, content?: string) {
   if (!word && content) {

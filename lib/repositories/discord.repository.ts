@@ -60,7 +60,9 @@ export const getListMessageFromDisCord = async ({
       },
     );
     if (!res.ok) {
-      throw new AppError(ErrorCode.DISCORD);
+      throw new AppError(ErrorCode.DISCORD, {
+        cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+      });
     }
     const data = await res.json();
     return data as DiscordMessageEntity[];
@@ -96,7 +98,9 @@ export const getMessageFromDisCord = async ({
       return null;
     }
     if (!res.ok) {
-      throw new AppError(ErrorCode.DISCORD);
+      throw new AppError(ErrorCode.DISCORD, {
+        cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+      });
     }
     const data = (await res.json()) as DiscordMessageEntity;
     return data;
@@ -112,31 +116,29 @@ export const sendDiscordMessage = async ({
 }: {
   channelId: string;
   message: string;
-}): Promise<DiscordMessageEntity | null> => {
-  try {
-    const res = await fetch(
-      `${discordBaseUrl}/channels/${channelId}/messages`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bot ${env.DISCORD_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          content: message,
-        }),
+}): Promise<DiscordMessageEntity> => {
+  const res = await fetch(
+    `${discordBaseUrl}/channels/${channelId}/messages`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bot ${env.DISCORD_API_KEY}`,
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({
+        content: message,
+      }),
+    },
+  );
 
-    if (!res.ok) {
-      return null;
-    }
-
-    const data = await res.json();
-    return data as DiscordMessageEntity;
-  } catch {
-    return null;
+  if (!res.ok) {
+    throw new AppError(ErrorCode.DISCORD, {
+      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+    });
   }
+
+  const data = await res.json();
+  return data as DiscordMessageEntity;
 };
 
 export const getThreadMessages = async ({
@@ -147,34 +149,39 @@ export const getThreadMessages = async ({
   threadId: string;
   limit?: number;
   before?: string;
-}) => {
-  try {
-    const params = new URLSearchParams();
-    if (limit) {
-      params.append("limit", `${limit}`);
-    }
-    if (before) {
-      params.append("before", before);
-    }
-
-    const res = await fetch(
-      `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bot ${env.DISCORD_API_KEY}`,
-        },
-        ...getFetchCacheConfig([discordThreadTag(threadId)]),
-      },
-    );
-    const data = await res.json();
-    if (!Array.isArray(data)) {
-      return [];
-    }
-    return data as DiscordMessageEntity[];
-  } catch {
-    return [];
+}): Promise<DiscordMessageEntity[]> => {
+  const params = new URLSearchParams();
+  if (limit) {
+    params.append("limit", `${limit}`);
   }
+  if (before) {
+    params.append("before", before);
+  }
+
+  const res = await fetch(
+    `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,
+    {
+      method: "GET",
+      headers: {
+        Authorization: `Bot ${env.DISCORD_API_KEY}`,
+      },
+      ...getFetchCacheConfig([discordThreadTag(threadId)]),
+    },
+  );
+
+  if (!res.ok) {
+    throw new AppError(ErrorCode.DISCORD, {
+      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+    });
+  }
+
+  const data = await res.json();
+  if (!Array.isArray(data)) {
+    throw new AppError(ErrorCode.DISCORD, {
+      cause: new Error("expected array of messages"),
+    });
+  }
+  return data as DiscordMessageEntity[];
 };
 
 export const createThreadFromMessage = async ({
@@ -185,29 +192,27 @@ export const createThreadFromMessage = async ({
   channelId: string;
   messageId: string;
   name: string;
-}): Promise<{ id: string } | null> => {
-  try {
-    const res = await fetch(
-      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}/threads`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: `Bot ${env.DISCORD_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ name }),
+}): Promise<{ id: string }> => {
+  const res = await fetch(
+    `${discordBaseUrl}/channels/${channelId}/messages/${messageId}/threads`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bot ${env.DISCORD_API_KEY}`,
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({ name }),
+    },
+  );
 
-    if (!res.ok) {
-      return null;
-    }
-
-    const data = await res.json();
-    return data as { id: string };
-  } catch {
-    return null;
+  if (!res.ok) {
+    throw new AppError(ErrorCode.DISCORD, {
+      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+    });
   }
+
+  const data = await res.json();
+  return data as { id: string };
 };
 
 export const sendMessageToThread = async ({
@@ -216,26 +221,24 @@ export const sendMessageToThread = async ({
 }: {
   threadId: string;
   message: string;
-}): Promise<DiscordMessageEntity | null> => {
-  try {
-    const res = await fetch(`${discordBaseUrl}/channels/${threadId}/messages`, {
-      method: "POST",
-      headers: {
-        Authorization: `Bot ${env.DISCORD_API_KEY}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ content: message }),
+}): Promise<DiscordMessageEntity> => {
+  const res = await fetch(`${discordBaseUrl}/channels/${threadId}/messages`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bot ${env.DISCORD_API_KEY}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ content: message }),
+  });
+
+  if (!res.ok) {
+    throw new AppError(ErrorCode.DISCORD, {
+      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
     });
-
-    if (!res.ok) {
-      return null;
-    }
-
-    const data = await res.json();
-    return data as DiscordMessageEntity;
-  } catch {
-    return null;
   }
+
+  const data = await res.json();
+  return data as DiscordMessageEntity;
 };
 
 export const updateDiscordMessage = async ({
@@ -246,52 +249,25 @@ export const updateDiscordMessage = async ({
   channelId: string;
   messageId: string;
   content?: string;
-}): Promise<DiscordMessageEntity | null> => {
-  try {
-    const res = await fetch(
-      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bot ${env.DISCORD_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ content }),
+}): Promise<DiscordMessageEntity> => {
+  const res = await fetch(
+    `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
+    {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bot ${env.DISCORD_API_KEY}`,
+        "Content-Type": "application/json",
       },
-    );
+      body: JSON.stringify({ content }),
+    },
+  );
 
-    if (!res.ok) {
-      return null;
-    }
-
-    const data = await res.json();
-
-    return data as DiscordMessageEntity;
-  } catch {
-    return null;
+  if (!res.ok) {
+    throw new AppError(ErrorCode.DISCORD, {
+      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+    });
   }
-};
 
-export const deleteDiscordMessage = async ({
-  channelId,
-  messageId,
-}: {
-  channelId: string;
-  messageId: string;
-}): Promise<boolean> => {
-  try {
-    const res = await fetch(
-      `${discordBaseUrl}/channels/${channelId}/messages/${messageId}`,
-      {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bot ${env.DISCORD_API_KEY}`,
-        },
-      },
-    );
-
-    return res.ok;
-  } catch {
-    return false;
-  }
+  const data = await res.json();
+  return data as DiscordMessageEntity;
 };

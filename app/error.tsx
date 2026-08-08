@@ -1,10 +1,10 @@
 "use client";
-import { CenterMessage } from "@/lib/components/center-message";
+import { CenterContent } from "@/lib/components/center-content";
 
 export default function Error({
   error,
 }: {
   error: Error & { digest?: string };
 }) {
-  return <CenterMessage>{error.message}</CenterMessage>;
+  return <CenterContent>{error.message}</CenterContent>;
 }

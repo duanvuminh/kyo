@@ -1,5 +1,5 @@
 import { checkWord } from "@/app/actions/check.actions";
-import { PracticeStorage } from "@/lib/services/storage";
+import { PracticeStorage } from "@/lib/services/storage.service";
 import { useChat } from "@ai-sdk/react";
 import { useEffect, useRef, useState } from "react";
 

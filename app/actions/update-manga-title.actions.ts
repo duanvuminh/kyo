@@ -14,18 +14,15 @@ export async function updateMangaTitleAction(
 ): Promise<ActionState<string>> {
   const isAuth = await checkAuthenticated();
   if (!isAuth) {
-    return { message: new AppError(ErrorCode.UNAUTHENTICATED).customMessage };
+    return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
   }
 
   const parsed = updateMangaTitleSchema.safeParse(input);
   if (!parsed.success) {
-    return { message: new AppError(ErrorCode.VALIDATION).customMessage };
+    return { message: new AppError(ErrorCode.VALIDATION).message };
   }
 
-  const updated = await updateMangaTitle(parsed.data.entryId, parsed.data.title);
-  if (!updated) {
-    throw new AppError(ErrorCode.SLACK);
-  }
+  await updateMangaTitle(parsed.data.entryId, parsed.data.title);
 
   return { data: parsed.data.title };
 }

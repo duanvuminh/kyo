@@ -1,21 +1,21 @@
 import {
   createMangaEntry,
   fetchMangaEntities,
+  MANGA_PAGE_LIMIT,
   notifyNewMangaCreated,
   postPanelMessage,
   replacePanelMessage,
   updateMangaEntry,
   type MangaEntity,
-} from "@/app/manga/_lib/slack.repository";
+} from "@/app/manga/_lib/manga.repository";
 import type {
   AddClickableAreaInput,
   CreateMangaInput,
 } from "@/app/manga/_lib/manga.schema";
-import type { Manga, MangaArea, MangaPage, MangaPanel } from "@/app/manga/_lib/manga.types";
-import { AppError, ErrorCode } from "@/lib/types";
+import type { Manga, MangaArea, MangaPanel, MangaViewModel } from "@/app/manga/_lib/manga.types";
 import matter from "gray-matter";
 
-export { uploadMangaImage } from "@/app/manga/_lib/slack.repository";
+export { uploadMangaImage } from "@/app/manga/_lib/manga.repository";
 
 const VIEWBOX_REGEX = /viewBox="0 0 (\d+(?:\.\d+)?) (\d+(?:\.\d+)?)"/;
 const IMAGE_REGEX = /<image[^>]*href="([^"]*)"/;
@@ -106,11 +106,11 @@ export const getManga = async ({
   page,
 }: {
   page: string;
-}): Promise<MangaPage> => {
-  const { entities, limit, nextPage } = await fetchMangaEntities({ page });
+}): Promise<MangaViewModel> => {
+  const { entities, nextPage } = await fetchMangaEntities({ page });
   return {
     mangaList: entities.map(mapToManga),
-    limit,
+    limit: MANGA_PAGE_LIMIT,
     nextPage,
   };
 };
@@ -161,9 +161,6 @@ export const addClickableAreaToPanel = async ({
   const messageBody = `---\nindex: ${index}\n---\n${svg}`;
 
   const replaced = await replacePanelMessage(threadId, messageId, messageBody);
-  if (!replaced?.id) {
-    throw new AppError(ErrorCode.SLACK);
-  }
 
   return {
     id: replaced.id,
@@ -179,9 +176,9 @@ export const addClickableAreaToPanel = async ({
 export const updateMangaTitle = async (
   entryId: string,
   title: string
-): Promise<boolean> => {
+): Promise<void> => {
   const content = matter.stringify("", { title });
-  return updateMangaEntry(entryId, content);
+  await updateMangaEntry(entryId, content);
 };
 
 export interface CreatedManga {
@@ -194,9 +191,6 @@ export const createNewManga = async ({
 }: CreateMangaInput): Promise<CreatedManga> => {
   const topMessage = matter.stringify("", { title });
   const created = await createMangaEntry(topMessage);
-  if (!created) {
-    throw new AppError(ErrorCode.SLACK);
-  }
 
   // Đăng tuần tự (không Promise.all) để tránh bị rate-limit
   for (let i = 0; i < images.length; i++) {
@@ -206,10 +200,7 @@ export const createNewManga = async ({
       viewBoxHeight: images[i].height,
       areas: [],
     });
-    const panelPosted = await postPanelMessage(created.threadId, `---\nindex: ${i}\n---\n${svg}`);
-    if (!panelPosted?.id) {
-      throw new AppError(ErrorCode.SLACK);
-    }
+    await postPanelMessage(created.threadId, `---\nindex: ${i}\n---\n${svg}`);
   }
 
   notifyNewMangaCreated();

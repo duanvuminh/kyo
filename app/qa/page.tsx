@@ -3,7 +3,7 @@
 import { ChatInput } from "@/lib/components/qna-chat/chat-input";
 import { ChatMessages } from "@/lib/components/qna-chat/chat-messages";
 import { useAblyChat } from "@/lib/components/qna-chat/use-ably-chat";
-import { CenterMessage } from "@/lib/components/center-message";
+import { CenterContent } from "@/lib/components/center-content";
 import { useSession } from "next-auth/react";
 
 function QnaChat({ email }: { email: string }) {
@@ -36,13 +36,13 @@ export default function HoiDapPage() {
 
   if (!email) {
     return (
-      <CenterMessage>
+      <CenterContent>
         <div className="flex flex-col items-center gap-4">
           <p className="text-muted-foreground">
             Vui lòng đăng nhập để sử dụng chat
           </p>
         </div>
-      </CenterMessage>
+      </CenterContent>
     );
   }
 

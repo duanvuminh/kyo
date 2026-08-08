@@ -373,6 +373,26 @@ interface UseAreaTitleFormParams {
   submitAction: (input: AddClickableAreaInput) => void;
 }
 
+function useNotifyAreaSaved(
+  state: ActionState<UpdatedPanel>,
+  onSaved: (panel: UpdatedPanel) => void,
+  cancel: () => void,
+) {
+  useEffect(() => {
+    if (state.data) {
+      onSaved(state.data);
+      toast.success(
+        state.data.replacedCount > 0
+          ? `Đã thay thế ${state.data.replacedCount} vùng trùng lặp`
+          : "Đã thêm vùng click"
+      );
+      cancel();
+    }
+    // chỉ chạy lại khi có kết quả dispatch mới, không phải mỗi khi onSaved/cancel đổi
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state]);
+}
+
 function useAreaTitleForm({
   threadId,
   messageId,
@@ -390,21 +410,7 @@ function useAreaTitleForm({
     setTitle("");
   };
 
-  useEffect(() => {
-    if (state.data) {
-      onSaved(state.data);
-      toast.success(
-        state.data.replacedCount > 0
-          ? `Đã thay thế ${state.data.replacedCount} vùng trùng lặp`
-          : "Đã thêm vùng click"
-      );
-      // reset form sau khi action dispatch thành công - external system (Server Action) báo kết quả
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      cancel();
-    }
-    // chỉ chạy lại khi có kết quả dispatch mới, không phải mỗi khi onSaved/cancel đổi
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state]);
+  useNotifyAreaSaved(state, onSaved, cancel);
 
   const submit = () => {
     if (!drag || !title.trim()) {

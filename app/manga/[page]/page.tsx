@@ -9,9 +9,9 @@ import {
   showNextPage,
   type MangaViewModel,
 } from "@/app/manga/_lib/manga.types";
-import { CenterMessage } from "@/lib/components/center-message";
-import { notFound } from "next/navigation";
+import { CenterContent } from "@/lib/components/center-content";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export default async function Page({
   params,
@@ -28,14 +28,14 @@ export default async function Page({
       notFound();
     }
     return (
-      <CenterMessage>
+      <CenterContent>
         <div className="flex flex-col items-center gap-2">
           <p>Chưa có manga nào.</p>
           <Link href="/manga/new" className="text-muted-foreground text-sm">
             Tạo manga mới
           </Link>
         </div>
-      </CenterMessage>
+      </CenterContent>
     );
   }
 

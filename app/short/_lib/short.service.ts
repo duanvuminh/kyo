@@ -1,9 +1,9 @@
-import { fetchShortEntities } from "@/app/short/_lib/slack.repository";
-import type { KFile, Short, ShortPage, ShortType } from "@/app/short/_lib/short.types";
+import { fetchShortEntities, SHORT_PAGE_LIMIT } from "@/app/short/_lib/short.repository";
+import type { KFile, Short, ShortType, ShortViewModel } from "@/app/short/_lib/short.types";
 import { resolveFileKind } from "@/lib/utils/file-kind";
 import { mapDatas } from "@/lib/utils/data-convert";
 import { parseVTT, splitVTT } from "@/lib/utils/videos";
-import type { SlackMessageEntity } from "@/lib/repositories/slack";
+import type { SlackMessageEntity } from "@/lib/repositories/slack.repository";
 import type { Sub } from "@/lib/types";
 import matter from "gray-matter";
 
@@ -73,11 +73,11 @@ function slackMessageToShort(data: SlackMessageEntity): Short {
   };
 }
 
-export async function getShort({ page }: { page: string }): Promise<ShortPage> {
-  const { entities, limit, nextPage } = await fetchShortEntities({ page });
+export async function getShort({ page }: { page: string }): Promise<ShortViewModel> {
+  const { entities, nextPage } = await fetchShortEntities({ page });
   return {
     shorts: mapDatas(entities, slackMessageToShort),
-    limit,
+    limit: SHORT_PAGE_LIMIT,
     nextPage,
   };
 }
