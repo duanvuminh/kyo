@@ -8,7 +8,7 @@ import {
 } from "@/app/practice/_lib/practice.repository";
 import { discordThreadTag } from "@/lib/constants";
 import { mapDatas } from "@/lib/utils/data-convert";
-import { questionSchema } from "@/lib/services/question.service";
+import { questionSchema, type GeneratedQuestion } from "@/lib/services/question.service";
 import { getWordById, upsertDocument } from "@/lib/repositories/firestore.repository";
 import { freeAiService } from "@/lib/services/ai/factory";
 import {
@@ -66,16 +66,36 @@ export const getFlashCardWithPractice = async (word: string): Promise<FlashCardW
   }
 
   const practice = await _getPractice(flashCard);
-  if (practice.length === 0) {
-    // Chưa có câu hỏi — mới tạo flashcard, hoặc lần trước tạo câu hỏi bị lỗi (vd. hết quota AI).
-    // Tự thử tạo lại sau khi trang đã trả response, không chặn user chờ.
-    after(() =>
-      _createPracticeQuestions(flashCard.id, wordData.words, flashCard.content, wordData.type)
-    );
+  if (practice.length > 0) {
+    return { flashCard, practice };
   }
 
-  return { flashCard, practice };
+  // Chưa có câu hỏi — mới tạo flashcard, hoặc lần trước tạo câu hỏi bị lỗi (vd. hết quota AI).
+  // Generate ngay (đồng bộ) để user thấy được luôn ở lần load này, thay vì phải F5 lại sau;
+  // ghi lên Discord (để lần sau đọc lại không tốn AI quota) thì mới đẩy qua after().
+  return { flashCard, practice: await _generateAndSchedulePersist(flashCard, wordData) };
 };
+
+async function _generateAndSchedulePersist(
+  flashCard: Practice,
+  wordData: KWord
+): Promise<Practice[]> {
+  try {
+    const questions = await _generatePracticeQuestions(wordData.words, flashCard.content, wordData.type);
+    // Format markdown 1 lần duy nhất (xáo đáp án bằng Math.random) — dùng chung cho cả bản
+    // hiển thị ngay lẫn bản ghi lên Discord, tránh 2 lần gọi random ra 2 thứ tự khác nhau.
+    const formatted = questions.map((q) => _formatQuestionToMarkdown(q));
+    after(() => _persistPracticeQuestions(flashCard.id, wordData.words, formatted));
+    return formatted.map((content, index) => ({
+      id: `pending-${flashCard.id}-${index}`,
+      content,
+      attachments: [],
+    }));
+  } catch (error) {
+    console.error("[getFlashCardWithPractice] failed to generate practice questions:", error);
+    return [];
+  }
+}
 
 const _getPractice = async (practice: Practice): Promise<Practice[]> => {
   const discordMessage = await getQuestionMessages(practice.id);
@@ -142,43 +162,42 @@ const _createNewFlashCard = async (
 
   await upsertDocument(word, { practiceId: discordMessage.id });
 
-  // Tạo practice questions sau khi response đã trả xong — after() thay vì fire-and-forget
-  // thuần, vì revalidateTag/API bên trong không được gọi lúc đang render, và trên serverless
-  // (Vercel) promise không await có thể bị cắt ngang khi function đóng băng sau response.
-  after(() =>
-    _createPracticeQuestions(discordMessage.id, wordData.words, summary, wordData.type)
-  );
-
   return discordMessageToPractice(discordMessage);
 };
 
-const _createPracticeQuestions = async (
-  messageId: string,
+async function _generatePracticeQuestions(
   word: string,
   flashCardContent: string,
   wordType?: KWordType
-): Promise<void> => {
-  // Chạy nền, không ai await lời gọi hàm này → tự catch để tránh unhandled rejection,
-  // lỗi Discord/AI ở đây không nên crash flow chính (đã trả flashcard cho user rồi)
+): Promise<GeneratedQuestion[]> {
+  const isGrammar = wordType === KWordType.GRAMMAR;
+  const instruction = isGrammar
+    ? instructionGenerateGrammarQuestions
+    : instructionGenerateVocabQuestions;
+  const prompt = isGrammar
+    ? promptGenerateGrammarQuestions(flashCardContent, word)
+    : promptGenerateVocabQuestions(word, flashCardContent);
+
+  const result = await freeAiService().generateObject({
+    schema: questionSchema,
+    prompt,
+    system: instruction,
+  });
+
+  return result.questions;
+}
+
+async function _persistPracticeQuestions(
+  messageId: string,
+  word: string,
+  formattedQuestions: string[]
+): Promise<void> {
+  // Chạy nền qua after() (sau khi response đã trả) — chỉ để lần sau đọc lại từ Discord không
+  // cần tốn AI quota generate lại; user đã thấy câu hỏi ngay từ lần generate đồng bộ rồi, nên
+  // lỗi ở đây không cần crash/chặn gì cả, chỉ log để biết.
   try {
     const thread = await createQuestionThread(messageId, `Practice: ${word}`);
-
-    const isGrammar = wordType === KWordType.GRAMMAR;
-    const instruction = isGrammar
-      ? instructionGenerateGrammarQuestions
-      : instructionGenerateVocabQuestions;
-    const prompt = isGrammar
-      ? promptGenerateGrammarQuestions(flashCardContent, word)
-      : promptGenerateVocabQuestions(word, flashCardContent);
-
-    const result = await freeAiService().generateObject({
-      schema: questionSchema,
-      prompt,
-      system: instruction,
-    });
-
-    for (const q of result.questions) {
-      const content = _formatQuestionToMarkdown(q);
+    for (const content of formattedQuestions) {
       await postQuestionMessage(thread.id, content);
     }
 
@@ -186,18 +205,11 @@ const _createPracticeQuestions = async (
     // tự xoá cache đó sau khi tạo xong, không thì user không bao giờ thấy câu hỏi mới
     revalidateTag(discordThreadTag(messageId), "max");
   } catch (error) {
-    console.error("[_createPracticeQuestions] failed:", error);
+    console.error("[_persistPracticeQuestions] failed:", error);
   }
-};
+}
 
-const _formatQuestionToMarkdown = (q: {
-  content: string;
-  answer1: string;
-  answer2: string;
-  answer3: string;
-  answer4: string;
-  correctAnswer: number;
-}): string => {
+const _formatQuestionToMarkdown = (q: GeneratedQuestion): string => {
   const answers = _shuffleAnswers(
     [q.answer1, q.answer2, q.answer3, q.answer4],
     q.correctAnswer
