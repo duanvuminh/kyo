@@ -31,19 +31,26 @@ function discordMessageToPractice(data: DiscordMessageEntity): Practice {
   };
 }
 
-export const getFlashCard = async (word: string): Promise<Practice | null> => {
+export interface FlashCardWithPractice {
+  flashCard: Practice | null;
+  practice: Practice[];
+}
+
+export const getFlashCardWithPractice = async (word: string): Promise<FlashCardWithPractice> => {
   const wordFromDictionary = await getWordById(word);
+  let flashCard: Practice | null = null;
+
   if (wordFromDictionary?.practiceId) {
     try {
       const existing = await _getExistingFlashCard(wordFromDictionary.practiceId);
       if (existing?.content) {
-        return existing;
+        flashCard = existing;
       }
       // existing is null → message bị xóa (404) → fall through để regenerate
     } catch (error) {
       // Discord lỗi tạm thời (429, 5xx) → không regenerate, tránh drain AI quota
-      console.error("[getFlashCard] failed to fetch existing flashcard:", error);
-      return null;
+      console.error("[getFlashCardWithPractice] failed to fetch existing flashcard:", error);
+      return { flashCard: null, practice: [] };
     }
   }
 
@@ -51,10 +58,26 @@ export const getFlashCard = async (word: string): Promise<Practice | null> => {
     ? KWord.fromDTO(wordFromDictionary)
     : new KWord(word, word, Source.FIREBASE, KWordType.WORD);
 
-  return _createNewFlashCard(word, wordData);
+  if (!flashCard) {
+    flashCard = await _createNewFlashCard(word, wordData);
+  }
+  if (!flashCard) {
+    return { flashCard: null, practice: [] };
+  }
+
+  const practice = await _getPractice(flashCard);
+  if (practice.length === 0) {
+    // Chưa có câu hỏi — mới tạo flashcard, hoặc lần trước tạo câu hỏi bị lỗi (vd. hết quota AI).
+    // Tự thử tạo lại sau khi trang đã trả response, không chặn user chờ.
+    after(() =>
+      _createPracticeQuestions(flashCard.id, wordData.words, flashCard.content, wordData.type)
+    );
+  }
+
+  return { flashCard, practice };
 };
 
-export const getPractice = async (practice: Practice): Promise<Practice[]> => {
+const _getPractice = async (practice: Practice): Promise<Practice[]> => {
   const discordMessage = await getQuestionMessages(practice.id);
   return mapDatas<DiscordMessageEntity, Practice>(
     discordMessage.filter((msg) => msg.type === 0),
