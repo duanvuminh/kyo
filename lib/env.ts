@@ -18,7 +18,6 @@ const envSchema = z.object({
   GOOGLE_GENERATIVE_AI_API_KEY_FREE: z.string().min(1),
 
   // Optional — feature tương ứng đã tự guard + báo lỗi riêng khi thiếu, không chặn cả app
-  ABLY_API_KEY: z.string().optional(),
   GITHUB_TOKEN: z.string().optional(),
   GITHUB_OWNER: z.string().optional(),
   GITHUB_REPO: z.string().optional(),

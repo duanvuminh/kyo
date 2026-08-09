@@ -15,7 +15,6 @@ const items = [
   { title: "Học qua truyện tranh", url: "/manga/newest" },
 ];
 const others = [
-  { title: "Nhắn tin", url: "/qa" },
   { title: "Tra cứu thủ tục", url: "/infor" },
   { title: "Memo", url: "/memo" },
 ];

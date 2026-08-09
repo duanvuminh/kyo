@@ -10,9 +10,6 @@ export enum ErrorCode {
   AI_MODEL_ERROR_MAX_RETRIES_EXCEEDED,
   UNAUTHENTICATED,
   VALIDATION,
-  CHAT_IMAGE_UPLOAD,
-  ABLY_TOKEN_ERROR,
-  ABLY_KEY_INVALID,
   GITHUB,
   UNKNOWN,
 }
@@ -29,9 +26,6 @@ export const ErrorMessage: Record<ErrorCode, string> = {
     "Vui lòng thử lại sau vài phút",
   [ErrorCode.UNAUTHENTICATED]: "Vui lòng đăng nhập để thực hiện hành động này",
   [ErrorCode.VALIDATION]: "Dữ liệu không hợp lệ, vui lòng kiểm tra lại",
-  [ErrorCode.CHAT_IMAGE_UPLOAD]: "Không thể tải ảnh lên, vui lòng thử lại",
-  [ErrorCode.ABLY_TOKEN_ERROR]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
-  [ErrorCode.ABLY_KEY_INVALID]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.GITHUB]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.UNKNOWN]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
 };
