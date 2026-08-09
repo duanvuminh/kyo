@@ -21,6 +21,7 @@ import type { DiscordMessageEntity } from "@/lib/repositories/discord.repository
 import { KWord, KWordType, Practice, Source } from "@/lib/types";
 import matter from "gray-matter";
 import { revalidateTag } from "next/cache";
+import { after } from "next/server";
 
 function discordMessageToPractice(data: DiscordMessageEntity): Practice {
   return {
@@ -39,8 +40,9 @@ export const getFlashCard = async (word: string): Promise<Practice | null> => {
         return existing;
       }
       // existing is null → message bị xóa (404) → fall through để regenerate
-    } catch {
+    } catch (error) {
       // Discord lỗi tạm thời (429, 5xx) → không regenerate, tránh drain AI quota
+      console.error("[getFlashCard] failed to fetch existing flashcard:", error);
       return null;
     }
   }
@@ -98,7 +100,8 @@ const _createNewFlashCard = async (
   let summary: string | undefined;
   try {
     summary = await freeAiService().summaryWord(wordData);
-  } catch {
+  } catch (error) {
+    console.error("[_createNewFlashCard] summaryWord failed:", error);
     return null;
   }
   if (!summary) {
@@ -108,19 +111,19 @@ const _createNewFlashCard = async (
   let discordMessage: DiscordMessageEntity;
   try {
     discordMessage = await postFlashCard(summary);
-  } catch {
+  } catch (error) {
     // Discord lỗi tạm thời (429, 5xx) → không crash trang, tránh drain AI quota
+    console.error("[_createNewFlashCard] postFlashCard failed:", error);
     return null;
   }
 
   await upsertDocument(word, { practiceId: discordMessage.id });
 
-  // Tạo practice questions trong background
-  _createPracticeQuestions(
-    discordMessage.id,
-    wordData.words,
-    summary,
-    wordData.type
+  // Tạo practice questions sau khi response đã trả xong — after() thay vì fire-and-forget
+  // thuần, vì revalidateTag/API bên trong không được gọi lúc đang render, và trên serverless
+  // (Vercel) promise không await có thể bị cắt ngang khi function đóng băng sau response.
+  after(() =>
+    _createPracticeQuestions(discordMessage.id, wordData.words, summary, wordData.type)
   );
 
   return discordMessageToPractice(discordMessage);
@@ -159,8 +162,8 @@ const _createPracticeQuestions = async (
     // getQuestionMessages đã cache rỗng lúc trang load lần đầu (câu hỏi chưa kịp tạo) — phải
     // tự xoá cache đó sau khi tạo xong, không thì user không bao giờ thấy câu hỏi mới
     revalidateTag(discordThreadTag(messageId), "max");
-  } catch {
-    return;
+  } catch (error) {
+    console.error("[_createPracticeQuestions] failed:", error);
   }
 };
 
