@@ -6,6 +6,7 @@ import {
   postQuestionMessage,
   updateQuestionMessage,
 } from "@/app/practice/_lib/practice.repository";
+import { discordThreadTag } from "@/lib/constants";
 import { mapDatas } from "@/lib/utils/data-convert";
 import { questionSchema } from "@/lib/services/question.service";
 import { getWordById, upsertDocument } from "@/lib/repositories/firestore.repository";
@@ -19,6 +20,7 @@ import {
 import type { DiscordMessageEntity } from "@/lib/repositories/discord.repository";
 import { KWord, KWordType, Practice, Source } from "@/lib/types";
 import matter from "gray-matter";
+import { revalidateTag } from "next/cache";
 
 function discordMessageToPractice(data: DiscordMessageEntity): Practice {
   return {
@@ -153,6 +155,10 @@ const _createPracticeQuestions = async (
       const content = _formatQuestionToMarkdown(q);
       await postQuestionMessage(thread.id, content);
     }
+
+    // getQuestionMessages đã cache rỗng lúc trang load lần đầu (câu hỏi chưa kịp tạo) — phải
+    // tự xoá cache đó sau khi tạo xong, không thì user không bao giờ thấy câu hỏi mới
+    revalidateTag(discordThreadTag(messageId), "max");
   } catch {
     return;
   }
