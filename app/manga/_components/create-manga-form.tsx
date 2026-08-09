@@ -38,7 +38,7 @@ function resizeImage(img: HTMLImageElement): { base64: string; width: number; he
 }
 
 function readAndResizeImage(file: File): Promise<{ base64: string; width: number; height: number }> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const reader = new FileReader();
     reader.onload = () => {
       const img = new window.Image();

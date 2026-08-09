@@ -1,6 +1,6 @@
 "use server";
 
-import { serializeCardsToSource } from "@/app/update-content/_lib/update-content.service";
+import { serializeCardsToSource } from "@/app/update-content/_lib/update-content.serialize";
 import {
   submitGrammarCardsSchema,
   type SubmitGrammarCardsInput,
