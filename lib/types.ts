@@ -201,7 +201,8 @@ export class Question {
       parsed.data.answers ?? [],
       parsed.data.correctAnswer ?? 0,
       dto.attachments ?? [],
-      parsed.data.yomi
+      parsed.data.yomi,
+      parsed.data.memo
     );
   }
 }

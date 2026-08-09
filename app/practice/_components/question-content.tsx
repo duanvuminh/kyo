@@ -145,6 +145,7 @@ function useQuestionEditForm(threadId: string, question: Question, onSaved: (que
         answers,
         correctAnswer,
         yomi: yomi.trim() || undefined,
+        memo: question.memo,
       });
     });
 

@@ -112,6 +112,7 @@ export const updateQuestion = async ({
   answers,
   correctAnswer,
   yomi,
+  memo,
 }: {
   threadId: string;
   messageId: string;
@@ -119,11 +120,15 @@ export const updateQuestion = async ({
   answers: [string, string, string, string];
   correctAnswer: number;
   yomi?: string;
+  memo?: string[];
 }): Promise<void> => {
+  // memo không có UI để sửa (chỉ AI generate lúc tạo) — giữ nguyên giá trị gốc khi lưu edit,
+  // không thì mỗi lần sửa câu hỏi sẽ xoá mất giải thích đã có.
   const body = matter.stringify(content, {
     answers,
     correctAnswer,
     ...(yomi ? { yomi } : {}),
+    ...(memo ? { memo } : {}),
   });
 
   await updateQuestionMessage(threadId, messageId, body);
@@ -210,24 +215,26 @@ async function _persistPracticeQuestions(
 }
 
 const _formatQuestionToMarkdown = (q: GeneratedQuestion): string => {
-  const answers = _shuffleAnswers(
+  const { answers, memo, correctIndex } = _shuffleAnswers(
     [q.answer1, q.answer2, q.answer3, q.answer4],
+    [q.memo1, q.memo2, q.memo3, q.memo4],
     q.correctAnswer
   );
 
-  return `---
-answers: ["${answers.list[0]}", "${answers.list[1]}", "${answers.list[2]}", "${answers.list[3]}"]
-correctAnswer: ${answers.correctIndex}
----
-${q.content}`;
+  return matter.stringify(q.content, { answers, correctAnswer: correctIndex, memo });
 };
 
+// memo[i] giải thích answers[i] — phải xáo answers và memo cùng 1 hoán vị, không thì memo
+// hiển thị sai đáp án sau khi thứ tự bị đảo.
 const _shuffleAnswers = (
   answers: string[],
+  memos: string[],
   correctAnswerIndex: number
-): { list: string[]; correctIndex: number } => {
-  const correctAnswer = answers[correctAnswerIndex];
-  const shuffled = [...answers].sort(() => Math.random() - 0.5);
-  const correctIndex = shuffled.findIndex((a) => a === correctAnswer);
-  return { list: shuffled, correctIndex: correctIndex >= 0 ? correctIndex : 0 };
+): { answers: string[]; memo: string[]; correctIndex: number } => {
+  const shuffledIndices = [0, 1, 2, 3].sort(() => Math.random() - 0.5);
+  return {
+    answers: shuffledIndices.map((i) => answers[i]),
+    memo: shuffledIndices.map((i) => memos[i]),
+    correctIndex: shuffledIndices.indexOf(correctAnswerIndex),
+  };
 };

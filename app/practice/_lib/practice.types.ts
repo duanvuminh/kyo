@@ -28,6 +28,7 @@ export const updateQuestionSchema = z.object({
   ]),
   correctAnswer: z.number().int().min(0).max(3),
   yomi: z.string().trim().optional(),
+  memo: z.array(z.string()).optional(),
 });
 
 export type UpdateQuestionInput = z.infer<typeof updateQuestionSchema>;
