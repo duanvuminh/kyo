@@ -217,8 +217,14 @@ export const createThreadFromMessage = async ({
   );
 
   if (!res.ok) {
+    const body = await res.json().catch(() => undefined);
+    // Discord error code 160004 = "Thread already created for this message" — không phải lỗi
+    // thật, thread đã tồn tại từ lần gọi trước. ID của thread luôn trùng ID message gốc.
+    if (body?.code === 160004) {
+      return { id: messageId };
+    }
     throw new AppError(ErrorCode.DISCORD, {
-      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+      cause: new Error(`HTTP ${res.status} ${res.statusText}${body?.message ? `: ${body.message}` : ""}`),
     });
   }
 
