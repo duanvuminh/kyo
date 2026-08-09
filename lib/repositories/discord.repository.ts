@@ -141,6 +141,17 @@ export const sendDiscordMessage = async ({
   return data as DiscordMessageEntity;
 };
 
+function buildThreadMessagesParams(limit?: number, before?: string): URLSearchParams {
+  const params = new URLSearchParams();
+  if (limit) {
+    params.append("limit", `${limit}`);
+  }
+  if (before) {
+    params.append("before", before);
+  }
+  return params;
+}
+
 export const getThreadMessages = async ({
   threadId,
   limit = 100,
@@ -150,13 +161,7 @@ export const getThreadMessages = async ({
   limit?: number;
   before?: string;
 }): Promise<DiscordMessageEntity[]> => {
-  const params = new URLSearchParams();
-  if (limit) {
-    params.append("limit", `${limit}`);
-  }
-  if (before) {
-    params.append("before", before);
-  }
+  const params = buildThreadMessagesParams(limit, before);
 
   const res = await fetch(
     `${discordBaseUrl}/channels/${threadId}/messages?${params.toString()}`,
@@ -168,6 +173,12 @@ export const getThreadMessages = async ({
       ...getFetchCacheConfig([discordThreadTag(threadId)]),
     },
   );
+
+  // 404 = thread chưa tồn tại (vd. câu hỏi practice đang được tạo nền, chưa kịp createThread)
+  // → coi như chưa có message nào, không phải lỗi hạ tầng thật
+  if (res.status === 404) {
+    return [];
+  }
 
   if (!res.ok) {
     throw new AppError(ErrorCode.DISCORD, {
