@@ -5,7 +5,7 @@ import { CardEditor } from "@/app/update-content/_components/grammar-editor/card
 import { useGrammarCardsEditor } from "@/app/update-content/_components/grammar-editor/use-grammar-cards-editor";
 import type { EditableCard } from "@/app/update-content/_lib/update-content.types";
 import { Button } from "@/components/ui/button";
-import { useActionState, useEffect } from "react";
+import { startTransition, useActionState, useEffect } from "react";
 import { toast } from "sonner";
 
 interface GrammarCardsEditorProps {
@@ -44,7 +44,7 @@ export function GrammarCardsEditor({ documentId, initialCards }: GrammarCardsEdi
         <Button
           type="button"
           disabled={pending}
-          onClick={() => submitAction({ documentId, cards })}
+          onClick={() => startTransition(() => submitAction({ documentId, cards }))}
         >
           {pending ? "Đang gửi..." : "Gửi"}
         </Button>

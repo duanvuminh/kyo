@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/popover";
 import { ActionState } from "@/lib/types";
 import { Pencil, X } from "lucide-react";
-import { RefObject, useActionState, useEffect, useRef, useState } from "react";
+import { RefObject, startTransition, useActionState, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const MIN_DRAG_SIZE = 8;
@@ -416,15 +416,17 @@ function useAreaTitleForm({
     if (!drag || !title.trim()) {
       return;
     }
-    submitAction({
-      threadId,
-      messageId,
-      index: panel.index,
-      imageUrl: panel.imageUrl,
-      viewBoxWidth: panel.viewBoxWidth,
-      viewBoxHeight: panel.viewBoxHeight,
-      areas: panel.areas,
-      newArea: { title: title.trim(), ...drag },
+    startTransition(() => {
+      submitAction({
+        threadId,
+        messageId,
+        index: panel.index,
+        imageUrl: panel.imageUrl,
+        viewBoxWidth: panel.viewBoxWidth,
+        viewBoxHeight: panel.viewBoxHeight,
+        areas: panel.areas,
+        newArea: { title: title.trim(), ...drag },
+      });
     });
   };
 
@@ -516,7 +518,7 @@ function MangaTitleEditForm({
           type="button"
           size="sm"
           disabled={isPending}
-          onClick={() => submitAction({ entryId: mangaId, title: draft.trim() })}
+          onClick={() => startTransition(() => submitAction({ entryId: mangaId, title: draft.trim() }))}
         >
           Lưu
         </Button>

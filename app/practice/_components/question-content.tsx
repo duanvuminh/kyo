@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Question } from "@/lib/types";
-import { useActionState, useEffect, useState } from "react";
+import { startTransition, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 interface QuestionContentProps {
@@ -137,13 +137,15 @@ function useQuestionEditForm(threadId: string, question: Question, onSaved: (que
   };
 
   const handleSave = () =>
-    submitAction({
-      threadId,
-      messageId: question.id,
-      content: content.trim(),
-      answers,
-      correctAnswer,
-      yomi: yomi.trim() || undefined,
+    startTransition(() => {
+      submitAction({
+        threadId,
+        messageId: question.id,
+        content: content.trim(),
+        answers,
+        correctAnswer,
+        yomi: yomi.trim() || undefined,
+      });
     });
 
   return {

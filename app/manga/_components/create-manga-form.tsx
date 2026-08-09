@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { ActionState } from "@/lib/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Dispatch, SetStateAction, useActionState, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, startTransition, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 interface UploadedImage {
@@ -192,7 +192,7 @@ export function KCreateMangaForm() {
       <Button
         type="button"
         disabled={busy || !title.trim() || images.length === 0}
-        onClick={() => submitAction({ title: title.trim(), images })}
+        onClick={() => startTransition(() => submitAction({ title: title.trim(), images }))}
       >
         {pending ? "Đang tạo..." : "Tạo manga"}
       </Button>
