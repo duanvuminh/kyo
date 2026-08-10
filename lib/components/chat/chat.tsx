@@ -10,10 +10,10 @@ import { useSyncEditMessageFromChat } from "@/lib/components/chat/use-sync-edit-
 import { WordHistoryItem } from "@/lib/components/chat/word-history";
 import { TypingIndicator } from "@/lib/components/typing-indicator";
 import { UpdateContentLink } from "@/lib/components/update-content-link";
-import huusennarareIndex from "@/lib/data/huusennarare-index.json";
 import { useAppDispatch } from "@/lib/stores/hook";
 import { updateEditMessage } from "@/lib/stores/slice-message";
 import { Source } from "@/lib/types";
+import { findHuusennarareUrl } from "@/lib/utils/huusennarare";
 import { cn } from "@/lib/utils/utils";
 import { useChat } from "@ai-sdk/react";
 import { UIMessage } from "ai";
@@ -21,12 +21,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-
-const kanjiIndex: Record<string, string> = huusennarareIndex;
-
-function findHuusennarareUrl(kanji: string): string | undefined {
-  return kanjiIndex[kanji];
-}
 
 function getMessageText(message?: UIMessage): string {
   return message?.parts.find((p) => p.type === "text")?.text.trim() ?? "";
@@ -239,13 +233,13 @@ function MessageBubble({ message, referenceUrl, canEdit, onEditClick }: MessageB
         )}
       </ChatContainer>
       {showLinks && (
-        <div className="mt-1 flex items-center gap-3 text-sm">
+        <div className="mt-1 flex items-center gap-3">
           {referenceUrl && (
             <Link
               href={referenceUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-secondary"
+              className="text-xs text-muted-foreground"
             >
               Xem thêm →
             </Link>
@@ -269,7 +263,7 @@ function CachedMessage({ cached }: { cached: WordHistoryItem }) {
           href={url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-1 text-sm text-secondary"
+          className="mt-1 text-xs text-muted-foreground"
         >
           Xem thêm →
         </Link>
