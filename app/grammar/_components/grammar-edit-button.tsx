@@ -14,7 +14,12 @@ export function GrammarEditButton() {
         return null;
     }
 
-    const href = `/update-content?kind=grammar&slug=${encodeURIComponent(pageMatch)}`;
+    // Ở trang flash-card: flash-card.tsx đã tự có link sửa đúng 1 thẻ đang xem, nên ẩn nút này.
+    if (pathParts.at(-1) === "flash-card") {
+        return null;
+    }
+
+    const href = `/update-content?kind=grammar-page&slug=${encodeURIComponent(pageMatch)}`;
 
     return <UpdateContentLink href={href} />;
 }

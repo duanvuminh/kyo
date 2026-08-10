@@ -208,3 +208,23 @@ export async function updateGrammarViaGithub(slug: string, content: string): Pro
         prBody: `Auto-generated grammar update for ${slug}.`,
     });
 }
+
+export async function updateGrammarPageViaGithub(slug: string, content: string): Promise<void> {
+    const targetPath = path.join("app", "grammar", "n1", slug, "page.mdx");
+
+    const cfg = getRepoConfig();
+    if (!cfg) {
+        throw new Error(
+            "Missing GitHub config. Required: GITHUB_TOKEN, GITHUB_OWNER, GITHUB_REPO",
+        );
+    }
+
+    await createEditCommitAndPr({
+        slug,
+        targetPath,
+        content,
+        cfg,
+        branchPrefix: "edit/grammar-page",
+        prBody: `Auto-generated grammar page update for ${slug}.`,
+    });
+}

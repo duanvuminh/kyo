@@ -2,7 +2,7 @@
 
 import { checkAuthenticated } from "@/lib/auth";
 import { updateWordsContent } from "@/lib/services/dictionary.service";
-import { updateGrammarViaGithub } from "@/lib/services/github.service";
+import { updateGrammarPageViaGithub, updateGrammarViaGithub } from "@/lib/services/github.service";
 import { ActionState, AppError, BaseItem, ErrorCode, KWordType, Source } from "@/lib/types";
 import { z } from "zod";
 
@@ -61,6 +61,29 @@ export async function submitUpdateGrammar(
 
     try {
         await updateGrammarViaGithub(item.documentId, item.content);
+    } catch (error) {
+        throw new AppError(ErrorCode.GITHUB, { cause: error as Error });
+    }
+
+    return { data: undefined };
+}
+
+export async function submitUpdateGrammarPage(
+    _prevState: ActionState,
+    formData: FormData
+): Promise<ActionState> {
+    const isAuth = await checkAuthenticated();
+    if (!isAuth) {
+        return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
+    }
+
+    const item = parseItemJson(formData.get("item"));
+    if (!item?.documentId || !item?.content) {
+        return { message: new AppError(ErrorCode.VALIDATION).message };
+    }
+
+    try {
+        await updateGrammarPageViaGithub(item.documentId, item.content);
     } catch (error) {
         throw new AppError(ErrorCode.GITHUB, { cause: error as Error });
     }
