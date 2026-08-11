@@ -1,3 +1,4 @@
+import { ONE_WEEK } from "@/lib/constants";
 import { AppError, ErrorCode } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -11,8 +12,11 @@ export async function GET(req: NextRequest) {
     throw new AppError(ErrorCode.UNKNOWN);
   }
 
-  const resolved = await fetch(url, { method: "HEAD" }).catch(() => null);
+  const resolved = await fetch(url, { method: "HEAD", next: { revalidate: ONE_WEEK } }).catch(() => null);
   const finalUrl = resolved?.url && resolved.ok ? resolved.url : url;
 
-  return NextResponse.redirect(finalUrl, 302);
+  return NextResponse.redirect(finalUrl, {
+    status: 302,
+    headers: { "Cache-Control": `public, max-age=${ONE_WEEK}` },
+  });
 }

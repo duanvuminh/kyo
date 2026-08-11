@@ -1,3 +1,4 @@
+import { ONE_WEEK } from "@/lib/constants";
 import { env } from "@/lib/env";
 
 const PASSTHROUGH_HEADERS = [
@@ -24,6 +25,7 @@ export function buildProxyHeaders(upstreamHeaders: Headers): Headers {
   headers.set("content-disposition", headers.get("content-disposition") ?? "inline");
   headers.set("content-type", headers.get("content-type") ?? "video/mp4");
   headers.set("accept-ranges", headers.get("accept-ranges") ?? "bytes");
+  headers.set("cache-control", headers.get("cache-control") ?? `public, max-age=${ONE_WEEK}`);
   headers.set("Access-Control-Allow-Origin", "*");
 
   return headers;
