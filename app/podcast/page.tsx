@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { PodcastSearchForm } from "@/app/podcast/_components/search-form";
 import { PodcastSearchResult } from "@/lib/repositories/podcast.repository";
 import { findPodcasts } from "@/lib/services/podcast.service";
 import Image from "next/image";
@@ -36,22 +35,7 @@ export default async function Page({ searchParams }: Props) {
   return (
     <div className="max-w-md mx-auto mt-8 px-2 flex flex-col gap-4">
       <h1 className="text-2xl font-bold text-center">Podcast</h1>
-      <form className="flex flex-col gap-2">
-        <div className="flex gap-2">
-          <Input
-            type="text"
-            name="q"
-            defaultValue={q}
-            placeholder="Tên podcast hoặc link Apple Podcasts"
-            className="flex-1"
-          />
-          <Button type="submit">Tìm</Button>
-        </div>
-        <label className="flex items-center gap-2 text-sm text-muted-foreground">
-          <input type="checkbox" name="transcript" value="1" defaultChecked={onlyWithTranscript} />
-          Chỉ hiện podcast có transcript
-        </label>
-      </form>
+      <PodcastSearchForm q={q} onlyWithTranscript={onlyWithTranscript} />
       {q && results.length === 0 && (
         <p className="text-sm text-muted-foreground">Không tìm thấy podcast nào.</p>
       )}
