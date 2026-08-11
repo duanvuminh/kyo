@@ -39,6 +39,11 @@ const nextConfig = withMDX({
         hostname: "i.postimg.cc",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "*.mzstatic.com",
+        pathname: "/**",
+      },
     ],
   },
 });

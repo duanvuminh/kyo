@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Sub } from "@/lib/types";
+import { copyText } from "@/lib/utils/clipboard";
 import { Fragment, RefObject } from "react";
 
 interface SubtitleListProps {
@@ -21,7 +22,7 @@ export function YouTubeSubtitleList({ subs, currentTime, containerRef, itemRefs,
         return (
           <div key={index} ref={(el) => { itemRefs.current[index] = el; }} className={isCurrentSub ? "flex text-primary" : "flex text-muted"}>
             <Button size="sm" variant="ghost" className="rounded-full transition hover:scale-110" onClick={() => onSubtitleClick(sub)}>▶</Button>
-            <div>
+            <div className="cursor-pointer" onClick={() => copyText(sub.content)}>
               {sub.content.split("\n").map((line, i) => (
                 <Fragment key={i}>{line}{i < sub.content.split("\n").length - 1 && <br />}</Fragment>
               ))}
