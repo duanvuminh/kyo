@@ -1,13 +1,13 @@
 "use client";
 
-import { UpdateContentLink } from "@/lib/components/update-content-link";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-export function GrammarEditButton() {
+export function GrammarAnimeButton() {
     const pathname = usePathname();
     const pathParts = pathname.split("/").filter(Boolean);
 
-    // Trang anime version (/grammar/anime/...) có link "Sửa"/"Tạo mới" riêng, không cần nút này.
+    // Trang anime version (/grammar/anime/...) tự nó đã là trang anime, không cần link lại chính nó.
     if (pathParts[1] === "anime") {
         return null;
     }
@@ -19,12 +19,16 @@ export function GrammarEditButton() {
         return null;
     }
 
-    // Ở trang flash-card: flash-card.tsx đã tự có link sửa đúng 1 thẻ đang xem, nên ẩn nút này.
     if (pathParts.at(-1) === "flash-card") {
         return null;
     }
 
-    const href = `/update-content?kind=grammar-page&slug=${encodeURIComponent(pageMatch)}`;
+    const level = pathParts[1] ?? "n1";
+    const href = `/grammar/anime/${level}/${pageMatch}`;
 
-    return <UpdateContentLink href={href} />;
+    return (
+        <Link href={href} className="text-xs text-muted-foreground">
+            Anime version
+        </Link>
+    );
 }

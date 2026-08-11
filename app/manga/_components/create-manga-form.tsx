@@ -6,56 +6,11 @@ import type { CreatedManga } from "@/app/manga/_lib/manga.service";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ActionState } from "@/lib/types";
+import { extractImageFiles, resizeAndUploadImage, type UploadedImage } from "@/lib/utils/image-upload";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, startTransition, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
-
-interface UploadedImage {
-  url: string;
-  width: number;
-  height: number;
-}
-
-const MAX_DIMENSION = 2000;
-const JPEG_QUALITY = 0.85;
-
-function resizeImage(img: HTMLImageElement): { base64: string; width: number; height: number } {
-  const scale = Math.min(
-    1,
-    MAX_DIMENSION / Math.max(img.naturalWidth, img.naturalHeight)
-  );
-  const width = Math.round(img.naturalWidth * scale);
-  const height = Math.round(img.naturalHeight * scale);
-
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext("2d");
-  ctx?.drawImage(img, 0, 0, width, height);
-
-  return { base64: canvas.toDataURL("image/jpeg", JPEG_QUALITY), width, height };
-}
-
-function readAndResizeImage(file: File): Promise<{ base64: string; width: number; height: number }> {
-  return new Promise((resolve) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      const img = new window.Image();
-      img.onload = () => {
-        resolve(resizeImage(img));
-      };
-      img.src = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  });
-}
-
-async function uploadFile(file: File): Promise<UploadedImage> {
-  const { base64, width, height } = await readAndResizeImage(file);
-  const url = await uploadMangaImageAction({ base64 });
-  return { url, width, height };
-}
 
 async function handleImageSelect(
   files: File[],
@@ -66,19 +21,9 @@ async function handleImageSelect(
     return;
   }
   setUploadingCount(files.length);
-  const uploaded = await Promise.all(files.map(uploadFile));
+  const uploaded = await Promise.all(files.map((file) => resizeAndUploadImage(file, uploadMangaImageAction)));
   setImages((prev) => [...prev, ...uploaded]);
   setUploadingCount(0);
-}
-
-function extractImageFiles(clipboardData: DataTransfer | null): File[] {
-  if (!clipboardData) {
-    return [];
-  }
-  return Array.from(clipboardData.items)
-    .filter((item) => item.kind === "file" && item.type.startsWith("image/"))
-    .map((item) => item.getAsFile())
-    .filter((file): file is File => file !== null);
 }
 
 function MangaImagePreviewList({ images }: { images: UploadedImage[] }) {
