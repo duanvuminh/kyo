@@ -1,24 +1,18 @@
-import { buildProxyHeaders } from "@/lib/proxy-fetch";
 import { AppError, ErrorCode } from "@/lib/types";
 import { NextRequest, NextResponse } from "next/server";
 
-// Nhiều feed podcast dùng URL redirect/tracking (anchor.fm, podtrac...) trước khi tới
-// file audio thật. Node fetch() tự follow redirect + forward Range header ổn định hơn
-// so với để mobile Safari tự xử lý redirect+range trực tiếp -> proxy qua server cho chắc.
+// Nhiều feed podcast dùng URL redirect/tracking (anchor.fm, podtrac...) trước khi tới file
+// audio thật, mobile Safari xử lý Range request qua lớp redirect này không ổn định.
+// Server chỉ resolve redirect (HEAD, không tải body) rồi 302 cho client tự tải thẳng từ
+// CDN cuối cùng - không proxy toàn bộ audio qua server để tránh tốn băng thông/execution time.
 export async function GET(req: NextRequest) {
   const url = req.nextUrl.searchParams.get("url");
   if (!url) {
     throw new AppError(ErrorCode.UNKNOWN);
   }
 
-  const range = req.headers.get("range") ?? undefined;
-  const upstream = await fetch(url, { headers: range ? { range } : undefined });
+  const resolved = await fetch(url, { method: "HEAD" }).catch(() => null);
+  const finalUrl = resolved?.url && resolved.ok ? resolved.url : url;
 
-  const isValidResponse = (upstream.ok || upstream.status === 206) && upstream.body;
-  if (!isValidResponse) {
-    throw new AppError(ErrorCode.UNKNOWN);
-  }
-
-  const headers = buildProxyHeaders(upstream.headers);
-  return new NextResponse(upstream.body, { status: upstream.status, headers });
+  return NextResponse.redirect(finalUrl, 302);
 }
