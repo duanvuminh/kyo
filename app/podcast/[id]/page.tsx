@@ -20,7 +20,7 @@ function EpisodeItem({ episode }: EpisodeItemProps) {
     <li className="flex flex-col gap-1 border-b pb-4">
       <p className="font-medium">{episode.title}</p>
       <p className="text-xs text-muted-foreground">{episode.pubDate}</p>
-      <TranscriptPlayer audioUrl={episode.audioUrl} transcriptUrl={episode.transcriptUrl} />
+      <TranscriptPlayer audioUrl={episode.audioUrl} transcriptUrl={episode.transcriptUrl} title={episode.title} />
     </li>
   );
 }
