@@ -10,6 +10,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import Link from "next/link";
 
 export function RoadMapContainer() {
   const { statuses, selectedId, setSelectedId, handleSetStatus } = useRoadMap();
@@ -21,6 +22,9 @@ export function RoadMapContainer() {
         <p className="text-sm md:text-base text-muted-foreground">
           Nội dung học và tiến trình học.
         </p>
+        <Link href="/road-map-n1" className="inline-block text-sm text-blue-600 hover:underline">
+          ← Xem bài đang học tiếp
+        </Link>
       </header>
 
       <RoadmapFlow

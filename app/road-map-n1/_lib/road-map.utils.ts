@@ -1,4 +1,5 @@
-import { MAIN_CHILDREN_IDS, RoadmapStatus } from "@/app/road-map-n1/_lib/road-map.types";
+import { STORAGE_KEY } from "@/app/road-map-n1/_lib/road-map.constants";
+import { BASE_META, MAIN_CHILDREN_IDS, RoadmapNodeMeta, RoadmapStatus } from "@/app/road-map-n1/_lib/road-map.types";
 
 export function deriveMainStatus(childStatuses: RoadmapStatus[]): RoadmapStatus {
   if (childStatuses.length === 0) {
@@ -41,4 +42,51 @@ export function getStatusClasses(status: RoadmapStatus): string {
     return "bg-amber-400 text-black dark:bg-amber-500";
   }
   return "bg-slate-300 text-slate-800 dark:bg-slate-600 dark:text-slate-100";
+}
+
+export function readStoredStatuses(): Record<string, RoadmapStatus> {
+  if (typeof window === "undefined") {
+    return {};
+  }
+
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+export function getUpcomingLessons(
+  statuses: Record<string, RoadmapStatus>,
+  excludeId?: string,
+): RoadmapNodeMeta[] {
+  const result: RoadmapNodeMeta[] = [];
+
+  for (const childIds of Object.values(MAIN_CHILDREN_IDS)) {
+    const nextId = childIds.find((id) => id !== excludeId && (statuses[id] ?? "todo") !== "done");
+    const meta = nextId ? BASE_META.find((m) => m.id === nextId) : undefined;
+    if (meta?.href) {
+      result.push(meta);
+    }
+  }
+
+  return result;
+}
+
+export interface UpcomingLessonGroup {
+  mainId: string;
+  groupLabel: string;
+  lesson: RoadmapNodeMeta | null;
+}
+
+// Khác getUpcomingLessons() ở chỗ luôn trả đủ 1 dòng cho mỗi nhóm (kể cả khi nhóm đã học xong
+// hết -> lesson: null), để trang "đang học tiếp" hiển thị đủ 5 nhóm thay vì bị hụt dòng.
+export function getUpcomingLessonsByGroup(statuses: Record<string, RoadmapStatus>): UpcomingLessonGroup[] {
+  return Object.entries(MAIN_CHILDREN_IDS).map(([mainId, childIds]) => {
+    const nextId = childIds.find((id) => (statuses[id] ?? "todo") !== "done");
+    const lesson = (nextId ? BASE_META.find((m) => m.id === nextId) : undefined) ?? null;
+    const groupLabel = BASE_META.find((m) => m.id === mainId)?.label ?? mainId;
+    return { mainId, groupLabel, lesson };
+  });
 }

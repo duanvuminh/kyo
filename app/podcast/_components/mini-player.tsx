@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { copyText } from "@/lib/utils/clipboard";
 import { cn } from "@/lib/utils/utils";
 
 interface MiniPlayerProps {
@@ -16,8 +17,9 @@ export function MiniPlayer({ title, recentLines, isPlaying, onTogglePlay }: Mini
         {recentLines.map((line, i) => (
           <p
             key={i}
+            onClick={(e) => copyText(line, undefined, e.currentTarget.ownerDocument.defaultView ?? window)}
             className={cn(
-              "line-clamp-2 text-xs",
+              "line-clamp-2 cursor-pointer text-xs",
               i === recentLines.length - 1 ? "font-medium" : "text-muted-foreground",
             )}
           >

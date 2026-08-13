@@ -10,7 +10,7 @@ import {
 import Link from "next/link";
 
 const items = [
-  { title: "Road map n1", url: "/road-map-n1" },
+  { title: "Học tiếp", url: "/road-map-n1" },
   { title: "Học qua video", url: "/short/newest" },
   { title: "Học qua truyện tranh", url: "/manga/newest" },
   { title: "Podcast", url: "/podcast" },
