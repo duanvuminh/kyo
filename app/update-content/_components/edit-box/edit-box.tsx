@@ -10,7 +10,7 @@ interface EditBoxProps {
 }
 
 export function EditBox({ submitAction, initialItem }: EditBoxProps) {
-  const { item, value, handleChange, handleSubmit } = useEditBox(initialItem);
+  const { item, value, setValue, handleChange, handleSubmit } = useEditBox(initialItem);
   const [state, formAction, pending] = useActionState(submitAction, {});
 
   return (
@@ -24,6 +24,7 @@ export function EditBox({ submitAction, initialItem }: EditBoxProps) {
         item={item}
         value={value}
         handleChange={handleChange}
+        setValue={setValue}
         handleSubmit={handleSubmit}
         pending={pending}
         message={state.message}

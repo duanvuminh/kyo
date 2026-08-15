@@ -34,6 +34,7 @@ export function useEditBox() {
   return {
     item,
     value,
+    setValue,
     handleChange,
     handleSubmit,
   };

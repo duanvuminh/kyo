@@ -8,6 +8,7 @@ import { ChatInput } from "@/lib/components/chat/chat-input";
 import { useIsWordCommand } from "@/lib/components/chat/use-is-word-command";
 import { useSyncEditMessageFromChat } from "@/lib/components/chat/use-sync-edit-message-from-chat";
 import { WordHistoryItem } from "@/lib/components/chat/word-history";
+import { LazyMarkdownGfm } from "@/lib/components/lazy-markdown-gfm";
 import { TypingIndicator } from "@/lib/components/typing-indicator";
 import { UpdateContentLink } from "@/lib/components/update-content-link";
 import { useAppDispatch } from "@/lib/stores/hook";
@@ -19,8 +20,6 @@ import { useChat } from "@ai-sdk/react";
 import { UIMessage } from "ai";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 function getMessageText(message?: UIMessage): string {
   return message?.parts.find((p) => p.type === "text")?.text.trim() ?? "";
@@ -227,7 +226,7 @@ function MessageBubble({ message, referenceUrl, canEdit, onEditClick }: MessageB
         {message.parts.map((part, i) =>
           part.type === "text" ? (
             <div key={i}>
-              <Markdown remarkPlugins={[remarkGfm]}>{part.text}</Markdown>
+              <LazyMarkdownGfm>{part.text}</LazyMarkdownGfm>
             </div>
           ) : null
         )}
@@ -256,7 +255,7 @@ function CachedMessage({ cached }: { cached: WordHistoryItem }) {
   return (
     <div className="p-2">
       <ChatContainer isUser={false}>
-        <Markdown remarkPlugins={[remarkGfm]}>{cached.content ?? ""}</Markdown>
+        <LazyMarkdownGfm>{cached.content ?? ""}</LazyMarkdownGfm>
       </ChatContainer>
       {url && (
         <Link

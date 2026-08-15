@@ -21,6 +21,7 @@ export function useEditBox(initialItem?: BaseItem) {
   return {
     item,
     value,
+    setValue,
     handleChange,
     handleSubmit,
   };

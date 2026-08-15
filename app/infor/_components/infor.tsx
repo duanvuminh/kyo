@@ -1,9 +1,9 @@
 import { Infor } from "@/app/infor/_lib/infor.types";
+import { LazyMarkdown } from "@/lib/components/lazy-markdown";
 import { UpdateContentLink } from "@/lib/components/update-content-link";
 import { useAppDispatch } from "@/lib/stores/hook";
 import { updateEditMessage } from "@/lib/stores/slice-message";
 import { BaseItem, Source } from "@/lib/types";
-import Markdown from "react-markdown";
 
 export const KInfor = ({ infor }: { infor: Infor }) => {
   const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ export const KInfor = ({ infor }: { infor: Infor }) => {
   };
   return (
     <>
-      <Markdown>{infor.content}</Markdown>
+      <LazyMarkdown>{infor.content}</LazyMarkdown>
       <UpdateContentLink onClick={() => dispatch(updateEditMessage(item))} />
     </>
   );

@@ -16,20 +16,18 @@ interface UpdateContentPageProps {
   }>;
 }
 
-async function renderCardsEdit(section: ContentSection, slug: string, focusFront?: string) {
-  const initialItem = await getCardsEditItem(section, "n1", slug);
-  if (!initialItem) {
-    notFound();
-  }
-  return <CardsEditRoute section={section} slug={slug} item={initialItem} focusFront={focusFront} />;
+interface ResolvedEditParams {
+  kind: "cards" | "page";
+  section: ContentSection;
+  slug: string;
 }
 
-async function renderPageEdit(section: ContentSection, slug: string) {
-  const initialItem = await getPageEditItem(section, "n1", slug);
-  if (!initialItem) {
-    notFound();
+function resolveEditParams(params: { kind?: string; section?: string; slug?: string }): ResolvedEditParams | null {
+  const section = isContentSection(params.section) ? params.section : null;
+  if (!section || !params.slug || (params.kind !== "cards" && params.kind !== "page")) {
+    return null;
   }
-  return <EditBox submitAction={submitUpdatePage} initialItem={initialItem} />;
+  return { kind: params.kind, section, slug: params.slug };
 }
 
 export default async function Page({ searchParams }: UpdateContentPageProps) {
@@ -46,14 +44,22 @@ export default async function Page({ searchParams }: UpdateContentPageProps) {
   }
 
   const params = (await searchParams) ?? {};
-  const section = isContentSection(params.section) ? params.section : null;
+  const resolved = resolveEditParams(params);
 
-  if (params.kind === "cards" && section && params.slug) {
-    return renderCardsEdit(section, params.slug, params.front);
+  if (resolved?.kind === "cards") {
+    const item = await getCardsEditItem(resolved.section, "n1", resolved.slug);
+    if (!item) {
+      notFound();
+    }
+    return <CardsEditRoute section={resolved.section} slug={resolved.slug} item={item} focusFront={params.front} />;
   }
 
-  if (params.kind === "page" && section && params.slug) {
-    return renderPageEdit(section, params.slug);
+  if (resolved?.kind === "page") {
+    const item = await getPageEditItem(resolved.section, "n1", resolved.slug);
+    if (!item) {
+      notFound();
+    }
+    return <EditBox submitAction={submitUpdatePage} initialItem={item} />;
   }
 
   return <EditBox submitAction={submitUpdateContent} />;

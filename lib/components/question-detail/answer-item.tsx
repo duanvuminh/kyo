@@ -1,7 +1,7 @@
 "use client";
 
+import { LazyMarkdown } from "@/lib/components/lazy-markdown";
 import { cn } from "@/lib/utils/utils";
-import Markdown from "react-markdown";
 
 interface AnswerItemProps {
   answer: string;
@@ -35,7 +35,7 @@ export function AnswerItem({ answer, index, selectedAnswer, showResult, correctA
       {showResult && isSelected && !isCorrect && <span className="ml-2 text-red-600">✗</span>}
       {showMemo && (
         <div className="mt-2 text-sm">
-          <Markdown>{memo}</Markdown>
+          <LazyMarkdown>{memo}</LazyMarkdown>
         </div>
       )}
     </li>
