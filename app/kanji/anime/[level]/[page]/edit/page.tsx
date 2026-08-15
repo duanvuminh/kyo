@@ -1,4 +1,4 @@
-import { AnimeView } from "@/lib/components/anime-form/anime-view";
+import { AnimeEditView } from "@/lib/components/anime-form/anime-edit-view";
 
 interface PageProps {
   params: Promise<{ level: string; page: string }>;
@@ -6,5 +6,5 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { level, page } = await params;
-  return <AnimeView section="grammar" level={level} page={page} />;
+  return <AnimeEditView section="kanji" level={level} page={page} />;
 }

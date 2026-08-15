@@ -1,8 +1,8 @@
 "use client";
 
 import { parseCardTextAction } from "@/app/actions/parse-card-text.actions";
-import { QuestionListEditor } from "@/app/update-content/_components/grammar-editor/question-editor";
-import { StringListEditor } from "@/app/update-content/_components/grammar-editor/string-list-editor";
+import { QuestionListEditor } from "@/app/update-content/_components/cards-editor/question-editor";
+import { StringListEditor } from "@/app/update-content/_components/cards-editor/string-list-editor";
 import { serializeCard } from "@/app/update-content/_lib/update-content.serialize";
 import type { EditableCard, EditableQuestion } from "@/app/update-content/_lib/update-content.types";
 import { Button } from "@/components/ui/button";

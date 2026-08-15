@@ -1,18 +1,22 @@
-import { BaseItem, Source } from "@/lib/types";
+import { stripPageWrapper } from "@/app/update-content/_lib/page-wrapper.service";
+import { sectionToSource, type ContentSection } from "@/lib/content-section";
+import { BaseItem } from "@/lib/types";
 import fs from "node:fs/promises";
 import path from "node:path";
 
-export async function getGrammarEditItem(
+export async function getCardsEditItem(
+    section: ContentSection,
+    level: string,
     slugParam: string,
 ): Promise<BaseItem | null> {
     const slug = slugParam.trim();
-    const tsPath = path.join(process.cwd(), "app", "grammar", "n1", slug, "flash-card", "cards.ts");
+    const tsPath = path.join(process.cwd(), "app", section, level, slug, "flash-card", "cards.ts");
 
     try {
         const content = await fs.readFile(tsPath, "utf8");
 
         return {
-            source: Source.GRAMMAR,
+            source: sectionToSource(section),
             documentId: slug,
             words: slug,
             content,
@@ -22,20 +26,22 @@ export async function getGrammarEditItem(
     }
 }
 
-export async function getGrammarPageEditItem(
+export async function getPageEditItem(
+    section: ContentSection,
+    level: string,
     slugParam: string,
 ): Promise<BaseItem | null> {
     const slug = slugParam.trim();
-    const mdxPath = path.join(process.cwd(), "app", "grammar", "n1", slug, "page.mdx");
+    const mdxPath = path.join(process.cwd(), "app", section, level, slug, "page.mdx");
 
     try {
         const content = await fs.readFile(mdxPath, "utf8");
 
         return {
-            source: Source.GRAMMAR,
+            source: sectionToSource(section),
             documentId: slug,
             words: slug,
-            content,
+            content: stripPageWrapper(content),
         };
     } catch {
         return null;

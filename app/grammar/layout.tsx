@@ -1,5 +1,5 @@
-import { GrammarAnimeButton } from "@/app/grammar/_components/grammar-anime-button";
-import { GrammarEditButton } from "@/app/grammar/_components/grammar-edit-button";
+import { ContentAnimeButton } from "@/lib/components/content-anime-button";
+import { ContentEditButton } from "@/lib/components/content-edit-button";
 import { MdxWrapperStyle } from "@/lib/components/mdx-wrapper-style";
 import { QuickSearchBySelectText } from "@/lib/components/quick-search-by-select-text/quick-search-by-select-text";
 
@@ -12,8 +12,8 @@ export default async function Layout({
     <>
       <MdxWrapperStyle>{children}</MdxWrapperStyle>
       <div className="flex justify-center gap-4 py-4 text-muted-foreground">
-        <GrammarEditButton />
-        <GrammarAnimeButton />
+        <ContentEditButton />
+        <ContentAnimeButton />
       </div>
       <QuickSearchBySelectText />
     </>

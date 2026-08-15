@@ -1,3 +1,4 @@
+import type { ContentSection } from "@/lib/content-section";
 import { env } from "@/lib/env";
 import path from "node:path";
 
@@ -189,8 +190,13 @@ async function createEditCommitAndPr({
     });
 }
 
-export async function updateGrammarViaGithub(slug: string, content: string): Promise<void> {
-    const targetPath = path.join("app", "grammar", "n1", slug, "flash-card", "cards.ts");
+export async function updateCardsFileViaGithub(
+    section: ContentSection,
+    level: string,
+    slug: string,
+    content: string,
+): Promise<void> {
+    const targetPath = path.join("app", section, level, slug, "flash-card", "cards.ts");
 
     const cfg = getRepoConfig();
     if (!cfg) {
@@ -204,13 +210,18 @@ export async function updateGrammarViaGithub(slug: string, content: string): Pro
         targetPath,
         content,
         cfg,
-        branchPrefix: "edit/grammar",
-        prBody: `Auto-generated grammar update for ${slug}.`,
+        branchPrefix: `edit/${section}`,
+        prBody: `Auto-generated ${section} update for ${slug}.`,
     });
 }
 
-export async function updateGrammarPageViaGithub(slug: string, content: string): Promise<void> {
-    const targetPath = path.join("app", "grammar", "n1", slug, "page.mdx");
+export async function updatePageFileViaGithub(
+    section: ContentSection,
+    level: string,
+    slug: string,
+    content: string,
+): Promise<void> {
+    const targetPath = path.join("app", section, level, slug, "page.mdx");
 
     const cfg = getRepoConfig();
     if (!cfg) {
@@ -224,7 +235,7 @@ export async function updateGrammarPageViaGithub(slug: string, content: string):
         targetPath,
         content,
         cfg,
-        branchPrefix: "edit/grammar-page",
-        prBody: `Auto-generated grammar page update for ${slug}.`,
+        branchPrefix: `edit/${section}-page`,
+        prBody: `Auto-generated ${section} page update for ${slug}.`,
     });
 }

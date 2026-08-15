@@ -1,19 +1,21 @@
 "use client";
 
-import { submitGrammarCardsAction } from "@/app/actions/submit-grammar-cards.actions";
-import { CardEditor } from "@/app/update-content/_components/grammar-editor/card-editor";
-import { useGrammarCardsEditor } from "@/app/update-content/_components/grammar-editor/use-grammar-cards-editor";
+import { submitCardsAction } from "@/app/actions/submit-cards.actions";
+import { CardEditor } from "@/app/update-content/_components/cards-editor/card-editor";
+import { useCardsEditor } from "@/app/update-content/_components/cards-editor/use-cards-editor";
 import type {
   EditableCard,
   EditableQuestion,
-  SubmitGrammarCardsInput,
+  SubmitCardsInput,
 } from "@/app/update-content/_lib/update-content.types";
 import { Button } from "@/components/ui/button";
+import { ContentSection } from "@/lib/content-section";
 import { ActionState } from "@/lib/types";
 import { startTransition, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
-interface GrammarCardsEditorProps {
+interface CardsEditorProps {
+  section: ContentSection;
   documentId: string;
   initialCards: EditableCard[];
   focusFront?: string;
@@ -34,7 +36,7 @@ function getVisibleCards(cards: EditableCard[], showAll: boolean, focusIndex: nu
   return [{ card: cards[focusIndex], index: focusIndex }];
 }
 
-function GrammarCardEditorList({
+function CardEditorList({
   visibleCards,
   updateCard,
   removeCard,
@@ -66,16 +68,18 @@ function GrammarCardEditorList({
   );
 }
 
-function GrammarCardsSubmitFooter({
+function CardsSubmitFooter({
+  section,
   documentId,
   cards,
   submitAction,
   pending,
   message,
 }: {
+  section: ContentSection;
   documentId: string;
   cards: EditableCard[];
-  submitAction: (input: SubmitGrammarCardsInput) => void;
+  submitAction: (input: SubmitCardsInput) => void;
   pending: boolean;
   message?: string;
 }) {
@@ -84,7 +88,7 @@ function GrammarCardsSubmitFooter({
       <Button
         type="button"
         disabled={pending}
-        onClick={() => startTransition(() => submitAction({ documentId, cards }))}
+        onClick={() => startTransition(() => submitAction({ section, documentId, cards }))}
       >
         {pending ? "Đang gửi..." : "Gửi"}
       </Button>
@@ -93,10 +97,10 @@ function GrammarCardsSubmitFooter({
   );
 }
 
-export function GrammarCardsEditor({ documentId, initialCards, focusFront }: GrammarCardsEditorProps) {
+export function CardsEditor({ section, documentId, initialCards, focusFront }: CardsEditorProps) {
   const { cards, updateCard, addCard, removeCard, updateQuestion, addQuestion, removeQuestion } =
-    useGrammarCardsEditor(initialCards);
-  const [state, submitAction, pending] = useActionState(submitGrammarCardsAction, {});
+    useCardsEditor(initialCards);
+  const [state, submitAction, pending] = useActionState(submitCardsAction, {});
   const focusIndex = focusFront ? initialCards.findIndex((c) => c.front === focusFront) : -1;
   const [showAll, setShowAll] = useState(focusIndex === -1);
   useToastOnSaved(state);
@@ -109,7 +113,7 @@ export function GrammarCardsEditor({ documentId, initialCards, focusFront }: Gra
           Xem tất cả {cards.length} card
         </Button>
       )}
-      <GrammarCardEditorList
+      <CardEditorList
         visibleCards={visibleCards}
         updateCard={updateCard}
         removeCard={removeCard}
@@ -122,7 +126,8 @@ export function GrammarCardsEditor({ documentId, initialCards, focusFront }: Gra
           + Thêm card
         </Button>
       )}
-      <GrammarCardsSubmitFooter
+      <CardsSubmitFooter
+        section={section}
         documentId={documentId}
         cards={cards}
         submitAction={submitAction}

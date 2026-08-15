@@ -1,8 +1,10 @@
 "use server";
 
+import { wrapPageContent } from "@/app/update-content/_lib/page-wrapper.service";
+import { sourceToSection } from "@/lib/content-section";
 import { checkAuthenticated } from "@/lib/auth";
 import { updateWordsContent } from "@/lib/services/dictionary.service";
-import { updateGrammarPageViaGithub, updateGrammarViaGithub } from "@/lib/services/github.service";
+import { updateCardsFileViaGithub, updatePageFileViaGithub } from "@/lib/services/github.service";
 import { ActionState, AppError, BaseItem, ErrorCode, KWordType, Source } from "@/lib/types";
 import { z } from "zod";
 
@@ -45,7 +47,7 @@ export async function submitUpdateContent(
     return { data: undefined };
 }
 
-export async function submitUpdateGrammar(
+export async function submitUpdateCards(
     _prevState: ActionState,
     formData: FormData
 ): Promise<ActionState> {
@@ -55,12 +57,13 @@ export async function submitUpdateGrammar(
     }
 
     const item = parseItemJson(formData.get("item"));
-    if (!item?.documentId || !item?.content) {
+    const section = item ? sourceToSection(item.source) : null;
+    if (!item?.documentId || !item?.content || !section) {
         return { message: new AppError(ErrorCode.VALIDATION).message };
     }
 
     try {
-        await updateGrammarViaGithub(item.documentId, item.content);
+        await updateCardsFileViaGithub(section, "n1", item.documentId, item.content);
     } catch (error) {
         throw new AppError(ErrorCode.GITHUB, { cause: error as Error });
     }
@@ -68,7 +71,7 @@ export async function submitUpdateGrammar(
     return { data: undefined };
 }
 
-export async function submitUpdateGrammarPage(
+export async function submitUpdatePage(
     _prevState: ActionState,
     formData: FormData
 ): Promise<ActionState> {
@@ -78,12 +81,18 @@ export async function submitUpdateGrammarPage(
     }
 
     const item = parseItemJson(formData.get("item"));
-    if (!item?.documentId || !item?.content) {
+    const section = item ? sourceToSection(item.source) : null;
+    if (!item?.documentId || !item?.content || !section) {
         return { message: new AppError(ErrorCode.VALIDATION).message };
     }
 
     try {
-        await updateGrammarPageViaGithub(item.documentId, item.content);
+        await updatePageFileViaGithub(
+            section,
+            "n1",
+            item.documentId,
+            wrapPageContent(section, "n1", item.documentId, item.content)
+        );
     } catch (error) {
         throw new AppError(ErrorCode.GITHUB, { cause: error as Error });
     }

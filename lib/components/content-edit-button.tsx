@@ -1,18 +1,24 @@
 "use client";
 
+import { isContentSection } from "@/lib/content-section";
 import { UpdateContentLink } from "@/lib/components/update-content-link";
 import { usePathname } from "next/navigation";
 
-export function GrammarEditButton() {
+export function ContentEditButton() {
     const pathname = usePathname();
     const pathParts = pathname.split("/").filter(Boolean);
+    const section = pathParts[0];
 
-    // Trang anime version (/grammar/anime/...) có link "Sửa"/"Tạo mới" riêng, không cần nút này.
+    if (!isContentSection(section)) {
+        return null;
+    }
+
+    // Trang anime version (/{section}/anime/...) có link "Sửa"/"Tạo mới" riêng, không cần nút này.
     if (pathParts[1] === "anime") {
         return null;
     }
 
-    // Tìm "page1", "page2", etc. trong path như /grammar/n1/page1/flash-card
+    // Tìm "page1", "page2", etc. trong path như /{section}/n1/page1/flash-card
     const pageMatch = pathParts.find(part => part.match(/^page\d+$/));
 
     if (!pageMatch) {
@@ -24,7 +30,7 @@ export function GrammarEditButton() {
         return null;
     }
 
-    const href = `/update-content?kind=grammar-page&slug=${encodeURIComponent(pageMatch)}`;
+    const href = `/update-content?kind=page&section=${section}&slug=${encodeURIComponent(pageMatch)}`;
 
     return <UpdateContentLink href={href} />;
 }

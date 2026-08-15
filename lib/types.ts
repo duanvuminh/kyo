@@ -69,6 +69,8 @@ export enum Source {
   ALGOLIA = "algolia",
   STORAGE = "storage",
   GRAMMAR = "grammar",
+  WORDS = "words",
+  KANJI = "kanji",
 }
 
 export interface BaseItem {
@@ -140,6 +142,22 @@ export interface Sub {
   content: string;
   start: number;
   end: number;
+}
+
+export interface AnimeImage {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export interface Anime {
+  id: string;
+  section: string;
+  level: string;
+  page: string;
+  title: string;
+  images: AnimeImage[];
+  updatedAt: number;
 }
 
 export interface PracticeStorageItemDto {

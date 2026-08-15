@@ -1,18 +1,19 @@
 "use client";
 
-import { saveGrammarAnimeAction } from "@/app/actions/save-grammar-anime.actions";
-import { uploadGrammarAnimeImageAction } from "@/app/actions/upload-grammar-anime-image.actions";
-import type { GrammarAnime } from "@/app/grammar/anime/_lib/grammar-anime.types";
+import { saveAnimeAction } from "@/app/actions/save-anime.actions";
+import { uploadAnimeImageAction } from "@/app/actions/upload-anime-image.actions";
+import { AnimeImageList } from "@/lib/components/anime-form/anime-image-list";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { ActionState } from "@/lib/types";
+import { ContentSection } from "@/lib/content-section";
+import { ActionState, Anime } from "@/lib/types";
 import { extractImageFiles, resizeAndUploadImage, type UploadedImage } from "@/lib/utils/image-upload";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { Dispatch, SetStateAction, startTransition, useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 async function handleImageSelect(
+  section: ContentSection,
   files: File[],
   setUploadingCount: Dispatch<SetStateAction<number>>,
   setImages: Dispatch<SetStateAction<UploadedImage[]>>
@@ -21,7 +22,9 @@ async function handleImageSelect(
     return;
   }
   setUploadingCount(files.length);
-  const uploaded = await Promise.all(files.map((file) => resizeAndUploadImage(file, uploadGrammarAnimeImageAction)));
+  const uploaded = await Promise.all(
+    files.map((file) => resizeAndUploadImage(file, (input) => uploadAnimeImageAction({ ...input, section })))
+  );
   setImages((prev) => [...prev, ...uploaded]);
   setUploadingCount(0);
 }
@@ -31,6 +34,7 @@ function removeImageAt(index: number, setImages: Dispatch<SetStateAction<Uploade
 }
 
 function usePasteToUpload(
+  section: ContentSection,
   busy: boolean,
   setUploadingCount: Dispatch<SetStateAction<number>>,
   setImages: Dispatch<SetStateAction<UploadedImage[]>>
@@ -45,58 +49,14 @@ function usePasteToUpload(
         return;
       }
       e.preventDefault();
-      handleImageSelect(files, setUploadingCount, setImages);
+      handleImageSelect(section, files, setUploadingCount, setImages);
     };
     document.addEventListener("paste", handlePaste);
     return () => document.removeEventListener("paste", handlePaste);
-  }, [busy, setUploadingCount, setImages]);
+  }, [section, busy, setUploadingCount, setImages]);
 }
 
-function GrammarAnimeImageList({
-  images,
-  title,
-  disabled,
-  onRemove,
-}: {
-  images: UploadedImage[];
-  title: string;
-  disabled: boolean;
-  onRemove: (index: number) => void;
-}) {
-  if (images.length === 0) {
-    return null;
-  }
-  return (
-    <div className="flex flex-col gap-2">
-      <p className="text-xs text-muted-foreground">{images.length} ảnh</p>
-      {images.map((image, i) => (
-        <div key={image.url} className="relative">
-          <Image
-            src={image.url}
-            alt={`${title || "Anime version"} ${i + 1}`}
-            width={image.width}
-            height={image.height}
-            className="w-full h-auto rounded border"
-          />
-          <button
-            type="button"
-            disabled={disabled}
-            onClick={() => onRemove(i)}
-            className="absolute top-1 right-1 rounded bg-background/90 px-2 py-1 text-xs text-destructive"
-          >
-            Xoá
-          </button>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function useRedirectOnSaved(
-  state: ActionState<GrammarAnime>,
-  router: ReturnType<typeof useRouter>,
-  viewHref: string
-) {
+function useRedirectOnSaved(state: ActionState<Anime>, router: ReturnType<typeof useRouter>, viewHref: string) {
   useEffect(() => {
     if (state.data) {
       toast.success("Đã lưu anime version");
@@ -107,14 +67,21 @@ function useRedirectOnSaved(
   }, [state]);
 }
 
-function submitGrammarAnime(
-  submitAction: (input: { level: string; page: string; title: string; images: UploadedImage[] }) => void,
+function submitAnime(
+  submitAction: (input: {
+    section: ContentSection;
+    level: string;
+    page: string;
+    title: string;
+    images: UploadedImage[];
+  }) => void,
+  section: ContentSection,
   level: string,
   page: string,
   title: string,
   images: UploadedImage[]
 ) {
-  startTransition(() => submitAction({ level, page, title: title.trim(), images }));
+  startTransition(() => submitAction({ section, level, page, title: title.trim(), images }));
 }
 
 function isSaveDisabled(busy: boolean, title: string, images: UploadedImage[]): boolean {
@@ -128,57 +95,48 @@ function saveButtonLabel(pending: boolean, isEditing: boolean): string {
   return isEditing ? "Cập nhật" : "Tạo mới";
 }
 
-interface GrammarAnimeFormProps {
+interface AnimeFormProps {
+  section: ContentSection;
   level: string;
   page: string;
-  initial: GrammarAnime | null;
+  initial: Anime | null;
 }
 
-function useGrammarAnimeFormState(level: string, page: string, initial: GrammarAnime | null) {
+function useAnimeFormState(section: ContentSection, level: string, page: string, initial: Anime | null) {
   const router = useRouter();
   const [title, setTitle] = useState(initial?.title ?? "");
   const [images, setImages] = useState<UploadedImage[]>(initial?.images ?? []);
   const [uploadingCount, setUploadingCount] = useState(0);
-  const [state, submitAction, pending] = useActionState(saveGrammarAnimeAction, {});
+  const [state, submitAction, pending] = useActionState(saveAnimeAction, {});
   const busy = pending || uploadingCount > 0;
-  useRedirectOnSaved(state, router, `/grammar/anime/${level}/${page}`);
-  usePasteToUpload(busy, setUploadingCount, setImages);
+  useRedirectOnSaved(state, router, `/${section}/anime/${level}/${page}`);
+  usePasteToUpload(section, busy, setUploadingCount, setImages);
 
   return { title, setTitle, images, setImages, uploadingCount, setUploadingCount, state, submitAction, pending, busy };
 }
 
-export function GrammarAnimeForm({ level, page, initial }: GrammarAnimeFormProps) {
+export function AnimeForm({ section, level, page, initial }: AnimeFormProps) {
   const { title, setTitle, images, setImages, uploadingCount, setUploadingCount, state, submitAction, pending, busy } =
-    useGrammarAnimeFormState(level, page, initial);
+    useAnimeFormState(section, level, page, initial);
 
   return (
     <div className="flex flex-col gap-3 max-w-md mx-auto">
-      <Input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Tiêu đề"
-        disabled={busy}
-      />
+      <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Tiêu đề" disabled={busy} />
       <input
         type="file"
         accept="image/*"
         multiple
-        onChange={(e) => handleImageSelect(Array.from(e.target.files ?? []), setUploadingCount, setImages)}
+        onChange={(e) => handleImageSelect(section, Array.from(e.target.files ?? []), setUploadingCount, setImages)}
         disabled={busy}
       />
       <p className="text-xs text-muted-foreground">
         {uploadingCount > 0 ? `Đang upload ${uploadingCount} ảnh...` : "Hoặc dán ảnh trực tiếp (Ctrl+V)"}
       </p>
-      <GrammarAnimeImageList
-        images={images}
-        title={title}
-        disabled={busy}
-        onRemove={(i) => removeImageAt(i, setImages)}
-      />
+      <AnimeImageList images={images} title={title} disabled={busy} onRemove={(i) => removeImageAt(i, setImages)} />
       <Button
         type="button"
         disabled={isSaveDisabled(busy, title, images)}
-        onClick={() => submitGrammarAnime(submitAction, level, page, title, images)}
+        onClick={() => submitAnime(submitAction, section, level, page, title, images)}
       >
         {saveButtonLabel(pending, initial !== null)}
       </Button>

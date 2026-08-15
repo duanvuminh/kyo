@@ -1,17 +1,35 @@
 import { EditBox } from "@/app/update-content/_components/edit-box/edit-box";
-import { GrammarEditRoute } from "@/app/update-content/_components/grammar-editor/grammar-edit-route";
-import { submitUpdateContent, submitUpdateGrammarPage } from "@/app/actions/update-content.actions";
+import { CardsEditRoute } from "@/app/update-content/_components/cards-editor/cards-edit-route";
+import { submitUpdateContent, submitUpdatePage } from "@/app/actions/update-content.actions";
 import { CenterContent } from "@/lib/components/center-content";
-import { getGrammarEditItem, getGrammarPageEditItem } from "@/lib/repositories/local-content.repository";
+import { ContentSection, isContentSection } from "@/lib/content-section";
+import { getCardsEditItem, getPageEditItem } from "@/lib/repositories/local-content.repository";
 import { checkAuthenticated } from "@/lib/auth";
 import { notFound } from "next/navigation";
 
 interface UpdateContentPageProps {
   searchParams?: Promise<{
     kind?: string;
+    section?: string;
     slug?: string;
     front?: string;
   }>;
+}
+
+async function renderCardsEdit(section: ContentSection, slug: string, focusFront?: string) {
+  const initialItem = await getCardsEditItem(section, "n1", slug);
+  if (!initialItem) {
+    notFound();
+  }
+  return <CardsEditRoute section={section} slug={slug} item={initialItem} focusFront={focusFront} />;
+}
+
+async function renderPageEdit(section: ContentSection, slug: string) {
+  const initialItem = await getPageEditItem(section, "n1", slug);
+  if (!initialItem) {
+    notFound();
+  }
+  return <EditBox submitAction={submitUpdatePage} initialItem={initialItem} />;
 }
 
 export default async function Page({ searchParams }: UpdateContentPageProps) {
@@ -28,25 +46,14 @@ export default async function Page({ searchParams }: UpdateContentPageProps) {
   }
 
   const params = (await searchParams) ?? {};
+  const section = isContentSection(params.section) ? params.section : null;
 
-  if (params.kind === "grammar" && params.slug) {
-    const initialItem = await getGrammarEditItem(params.slug);
-
-    if (!initialItem) {
-      notFound();
-    }
-
-    return <GrammarEditRoute slug={params.slug} item={initialItem} focusFront={params.front} />;
+  if (params.kind === "cards" && section && params.slug) {
+    return renderCardsEdit(section, params.slug, params.front);
   }
 
-  if (params.kind === "grammar-page" && params.slug) {
-    const initialItem = await getGrammarPageEditItem(params.slug);
-
-    if (!initialItem) {
-      notFound();
-    }
-
-    return <EditBox submitAction={submitUpdateGrammarPage} initialItem={initialItem} />;
+  if (params.kind === "page" && section && params.slug) {
+    return renderPageEdit(section, params.slug);
   }
 
   return <EditBox submitAction={submitUpdateContent} />;

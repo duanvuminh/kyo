@@ -1,3 +1,4 @@
+import { CONTENT_SECTIONS } from "@/lib/content-section";
 import { z } from "zod";
 
 export interface EditableQuestion {
@@ -30,9 +31,10 @@ const cardSchema = z.object({
   questions: z.array(questionSchema),
 });
 
-export const submitGrammarCardsSchema = z.object({
+export const submitCardsSchema = z.object({
+  section: z.enum(CONTENT_SECTIONS),
   documentId: z.string().min(1),
   cards: z.array(cardSchema).min(1),
 });
 
-export type SubmitGrammarCardsInput = z.infer<typeof submitGrammarCardsSchema>;
+export type SubmitCardsInput = z.infer<typeof submitCardsSchema>;

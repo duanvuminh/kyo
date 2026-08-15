@@ -6,5 +6,5 @@ interface PageProps {
 
 export default async function Page({ params }: PageProps) {
   const { level, page } = await params;
-  return <AnimeView section="grammar" level={level} page={page} />;
+  return <AnimeView section="kanji" level={level} page={page} />;
 }

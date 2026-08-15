@@ -7,6 +7,7 @@ import { FlashCardNextLessons } from "@/lib/components/flash-card/flash-card-nex
 import { FlashCardPagination } from "@/lib/components/flash-card/flash-card-pagination";
 import { useFlashCard } from "@/lib/components/flash-card/use-flash-card";
 import { useLessonProgress } from "@/lib/components/flash-card/use-lesson-progress";
+import { CONTENT_SECTIONS } from "@/lib/content-section";
 import { Question } from "@/lib/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -18,12 +19,14 @@ export interface FlashCardItem {
   questions?: Question[];
 }
 
+const CARDS_PATH_PATTERN = new RegExp(`^/(${CONTENT_SECTIONS.join("|")})/n1/(page\\d+)/flash-card`);
+
 export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
   const { currentCards, currentCard, index, page, totalPages, showBack, goToPage, nextCard, prevCard, toggleShowBack } =
     useFlashCard(cards);
   const { canSave, isDone, markDone, upcomingLessons } = useLessonProgress();
   const pathname = usePathname();
-  const grammarSlug = pathname.match(/^\/grammar\/n1\/(page\d+)\/flash-card/)?.[1];
+  const [, section, slug] = pathname.match(CARDS_PATH_PATTERN) ?? [];
 
   if (cards.length === 0) {
     return <div>Không có flash card nào.</div>;
@@ -35,9 +38,9 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
     <div className="flex flex-col items-center gap-4 max-w-sm mx-auto mt-8">
       <FlashCardDisplay currentCard={currentCard} showBack={showBack} toggleShowBack={toggleShowBack} />
       <FlashCardControls prevCard={prevCard} nextCard={nextCard} />
-      {grammarSlug && (
+      {section && slug && (
         <Link
-          href={`/update-content?kind=grammar&slug=${grammarSlug}&front=${encodeURIComponent(currentCard.front)}`}
+          href={`/update-content?kind=cards&section=${section}&slug=${slug}&front=${encodeURIComponent(currentCard.front)}`}
           className="text-xs text-muted-foreground"
         >
           Đóng góp thẻ này
@@ -45,7 +48,7 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
       )}
       {isLastCard && canSave && !isDone && (
         <Button onClick={markDone}>
-          💾 Lưu bài học
+          ✅ Đã học xong
         </Button>
       )}
       {totalPages > 1 && (

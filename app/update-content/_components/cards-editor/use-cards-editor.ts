@@ -11,7 +11,7 @@ function emptyCard(): EditableCard {
   return { front: "", back: [], more: [], questions: [] };
 }
 
-export function useGrammarCardsEditor(initialCards: EditableCard[]) {
+export function useCardsEditor(initialCards: EditableCard[]) {
   const [cards, setCards] = useState(initialCards);
 
   const updateCard = (index: number, patch: Partial<EditableCard>) => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { StringListEditor } from "@/app/update-content/_components/grammar-editor/string-list-editor";
+import { StringListEditor } from "@/app/update-content/_components/cards-editor/string-list-editor";
 import type { EditableQuestion } from "@/app/update-content/_lib/update-content.types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

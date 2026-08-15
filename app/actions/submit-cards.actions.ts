@@ -2,30 +2,30 @@
 
 import { serializeCardsToSource } from "@/app/update-content/_lib/update-content.serialize";
 import {
-  submitGrammarCardsSchema,
-  type SubmitGrammarCardsInput,
+  submitCardsSchema,
+  type SubmitCardsInput,
 } from "@/app/update-content/_lib/update-content.types";
 import { checkAuthenticated } from "@/lib/auth";
-import { updateGrammarViaGithub } from "@/lib/services/github.service";
+import { updateCardsFileViaGithub } from "@/lib/services/github.service";
 import { ActionState, AppError, ErrorCode } from "@/lib/types";
 
-export async function submitGrammarCardsAction(
+export async function submitCardsAction(
   _prevState: ActionState<boolean>,
-  input: SubmitGrammarCardsInput
+  input: SubmitCardsInput
 ): Promise<ActionState<boolean>> {
   const isAuth = await checkAuthenticated();
   if (!isAuth) {
     return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
   }
 
-  const parsed = submitGrammarCardsSchema.safeParse(input);
+  const parsed = submitCardsSchema.safeParse(input);
   if (!parsed.success) {
     return { message: new AppError(ErrorCode.VALIDATION).message };
   }
 
   try {
     const content = serializeCardsToSource(parsed.data.cards);
-    await updateGrammarViaGithub(parsed.data.documentId, content);
+    await updateCardsFileViaGithub(parsed.data.section, "n1", parsed.data.documentId, content);
   } catch (error) {
     throw new AppError(ErrorCode.GITHUB, { cause: error as Error });
   }
