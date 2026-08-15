@@ -3,6 +3,7 @@
 import { RoadmapDetail } from "@/app/road-map-n1/_components/roadmap-detail";
 import { RoadmapFlow } from "@/app/road-map-n1/_components/roadmap-flow";
 import { useRoadMap } from "@/app/road-map-n1/_components/use-road-map";
+import { RoadmapStatus } from "@/app/road-map-n1/_lib/road-map.types";
 import {
   Sheet,
   SheetContent,
@@ -11,6 +12,38 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
+
+function RoadMapDetailSheet({
+  statuses,
+  selectedId,
+  setSelectedId,
+  handleSetStatus,
+}: {
+  statuses: Record<string, RoadmapStatus>;
+  selectedId: string | null;
+  setSelectedId: Dispatch<SetStateAction<string | null>>;
+  handleSetStatus: (id: string, status: RoadmapStatus) => void;
+}) {
+  return (
+    <Sheet
+      open={selectedId !== null}
+      onOpenChange={(open) => {
+        if (!open) {
+          setSelectedId(null);
+        }
+      }}
+    >
+      <SheetContent side="right" className="w-80 overflow-auto">
+        <SheetHeader>
+          <SheetTitle>Chi tiết bước</SheetTitle>
+          <SheetDescription />
+        </SheetHeader>
+        <RoadmapDetail statuses={statuses} selectedId={selectedId} setStatus={handleSetStatus} />
+      </SheetContent>
+    </Sheet>
+  );
+}
 
 export function RoadMapContainer() {
   const { statuses, selectedId, setSelectedId, handleSetStatus } = useRoadMap();
@@ -27,32 +60,14 @@ export function RoadMapContainer() {
         </Link>
       </header>
 
-      <RoadmapFlow
+      <RoadmapFlow statuses={statuses} selectedId={selectedId} onSelect={setSelectedId} />
+
+      <RoadMapDetailSheet
         statuses={statuses}
         selectedId={selectedId}
-        onSelect={setSelectedId}
+        setSelectedId={setSelectedId}
+        handleSetStatus={handleSetStatus}
       />
-
-      <Sheet
-        open={selectedId !== null}
-        onOpenChange={(open) => {
-          if (!open) {
-            setSelectedId(null);
-          }
-        }}
-      >
-        <SheetContent side="right" className="w-80 overflow-auto">
-          <SheetHeader>
-            <SheetTitle>Chi tiết bước</SheetTitle>
-            <SheetDescription />
-          </SheetHeader>
-          <RoadmapDetail
-            statuses={statuses}
-            selectedId={selectedId}
-            setStatus={handleSetStatus}
-          />
-        </SheetContent>
-      </Sheet>
     </div>
   );
 }

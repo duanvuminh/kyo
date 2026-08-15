@@ -1,10 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { FlashCardBack } from "@/lib/components/flash-card/flash-card-back";
 import { FlashCardControls } from "@/lib/components/flash-card/flash-card-controls";
-import { FlashCardFront } from "@/lib/components/flash-card/flash-card-front";
+import { FlashCardDisplay } from "@/lib/components/flash-card/flash-card-display";
 import { FlashCardNextLessons } from "@/lib/components/flash-card/flash-card-next-lessons";
 import { FlashCardPagination } from "@/lib/components/flash-card/flash-card-pagination";
 import { useFlashCard } from "@/lib/components/flash-card/use-flash-card";
@@ -35,20 +33,7 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
 
   return (
     <div className="flex flex-col items-center gap-4 max-w-sm mx-auto mt-8">
-      <Card className="w-full min-h-48 p-2" onClick={toggleShowBack}>
-        <CardContent>
-          {showBack ? (
-            <div onClick={(e) => e.stopPropagation()}>
-              <Button variant="ghost" size="sm" onClick={toggleShowBack} className="mb-2 -ml-2">
-                ← Lật lại
-              </Button>
-              <FlashCardBack back={currentCard.back} more={currentCard.more} questions={currentCard.questions} front={currentCard.front} />
-            </div>
-          ) : (
-            <FlashCardFront front={currentCard.front} />
-          )}
-        </CardContent>
-      </Card>
+      <FlashCardDisplay currentCard={currentCard} showBack={showBack} toggleShowBack={toggleShowBack} />
       <FlashCardControls prevCard={prevCard} nextCard={nextCard} />
       {grammarSlug && (
         <Link
@@ -60,7 +45,7 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
       )}
       {isLastCard && canSave && !isDone && (
         <Button onClick={markDone}>
-          "💾 Lưu bài học"
+          💾 Lưu bài học
         </Button>
       )}
       {totalPages > 1 && (

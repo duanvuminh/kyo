@@ -1,6 +1,6 @@
-import { TranscriptPlayer } from "@/app/podcast/_components/transcript-player";
+import { EpisodeItem } from "@/app/podcast/_components/episode-item";
+import { PodcastHeader } from "@/app/podcast/_components/podcast-header";
 import { getPodcastWithEpisodes } from "@/lib/services/podcast.service";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -9,32 +9,6 @@ const EPISODES_PER_PAGE = 5;
 interface Props {
   params: Promise<{ id: string }>;
   searchParams: Promise<{ transcript?: string; limit?: string }>;
-}
-
-interface EpisodeItemProps {
-  episode: { id: string; title: string; pubDate: string; audioUrl: string; transcriptUrl?: string };
-}
-
-function EpisodeItem({ episode }: EpisodeItemProps) {
-  return (
-    <li className="flex flex-col gap-1 border-b pb-4">
-      <p className="font-medium">{episode.title}</p>
-      <p className="text-xs text-muted-foreground">{episode.pubDate}</p>
-      <TranscriptPlayer audioUrl={episode.audioUrl} transcriptUrl={episode.transcriptUrl} title={episode.title} />
-    </li>
-  );
-}
-
-function PodcastHeader({ artworkUrl, name, artist }: { artworkUrl: string; name: string; artist: string }) {
-  return (
-    <div className="flex items-center gap-3">
-      {artworkUrl && <Image src={artworkUrl} alt={name} width={64} height={64} className="rounded" />}
-      <div>
-        <h1 className="text-xl font-bold">{name}</h1>
-        <p className="text-sm text-muted-foreground">{artist}</p>
-      </div>
-    </div>
-  );
 }
 
 export default async function Page({ params, searchParams }: Props) {

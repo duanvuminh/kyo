@@ -7,9 +7,11 @@ interface MiniPlayerProps {
   recentLines: string[];
   isPlaying: boolean;
   onTogglePlay: () => void;
+  isLooping: boolean;
+  onToggleLoop: () => void;
 }
 
-export function MiniPlayer({ title, recentLines, isPlaying, onTogglePlay }: MiniPlayerProps) {
+export function MiniPlayer({ title, recentLines, isPlaying, onTogglePlay, isLooping, onToggleLoop }: MiniPlayerProps) {
   return (
     <div className="flex h-screen flex-col gap-2 bg-background p-3 text-foreground">
       <p className="truncate text-xs font-medium">{title}</p>
@@ -27,9 +29,21 @@ export function MiniPlayer({ title, recentLines, isPlaying, onTogglePlay }: Mini
           </p>
         ))}
       </div>
-      <Button type="button" size="sm" variant="secondary" onClick={onTogglePlay} className="self-start">
-        {isPlaying ? "⏸ Tạm dừng" : "▶ Phát"}
-      </Button>
+      <div className="flex gap-1">
+        <Button type="button" size="sm" variant="secondary" onClick={onTogglePlay} className="self-start">
+          {isPlaying ? "⏸ Tạm dừng" : "▶ Phát"}
+        </Button>
+        <Button
+          type="button"
+          size="sm"
+          variant="secondary"
+          onClick={onToggleLoop}
+          title={isLooping ? "Dừng loop" : "Loop 5 câu từ vị trí hiện tại"}
+          className={cn("self-start", isLooping ? "text-primary" : "")}
+        >
+          {isLooping ? "🔁✕" : "🔁"}
+        </Button>
+      </div>
     </div>
   );
 }

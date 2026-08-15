@@ -1,14 +1,34 @@
 "use client";
 
-import { MiniPlayer } from "@/app/podcast/_components/mini-player";
-import { TranscriptLine } from "@/app/podcast/_components/transcript-line";
+import { TranscriptCueList } from "@/app/podcast/_components/transcript-cue-list";
+import { TranscriptMiniPlayerPortal } from "@/app/podcast/_components/transcript-mini-player-portal";
+import { TranscriptPlayerHeader } from "@/app/podcast/_components/transcript-player-header";
 import { useActiveCueIndex } from "@/app/podcast/_components/use-active-cue-index";
+import { useLineLoop } from "@/app/podcast/_components/use-line-loop";
 import { usePictureInPictureBubble } from "@/app/podcast/_components/use-picture-in-picture-bubble";
 import { useSeekWithAutoPause } from "@/app/podcast/_components/use-seek-with-auto-pause";
 import { useTranscript } from "@/app/podcast/_components/use-transcript";
-import { Button } from "@/components/ui/button";
+import { Sub } from "@/lib/types";
 import { useEffect, useRef } from "react";
-import { createPortal } from "react-dom";
+
+function getRecentLines(cues: Sub[], activeIndex: number): string[] {
+  if (activeIndex < 0) {
+    return [];
+  }
+  return cues.slice(Math.max(0, activeIndex - 2), activeIndex + 1).map((cue) => cue.content);
+}
+
+function togglePlayPause(audioRef: React.RefObject<HTMLAudioElement | null>) {
+  const audio = audioRef.current;
+  if (!audio) {
+    return;
+  }
+  if (audio.paused) {
+    audio.play().catch(() => {});
+  } else {
+    audio.pause();
+  }
+}
 
 export function TranscriptPlayer({
   audioUrl,
@@ -25,68 +45,31 @@ export function TranscriptPlayer({
   const activeIndex = useActiveCueIndex(audioRef, cues);
   const proxiedAudioUrl = `/api/podcast-audio?url=${encodeURIComponent(audioUrl)}`;
   const { isPlaying, pipWindow, pipSupported, openPip } = usePictureInPictureBubble(audioRef, title);
+  const seekTo = useSeekWithAutoPause(audioRef);
+  const { loopStartIndex, toggleLoop, stopLoop } = useLineLoop(audioRef, cues);
+  const isLooping = loopStartIndex !== null;
 
   useEffect(() => {
     activeLineRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
   }, [activeIndex]);
 
-  const seekTo = useSeekWithAutoPause(audioRef);
-
-  const togglePlay = () => {
-    const audio = audioRef.current;
-    if (!audio) {
-      return;
-    }
-    if (audio.paused) {
-      audio.play().catch(() => {});
-    } else {
-      audio.pause();
-    }
-  };
-
-  const recentLines =
-    activeIndex >= 0 ? cues.slice(Math.max(0, activeIndex - 2), activeIndex + 1).map((cue) => cue.content) : [];
+  const toggleLoopFromCurrent = () => (isLooping ? stopLoop() : activeIndex >= 0 && toggleLoop(Math.max(0, activeIndex - 1)));
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex items-center gap-1">
-        <audio ref={audioRef} controls preload="metadata" src={proxiedAudioUrl} className="w-full" />
-        {pipSupported && (
-          <Button
-            type="button"
-            size="sm"
-            variant="ghost"
-            title="Nổi bong bóng khi chuyển tab"
-            onClick={openPip}
-            className="shrink-0"
-          >
-            🫧
-          </Button>
-        )}
-      </div>
-      {cues.length > 0 && (
-        <div className="max-h-64 overflow-y-auto flex flex-col gap-1 border rounded p-2">
-          {cues.map((cue, index) => (
-            <TranscriptLine
-              key={index}
-              content={cue.content}
-              isActive={index === activeIndex}
-              onSeek={() => seekTo(cue)}
-              lineRef={index === activeIndex ? activeLineRef : undefined}
-            />
-          ))}
-        </div>
-      )}
-      {pipWindow &&
-        createPortal(
-          <MiniPlayer
-            title={title ?? "Đang phát"}
-            recentLines={recentLines}
-            isPlaying={isPlaying}
-            onTogglePlay={togglePlay}
-          />,
-          pipWindow.document.body,
-        )}
+      <TranscriptPlayerHeader
+        audioRef={audioRef} proxiedAudioUrl={proxiedAudioUrl} pipSupported={pipSupported}
+        openPip={openPip} isLooping={isLooping} onStopLoop={stopLoop}
+      />
+      <TranscriptCueList
+        cues={cues} activeIndex={activeIndex} activeLineRef={activeLineRef}
+        seekTo={seekTo} loopStartIndex={loopStartIndex} onToggleLoop={toggleLoop}
+      />
+      <TranscriptMiniPlayerPortal
+        pipWindow={pipWindow} title={title} recentLines={getRecentLines(cues, activeIndex)}
+        isPlaying={isPlaying} onTogglePlay={() => togglePlayPause(audioRef)}
+        isLooping={isLooping} onToggleLoop={toggleLoopFromCurrent}
+      />
     </div>
   );
 }

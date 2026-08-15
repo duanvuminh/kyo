@@ -134,7 +134,7 @@ interface GrammarAnimeFormProps {
   initial: GrammarAnime | null;
 }
 
-export function GrammarAnimeForm({ level, page, initial }: GrammarAnimeFormProps) {
+function useGrammarAnimeFormState(level: string, page: string, initial: GrammarAnime | null) {
   const router = useRouter();
   const [title, setTitle] = useState(initial?.title ?? "");
   const [images, setImages] = useState<UploadedImage[]>(initial?.images ?? []);
@@ -143,6 +143,13 @@ export function GrammarAnimeForm({ level, page, initial }: GrammarAnimeFormProps
   const busy = pending || uploadingCount > 0;
   useRedirectOnSaved(state, router, `/grammar/anime/${level}/${page}`);
   usePasteToUpload(busy, setUploadingCount, setImages);
+
+  return { title, setTitle, images, setImages, uploadingCount, setUploadingCount, state, submitAction, pending, busy };
+}
+
+export function GrammarAnimeForm({ level, page, initial }: GrammarAnimeFormProps) {
+  const { title, setTitle, images, setImages, uploadingCount, setUploadingCount, state, submitAction, pending, busy } =
+    useGrammarAnimeFormState(level, page, initial);
 
   return (
     <div className="flex flex-col gap-3 max-w-md mx-auto">

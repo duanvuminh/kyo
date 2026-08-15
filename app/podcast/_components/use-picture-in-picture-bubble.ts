@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
 
 // Copy stylesheet của trang chính sang document của PiP window (nó là 1 window riêng biệt,
 // không tự kế thừa CSS) để bubble hiển thị đúng style Tailwind thay vì bị trắng/không style.
@@ -22,6 +22,45 @@ function copyStylesToPipWindow(pipDocument: Document) {
   }
 }
 
+// Đồng bộ trạng thái play/pause của thẻ audio với Media Session API: cập nhật isPlaying và
+// đăng ký handler "enterpictureinpicture" (Chrome tự gọi khi tab bị ẩn lúc audio đang phát).
+function useMediaSessionSync(
+  audioRef: React.RefObject<HTMLAudioElement | null>,
+  title: string | undefined,
+  setIsPlaying: Dispatch<SetStateAction<boolean>>,
+  openPip: () => void
+) {
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio || !("mediaSession" in navigator)) {
+      return;
+    }
+
+    const handlePlay = () => {
+      setIsPlaying(true);
+      if (title) {
+        navigator.mediaSession.metadata = new MediaMetadata({ title });
+      }
+      navigator.mediaSession.setActionHandler("enterpictureinpicture" as MediaSessionAction, () => {
+        openPip();
+      });
+    };
+    const handlePause = () => {
+      setIsPlaying(false);
+      navigator.mediaSession.setActionHandler("enterpictureinpicture" as MediaSessionAction, null);
+    };
+
+    audio.addEventListener("play", handlePlay);
+    audio.addEventListener("pause", handlePause);
+    audio.addEventListener("ended", handlePause);
+    return () => {
+      audio.removeEventListener("play", handlePlay);
+      audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("ended", handlePause);
+    };
+  }, [audioRef, openPip, title, setIsPlaying]);
+}
+
 // Quản lý bubble nổi (Document Picture-in-Picture): tự mở khi Chrome ẩn tab lúc audio đang phát
 // (giống Google Meet), hoặc mở thủ công qua nút bấm. Safari/Firefox chưa hỗ trợ API này
 // -> pipSupported false, audio vẫn phát bình thường, chỉ là không có bubble.
@@ -41,36 +80,7 @@ export function usePictureInPictureBubble(audioRef: React.RefObject<HTMLAudioEle
     setPipWindow(pip);
   }, []);
 
-  useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio || !("mediaSession" in navigator)) {
-      return;
-    }
-
-    const handlePlay = () => {
-      setIsPlaying(true);
-      if (title) {
-        navigator.mediaSession.metadata = new MediaMetadata({ title });
-      }
-      // Chrome tự gọi handler này khi tab bị ẩn lúc audio đang phát -> bubble tự nổi lên.
-      navigator.mediaSession.setActionHandler("enterpictureinpicture" as MediaSessionAction, () => {
-        openPip();
-      });
-    };
-    const handlePause = () => {
-      setIsPlaying(false);
-      navigator.mediaSession.setActionHandler("enterpictureinpicture" as MediaSessionAction, null);
-    };
-
-    audio.addEventListener("play", handlePlay);
-    audio.addEventListener("pause", handlePause);
-    audio.addEventListener("ended", handlePause);
-    return () => {
-      audio.removeEventListener("play", handlePlay);
-      audio.removeEventListener("pause", handlePause);
-      audio.removeEventListener("ended", handlePause);
-    };
-  }, [audioRef, openPip, title]);
+  useMediaSessionSync(audioRef, title, setIsPlaying, openPip);
 
   // Đóng PiP window khi component unmount (VD: rời trang) để không để sót cửa sổ mồ côi.
   useEffect(() => {
