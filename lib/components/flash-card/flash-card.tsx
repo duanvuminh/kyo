@@ -21,6 +21,10 @@ export interface FlashCardItem {
 
 const CARDS_PATH_PATTERN = new RegExp(`^/(${CONTENT_SECTIONS.join("|")})/n1/(page\\d+)/flash-card`);
 
+function isLastCardOfDeck(page: number, totalPages: number, index: number, currentCardsLength: number): boolean {
+  return page === totalPages - 1 && index === currentCardsLength - 1;
+}
+
 export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
   const { currentCards, currentCard, index, page, totalPages, showBack, goToPage, nextCard, prevCard, toggleShowBack } =
     useFlashCard(cards);
@@ -32,7 +36,7 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
     return <div>Không có flash card nào.</div>;
   }
 
-  const isLastCard = index === currentCards.length - 1;
+  const isLastCard = isLastCardOfDeck(page, totalPages, index, currentCards.length);
 
   return (
     <div className="flex flex-col items-center gap-4 max-w-sm mx-auto mt-8">
