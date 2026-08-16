@@ -1,5 +1,4 @@
 "use client";
-import { Add } from "@/app/infor/_components/add";
 import { KInfor } from "@/app/infor/_components/infor";
 import { InforPagination } from "@/app/infor/_components/infor-paging";
 import { InforSearch } from "@/app/infor/_components/infor-search";
@@ -22,7 +21,6 @@ export const InforContainer = () => {
       <h1>Tra cứu thủ tục cần thiết ở Nhật Bản</h1>
       <InstantSearch searchClient={searchClient} indexName="japan">
         <InforSearch />
-        <Add />
         <Hits hitComponent={Hit} />
         <InforPagination />
       </InstantSearch>
