@@ -17,7 +17,6 @@ const items = [
 ];
 const others = [
   { title: "Tra cứu thủ tục", url: "/infor" },
-  { title: "Memo", url: "/memo" },
 ];
 
 export function SidebarNavMenu() {

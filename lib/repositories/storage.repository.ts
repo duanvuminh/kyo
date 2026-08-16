@@ -122,29 +122,3 @@ export class PracticeStorageRepository {
     );
   }
 }
-
-export class MemoStorageRepository {
-  private static readonly STORAGE_KEY = "kyo_memo";
-
-  static getMemo(): string | null {
-    if (typeof window === "undefined") {
-      return null;
-    }
-    try {
-      const data = localStorage.getItem(this.STORAGE_KEY);
-      return data;
-    } catch (e) {
-      const err = e instanceof Error ? e : new Error(String(e));
-      throw new AppError(ErrorCode.STORAGE, { cause: err });
-    }
-  }
-
-  static saveMemo(content: string): void {
-    try {
-      localStorage.setItem(this.STORAGE_KEY, content);
-    } catch (e) {
-      const err = e instanceof Error ? e : new Error(String(e));
-      throw new AppError(ErrorCode.STORAGE, { cause: err });
-    }
-  }
-}
