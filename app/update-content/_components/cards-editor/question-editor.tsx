@@ -1,6 +1,5 @@
 "use client";
 
-import { StringListEditor } from "@/app/update-content/_components/cards-editor/string-list-editor";
 import type { EditableQuestion } from "@/app/update-content/_lib/update-content.types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -44,15 +43,15 @@ function QuestionEditor({ question, onChange, onRemove }: QuestionEditorProps) {
     onChange({ answers });
   };
 
+  const updateMemo = (index: number, value: string) => {
+    const memo = Array.from({ length: 4 }, (_, i) => question.memo[i] ?? "");
+    memo[index] = value;
+    onChange({ memo });
+  };
+
   return (
     <div className="rounded-md border p-2 flex flex-col gap-2">
-      <div className="flex items-center gap-2">
-        <Input
-          value={question.id}
-          placeholder="ID (vd: 11-1)"
-          onChange={(e) => onChange({ id: e.target.value })}
-          className="w-28 text-xs"
-        />
+      <div className="flex items-center justify-end">
         <Button type="button" variant="ghost" size="sm" onClick={onRemove} className="text-destructive">
           Xoá câu hỏi
         </Button>
@@ -62,8 +61,14 @@ function QuestionEditor({ question, onChange, onRemove }: QuestionEditorProps) {
         placeholder="Nội dung câu hỏi"
         onChange={(e) => onChange({ content: e.target.value })}
       />
-      <AnswerList answers={question.answers} correctAnswer={question.correctAnswer} onChangeAnswer={updateAnswer} onChangeCorrect={(i) => onChange({ correctAnswer: i })} />
-      <StringListEditor label="Giải thích (memo)" items={question.memo} onChange={(memo) => onChange({ memo })} />
+      <AnswerList
+        answers={question.answers}
+        correctAnswer={question.correctAnswer}
+        memo={question.memo}
+        onChangeAnswer={updateAnswer}
+        onChangeCorrect={(i) => onChange({ correctAnswer: i })}
+        onChangeMemo={updateMemo}
+      />
     </div>
   );
 }
@@ -71,27 +76,37 @@ function QuestionEditor({ question, onChange, onRemove }: QuestionEditorProps) {
 interface AnswerListProps {
   answers: EditableQuestion["answers"];
   correctAnswer: 0 | 1 | 2 | 3;
+  memo: string[];
   onChangeAnswer: (index: number, value: string) => void;
   onChangeCorrect: (index: 0 | 1 | 2 | 3) => void;
+  onChangeMemo: (index: number, value: string) => void;
 }
 
-function AnswerList({ answers, correctAnswer, onChangeAnswer, onChangeCorrect }: AnswerListProps) {
+function AnswerList({ answers, correctAnswer, memo, onChangeAnswer, onChangeCorrect, onChangeMemo }: AnswerListProps) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       {answers.map((answer, index) => (
-        <label key={index} className="flex items-center gap-2">
-          <input
-            type="radio"
-            checked={correctAnswer === index}
-            onChange={() => onChangeCorrect(index as 0 | 1 | 2 | 3)}
-            aria-label={`Đáp án đúng ${index + 1}`}
-          />
+        <div key={index} className="flex flex-col gap-1">
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              checked={correctAnswer === index}
+              onChange={() => onChangeCorrect(index as 0 | 1 | 2 | 3)}
+              aria-label={`Đáp án đúng ${index + 1}`}
+            />
+            <Input
+              value={answer}
+              placeholder={`Đáp án ${index + 1}`}
+              onChange={(e) => onChangeAnswer(index, e.target.value)}
+            />
+          </label>
           <Input
-            value={answer}
-            placeholder={`Đáp án ${index + 1}`}
-            onChange={(e) => onChangeAnswer(index, e.target.value)}
+            value={memo[index] ?? ""}
+            placeholder={`Giải thích khi chọn đáp án ${index + 1}`}
+            onChange={(e) => onChangeMemo(index, e.target.value)}
+            className="ml-6 text-xs"
           />
-        </label>
+        </div>
       ))}
     </div>
   );
