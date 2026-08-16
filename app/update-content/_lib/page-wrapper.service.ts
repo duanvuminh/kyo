@@ -16,3 +16,10 @@ export function stripPageWrapper(content: string): string {
 export function wrapPageContent(section: ContentSection, level: string, slug: string, body: string): string {
   return `${IMPORT_LINE}\n\n${body.trim()}\n\n<FlashCardLink href="/${section}/${level}/${slug}/flash-card" />\n`;
 }
+
+// Lấy dòng heading markdown đầu tiên (## Tiêu đề...) làm gợi ý tiêu đề mặc định — dùng khi
+// tạo mới anime version cho 1 trang đã có sẵn page.mdx.
+export function extractHeadingTitle(content: string): string | null {
+  const match = content.match(/^#{1,6}\s+(.+)$/m);
+  return match?.[1]?.trim() ?? null;
+}

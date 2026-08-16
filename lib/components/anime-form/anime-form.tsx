@@ -100,11 +100,18 @@ interface AnimeFormProps {
   level: string;
   page: string;
   initial: Anime | null;
+  defaultTitle?: string;
 }
 
-function useAnimeFormState(section: ContentSection, level: string, page: string, initial: Anime | null) {
+function useAnimeFormState(
+  section: ContentSection,
+  level: string,
+  page: string,
+  initial: Anime | null,
+  defaultTitle?: string
+) {
   const router = useRouter();
-  const [title, setTitle] = useState(initial?.title ?? "");
+  const [title, setTitle] = useState(initial?.title ?? defaultTitle ?? "");
   const [images, setImages] = useState<UploadedImage[]>(initial?.images ?? []);
   const [uploadingCount, setUploadingCount] = useState(0);
   const [state, submitAction, pending] = useActionState(saveAnimeAction, {});
@@ -115,9 +122,9 @@ function useAnimeFormState(section: ContentSection, level: string, page: string,
   return { title, setTitle, images, setImages, uploadingCount, setUploadingCount, state, submitAction, pending, busy };
 }
 
-export function AnimeForm({ section, level, page, initial }: AnimeFormProps) {
+export function AnimeForm({ section, level, page, initial, defaultTitle }: AnimeFormProps) {
   const { title, setTitle, images, setImages, uploadingCount, setUploadingCount, state, submitAction, pending, busy } =
-    useAnimeFormState(section, level, page, initial);
+    useAnimeFormState(section, level, page, initial, defaultTitle);
 
   return (
     <div className="flex flex-col gap-3 max-w-md mx-auto">
