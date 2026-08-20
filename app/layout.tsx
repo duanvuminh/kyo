@@ -2,7 +2,7 @@ import "@/app/globals.css";
 import { AppSidebar } from "@/lib/components/app-sidebar/app-sidebar";
 import { KBreadCrumb } from "@/lib/components/bread-crumb/bread-crumb";
 import { LazyToaster } from "@/lib/components/lazy-toaster";
-import { RegisterServiceWorker } from "@/lib/components/register-service-worker";
+import { LazyRegisterServiceWorker } from "@/lib/components/lazy-register-service-worker";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { StoreProvider } from "@/lib/store-provider";
 import type { Metadata, Viewport } from "next";
@@ -79,7 +79,7 @@ export default async function RootLayout({
               </SidebarInset>
             </SidebarProvider>
             <LazyToaster />
-            <RegisterServiceWorker />
+            <LazyRegisterServiceWorker />
           </SessionProvider>
         </body>
       </html>

@@ -1,4 +1,4 @@
-import { SidebarFooterMenu } from "@/lib/components/app-sidebar/sidebar-footer-menu";
+import { LazySidebarFooterMenu } from "@/lib/components/app-sidebar/lazy-sidebar-footer-menu";
 import { SidebarNavMenu } from "@/lib/components/app-sidebar/sidebar-nav-menu";
 import {
   Sidebar,
@@ -26,7 +26,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter>
-        <SidebarFooterMenu />
+        <LazySidebarFooterMenu />
       </SidebarFooter>
     </Sidebar>
   );
