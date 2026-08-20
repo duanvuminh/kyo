@@ -9,7 +9,6 @@ import { useFlashCard } from "@/lib/components/flash-card/use-flash-card";
 import { useLessonProgress } from "@/lib/components/flash-card/use-lesson-progress";
 import { CONTENT_SECTIONS } from "@/lib/content-section";
 import { Question } from "@/lib/types";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export interface FlashCardItem {
@@ -37,19 +36,22 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
   }
 
   const isLastCard = isLastCardOfDeck(page, totalPages, index, currentCards.length);
+  const contributeHref =
+    section && slug
+      ? `/update-content?kind=cards&section=${section}&slug=${slug}&front=${encodeURIComponent(currentCard.front)}`
+      : undefined;
 
   return (
     <div className="flex flex-col items-center gap-4 max-w-sm mx-auto mt-8">
-      <FlashCardDisplay currentCard={currentCard} showBack={showBack} toggleShowBack={toggleShowBack} />
+      <FlashCardDisplay
+        currentCard={currentCard}
+        showBack={showBack}
+        toggleShowBack={toggleShowBack}
+        nextCard={nextCard}
+        prevCard={prevCard}
+        contributeHref={contributeHref}
+      />
       <FlashCardControls prevCard={prevCard} nextCard={nextCard} />
-      {section && slug && (
-        <Link
-          href={`/update-content?kind=cards&section=${section}&slug=${slug}&front=${encodeURIComponent(currentCard.front)}`}
-          className="text-xs text-muted-foreground"
-        >
-          Đóng góp thẻ này
-        </Link>
-      )}
       {isLastCard && canSave && !isDone && (
         <Button onClick={markDone}>
           ✅ Đã học xong

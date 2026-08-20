@@ -12,7 +12,7 @@ export function FlashCardFront({ front }: { front: string }) {
           href={referenceUrl}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()}
+          onPointerUp={(e) => e.stopPropagation()}
           className="text-xs text-muted-foreground"
         >
           Xem thêm →

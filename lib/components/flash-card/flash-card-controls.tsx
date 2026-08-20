@@ -8,8 +8,8 @@ export function FlashCardControls({
 }) {
   return (
     <div className="flex gap-2">
-      <Button onClick={prevCard}>Trước</Button>
-      <Button onClick={nextCard}>Tiếp</Button>
+      <Button variant="outline" size="sm" onClick={prevCard}>← Trước</Button>
+      <Button variant="outline" size="sm" onClick={nextCard}>Tiếp →</Button>
     </div>
   );
 }
