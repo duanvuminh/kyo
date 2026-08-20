@@ -5,6 +5,7 @@ export enum ErrorCode {
   DISCORD,
   SLACK,
   VIDEOS_MARKET,
+  PODCAST,
   STORAGE,
   AI_MODEL_ERROR,
   AI_MODEL_ERROR_MAX_RETRIES_EXCEEDED,
@@ -20,6 +21,7 @@ export const ErrorMessage: Record<ErrorCode, string> = {
   [ErrorCode.DISCORD]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.SLACK]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.VIDEOS_MARKET]: "Không thể lấy dữ liệu video",
+  [ErrorCode.PODCAST]: "Không thể lấy dữ liệu podcast",
   [ErrorCode.STORAGE]: "Lỗi hệ thống xảy ra, vui lòng thử lại sau",
   [ErrorCode.AI_MODEL_ERROR]: "Vui lòng thử lại sau vài phút",
   [ErrorCode.AI_MODEL_ERROR_MAX_RETRIES_EXCEEDED]:

@@ -1,3 +1,4 @@
+import { apiFetch } from "@/lib/api-fetch";
 import { env } from "@/lib/env";
 import { AppError, ErrorCode } from "@/lib/types";
 
@@ -23,7 +24,7 @@ function buildSearchPayload(page: number, categoryTagIds?: number) {
 
 export const getVideosMarket = async ({ categoryTagIds, page }: { categoryTagIds?: number; page: number }) => {
   try {
-    const response = await fetch("https://www.videomarket.jp/graphql", {
+    const response = await apiFetch("https://www.videomarket.jp/graphql", {
       method: "POST",
       headers: { Authorization: `Bearer ${env.VIDEO_MARKET}`, "Content-Type": "application/json" },
       body: JSON.stringify(buildSearchPayload(page, categoryTagIds)),

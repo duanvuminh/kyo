@@ -1,3 +1,6 @@
+import { apiFetch } from "@/lib/api-fetch";
+import { fetchCacheConfig } from "@/lib/constants";
+import { AppError, ErrorCode } from "@/lib/types";
 import { XMLParser } from "fast-xml-parser";
 
 const ITUNES_API = "https://itunes.apple.com";
@@ -30,9 +33,11 @@ interface ItunesResult {
 }
 
 async function itunesRequest<T>(path: string): Promise<T> {
-  const res = await fetch(`${ITUNES_API}${path}`);
+  const res = await apiFetch(`${ITUNES_API}${path}`, fetchCacheConfig);
   if (!res.ok) {
-    throw new Error(`iTunes API error: ${res.status}`);
+    throw new AppError(ErrorCode.PODCAST, {
+      cause: new Error(`iTunes API error: ${res.status}`),
+    });
   }
   return res.json() as Promise<T>;
 }
@@ -73,7 +78,7 @@ export function extractPodcastIdFromUrl(input: string): string | null {
 // (dùng để filter nhiều feed song song khi search).
 export async function feedHasTranscript(feedUrl: string): Promise<boolean> {
   try {
-    const res = await fetch(feedUrl);
+    const res = await apiFetch(feedUrl, fetchCacheConfig);
     if (!res.ok) {
       return false;
     }
@@ -120,9 +125,11 @@ function toEpisode(item: Record<string, unknown>, fallbackId: string): PodcastEp
 }
 
 export async function getEpisodes(feedUrl: string): Promise<PodcastEpisode[]> {
-  const res = await fetch(feedUrl);
+  const res = await apiFetch(feedUrl, fetchCacheConfig);
   if (!res.ok) {
-    throw new Error(`RSS fetch error: ${res.status}`);
+    throw new AppError(ErrorCode.PODCAST, {
+      cause: new Error(`RSS fetch error: ${res.status}`),
+    });
   }
 
   const xml = await res.text();

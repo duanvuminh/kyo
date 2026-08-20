@@ -20,3 +20,11 @@ export function discordThreadTag(threadId: string): string {
 export function discordChannelTag(channelId: string): string {
   return `discord-channel-${channelId}`;
 }
+
+export function slackThreadTag(threadTs: string): string {
+  return `slack-thread-${threadTs}`;
+}
+
+export function slackChannelTag(channelId: string): string {
+  return `slack-channel-${channelId}`;
+}

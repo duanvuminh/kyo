@@ -1,3 +1,4 @@
+import { apiFetch } from "@/lib/api-fetch";
 import { fetchCacheConfig, ONE_WEEK } from "@/lib/constants";
 import { isDev } from "@/lib/env";
 import { AppError, ErrorCode } from "@/lib/types";
@@ -12,7 +13,7 @@ export async function GET(req: NextRequest) {
     throw new AppError(ErrorCode.UNKNOWN);
   }
 
-  const upstream = await fetch(url, fetchCacheConfig);
+  const upstream = await apiFetch(url, fetchCacheConfig);
   if (!upstream.ok) {
     throw new AppError(ErrorCode.UNKNOWN);
   }

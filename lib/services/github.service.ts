@@ -1,3 +1,4 @@
+import { apiFetch } from "@/lib/api-fetch";
 import type { ContentSection } from "@/lib/content-section";
 import { env } from "@/lib/env";
 import path from "node:path";
@@ -29,7 +30,7 @@ async function githubRequest<T>(
     token: string,
     options?: RequestInit,
 ): Promise<T> {
-    const res = await fetch(url, {
+    const res = await apiFetch(url, {
         ...options,
         headers: {
             Authorization: `Bearer ${token}`,

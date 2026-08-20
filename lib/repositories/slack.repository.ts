@@ -1,4 +1,5 @@
-import { discordChannelTag, discordThreadTag, getFetchCacheConfig } from "@/lib/constants";
+import { apiFetch } from "@/lib/api-fetch";
+import { getFetchCacheConfig, slackChannelTag, slackThreadTag } from "@/lib/constants";
 import { env } from "@/lib/env";
 import { AppError, ErrorCode } from "@/lib/types";
 
@@ -40,6 +41,33 @@ export interface SlackHistoryEntity {
   };
 }
 
+interface SlackApiResponse {
+  ok: boolean;
+  error?: string;
+}
+
+async function slackRequest<T extends SlackApiResponse>(url: string, init?: RequestInit): Promise<T> {
+  const res = await apiFetch(url, {
+    ...init,
+    headers: {
+      Authorization: `Bearer ${env.SLACK_API_KEY}`,
+      ...init?.headers,
+    },
+  });
+  if (!res.ok) {
+    throw new AppError(ErrorCode.SLACK, {
+      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
+    });
+  }
+  const data = (await res.json()) as T;
+  if (!data.ok) {
+    throw new AppError(ErrorCode.SLACK, {
+      cause: new Error(data.error ?? "unknown Slack error"),
+    });
+  }
+  return data;
+}
+
 export const getListMessageFromSlack = async ({
   channelId,
   cursor,
@@ -59,30 +87,10 @@ export const getListMessageFromSlack = async ({
     params.append("limit", `${limit}`);
   }
 
-  const res = await fetch(
+  return slackRequest<SlackHistoryEntity>(
     `https://slack.com/api/conversations.history?${params.toString()}`,
-    {
-      headers: {
-        Authorization: `Bearer ${env.SLACK_API_KEY}`,
-      },
-      ...getFetchCacheConfig([discordChannelTag(channelId)]),
-    }
+    { ...getFetchCacheConfig([slackChannelTag(channelId)]) }
   );
-
-  if (!res.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
-    });
-  }
-
-  const data = await res.json();
-  if (!data.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(data.error ?? "unknown Slack error"),
-    });
-  }
-
-  return data as SlackHistoryEntity;
 };
 
 export const sendSlackMessage = async ({
@@ -94,12 +102,9 @@ export const sendSlackMessage = async ({
   text: string;
   threadTs?: string;
 }): Promise<{ ts: string }> => {
-  const res = await fetch("https://slack.com/api/chat.postMessage", {
+  const data = await slackRequest<SlackApiResponse & { ts: string }>("https://slack.com/api/chat.postMessage", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.SLACK_API_KEY}`,
-      "Content-Type": "application/json; charset=utf-8",
-    },
+    headers: { "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify({
       channel: channelId,
       text,
@@ -109,18 +114,7 @@ export const sendSlackMessage = async ({
       mrkdwn: false,
     }),
   });
-  if (!res.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
-    });
-  }
-  const data = await res.json();
-  if (!data.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(data.error ?? "unknown Slack error"),
-    });
-  }
-  return { ts: data.ts as string };
+  return { ts: data.ts };
 };
 
 export const updateSlackMessage = async ({
@@ -132,73 +126,39 @@ export const updateSlackMessage = async ({
   ts: string;
   text: string;
 }): Promise<void> => {
-  const res = await fetch("https://slack.com/api/chat.update", {
+  await slackRequest("https://slack.com/api/chat.update", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.SLACK_API_KEY}`,
-      "Content-Type": "application/json; charset=utf-8",
-    },
+    headers: { "Content-Type": "application/json; charset=utf-8" },
     body: JSON.stringify({ channel: channelId, ts, text, mrkdwn: false }),
   });
-  if (!res.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
-    });
-  }
-  const data = await res.json();
-  if (!data.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(data.error ?? "unknown Slack error"),
-    });
-  }
 };
 
 async function getSlackUploadUrl(
   filename: string,
   length: number
 ): Promise<{ upload_url: string; file_id: string }> {
-  const res = await fetch("https://slack.com/api/files.getUploadURLExternal", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.SLACK_API_KEY}`,
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams({ filename, length: `${length}` }),
-  });
-  if (!res.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
-    });
-  }
-  const data = await res.json();
-  if (!data.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(data.error ?? "unknown Slack error"),
-    });
-  }
-  return data as { upload_url: string; file_id: string };
+  return slackRequest<SlackApiResponse & { upload_url: string; file_id: string }>(
+    "https://slack.com/api/files.getUploadURLExternal",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ filename, length: `${length}` }),
+    }
+  );
 }
 
 async function _completeSlackUpload(fileId: string, title: string): Promise<string> {
-  const res = await fetch("https://slack.com/api/files.completeUploadExternal", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${env.SLACK_API_KEY}`,
-      "Content-Type": "application/json; charset=utf-8",
-    },
-    body: JSON.stringify({ files: [{ id: fileId, title }] }),
-  });
-  if (!res.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
-    });
-  }
-  const data = await res.json();
-  const url = data.ok ? (data.files?.[0]?.url_private as string | undefined) : undefined;
+  const data = await slackRequest<SlackApiResponse & { files?: { url_private?: string }[] }>(
+    "https://slack.com/api/files.completeUploadExternal",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json; charset=utf-8" },
+      body: JSON.stringify({ files: [{ id: fileId, title }] }),
+    }
+  );
+  const url = data.files?.[0]?.url_private;
   if (!url) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(data.ok ? "missing url_private in response" : (data.error ?? "unknown Slack error")),
-    });
+    throw new AppError(ErrorCode.SLACK, { cause: new Error("missing url_private in response") });
   }
   return url;
 }
@@ -212,7 +172,9 @@ export const uploadSlackImage = async ({
 }): Promise<string> => {
   const uploadUrl = await getSlackUploadUrl(filename, buffer.byteLength);
 
-  const uploadRes = await fetch(uploadUrl.upload_url, {
+  // Upload nhị phân thẳng lên URL được cấp - không có body {ok,error} như API Slack khác nên
+  // không đi qua slackRequest.
+  const uploadRes = await apiFetch(uploadUrl.upload_url, {
     method: "POST",
     body: new Uint8Array(buffer),
   });
@@ -237,28 +199,8 @@ export const getListReplyFromSlack = async ({
   });
   params.append("ts", `${ts}`);
 
-  const res = await fetch(
+  return slackRequest<SlackHistoryEntity>(
     `https://slack.com/api/conversations.replies?${params.toString()}`,
-    {
-      headers: {
-        Authorization: `Bearer ${env.SLACK_API_KEY}`,
-      },
-      ...getFetchCacheConfig([discordThreadTag(ts)]),
-    }
+    { ...getFetchCacheConfig([slackThreadTag(ts)]) }
   );
-
-  if (!res.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(`HTTP ${res.status} ${res.statusText}`),
-    });
-  }
-
-  const data = await res.json();
-  if (!data.ok) {
-    throw new AppError(ErrorCode.SLACK, {
-      cause: new Error(data.error ?? "unknown Slack error"),
-    });
-  }
-
-  return data as SlackHistoryEntity;
 };

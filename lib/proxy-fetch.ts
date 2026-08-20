@@ -1,3 +1,4 @@
+import { apiFetch } from "@/lib/api-fetch";
 import { ONE_WEEK } from "@/lib/constants";
 import { env } from "@/lib/env";
 
@@ -32,7 +33,7 @@ export function buildProxyHeaders(upstreamHeaders: Headers): Headers {
 }
 
 export async function fetchWithSlackAuth(url: string, range?: string) {
-  return fetch(url, {
+  return apiFetch(url, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${env.SLACK_API_KEY}`,
