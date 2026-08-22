@@ -5,29 +5,36 @@ import { sourceToSection } from "@/lib/content-section";
 import { checkAuthenticated } from "@/lib/auth";
 import { updateWordsContent } from "@/lib/services/dictionary.service";
 import { updateCardsFileViaGithub, updatePageFileViaGithub } from "@/lib/services/github.service";
-import { ActionState, AppError, BaseItem, ErrorCode, KWordType, Source } from "@/lib/types";
+import { ActionState, AppError, ErrorCode, Source } from "@/lib/types";
 import { z } from "zod";
 
-const baseItemSchema = z.object({
-    source: z.enum(Source),
-    collection: z.string().optional(),
-    documentId: z.string().min(1),
-    words: z.string().min(1),
-    content: z.string().optional(),
-    type: z.enum(KWordType).optional(),
-});
-
-function parseItemJson(itemJson: FormDataEntryValue | null): BaseItem | null {
-    if (typeof itemJson !== "string") {
+function parseItem<T extends z.ZodType>(schema: T, formData: FormData): z.infer<T> | null {
+    const raw = formData.get("item");
+    if (typeof raw !== "string") {
         return null;
     }
     try {
-        const parsed = baseItemSchema.safeParse(JSON.parse(itemJson));
+        const parsed = schema.safeParse(JSON.parse(raw));
         return parsed.success ? parsed.data : null;
     } catch {
         return null;
     }
 }
+
+const contentItemSchema = z.object({
+    source: z.enum(Source),
+    documentId: z.string().min(1),
+    words: z.string().min(1),
+    content: z.string().optional(),
+});
+
+const fileItemSchema = z
+    .object({
+        source: z.enum(Source),
+        documentId: z.string().min(1),
+        content: z.string().min(1),
+    })
+    .refine((item) => sourceToSection(item.source) !== null, { message: "invalid source" });
 
 export async function submitUpdateContent(
     _prevState: ActionState,
@@ -38,7 +45,7 @@ export async function submitUpdateContent(
         return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
     }
 
-    const item = parseItemJson(formData.get("item"));
+    const item = parseItem(contentItemSchema, formData);
     if (!item) {
         return { message: new AppError(ErrorCode.VALIDATION).message };
     }
@@ -56,13 +63,13 @@ export async function submitUpdateCards(
         return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
     }
 
-    const item = parseItemJson(formData.get("item"));
-    const section = item ? sourceToSection(item.source) : null;
-    if (!item?.documentId || !item?.content || !section) {
+    const item = parseItem(fileItemSchema, formData);
+    if (!item) {
         return { message: new AppError(ErrorCode.VALIDATION).message };
     }
 
     try {
+        const section = sourceToSection(item.source)!;
         await updateCardsFileViaGithub(section, "n1", item.documentId, item.content);
     } catch (error) {
         throw new AppError(ErrorCode.GITHUB, { cause: error as Error });
@@ -80,13 +87,13 @@ export async function submitUpdatePage(
         return { message: new AppError(ErrorCode.UNAUTHENTICATED).message };
     }
 
-    const item = parseItemJson(formData.get("item"));
-    const section = item ? sourceToSection(item.source) : null;
-    if (!item?.documentId || !item?.content || !section) {
+    const item = parseItem(fileItemSchema, formData);
+    if (!item) {
         return { message: new AppError(ErrorCode.VALIDATION).message };
     }
 
     try {
+        const section = sourceToSection(item.source)!;
         await updatePageFileViaGithub(
             section,
             "n1",
