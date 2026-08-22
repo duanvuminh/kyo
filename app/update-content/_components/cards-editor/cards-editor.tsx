@@ -24,7 +24,7 @@ interface CardsEditorProps {
 function useToastOnSaved(state: ActionState<boolean>) {
   useEffect(() => {
     if (state.data !== undefined) {
-      toast.success("Đã tạo Pull Request, chờ duyệt");
+      toast.success("Đã gửi thành công, đang chờ duyệt");
     }
   }, [state]);
 }
