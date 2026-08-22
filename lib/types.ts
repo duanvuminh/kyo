@@ -100,6 +100,7 @@ export interface WordDTO {
   type: string;
   content: string | null;
   practiceId: string | null;
+  huusenSynced: boolean;
 }
 
 export class KWord implements BaseItem {
@@ -108,6 +109,7 @@ export class KWord implements BaseItem {
   type: KWordType;
   content?: string;
   practiceId?: string;
+  huusenSynced?: boolean;
 
   constructor(
     words: string,

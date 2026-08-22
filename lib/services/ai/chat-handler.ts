@@ -2,9 +2,10 @@ import { trimLineBreak } from "@/lib/utils/utils";
 import { AIService } from "@/lib/services/ai/ai";
 import { classifyWord } from "@/lib/services/ai/classify-word";
 import { instructionKanji } from "@/lib/services/ai/instructions";
-import { createWordsContent, searchWord } from "@/lib/services/dictionary.service";
+import { createWordsContent, searchWord, syncHuusenMnemonic } from "@/lib/services/dictionary.service";
 import { AppError, ErrorCode, KWord, KWordType } from "@/lib/types";
 import { ModelMessage } from "ai";
+import { after } from "next/server";
 
 function getTextFromModelMessage(msg?: ModelMessage): string | undefined {
   if (!msg) {
@@ -63,6 +64,10 @@ export async function handleChatMessages(
       getTextFromModelMessage(messages.at(-1)) ?? ""
     );
     const word = await searchWord(message);
+
+    if (word.type === KWordType.KANJI && !word.huusenSynced) {
+      after(() => syncHuusenMnemonic(word.words));
+    }
 
     if (word.content != null) {
       return word.content;

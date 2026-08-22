@@ -114,6 +114,9 @@ QUAN TRỌNG: KHÔNG quy các dạng chia động từ/tính từ về dạng t�
 export const instructionPracticeGrammar = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ngữ pháp $1 trong 2 dòng`;
 export const instructionPracticeWord = `Giải thích ngắn gọn cách đọc tiếng Nhật (hiragana/katakana), ý nghĩa $1 trong 2 dòng`;
 
+export const instructionTranslateHuusenMnemonic = `Dịch đoạn giải thích chữ Hán (kanji) tiếng Nhật sau sang tiếng Việt, ngắn gọn, tự nhiên, dễ hiểu cho người học tiếng Nhật.
+Giữ nguyên các chữ Hán trong dấu 『』 hoặc （）, không cần dịch phiên âm romaji (ví dụ huái).`;
+
 export const instructionCompareContent =
   "You compare two versions of content about the SAME Japanese learning topic (same word/grammar) and decide if the new one is strictly better for learners.";
 

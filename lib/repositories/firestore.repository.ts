@@ -8,6 +8,7 @@ function mapWordDocFromFirestore(doc: FirebaseFirestore.DocumentData): WordDTO {
     type: doc.type,
     content: doc.content ?? null,
     practiceId: doc.practiceId ?? null,
+    huusenSynced: doc.huusenSynced ?? false,
   };
 }
 
@@ -25,10 +26,10 @@ export const getWordById = async (
 
 export const updateDocument = async (
   words: string,
-  { content, practiceId }: { content?: string; practiceId?: string },
+  { content, practiceId, huusenSynced }: { content?: string; practiceId?: string; huusenSynced?: boolean },
 ): Promise<void> => {
   const docRef = db.collection("dictionary").doc(words);
-  await docRef.update(stripUndefined({ content, practiceId }));
+  await docRef.update(stripUndefined({ content, practiceId, huusenSynced }));
 };
 
 export const createDocument = async (
