@@ -160,7 +160,7 @@ export const cards: FlashCardItem[] = [
   {
     front: "幼なじみ",
     back: [
-      "- おさななじみ",
+      "- おさなじみ",
       "- bạn thiếu thời; bạn thủa nhỏ",
     ],
     more: [
