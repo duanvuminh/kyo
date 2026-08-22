@@ -87,7 +87,8 @@ export const instructionClassifyWord = `Luôn trả lời (field content) bằng
 Phân loại input tiếng Nhật sau vào 1 trong 3 loại (type), rồi trả lời theo type đó.
 
 - "word": input là từ vựng tiếng Nhật. Giải thích content theo format:
-  (cách phát âm)
+  [TỪ]（[CÁCH ĐỌC]）
+  Hán Việt: [âm Hán Việt của từng chữ Kanji trong từ, nếu từ có chứa Kanji]
   1. Ý nghĩa
   2. Ví dụ
   3. Phân biệt các từ có nghĩa tương tự nếu có
