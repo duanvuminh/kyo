@@ -31,6 +31,11 @@ export function useCardZoneTap({ onNext, onPrev, onTap }: UseCardZoneTapArgs) {
       if (dragDistance > DRAG_TOLERANCE_PX) {
         return;
       }
+      // Double-tap để chọn từ gần như không di chuyển ngón tay -> dễ bị tính nhầm thành tap
+      // lật thẻ. Nếu vừa chọn xong 1 đoạn text thì bỏ qua, để user tra từ thay vì bị lật mặt.
+      if (window.getSelection()?.toString()) {
+        return;
+      }
 
       const rect = e.currentTarget.getBoundingClientRect();
       const y = e.clientY - rect.top;
