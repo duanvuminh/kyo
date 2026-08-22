@@ -50,6 +50,8 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
         nextCard={nextCard}
         prevCard={prevCard}
         contributeHref={contributeHref}
+        index={index}
+        total={currentCards.length}
       />
       <FlashCardControls prevCard={prevCard} nextCard={nextCard} />
       {isLastCard && canSave && !isDone && (
@@ -60,7 +62,6 @@ export function FlashCard({ cards }: { cards: FlashCardItem[] }) {
       {totalPages > 1 && (
         <FlashCardPagination totalPages={totalPages} page={page} goToPage={goToPage} />
       )}
-      <div className="text-sm text-gray-500">Thẻ {index + 1}/{currentCards.length}</div>
       {isLastCard && <FlashCardNextLessons lessons={upcomingLessons} />}
     </div>
   );

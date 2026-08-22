@@ -35,6 +35,8 @@ export function FlashCardDisplay({
   nextCard,
   prevCard,
   contributeHref,
+  index,
+  total,
 }: {
   currentCard: FlashCardItem;
   showBack: boolean;
@@ -42,6 +44,8 @@ export function FlashCardDisplay({
   nextCard: () => void;
   prevCard: () => void;
   contributeHref?: string;
+  index: number;
+  total: number;
 }) {
   const zoneTapHandlers = useCardZoneTap({ onNext: nextCard, onPrev: prevCard, onTap: toggleShowBack });
   // Mặt sau nội dung phức tạp (câu hỏi trắc nghiệm dùng <li onClick>, không phải <button>) và
@@ -50,7 +54,10 @@ export function FlashCardDisplay({
   const cardProps = showBack ? {} : zoneTapHandlers;
 
   return (
-    <Card className="w-full min-h-48 p-2" {...cardProps}>
+    <Card className="relative w-full min-h-48 p-2" {...cardProps}>
+      <div className="absolute right-3 top-2 text-xs text-gray-500">
+        Thẻ {index + 1}/{total}
+      </div>
       <CardContent>
         {showBack ? (
           <CardBackFace currentCard={currentCard} toggleShowBack={toggleShowBack} contributeHref={contributeHref} />
