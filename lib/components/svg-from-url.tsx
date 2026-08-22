@@ -22,8 +22,8 @@ export function SvgFromUrl({ url }: { url: string }) {
               path.setAttribute("stroke-width", "3");
               path.style.strokeDasharray = `${length}`;
               path.style.strokeDashoffset = `${length}`;
-              path.style.animation = `draw 0.5s ease forwards`;
-              path.style.animationDelay = `${i * 0.3}s`;
+              path.style.animation = `draw 0.3s ease forwards`;
+              path.style.animationDelay = `${i * 0.2}s`;
             });
             const style = document.createElement("style");
             style.innerHTML = `
