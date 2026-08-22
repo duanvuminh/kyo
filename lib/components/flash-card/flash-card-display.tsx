@@ -4,6 +4,7 @@ import { FlashCardBack } from "@/lib/components/flash-card/flash-card-back";
 import { FlashCardFront } from "@/lib/components/flash-card/flash-card-front";
 import { FlashCardItem } from "@/lib/components/flash-card/flash-card";
 import { useCardZoneTap } from "@/lib/components/flash-card/use-card-zone-tap";
+import { cn } from "@/lib/utils/utils";
 
 interface CardBackFaceProps {
   currentCard: FlashCardItem;
@@ -58,7 +59,7 @@ export function FlashCardDisplay({
       <div className="absolute right-3 top-2 text-xs text-gray-500">
         Thẻ {index + 1}/{total}
       </div>
-      <CardContent className="flex-1">
+      <CardContent className={cn("flex-1", !showBack && "flex flex-col items-center justify-center")}>
         {showBack ? (
           <CardBackFace currentCard={currentCard} toggleShowBack={toggleShowBack} contributeHref={contributeHref} />
         ) : (
