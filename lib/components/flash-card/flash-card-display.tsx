@@ -58,7 +58,7 @@ export function FlashCardDisplay({
       <div className="absolute right-3 top-2 text-xs text-gray-500">
         Thẻ {index + 1}/{total}
       </div>
-      <CardContent>
+      <CardContent className="flex-1">
         {showBack ? (
           <CardBackFace currentCard={currentCard} toggleShowBack={toggleShowBack} contributeHref={contributeHref} />
         ) : (

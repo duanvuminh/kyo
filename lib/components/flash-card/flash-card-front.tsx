@@ -5,7 +5,7 @@ export function FlashCardFront({ front }: { front: string }) {
   const referenceUrl = front.length === 1 ? findHuusennarareUrl(front) : undefined;
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex h-full flex-col items-center justify-center gap-1">
       {front}
       {referenceUrl && (
         <Link
