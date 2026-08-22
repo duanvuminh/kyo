@@ -6,4 +6,4 @@ import dynamic from "next/dynamic";
 // chunk riêng, chỉ tải khi thực sự render nội dung, thay vì nằm chung trong bundle ban đầu.
 // Phải là component "use client" riêng vì next/dynamic({ssr:false}) không dùng được thẳng
 // trong Server Component.
-export const LazyMarkdown = dynamic(() => import("react-markdown"), { ssr: false });
+export const LazyMarkdown = dynamic(() => import("@/lib/components/markdown-breaks"), { ssr: false });
